@@ -1,3 +1,3 @@
-# cambridge-notes-template
+# ia-dpmms-analysis-i-lt-2026
 
-Template for typesetting my Cambridge notes.
+My notes for Cambridge Maths Part IA DPMMS Analysis I course, Lent Term 2026, Lectured by Dr Rita Teixeira da Costa.
