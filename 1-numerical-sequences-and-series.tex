@@ -1,0 +1,186 @@
+\section{Numerical Sequences and Series}
+\subsection{Basics}
+
+\begin{definition}[Sequence]
+    \label{def:sequence}%
+    A \emph{sequence} \(\para{x_n}_{n \in \NN}\) on.a set \(X\) is an enumerated list where each element is in \(X\).
+\end{definition}
+
+In this chapter, \(X \subseteq \RR\) or \(X \subseteq \CC\). A concrete important example is \(X = \RR\), the real sequences.
+
+What does it mean for \(\para{x_n}\) to converge to some \(x \in X\), or to diverge to infinity?
+
+On convergence,
+\begin{itemize}
+    \item we need \(\abs{x_n - x}\) to be small, to be smaller than any given threshold \(\epsilon > 0\) that we choose;
+    \item but for the comparison, only the 'tail of the sequence', i.e. 'larger \(n\)' behaviour matters: we can always ignore the first \(N\) terms of the sequence, for some \(N\) depending on \(\epsilon\).
+\end{itemize}
+
+On diverging to infinity,
+\begin{itemize}
+    \item we need \(\abs{x_n}\) to clear any threshold \(L > 0\) that we set for it;
+    \item but similarly, only the 'tail' matters; we can always ignore the first \(N\) terms, where \(N\) depends on \(L\).
+\end{itemize}
+
+\begin{definition}[Convergence of a Sequence]
+    \label{def:seq-convergence}%
+    A sequence \(\para{x_n}\) \emph{converges} to some \(x\), finite, if
+    \[
+        \forall \epsilon > 0, \exists N = N \para{\epsilon} \in \NN, \forall n \geq N: \abs{x_n - x} < \epsilon.
+    \]
+    
+    This is denoted by \(x_n \to x\).
+\end{definition}
+
+\begin{definition}[Divergence to Infinity for a Sequence]
+    \label{def:seq-divergence-to-infinity}%
+    A sequence \(\para{x_n}\) \emph{diverges to infinity} if
+    \[
+        \forall L > 0, \exists N = N \para{L} \in \NN, \forall n \geq N: \abs{x_n} > L.
+    \]
+\end{definition}
+
+\begin{remark}
+    We can replace \(<\) by \(\leq\), we can replace \(\epsilon\) by \(2 \epsilon\), \(3 \epsilon\), and same for \(L\).
+\end{remark}
+
+\begin{examples}[Example of Limits]
+    \begin{itemize}
+        \item Let \(x_n = \frac{1}{n}\), then \(x_n \to 0\), because for any given \(\epsilon > 0\), if we choose \(N = 1 + \ceil{\frac{1}{\epsilon}}\), then for all \(n \geq N\),
+        \[
+            \abs{x_n - 0} = \frac{1}{n} < \epsilon.
+        \]
+
+        \item Let \(x_n = \frac{1}{2^n}\), then \(x_n \to 0\), because similarly, for any given \(\epsilon > 0\), if we choose \(N = \max\brce{1 + \log_2 \para{\frac{1}{\epsilon}}, 1}\), then for all \(n \geq N\),
+        \[
+            \abs{x_n - 0} = \frac{1}{2^n} < \epsilon.
+        \]
+
+        \item Let \(x_n = in\), then \(x_n \to \infty\), since for any given \(L > 0\), let \(N = 1 + \ceil{L}\), then for all \(n \geq N\),
+        \[
+            \abs{x_n} = \frac{x_n}{i} = n > L.
+        \]
+
+        \item Let \(x_n = \para{-1}^n\), then \(x_n\) doesn't diverge to \(\infty\) (\(\abs{x_n} \leq 1\)) but also does not converge.
+    \end{itemize}
+\end{examples}
+
+\begin{lemma}[Limits of Sequences are Unique]
+    \label{lem:seq-limit-unique}%
+    For a sequence \(\para{x_n}\), if \(x_n \to a\) and \(x_n \to b\), then \(a = b\).
+\end{lemma}
+
+\begin{proof}
+    Let \(x_n \to a\) and \(x_n \to b\). Let \(\epsilon > 0\) be arbitrary. We have some \(N_1 \para{\epsilon}\) and \(N_2 \para{\epsilon}\), such that
+    \[
+        \forall n \geq N_1\para{\epsilon}: \abs{x_n - a} < \epsilon
+    \]
+    and
+    \[
+        \forall n \geq N_2\para{\epsilon}: \abs{x_n - b} < \epsilon.
+    \]
+
+    In particular, we look at \(N\para{\epsilon} = \max\brce{N_1, N_2}\). It must still be the case that for all \(n \geq N\),
+    \[
+        \abs{x_n - a}, \abs{x_n - b} < \epsilon.
+    \]
+
+    Hence, for all \(n \geq N\para{\epsilon}\), by the triangular inequality,
+    \begin{align*}
+        \abs{a - b} &= \abs{a - x_n + x_n - b} \\
+        &\leq \abs{x_n - a} + \abs{x_n - b} && \text{Triangular Inequality} \\
+        &< 2\epsilon.
+    \end{align*}
+
+    Hence, we may conclude that \(\abs{a - b} = 0\), which shows \(a = b\).
+\end{proof}
+
+\begin{proposition}[Sandwich Theorem for Sequences]
+    \label{prop:seq-sandwich-theorem}%
+    Let \(\para{x_n}, \para{y_n}\) and \(\para{z_n}\) be real sequences. Then,
+    \begin{itemize}
+        \item \emph{Limits preserve weak order.} If \(x_n \leq y\) for all \(n \in \NN\), and \(x_n \to x\), then \(x \leq y\);
+        \item \emph{Sandwich theorem.} If \(x_n \to x\) and \(z_n \to z\), and \(x_n \leq y_n \leq z_n\) for all \(n \in \NN\), then \(y_n \to x\).
+    \end{itemize}
+\end{proposition}
+
+\begin{remark}
+    In the first part for \emph{limits preserve weak order}, note that \emph{limits does not preserve strong order}, i.e. we \emph{cannot} replace all \(\leq\)s with \(<\)s.
+\end{remark}
+
+\begin{proof}
+    Left as an exercise.
+\end{proof}
+
+\begin{lemma}[Convergence in \(\CC\) is the same as Convergence in \(\RR\) for Sequences]
+    \label{lem:seq-convergence-in-c}%
+    Let \(\para{x_n}\) be a complex sequence. Then \(x_n \to x\) if and only if \(\re\para{x_n} \to \re\para{x}\), and \(\im \para{x_n} to \im\para{x}\).
+\end{lemma}
+
+\begin{proof}
+    Recall that for some \(z \in \CC\), we have that
+    \[
+        \abs{z} = \sqrt{\para{\re z}^2 + \para{\im z}^2}.
+    \]
+    
+    \(\implies\). We use inequalities
+    \[
+        \abs{\re z}, \abs{\im z} \leq \abs{z}.
+    \]
+
+    \(\impliedby\). Note the inequality
+    \[
+        \abs{z} \leq \abs{\re z} + \abs{\im z}.
+    \]
+
+    Let \(\epsilon > 0\) be arbitrary. Then, there is some \(N_1 = N_1 \para{\epsilon}\) and \(N_2 = N_2 \para{\epsilon}\), such that
+    \[
+        \forall n \geq N_1, \abs{\re\para{x_n} - \re\para{x}} < \epsilon
+    \]
+    and
+    \[
+        \forall n \geq N_2, \abs{\im\para{x_n} - \im\para{x}} < \epsilon.
+    \]
+
+    Hence, for all \(n \geq \max\brce{N_1, N_2}\),
+    \begin{align*}
+        \abs{x_n - x} &= \abs{\para{\re \para{x_n} - \re \para{x}} + i \para{\im \para{x_n} - \im \para{x}}} \\
+        &\leq \abs{\re\para{x_n} - \re\para{x}} + \abs{i\para{\im\para{x_n} - \im\para{x}}} && \text{triangular inequality} \\
+        &= \abs{\re\para{x_n} - \re\para{x}} + \abs{\im\para{x_n} - \im\para{x}} \\
+        &< 2\epsilon
+    \end{align*}
+    showing as desired.
+\end{proof}
+
+\begin{lemma}[Limits preserve Arithemetics for Sequences]
+    \label{lem:limits-arithemetics-seq}%
+    Let \(x_n \to x\) and \(y_n \to y\). Then \(x_n + y_n \to x + y\) and \(x_n y_n \to xy\).
+\end{lemma}
+
+\begin{proof}
+    The first part is left as en exercise. We prove next that \(x_n y_n \to xy\).
+
+    Notice that
+    \begin{align*}
+        \abs{x_n y_n - xy} &= \abs{x_n y_n - x y_n + x y_n - xy} \\
+        &\leq \abs{x} \abs{y_n - y} + \abs{y_n} \abs{x - x_n}. && \text{triangular inequality}
+    \end{align*}
+
+    For any \(\epsilon > 0\), there exists \(N_1 = N_1 \para{\epsilon}\) and \(N_2 = N_2 \para{\epsilon}\), such that
+    \begin{itemize}
+        \item \(\abs{x_n - x} < \epsilon\) for all \(n \geq N_1\); and
+        \item \(\abs{y_n - y} < \epsilon\) for all \(n \geq N_2\).
+    \end{itemize}
+
+    Hence, for any \(n \geq \max\brce{N_1, N_2}\), we have
+    \[
+        \abs{x_n y_n - xy} < \epsilon \para{\abs{x} + \abs{y_n}}.
+    \]
+
+    Hence, by \autoref{lem:convergence-bounded-seq}, we may replace \(\abs{y_n}\) with some bound, and we are done.
+\end{proof}
+
+\begin{lemma}[Convergent Sequences are Bounded]
+    \label{lem:convergence-bounded-seq}%
+    If \(x_n \to x\), then \(\para{x_n}\) must be bounded. This means, there is some \(M \in \RR\), such that \(\abs{x_n} \leq M\) for all \(n \in \NN\).
+\end{lemma}
