@@ -153,12 +153,12 @@ On diverging to infinity,
 \end{proof}
 
 \begin{lemma}[Limits preserve Arithemetics for Sequences]
-    \label{lem:limits-arithemetics-seq}%
-    Let \(x_n \to x\) and \(y_n \to y\). Then \(x_n + y_n \to x + y\) and \(x_n y_n \to xy\).
+    \label{lem:seq-limits-arithemetics}%
+    Let \(x_n \to x\) and \(y_n \to y\). Then \(x_n + y_n \to x + y\) and \(x_n y_n \to xy\). Furthermore, \(x_n \neq 0\) for all \(n \in \NN\), then \(\frac{1}{x_n} \to \frac{1}{x}\).
 \end{lemma}
 
 \begin{proof}
-    The first part is left as en exercise. We prove next that \(x_n y_n \to xy\).
+    The first and final parts are left as en exercise. We prove next that \(x_n y_n \to xy\).
 
     Notice that
     \begin{align*}
@@ -177,10 +177,180 @@ On diverging to infinity,
         \abs{x_n y_n - xy} < \epsilon \para{\abs{x} + \abs{y_n}}.
     \]
 
-    Hence, by \autoref{lem:convergence-bounded-seq}, we may replace \(\abs{y_n}\) with some bound, and we are done.
+    Hence, by \autoref{lem:seq-convergence-bounded}, we may replace \(\abs{y_n}\) with some bound, and we are done.
 \end{proof}
 
+\begin{definition}[Bounded Sequence]
+    \label{def:seq-bounded}%
+    We say \(\para{x_n}\) is \emph{bounded}, if there is some \(M > 0\), such that for all \(n \in \NN\), that
+    \[
+        \abs{x_n} \leq M.
+    \]
+
+    Equivalently, if there is some \(M > 0\), such that
+    \[
+        \sup_{n \geq 0} \abs{x_n} \leq M.
+    \]
+\end{definition}
+
 \begin{lemma}[Convergent Sequences are Bounded]
-    \label{lem:convergence-bounded-seq}%
-    If \(x_n \to x\), then \(\para{x_n}\) must be bounded. This means, there is some \(M \in \RR\), such that \(\abs{x_n} \leq M\) for all \(n \in \NN\).
+    \label{lem:seq-convergence-bounded}%
+    If \(x_n \to x\), then \(\para{x_n}\) must be bounded.
 \end{lemma}
+
+\begin{proof}
+    Take \(\epsilon = 1\), and hence there is some \(N \in \NN\), such that
+    \[
+        \forall n \geq N: \abs{x_n - x} \leq 1.
+    \]
+
+    Hence, it must be the case that
+    \[
+        \forall n \geq N: \abs{x_n} \leq 1 + \abs{x}
+    \]
+    which gives a bound on \(x_n\) for sufficiently large \(n\). For the remaining finite number of elements, we have for all \(1 \leq n \leq N\),
+    \[
+        \abs{x_n} \leq \max_{1 \leq n \leq N} \abs{x_n} < \infty.
+    \]
+
+    This gives an overall bound of
+    \[
+        \abs{x_n} \leq \max\brce{\max_{1 \leq n \leq N} \abs{x_n}, \abs{x} + 1}.
+    \]
+\end{proof}
+
+Note that most of the \(n \in \NN\) above can be replaced with \(n\) sufficiently large -- since every time when we consider limits, we in fact only consider the behaviour for sufficiently large \(n\).
+
+\begin{definition}[Monotone Sequence]
+    \label{def:seq-monotone}%
+    We say a real sequence \(\para{x_n}\) is \emph{monotone}, if either
+    \begin{itemize}
+        \item it is \emph{increasing}: \(x_n \leq x_{n + 1}\) for all \(n \in \NN\); or
+        \item it is \emph{decreasing}: \(x_n \geq x_{n + 1}\) for all \(n \in \NN\).
+    \end{itemize}
+
+    \emph{Strictly monotone} is when we replace the \(\leq, \geq\) symbols with \(<, >\).
+\end{definition}
+
+Similarly, if we attempt to conclude some limiting behaviour of a sequence that is \emph{eventually} monotone, then we can apply any theorem on a monotone sequence, since we only care about large \(n\) behaviours. An example of such a theorem is \autoref{thm:monotone-convergence}.
+
+\begin{theorem}[Monotone Convergence Theorem]
+    \label{thm:monotone-convergence}%
+    Bounded monotone real sequence converges.
+\end{theorem}
+
+\begin{proof}
+    Without loss of generality, assume that the sequence is strictly increasing. Use the supremum axiom of \(\RR\) that every non-empty subset of \(\RR\) that is bounded above has a supremum in \(\RR\), and we would like to show that such supremum of the elements of the sequence is in fact the limit.
+\end{proof}
+
+\subsection{Bolzano--Weierstrass Theorem}
+
+We cannot say this about sequences that are bounded but not (eventually) monotonic. Indeed, from previously, the sequence \(\para{x_n} = \para{-1}^n\) is bounded with \(\abs{x_n} \leq 1\), but it does not converge. However,
+\begin{itemize}
+    \item if we delete the even terms: \(x_{2k + 1} = -1\) converge to \(-1\); and
+    \item if we delete the odd terms: \(x_{2k} = 1\) converge to \(1\).
+\end{itemize}
+
+The constant subsequences converge. But is it necessary that some subsequence converges for \emph{every} sequence? We first formally define what a subsequence is.
+
+\begin{definition}[Subsequence]
+    \label{def:seq-subsequence}%
+    Given a sequence \(\para{x_n}\), a \emph{subsequence} of \(x_n\) is a sequence \(\para{x_{n_k}}_{k \in \NN}\), where \(\para{n_k}_{k \in \NN}\) is a strictly increasing natural number sequence.
+\end{definition}
+
+Now we are ready to give the main result of this section.
+
+\begin{theorem}[Bolzano--Weierstrass Theorem]
+    \label{thm:bolzano-weierstrass}%
+    If \(\para{x_n}\) is a real, bounded sequence, then it has at least one convergent subsequence.
+\end{theorem}
+
+The example above with \(\para{-1}^n\) shows that there could be more subsequence, and the limits could be different.
+
+To prove this result, we first give the following lemmas which are useful.
+
+\begin{lemma}[Subsequences Converge to the Same Limit]
+    \label{lem:seq-subsequence-same-limit}%
+    If \(x_n \to x\), then any subsequence \(\para{x_{n_k}}\) of \(\para{x_n}\) must converge to the same limit.
+\end{lemma}
+
+\begin{proof}
+    Since \(n_k < n_{k + 1}\), this shows that \(n_{k + 1} \geq n_k + 1\). By induction, we can show that \(n_k \geq k\).
+
+    Take \(\epsilon > 0\) to be positive. Since \(x_n \to x\), let \(N = N\para{\epsilon}\) be such that
+    \[
+        \forall n \geq N: \abs{x_n - x} < \epsilon.
+    \]
+
+    So, if we let \(k \geq N\), then \(n_k \geq k \geq N\), so
+    \[
+        \abs{x_{n_k} - x} < \epsilon,
+    \]
+    showing that \(x_{n_k} \to x\) as \(k \to \infty\).
+\end{proof}
+
+\begin{theorem}[Nested Interval Theorem]
+    \label{thm:nested-interval-thm}%
+    Let \(\para{I_n}_{n \in \NN}\) be a sequence of nested closed intervals in \(\RR\), i.e. \(I_n \supseteq I_{n + 1}\) for all \(n \in \NN\). Let \(I_n = \ccintv{a_n}{b_n}\). If \(b_n - a_n = \abs{I_n} \to 0\) as \(n \to \infty\), then the intersection
+    \[
+        \bigcap_{n \in \NN} I_n
+    \]
+    contains exactly one point in \(\RR\).
+\end{theorem}
+
+\begin{proof}
+    Since the intervals \(I_n \supseteq I_{n + 1}\), we have
+    \begin{itemize}
+        \item \(a_n \leq a_{n + 1}\); and
+        \item \(b_n \geq b_{n + 1}\)
+    \end{itemize}
+    for all \(n \in \NN\). Furthermore, since \(I_1 \supseteq I_n\), we have
+    \[
+        a_1 \leq a_n \leq b_n \leq b_1.
+    \]
+
+    This gives that \(\para{a_n}\) is increasing, and bounded above by \(b_1\); and that \(\para{b_n}\) is decreasing, and bounded below by \(a_1\).
+
+    Hence, by \autoref{thm:monotone-convergence} (Monotone Convergence Theorem), there exists \(a, b \in \RR\), such that \(a_n \to a\) and \(b_n \to b\).
+    
+    By \autoref{prop:seq-sandwich-theorem} (Sandwich Theorem), since limits preserve inequalities, we have \(a \leq b\) in the limit.
+
+    We show next the existence of an element in the intersection -- i.e. the intersection is not trivial. We fix an arbitrary \(n \in \NN\). For all \(k \geq n\), we have \(a_k \in \ccintv{a_k}{b_k} \subseteq \ccintv{a_n}{b_n}\), which shows that \(a_n \leq a_k \leq b_n\). Hence, by applying \autoref{prop:seq-sandwich-theorem} (Sandwich Theorem), let \(k \to \infty\), and we have \(a_n \leq a \leq b_n\). This holds true for any \(n \in \NN\), so \(a \in I_n\) for any \(n \in \NN\), which shows that
+    \[
+        a \in \bigcup_{n \in \NN} I_n.
+    \]
+
+    To show that this is the only element in the infinite intersection, note that \(b_n - a_n \to b - a\) from \autoref{lem:seq-limits-arithemetics} (Limits Preserve Arithemetics), and we have \(b_n - a_n \to 0\). Since \autoref{lem:seq-limit-unique} (limits are unique), we deduce that \(b - a = 0\), so \(a = b\).
+
+    Hence, for any \(x \in \bigcup_{n \in \NN} I_n\), we have \(a_n \leq x \leq b_n\), and taking the limit as \(n \to \infty\), by using \autoref{prop:seq-sandwich-theorem}, we see that \(a \leq x \leq b\), and hence \(x = a = b\).
+
+    This finishes our proof.
+\end{proof}
+
+Now, we prove \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass). We find an algorithm that works for \emph{any} sequence that extracts a convergent subsequence.
+
+\begin{proof}[of \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass)]
+    We are given \(\para{x_n}\) and its bound, say \(M > 0\), such that \(\abs{x_n} \leq M\) for all \(n \in \NN\). We want to construct a sequence of nested intervals, from which we can sample our subsequence, since that would ensure our subsequence would converge, to the unique intersection point of the nested intervals.
+
+    Let \(a_1 = -M, b_1 = +M\), so \(I_1 = \ccintv{-M}{M} \supseteq \set{x_n}{n \in \NN}\).
+
+    Now, take \(c = \frac{a_1 + b_1}{2}\). Then, at least one of the halves \(\ccintv{a_1}{c}\) and \(\ccintv{c}{b_2}\) will have infinitely many elements of the sequence. Take \(I_2\) to be a half to have infinitely many elements.
+
+    We continue this inductively, and we will get a sequence \(\para{I_n}_{n \in \NN}\). By construction, this is clearly a sequence of nested intervals, and they have infinitely many elements of the sequence each. The length of the interval halves each time, so the limit of the width of the intervals is zero.
+
+    Therefore, by \autoref{thm:nested-interval-thm} (Nested Interval Theorem), we see that there is a unique \(x \in \RR\) such that \(\bigcap_{n \in \NN} I_n = \brce{x}\).
+
+    We choose \(\para{x_{n_k}}\) as follows. Pick \(n_1 \in \NN\) such that \(x_{n_1} \in I_1\). Then, \(I_2\) has a infinite intersection with \(\set{x_n}{n > n_1}\).
+
+    Now, we pick \(n_2 > n_1\) such that \(x_{n_2} \in I_2\). We may continue this inductively to get \(\para{x_{n_k}}_{k \in \NN}\).
+
+    We have \(a_k \leq x_{n_k} \leq b_k\), so taking the limit as \(k \to \infty\), by \autoref{prop:seq-sandwich-theorem} (Sandwich Theorem), gives that \(x \leq \lim_{k \to \infty} x_{n_k} \leq x\), and hence \(\lim_{k \to \infty} x_{n_k} = x\), as desired.
+\end{proof}
+
+\begin{remark}
+    The lecturer concluded the proof by for all \(k \in \NN\), we have \(x_{n_k} \in I_k\), and hence
+    \[
+        x_{n_k} \in \bigcap_{n \leq k} I_n,
+    \]
+    and the result then follows. However this does depend on certain properties on the sets \(I_n\) so the proof using \autoref{prop:seq-sandwich-theorem} (Sandwich Theorem) is included.
+\end{remark}
