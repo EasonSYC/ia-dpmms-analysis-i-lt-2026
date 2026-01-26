@@ -6,20 +6,20 @@
     A \emph{sequence} \(\para{x_n}_{n \in \NN}\) on.a set \(X\) is an enumerated list where each element is in \(X\).
 \end{definition}
 
-In this chapter, \(X \subseteq \RR\) or \(X \subseteq \CC\). A concrete important example is \(X = \RR\), the real sequences.
+In this chapter, \(X \subseteq \RR\) or \(X \subseteq \CC\). An important example is \(X = \RR\), the real sequences. (We will see that the fact that we have an order on \(\RR\) is significant.)
 
 What does it mean for \(\para{x_n}\) to converge to some \(x \in X\), or to diverge to infinity?
 
 On convergence,
 \begin{itemize}
     \item we need \(\abs{x_n - x}\) to be small, to be smaller than any given threshold \(\epsilon > 0\) that we choose;
-    \item but for the comparison, only the 'tail of the sequence', i.e. 'larger \(n\)' behaviour matters: we can always ignore the first \(N\) terms of the sequence, for some \(N\) depending on \(\epsilon\).
+    \item but for the comparison, only the `tail of the sequence', i.e. `larger \(n\)' behaviour matters: we can always ignore the first \(N\) terms of the sequence, for some \(N\) depending on \(\epsilon\).
 \end{itemize}
 
 On diverging to infinity,
 \begin{itemize}
     \item we need \(\abs{x_n}\) to clear any threshold \(L > 0\) that we set for it;
-    \item but similarly, only the 'tail' matters; we can always ignore the first \(N\) terms, where \(N\) depends on \(L\).
+    \item but similarly, only the `tail' matters; we can always ignore the first \(N\) terms, where \(N\) depends on \(L\).
 \end{itemize}
 
 \begin{definition}[Convergence of a Sequence]
@@ -32,9 +32,11 @@ On diverging to infinity,
     This is denoted by \(x_n \to x\).
 \end{definition}
 
+There are two definitions of divergence to infinity, one allows the behaviour to `spiral to infinity', and one does not. We use the latter, which is specified in the notes provided by the lecturer.
+
 \begin{definition}[Divergence to Infinity for a Sequence]
     \label{def:seq-divergence-to-infinity}%
-    A sequence \(\para{x_n}\) \emph{diverges to infinity} if
+    A sequence \(\para{x_n}\) \emph{diverges to infinity} if the argument part\(\frac{x_n}{\abs{x_n}}\)converges, and the modulus part satisfies
     \[
         \forall L > 0, \exists N = N \para{L} \in \NN, \forall n \geq N: \abs{x_n} > L.
     \]
@@ -43,6 +45,18 @@ On diverging to infinity,
 \begin{remark}
     We can replace \(<\) by \(\leq\), we can replace \(\epsilon\) by \(2 \epsilon\), \(3 \epsilon\), and same for \(L\).
 \end{remark}
+
+\begin{remarks}[on divergence to infinity]
+    \begin{enumerate}
+        \item This definition of divergence to infinity effectively states that it diverges to infinity along some particular direction eventually.
+        
+        For example, the real sequence \(x_n = \para{-1}^{n - 1} n\) (i.e., \(1, -2, 3, -4, \ldots\)) does \emph{not} diverge to infinity. Similarly, the complex sequence \(x_n = \exp\para{in} \cdot n\) does \emph{not} diverge to infinity either.
+
+        \item If we only mean the `size' of the terms diverges to infinity, then we should specify \(\abs{x_n} \to \infty\), rather than \(x_n \to \infty\). The above two examples both satisfy this.
+        
+        \item This gives examples of sequences with \(x_n \to 0\) with \(x_n \neq 0\) for all \(n\), but \(\frac{1}{x_n} \notto \infty\). We may only conclude that \(\abs{\frac{1}{x_n}} \to \infty\).
+    \end{enumerate}
+\end{remarks}
 
 \begin{examples}[Example of Limits]
     \begin{itemize}
@@ -56,7 +70,7 @@ On diverging to infinity,
             \abs{x_n - 0} = \frac{1}{2^n} < \epsilon.
         \]
 
-        \item Let \(x_n = in\), then \(x_n \to \infty\), since for any given \(L > 0\), let \(N = 1 + \ceil{L}\), then for all \(n \geq N\),
+        \item Let \(x_n = in\), then \(x_n \to \infty\), since we have \(\frac{x_n}{\abs{x_n}} = i \to i\), and for any given \(L > 0\), let \(N = 1 + \ceil{L}\), then for all \(n \geq N\),
         \[
             \abs{x_n} = \frac{x_n}{i} = n > L.
         \]
@@ -105,16 +119,25 @@ On diverging to infinity,
 \end{proposition}
 
 \begin{remark}
-    In the first part for \emph{limits preserve weak order}, note that \emph{limits does not preserve strong order}, i.e. we \emph{cannot} replace all \(\leq\)s with \(<\)s.
+    In the first part for \emph{limits preserve weak order}, note that \emph{limits does not preserve strong order}, i.e. we \emph{cannot} replace all \(\leq\)s with \(<\)s. Even if \(x_n < y\) for all \(n \in \NN\), we can only conclude \(x_n \to x \leq y\) if it converges.
 \end{remark}
 
 \begin{proof}
     Left as an exercise.
 \end{proof}
 
+\begin{proof}[to \autoref{lem:seq-limit-unique}, using \autoref{prop:seq-sandwich-theorem} (Sandwich Theorem)]
+    Using the triangular inequality, we have
+    \[
+        0 \leq \abs{a - b} \leq \abs{a - x_n} + \abs{b - x_n}.
+    \]
+
+    Taking the limit as \(n \to \infty\) and applying \autoref{prop:seq-sandwich-theorem} (Sandwich Theorem) shows that \(0 \leq \abs{a - b} \leq 0\), showing \(a = b\) as desired.
+\end{proof}
+
 \begin{lemma}[Convergence in \(\CC\) is the same as Convergence in \(\RR\) for Sequences]
     \label{lem:seq-convergence-in-c}%
-    Let \(\para{x_n}\) be a complex sequence. Then \(x_n \to x\) if and only if \(\re\para{x_n} \to \re\para{x}\), and \(\im \para{x_n} to \im\para{x}\).
+    Let \(\para{x_n}\) be a complex sequence. Then \(x_n \to x\) if and only if \(\re\para{x_n} \to \re\para{x}\), and \(\im \para{x_n} \to \im\para{x}\).
 \end{lemma}
 
 \begin{proof}
@@ -150,34 +173,6 @@ On diverging to infinity,
         &< 2\epsilon
     \end{align*}
     showing as desired.
-\end{proof}
-
-\begin{lemma}[Limits preserve Arithemetics for Sequences]
-    \label{lem:seq-limits-arithemetics}%
-    Let \(x_n \to x\) and \(y_n \to y\). Then \(x_n + y_n \to x + y\) and \(x_n y_n \to xy\). Furthermore, \(x_n \neq 0\) for all \(n \in \NN\), then \(\frac{1}{x_n} \to \frac{1}{x}\).
-\end{lemma}
-
-\begin{proof}
-    The first and final parts are left as en exercise. We prove next that \(x_n y_n \to xy\).
-
-    Notice that
-    \begin{align*}
-        \abs{x_n y_n - xy} &= \abs{x_n y_n - x y_n + x y_n - xy} \\
-        &\leq \abs{x} \abs{y_n - y} + \abs{y_n} \abs{x - x_n}. && \text{triangular inequality}
-    \end{align*}
-
-    For any \(\epsilon > 0\), there exists \(N_1 = N_1 \para{\epsilon}\) and \(N_2 = N_2 \para{\epsilon}\), such that
-    \begin{itemize}
-        \item \(\abs{x_n - x} < \epsilon\) for all \(n \geq N_1\); and
-        \item \(\abs{y_n - y} < \epsilon\) for all \(n \geq N_2\).
-    \end{itemize}
-
-    Hence, for any \(n \geq \max\brce{N_1, N_2}\), we have
-    \[
-        \abs{x_n y_n - xy} < \epsilon \para{\abs{x} + \abs{y_n}}.
-    \]
-
-    Hence, by \autoref{lem:seq-convergence-bounded}, we may replace \(\abs{y_n}\) with some bound, and we are done.
 \end{proof}
 
 \begin{definition}[Bounded Sequence]
@@ -217,6 +212,34 @@ On diverging to infinity,
     \[
         \abs{x_n} \leq \max\brce{\max_{1 \leq n \leq N} \abs{x_n}, \abs{x} + 1}.
     \]
+\end{proof}
+
+\begin{lemma}[Limits preserve Arithemetics for Sequences]
+    \label{lem:seq-limits-arithemetics}%
+    Let \(x_n \to x\) and \(y_n \to y\). Then \(x_n + y_n \to x + y\) and \(x_n y_n \to xy\). Furthermore, \(x_n \neq 0\) for all \(n \in \NN\) and \(x \neq 0\), then \(\frac{1}{x_n} \to \frac{1}{x}\).
+\end{lemma}
+
+\begin{proof}
+    We prove that \(x_n y_n \to xy\).
+
+    Notice that
+    \begin{align*}
+        \abs{x_n y_n - xy} &= \abs{x_n y_n - x y_n + x y_n - xy} \\
+        &\leq \abs{x} \abs{y_n - y} + \abs{y_n} \abs{x - x_n}. && \text{triangular inequality}
+    \end{align*}
+
+    For any \(\epsilon > 0\), there exists \(N_1 = N_1 \para{\epsilon}\) and \(N_2 = N_2 \para{\epsilon}\), such that
+    \begin{itemize}
+        \item \(\abs{x_n - x} < \epsilon\) for all \(n \geq N_1\); and
+        \item \(\abs{y_n - y} < \epsilon\) for all \(n \geq N_2\).
+    \end{itemize}
+
+    Hence, for any \(n \geq \max\brce{N_1, N_2}\), we have
+    \[
+        \abs{x_n y_n - xy} < \epsilon \para{\abs{x} + \abs{y_n}}.
+    \]
+
+    Hence, by \autoref{lem:seq-convergence-bounded}, we may replace \(\abs{y_n}\) with some bound, and we are done.
 \end{proof}
 
 Note that most of the \(n \in \NN\) above can be replaced with \(n\) sufficiently large -- since every time when we consider limits, we in fact only consider the behaviour for sufficiently large \(n\).
@@ -317,7 +340,7 @@ To prove this result, we first give the following lemmas which are useful.
 
     We show next the existence of an element in the intersection -- i.e. the intersection is not trivial. We fix an arbitrary \(n \in \NN\). For all \(k \geq n\), we have \(a_k \in \ccintv{a_k}{b_k} \subseteq \ccintv{a_n}{b_n}\), which shows that \(a_n \leq a_k \leq b_n\). Hence, by applying \autoref{prop:seq-sandwich-theorem} (Sandwich Theorem), let \(k \to \infty\), and we have \(a_n \leq a \leq b_n\). This holds true for any \(n \in \NN\), so \(a \in I_n\) for any \(n \in \NN\), which shows that
     \[
-        a \in \bigcup_{n \in \NN} I_n.
+        a \in \bigcap_{n \in \NN} I_n.
     \]
 
     To show that this is the only element in the infinite intersection, note that \(b_n - a_n \to b - a\) from \autoref{lem:seq-limits-arithemetics} (Limits Preserve Arithemetics), and we have \(b_n - a_n \to 0\). Since \autoref{lem:seq-limit-unique} (limits are unique), we deduce that \(b - a = 0\), so \(a = b\).
@@ -340,7 +363,7 @@ Now, we prove \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass). We find 
 
     Therefore, by \autoref{thm:nested-interval-thm} (Nested Interval Theorem), we see that there is a unique \(x \in \RR\) such that \(\bigcap_{n \in \NN} I_n = \brce{x}\).
 
-    We choose \(\para{x_{n_k}}\) as follows. Pick \(n_1 \in \NN\) such that \(x_{n_1} \in I_1\). Then, \(I_2\) has a infinite intersection with \(\set{x_n}{n > n_1}\).
+    We choose \(\para{x_{n_k}}\) as follows. Pick \(n_1 \in \NN\) such that \(x_{n_1} \in I_1\). Then, \(I_2\) has an infinite intersection with \(\set{x_n}{n > n_1}\).
 
     Now, we pick \(n_2 > n_1\) such that \(x_{n_2} \in I_2\). We may continue this inductively to get \(\para{x_{n_k}}_{k \in \NN}\).
 
@@ -352,5 +375,5 @@ Now, we prove \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass). We find 
     \[
         x_{n_k} \in \bigcap_{n \leq k} I_n,
     \]
-    and the result then follows. However this does depend on certain properties on the sets \(I_n\) so the proof using \autoref{prop:seq-sandwich-theorem} (Sandwich Theorem) is included.
+    and the result then follows (maybe by taking a limit \(k \to \infty\)). However, this does depend on certain properties on the sets \(I_n\), and note that an infinite intersection is not about taking some limit, so the proof using \autoref{prop:seq-sandwich-theorem} (Sandwich Theorem) is included.
 \end{remark}
