@@ -379,3 +379,217 @@ Now, we prove \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass). We find 
     \]
     and the result then follows (maybe by taking a limit \(k \to \infty\)). However, this does depend on certain properties on the sets \(I_n\), and note that an infinite intersection is not about taking some limit, so the proof using \autoref{prop:seq-sandwich-theorem} (Sandwich Theorem) is included.
 \end{remark}
+
+The Bolzano--Weierstrass theorem for Complex Sequences hold as well. We can use
+\[
+    x_n = \re x_n + i \im x_n
+\]
+and apply the real version of the Bolzano--Weierstrass to the complex version. (Alternatively, a similar mechanism may also be applied to the real and complex parts simultaneously.)
+
+\subsection{Cauchy Sequences}
+
+\begin{definition}[Cauchy Sequence]
+    A sequence \(\para{x_n}\) is \emph{Cauchy} if
+    \[
+        \forall \epsilon > 0, \exists N = N \para{\epsilon} \in \NN, \forall m, n \geq N: \abs{x_m - x_n} < \epsilon.
+    \]
+
+    Intuitively, a sequence is Cauchy if any two terms can be arbitrarily close in the tail.
+\end{definition}
+
+\begin{examples}[Cauchy and Non-Cauchy Sequences]
+    \begin{itemize}
+        \item Consider \(x_n = \frac{1}{n}\). Without loss of generality, assume \(m \geq n\). Let \(\epsilon > 0\) be arbitrary, we want to have
+        \[
+            \abs{x_m - x_n} = \abs{\frac{1}{m} - \frac{1}{n}} = \frac{1}{n} - \frac{1}{m} = \frac{m - n}{mn} \leq \frac{1}{n} < \epsilon.
+        \]
+
+        Therefore, let \(N\para{\epsilon} = \ceil{\frac{1}{\epsilon}} + 1\), then this desired inequality holds. So this sequence is Cauchy.
+
+        \item Consider \(x_n = \para{-1}^{n}\) is \emph{not} Cauchy. Indeed, take \(n = 2k\) and \(m = 2k + 1\) for any \(k \in \NN\), then
+        \[
+            \abs{x_n - x_m} = 2.
+        \]
+
+        Therefore, for example, for \(\epsilon = 1\), the definition must fail.
+
+        \item Consider a sequence \(\para{x_n}\) on \(\QQ\) which is given by the truncation of the decimal expansion of \(\sqrt{2}\): so
+        \[
+            x_1 = 1, x_2 = 1.4, x_3 = 1.41, x_4 = 1.414, \ldots
+        \]
+
+        We claim this is Cauchy. Without loss of generality, let \(m > n\), then
+        \[
+            \abs{x_m - x_n} < 10^{-\para{n - 1}} < \epsilon
+        \]
+        for sufficiently large \(m, n\). Alternatively, note
+        \[
+            10^{-\para{n - 1}} \to 0
+        \]
+        which shows it is Cauchy as well.
+
+        This sequence does \emph{not} converge over \(\QQ\). However, it does converge over \(\RR\), to \(\sqrt{2}\).
+    \end{itemize}
+\end{examples}
+
+However, if \(\para{x_n}\) only satisfies that
+\[
+\forall \epsilon > 0, \exists N = N\para{\epsilon} \in \NN, \forall n \geq N: \abs{x_n - x_{n + 1}} < \epsilon,
+\]
+must it be the case that \(\para{x_n}\) is Cauchy? Note that this definition is equivalent to 
+\[
+    x_n - x_{n + 1} \to 0,
+\]
+so it is not hard to see that there will be some counterexample to this.
+
+\begin{lemma}[Cauchy Sequences are Bounded]
+    \label{lem:seq-cauchy-sequences-are-bounded}%
+    If \(\para{x_n}\) is Cauchy, then it is bounded.
+\end{lemma}
+
+\begin{proof}
+    We can simply take the definition for \(\epsilon = 1\). Then there is some \(N \in \NN\), such that for all \(n, m \geq N\), we have
+    \[
+        \abs{x_n - x_m} < \epsilon = 1.
+    \]
+
+    We fix \(m = N\). For all \(n \geq N\), we have
+    \[
+        \abs{x_n - x_N} < 1.
+    \]
+
+    This shows that
+    \[
+        \abs{x_n} < 1 + \abs{x_N},
+    \]
+    and since \(x_N\) is a fixed real number, this shows that it is bounded on the tail.
+\end{proof}
+
+\begin{lemma}[Complex Cauchy Sequences]
+    \label{lem:seq-cauchy-complex-real}%
+    A complex sequence \(\para{x_n}\) is Cauchy, if and only if the real sequences \(\re x_n\) and \(\im x_n\) are Cauchy.
+\end{lemma}
+
+\begin{lemma}[Convergent Sequences are Cauchy]
+    \label{lem:seq-convergent-implies-cauchy}%
+    If \(x_n \to x\), then \(x_n\) is Cauchy.
+\end{lemma}
+
+\begin{proof}
+    By the triangular inequality, we have
+    \[
+        \abs{x_n - x_m} = \abs{x_n - x + x - x_m} \leq \abs{x_n - x} + \abs{x_m - x}.
+    \]
+
+    Since \(x_n \to x\), for all \(\epsilon > 0\), we have \(N = N\para{\epsilon} \in \NN\), such that for all \(n \geq N\),
+    \[
+        \abs{x_n - x} < \epsilon.
+    \]
+
+    Let \(\epsilon > 0\) be arbitrary, and let \(m, n \geq N\para{\epsilon}\). We have
+    \[
+        \abs{x_n - x_m} \leq \abs{x_n - x} + \abs{x_m - x} \leq 2 \epsilon
+    \]
+    which finishes the proof.
+\end{proof}
+
+Is the converse necessarily true? Note the above example on \(\sqrt{2}\) gives an example of a Cauchy sequence on \(\QQ\) that do \emph{not} converge on \(\QQ\). This can only be true for `nice' subsets of \(\CC\).
+
+\begin{theorem}[Completeness of \(\RR\) and \(\CC\) / Cauchy Sequences are Convergent on \(\RR\) or \(\CC\)]
+    \label{thm:completeness-of-r-and-c}%
+    Every Cauchy sequence on \(\RR\) or \(\CC\) is convergent.
+\end{theorem}
+
+\begin{remark}
+    This allows for a proof of convergence of sequences in \(\RR\) or \(\CC\), without having to guess what the limit is.
+\end{remark}
+
+\begin{proof}[of \autoref{thm:completeness-of-r-and-c} (Cauchy Sequences are Convergent on \(\RR\) or \(\CC\))]
+    It is sufficient to show that this is true for real sequences, by \autoref{lem:seq-convergence-in-c} and \autoref{lem:seq-cauchy-complex-real}. (The proof itself, however, does not rely on the sequence being real.)
+
+    We have seen that \(\para{x_n}\) is Cauchy implies \(\para{x_n}\) is bounded, from \autoref{lem:seq-cauchy-sequences-are-bounded}.
+    
+    By \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass Theorem), there is some subsequence \(\para{x_{n_k}}\) that converges to some \(x\).
+
+    By the triangular inequality, we have
+    \[
+        \abs{x_n - x} \leq \abs{x_n - x_{n_k}} + \abs{x_{n_k} - x}.
+    \]
+
+    The first absolute value could then be dealt with the fact that the sequence is Cauchy, and the second by that the subsequence converges.
+
+    More precisely, let \(\epsilon > 0\) be arbitrary. Since \(\para{x_n}\) is Cauchy, we have some \(N_1 = N_1 \para{\epsilon}\), such that for all \(m, n \geq N_1\),
+    \[
+        \abs{x_n} - \abs{x_m} < \epsilon.
+    \]
+
+    In particular, take \(m = n_k \geq N_1\), we have
+    \[
+        \abs{x_n} - \abs{x_{n_k}} < \epsilon
+    \]
+    for all \(n, n_k \geq N_1\).
+
+    On the other hand, since \(x_{n_k} \to x\), there is some \(N_2 = N_2 \para{\epsilon}\), such that for all \(k \geq N_2\), we have
+    \[
+        \abs{x_{n_k} - x} \leq \epsilon.
+    \]
+
+    We fix \(k \geq N_2\) such that \(n_k \geq N_1\), then
+    \[
+        \abs{x - x_n} < 2\epsilon
+    \]
+    for all \(n \geq N_1\). This gives \(x_n \to x\).
+\end{proof}
+
+\begin{remark}
+    Metric spaces in which Cauchy sequence implies convergence is called \emph{complete}. \(\QQ\) is \emph{not} a complete metric space.
+\end{remark}
+
+\subsection{Series and Convergence Tests}
+
+\begin{definition}[Series]
+    Let \(\para{a_n}_{n \in \NN}\) be a sequence over \(\RR\) or \(\CC\). We say that
+    \[
+        \sum_{n = 1}^{\infty} a_n
+    \]
+    is a \emph{series}, and we say it \emph{converges} if the sequence of partial sums \(\para{S_k}_{k \in \NN}\), given by
+    \[
+        S_k = \sum_{n = 1}^{k} a_n
+    \]
+    converges to some (finite) \(S \in \RR\) or \(\CC\) as \(k \to \infty\).
+
+    In this case, \(S\) is called the \emph{sum of the series}, and we denote
+    \[
+        S = \sum_{n = 1}^{\infty} a_n
+    \]
+\end{definition}
+
+\begin{examples}[Infinite Series]
+    \begin{itemize}
+        \item The infinite sum
+        \[
+            \sum_{n = 1}^{\infty} n
+        \]
+        does not converge: the partial sums
+        \[
+            S_k = \sum_{n = 1}^{k} n = \frac{1}{2} k \para{k + 1}
+        \]
+        which diverges to infinity as \(k \to \infty\). In particular, it does not converge to \(- \frac{1}{12}\).
+
+        \[
+            1 + 2 + 3 + \cdots \neq - \frac{1}{12}.
+        \]
+
+        \item The \emph{geometric series}
+        \[
+            \sum_{n = 1}^{\infty} r^n < \infty
+        \]
+        converges if and only if \(\abs{r} < 1\). The partial sums satisfy
+        \[
+            S_k = \begin{cases}
+                \frac{1 - r^k}{1 - r}, & r \neq 1, \\
+                k, & r = 1.
+            \end{cases}
+        \]
+    \end{itemize}
+\end{examples}
