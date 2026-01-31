@@ -217,8 +217,8 @@ There are two definitions of divergence to infinity, one allows the behaviour to
     \]
 \end{proof}
 
-\begin{lemma}[Limits preserve Arithemetics for Sequences]
-    \label{lem:seq-limits-arithemetics}%
+\begin{lemma}[Limits preserve Arithmetic for Sequences]
+    \label{lem:seq-limits-arithmetic}%
     Let \(x_n \to x\) and \(y_n \to y\). Then \(x_n + y_n \to x + y\) and \(x_n y_n \to xy\). Furthermore, \(x_n \neq 0\) for all \(n \in \NN\) and \(x \neq 0\), then \(\frac{1}{x_n} \to \frac{1}{x}\).
 \end{lemma}
 
@@ -228,7 +228,7 @@ There are two definitions of divergence to infinity, one allows the behaviour to
     Notice that
     \begin{align*}
         \abs{x_n y_n - xy} &= \abs{x_n y_n - x y_n + x y_n - xy} \\
-        &\leq \abs{x} \abs{y_n - y} + \abs{y_n} \abs{x - x_n}. && \text{triangular inequality}
+        &\leq \abs{x} \abs{y_n - y} + \abs{y_n} \abs{x - x_n}. && \text{Triangular Inequality}
     \end{align*}
 
     For any \(\epsilon > 0\), there exists \(N_1 = N_1 \para{\epsilon}\) and \(N_2 = N_2 \para{\epsilon}\), such that
@@ -346,7 +346,7 @@ To prove this result, we first give the following lemmas which are useful.
         a \in \bigcap_{n \in \NN} I_n.
     \]
 
-    To show that this is the only element in the infinite intersection, note that \(b_n - a_n \to b - a\) from \autoref{lem:seq-limits-arithemetics} (Limits Preserve Arithemetics), and we have \(b_n - a_n \to 0\). Since \autoref{lem:seq-limit-unique} (limits are unique), we deduce that \(b - a = 0\), so \(a = b\).
+    To show that this is the only element in the infinite intersection, note that \(b_n - a_n \to b - a\) from \autoref{lem:seq-limits-arithmetic} (Limits Preserve Arithmetic), and we have \(b_n - a_n \to 0\). Since \autoref{lem:seq-limit-unique} (limits are unique), we deduce that \(b - a = 0\), so \(a = b\).
 
     Hence, for any \(x \in \bigcup_{n \in \NN} I_n\), we have \(a_n \leq x \leq b_n\), and taking the limit as \(n \to \infty\), by using \autoref{prop:seq-sandwich-theorem}, we see that \(a \leq x \leq b\), and hence \(x = a = b\).
 
@@ -814,7 +814,7 @@ The next two tests are about `asymptotic comparison' to a very important series 
     \label{ex:ser-test-root-ratio}%
     \begin{itemize}
         \item The series \(\sum_{n = 1}^{\infty} \frac{1}{n}\) diverges, but the series \(\sum_{n = 1}^{\infty} \frac{1}{n^2}\) converges. But both of these live in the `inconclusive' range of \autoref{prop:ser-test-root} (Root Test) and \autoref{prop:ser-test-ratio} (Ratio Test).
-        \item We examine the series \(\sum_{n = 1}^{\infty}\).
+        \item We examine the series \(\sum_{n = 1}^{\infty} \frac{n}{2^n}\).
         
         Conducting \autoref{prop:ser-test-ratio} (Ratio Test), we have
         \[
@@ -843,3 +843,185 @@ The next two tests are about `asymptotic comparison' to a very important series 
         \end{cases}
     \]
 \end{remark}
+
+\begin{proof}[of \autoref{prop:ser-test-ratio} (Ratio Test)]
+    If \(a < 1\), then let \(r \in \RR\) be such that \(a < r < 1\). By the definition of a limit, there is some \(N \in \NN\), we have for all \(b \geq N\),
+    \[
+        \frac{a_{n + 1}}{a_n} < r.
+    \]
+    
+    This means that for all \(n \geq N\), we have
+    \begin{align*}
+        0 &\leq a_n \\
+          &= \frac{a_n}{a_{n - 1}} \cdot a_{n - 1} \\
+          &= \frac{a_n}{a_{n - 1}} \cdot \frac{a_{n - 1}}{a_{n - 2}} \cdots \frac{a_{N + 1}}{a_N} \cdot a_{N} \\
+          &< a_N \cdot r^{n - N} \\
+          &= \frac{a_N}{r^N} \cdot r^n.
+    \end{align*}
+
+    In particular, we have that \(a_n \leq \frac{a_N}{r^n} \cdot r^n\), where \(\frac{a_N}{r^n}\) is some constant independent of \(n\). By \autoref{prop:ser-test-comparison} (Comparison Test) with the geometric series, the infinite series \(\sum a_n\) converges.
+
+    If \(a > 1\), then let \(r \in \RR\) be such that \(1 < r < a\). Then in particular, we have some \(N \in \NN\), such that for all \(n \geq N\),
+    \[
+        \frac{a_{n + 1}}{a_n} > r.
+    \]
+    
+    The same type of argument as above yields
+    \[
+        a_n > \frac{a_N}{r^N} \cdot r^n,
+    \]
+    and hence \(a_n \notto 0\). We may use \autoref{prop:ser-test-nth-term} (\(n\)-th Term Test) to conclude that the infinite series \(\sum a_n\) diverges.
+\end{proof}
+
+We now use some future result to give another very useful test.
+
+\begin{proposition}[Integral Test]
+    \label{prop:ser-test-integral}%
+    Suppose \(\functiondomain{f}{\cointv{0}{\plusinfty}}{\cointv{0}{\plusinfty}}\) is a continuous decreasing function. We will know that this means \(f\) is integrable in \(\ccintv{1}{N}\) for all \(N \in \NN\).
+
+    Then, if \(a_n = f\para{n}\), we have
+    \[
+        \sum_{n = 1}^{\infty} a_n \text{ converges} \iff \lim_{N \to \infty} \int_{1}^{N} f\para{x} \Diff x \text{ exists}.
+    \]
+
+    Furthermore, as \(k \to \infty\), we have
+    \[
+        \sum_{n = 1}^{k} a_n - \int_{1}^{k} f\para{x} \Diff x \to l \in \ccintv{0}{f\para{1} = a_1}.
+    \]
+\end{proposition}
+
+\begin{remarks}
+    \begin{itemize}
+        \item On the right-hand side of the if and only if, we have something that we will see later (`improper integral'), which will come up later in the course.
+        \item The last statement tells us that there is really a deep connection between series and integrals.
+    \end{itemize}
+\end{remarks}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[scale=0.4]{fig/series-integral-test.png}
+    \label{fig:series-integral-test}
+    \caption{Integral Test for Series}
+\end{figure}
+
+\begin{proof}
+    We refer to \autoref{fig:series-integral-test}. We first observe that
+    \[
+        s_k - a_1 = \sum_{n = 2}^{k} a_n = \textcolor{Green}{\sum A_{\text{green}}} \leq \int_{1}^{k} f\para{t} \Diff t
+    \]
+    and
+    \[
+        s_{k - 1} = \sum_{n = 1}^{k - 1} a_n = \textcolor{Red}{\sum A_{\text{red}}} \geq \int_{1}^{k} f\para{t} \Diff t.
+    \]
+
+    We observe that \(a_n \geq 0\) shows that \(s_k\) has to be increasing.
+
+    \(\implies\). With the \textcolor{Red}{red inequality}, we have
+    \[
+        \int_{1}^{k} f\para{t} \Diff t \leq s_{k - 1} \leq s.
+    \]
+
+    \(\para{s_k}\) is increasing and converges by assumption, which means the integral sequence
+    \[
+        \para{\int_{1}^{x} f\para{t} \Diff t}_x
+    \]
+    is also increasing and bounded, which means it has a limit.
+
+    \(\impliedby\). If the limit of the integral exists, then the integral sequence
+    \[
+        \para{\int_{1}^{x} f\para{t} \Diff t}_x
+    \]
+    is bounded. Using the \textcolor{Green}{green inequality}, we have
+    \[
+        s_k \leq \int_{1}^{k} f\para{t} \Diff t + a_1
+    \]
+    is also bounded. This shows that \(\para{s_k}\) converges, so the infinite series converges.
+
+    For the final part, set
+    \[
+        b_k = \sum_{n = 1}^{k} a_n - \int_{1}^{k} f\para{x} \Diff x = s_k - \int_{1}^{k} f\para{x} \Diff x,
+    \]
+    and hence we have
+    \[
+        b_k - b_{k - 1} = a_k - \int_{k - 1}^{k} f\para{t} \Diff t = f\para{k} \cdot 1 - \int_{k - 1}^{k} f\para{t} \Diff t \leq 0,
+    \]
+    which shows that this is a decreasing sequence. But also, from the \textcolor{Green}{green inequality}, we have \(b_k \geq a_k = f\para{k} \geq 0\), so \(\para{b_k}\) is bounded below. This means it has a limit \(l\).
+
+    We know that \(l \in \ccintv{0}{a_1}\), because (re-using the \textcolor{Green}{green inequality})
+    \[
+        0 \leq f\para{k} \leq b_k \leq a_1 = f\para{1}
+    \]
+    and non-strict inequalities are preserved in the limit.
+\end{proof}
+
+\begin{examples}[Integral Test]
+    \label{ex:integral-test}%
+    \begin{itemize}
+        \item \(\sum \frac{1}{n^p}\) converges if and only if \(p > 1\). First, \(f\para{t} = t^p\) is decreasing and continuous on \(\cointv{1}{\plusinfty}\). We have
+        \begin{align*}
+            \lim_{n \to \infty} \int_{1}^{n} \frac{1}{t^p} \Diff t &= \lim_{n \to \infty} \begin{cases}
+                \brac{\log t}_{1}^{n}, & p = 1, \\
+                \brac{\frac{1}{-p + 1} \cdot t^{-p + 1}}_{1}^{n}, & p \neq 1, \\
+            \end{cases} \\
+            &= \begin{cases}
+                \plusinfty, & p = 1, \\
+                0, & p \neq 1.
+            \end{cases}
+        \end{align*}
+
+        In particular, this shows that the harmonic series diverges.
+
+        \item We investigate \(\sum_{n = 2}^{\infty} \frac{1}{n \log n}\). Evaluating the integral gives
+        \begin{align*}
+            \int_{2}^{n} \frac{\Diff t}{t \log t} &= \int_{\log 2}^{\log n} \frac{\Diff u}{u} \\
+            &= \brac{\log u}_{\log 2}^{\log n} \\
+            &= \log \log n - \log \log 2 \\
+            &\to \plusinfty
+        \end{align*}
+        as \(n \to \infty\). By \autoref{prop:ser-test-integral} (Integral Test), this series diverges.
+
+        \item The series \(\sum_{n = 2}^{\infty} \frac{1}{n \para{\log n}^2}\) converges by evaluating the similar integral.
+    \end{itemize}
+\end{examples}
+
+\begin{proposition}[Cauchy Condensation Test]
+    \label{prop:ser-test-cauchy-condensation}%
+    Let \(a_n \geq 0\) for all \(n \in \NN\), and let \(\para{a_n}\) be decreasing. Then \(\sum_{n = 1}^{\infty} a_n\) converges, if and only if the condensed series
+    \[
+        \sum_{n = 0}^{\infty} 2^n a_{2^n}
+    \]
+    converges.
+\end{proposition}
+
+\begin{remark}
+    \autoref{prop:ser-test-cauchy-condensation} (Cauchy Condensation Test) is nothing more than a change of variables, once \autoref{prop:ser-test-integral} (Integral Test) is introduced.
+\end{remark}
+
+Next, we look at sequences with infinitely many terms that are negative.
+
+\begin{proposition}[Alternating Series Test]
+    \label{prop:ser-test-alternating}%
+    Let \(\para{a_n}\) be a decreasing sequence with \(a_n \geq 0\), and \(a_n \to 0\). Then the sum
+    \[
+        \sum_{n = 1}^{\infty} \para{-1}^{n + 1} a_n
+    \]  
+    converges.
+\end{proposition}
+
+\autoref{fig:alternating-series-test} gives a good visualisation of the partial sums, and also some insights into the proof.
+
+\begin{figure}[ht!]
+    \center
+    \includegraphics[scale=0.4]{fig/alternating-series-test.png}
+    \label{fig:alternating-series-test}
+    \caption{Alternating Series Test}
+\end{figure}
+
+\begin{example}[Alternating Harmonic Series]
+    \label{ex:alternating-harmonic}%
+    \autoref{prop:ser-test-alternating} (Alternating Series Test) tells us that
+    \[
+        \sum_{n = 1}^{\infty} \frac{\para{-1}^{n + 1}}{n}
+    \]
+    converges, while the harmonic series \(\sum_{n = 1}^{\infty} \frac{1}{n}\) diverges.
+\end{example}
