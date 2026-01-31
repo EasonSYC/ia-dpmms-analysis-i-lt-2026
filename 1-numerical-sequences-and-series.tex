@@ -969,7 +969,7 @@ We now use some future result to give another very useful test.
             \end{cases}
         \end{align*}
 
-        In particular, this shows that the harmonic series diverges.
+        In particular, this shows that the harmonic series diverges. But is there a `slower diverging series' than the harmonic series?
 
         \item We investigate \(\sum_{n = 2}^{\infty} \frac{1}{n \log n}\). Evaluating the integral gives
         \begin{align*}
@@ -980,9 +980,11 @@ We now use some future result to give another very useful test.
         \end{align*}
         as \(n \to \infty\). By \autoref{prop:ser-test-integral} (Integral Test), this series diverges.
 
-        \item The series \(\sum_{n = 2}^{\infty} \frac{1}{n \para{\log n}^2}\) converges by evaluating the similar integral.
+        \item The series \(\sum_{n = 2}^{\infty} \frac{1}{n \para{\log n}^2}\) converges by evaluating a similar integral.
     \end{itemize}
 \end{examples}
+
+Another useful result is the following, but the proof is non-examinable.
 
 \begin{proposition}[Cauchy Condensation Test]
     \label{prop:ser-test-cauchy-condensation}%
@@ -993,9 +995,73 @@ We now use some future result to give another very useful test.
     converges.
 \end{proposition}
 
-\begin{remark}
-    \autoref{prop:ser-test-cauchy-condensation} (Cauchy Condensation Test) is nothing more than a change of variables, once \autoref{prop:ser-test-integral} (Integral Test) is introduced.
-\end{remark}
+\begin{proof}[using \autoref{prop:ser-test-integral} (Integral Test) (Non-Examinable)]
+    Let \(a_n = f\para{n}\), and since \(a_n\) is positive and decreasing, we may choose \(f\) to be positive, decreasing and continuous. Note that
+    \[
+        \int_{1}^{2^x} f\para{t} \Diff t = \log 2 \int_{0}^{x} 2^u f\para{2^u} \Diff u,
+    \]
+    by a change of variables \(t = 2^u\). Hence, applying \autoref{prop:ser-test-integral} (Integral test), we have
+    \begin{align*}
+        \sum_{n = 1}^{\infty} a_n \text{ converges} &\iff \lim_{x \to \infty} \sum_{n = 1}^{2^x} a_n \text{ exists} && \text{Partial Sums are Monotone}\\
+        &\iff \lim_{x \to \infty} \int_{1}^{2^x} f\para{t} \Diff t \text{ exists} \\
+        &\iff \lim_{x \to \infty} \int_{0}^{x} 2^u f\para{2^u} \Diff u \text{ exists.} && \text{Constant does not affect Convergence}
+    \end{align*}
+
+    Now, since \(f\) is decreasing, let \(g\para{t} = 2^t f\para{2^t}\), we have
+    \[
+        \forall t \in \ccintv{2^n}{2^{n + 1}}: f\para{2^n} \geq f\para{t} \geq f\para{2^{n + 1}},
+    \]
+    and hence
+    \[
+        \forall t \in \ccintv{n}{n + 1}: 2^{n + 1} f\para{2^n} \geq g\para{t} = 2^t f\para{2^t} \geq 2^n f\para{2^{n + 1}}.
+    \]
+
+    Integrating this in \(\ccintv{n}{n + 1}\) gives
+    \[
+        2^{n + 1} f\para{2^n} \geq \int_{n}^{n + 1} g\para{t} \Diff t \geq 2^n f\para{2^{n + 1}},
+    \]
+    and hence summing this from \(n = 1\) to \(k\), we have
+    \[
+        2 \cdot \sum_{n = 1}^{k} 2^n f\para{2^n} \geq \int_{1}^{k + 1} g\para{t} \Diff t \geq \frac{1}{2} \sum_{n = 1}^{k} 2^{n + 1} f\para{2^{n + 1}},
+    \]
+    and putting back \(a\)s gives us
+    \[
+        2 \cdot \sum_{n = 1}^{k} 2^n a_{2^n} \geq \int_{1}^{k + 1} g\para{t} \Diff t \geq \frac{1}{2} \sum_{n = 1}^{k} 2^{n + 1} a_{2^{n + 1}},
+    \]
+    which means the sequence of the integrals and the series enforces bounds on  each other, giving equivalent convergence properties, and hence finishing our proof.
+\end{proof}
+
+\begin{proof}[considering Partial Sums (Non-Examinable)]
+    Let the partial sums be
+        \[
+            A_m = \sum_{n = 1}^{m} a_n \quad\text{and}\quad B_k = \sum_{t = 0}^{k} 2^t \cdot a_{2^t}.
+        \]
+
+        Both \(\para{A_m}\) and \(\para{B_k}\) are increasing since \(\para{a_n}\) is non-negative. Therefore, convergence of \(\para{A_m}\) and \(\para{B_k}\) is equivalent to the convergence of some subsequence of them.
+
+        We first show that for all \(k \geq 0\), that
+        \[
+            A_{2^{k + 1} - 1} \leq B_{k} \leq A_{2^k - 1} + A_{2^k}.
+        \]
+
+        For the left-hand side inequality, we have
+        \begin{align*}
+            B_k &= a_1 + \para{a_2 + a_2} + \para{a_4 + a_4 + a_4 + a_4} + \cdots + \para{a_{2^k} + \cdots + a_{2^k}} \\
+            &\geq a_1 + \para{a_2 + a_3} + \para{a_4 + a_5 + a_6 + a_7} + \cdots + \para{a_{2^k} + \cdots + a_{2^{k + 1} - 1}} \\
+            &= A_{2^{k + 1} - 1}.
+        \end{align*}
+
+        For the right-hand side inequality, we have
+        \begin{align*}
+            B_k &= a_1 + \para{a_2 + a_2} + \para{a_4 + a_4 + a_4 + a_4} + \cdots + \para{a_{2^k} + \cdots + a_{2^k}} \\
+            &\leq a_1 + \para{a_1 + a_2} + \para{a_2 + a_3 + a_3 + a_4} + \cdots \\
+            &\phantom{=} + \para{a_{2^{k - 1}} + a_{2^{k - 1} + 1} + a_{2^{k - 1} + 1} + \cdots  + a_{2^k - 1} + a_{2^k - 1} + a_{2^k}} \\
+            &= \para{a_1 + a_1} + \para{a_2 + a_2} + \para{a_3 + a_3} + \cdots + \para{a_{2^k - 1} + a_{2^k - 1}} + a_{2^k} \\
+            &= A_{2^k - 1} + A_{2^k}.
+        \end{align*}
+
+        With this inequality and that both partial sums are monotone, we may conclude that their convergence is equivalent.
+\end{proof}
 
 Next, we look at sequences with infinitely many terms that are negative.
 
