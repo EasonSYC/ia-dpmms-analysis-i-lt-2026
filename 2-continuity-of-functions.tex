@@ -1,0 +1,41 @@
+\section{Continuity of Functions}
+\subsection{Limits of Functions}
+
+Take \(\functiondomain{f}{X}{\CC}\) for some \(X \subseteq \CC\). We want to define what we mean by \(f\para{z} \to y\) as \(z \to a\), \emph{even if \(a \notin X\)}.
+
+\begin{figure}[ht!]
+    \centering
+    \begin{tikzpicture}[scale=1]
+        \begin{axis}[grid=both,
+                     xmin=-20, xmax=20, xlabel=\(x\),
+                     ymin=-1, ymax=2, ylabel=\(y\),
+                    axis lines=center, >=stealth]
+        \addplot[domain=-20:20, samples=100] plot[smooth] {sin(deg(x))/x};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Graph of \(\frac{\sin x}{x}\)}
+    \label{fig:graph-sin-x-x}
+\end{figure}
+
+\begin{example}[The Function \(\frac{\sin x}{x}\)]
+    The function \(f\para{x} = \frac{\sin x}{x}\) is not defined at \(x = 0\). But from \autoref{fig:graph-sin-x-x}, we are very tempted to say that this function has a limit of \(1\) as the function tends to \(0\), and if so, we may extend the domain for a new function, to include \(x = 0\) to take a value of \(1\).
+\end{example}
+
+The reason why we can hope to make sense of \(\lim_{x \to 0} \frac{\sin x}{x}\) is that there are points that are in the domain that are very close \(0\), and we could jump from points ever closer to \(0\) to get a value for that `limit'.
+
+In other words, \(0\) is an \emph{accumulation point} for \(\RR \setminus \brce{0}\): for any threshold \(\delta > 0\), we can always find \(x \in \RR \setminus \brce{0}\), such that \(\abs{x - 0} < \delta\).
+
+\begin{definition}[Accumulation and Isolated Point]
+    \label{def:fn-accumulation-isolated-point}%
+    Let \(X \subseteq \CC\) and \(a \in \CC\). We say \(a\) is an \emph{accumulation point} for \(X\), if that
+    \[
+        \forall \delta > 0, \exists z \in X \setminus \brce{a}: \abs{z - a} < \delta.
+    \]
+
+    If \(a \in X\) and it is not an accumulation point, then we say \(a\) is \emph{isolated}.
+\end{definition}
+
+\begin{example}[Accumulation and Isolated Point]
+    \label{ex:fn-accumulation-isolated-point}%
+    The set \(X = \brce{0} \cup \ccintv{1}{2}\) has \(0\) as an isolated point. On the other hand, all points in \(\ccintv{1}{2}\) are accumulation points for \(X\).
+\end{example}
