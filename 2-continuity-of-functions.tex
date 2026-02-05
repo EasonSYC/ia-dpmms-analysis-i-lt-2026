@@ -174,16 +174,18 @@ From the previous section, we may compute \(\lim_{z \to a} f\para{z}\). If we ar
 
 \begin{definition}[Continuity]
     \label{def:continuity}%
-    Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\). We say \(f\) is \emph{continuous} if it is continuous at every point in \(X\).
+    Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\).
 
-    We say \(f\) is continuous at \(a\), if \(\lim_{z \to a} f\para{z} = f\para{a}\), i.e., if
+    We say \(f\) is \emph{continuous at some point \(a \in X\)}, if \(\lim_{z \to a} f\para{z} = f\para{a}\), i.e., if
     \[
         \forall \epsilon > 0, \exists \delta = \delta\para{\epsilon}, \forall \abs{z - a} < \delta, z \in X: \abs{f\para{z} - f\para{a}} < \epsilon.
     \]
+    
+    We say \(f\) is \emph{continuous} if it is continuous at every point in \(X\).    
 \end{definition}
 
 \begin{remark}
-    If \(a \in X\) is an isolated point, \(f\) is continuous at \(a\). \textbf{\textcolor{red}{This is still kind of bad.}}
+    If \(a \in X\) is an isolated point, \(f\) is continuous at \(a\). \textbf{\textcolor{red}{This is not very good.}}
 \end{remark}
 
 \begin{example}[Examples on Continuity]
