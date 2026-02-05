@@ -18,7 +18,13 @@ Take \(\functiondomain{f}{X}{\CC}\) for some \(X \subseteq \CC\). We want to def
 \end{figure}
 
 \begin{example}[The Function \(\frac{\sin x}{x}\)]
-    The function \(f\para{x} = \frac{\sin x}{x}\) is not defined at \(x = 0\). But from \autoref{fig:graph-sin-x-x}, we are very tempted to say that this function has a limit of \(1\) as the function tends to \(0\), and if so, we may extend the domain for a new function, to include \(x = 0\) to take a value of \(1\).
+    The function \(f\para{x} = \frac{\sin x}{x}\) is not defined at \(x = 0\). But from \autoref{fig:graph-sin-x-x}, we are very tempted to say that this function has a limit of \(1\) as the function tends to \(0\), and if so, we may extend the domain for a new function, to include \(x = 0\) to take a value of \(1\), e.g.,
+    \[
+        f\para{x} = \begin{cases}
+            \frac{\sin x}{x}, & x \neq 0, \\
+            \lim_{x \to 0} \frac{\sin x}{x}, & x = 0.
+        \end{cases}
+    \]
 \end{example}
 
 The reason why we can hope to make sense of \(\lim_{x \to 0} \frac{\sin x}{x}\) is that there are points that are in the domain that are very close \(0\), and we could jump from points ever closer to \(0\) to get a value for that `limit'.
@@ -37,5 +43,158 @@ In other words, \(0\) is an \emph{accumulation point} for \(\RR \setminus \brce{
 
 \begin{example}[Accumulation and Isolated Point]
     \label{ex:fn-accumulation-isolated-point}%
-    The set \(X = \brce{0} \cup \ccintv{1}{2}\) has \(0\) as an isolated point. On the other hand, all points in \(\ccintv{1}{2}\) are accumulation points for \(X\).
+    \begin{itemize}
+        \item The set \(X = \brce{0} \cup \ccintv{1}{2}\) has \(0\) as an isolated point. On the other hand, all points in \(\ccintv{1}{2}\) are accumulation points for \(X\).
+        \item The points on the unit circle \(S = \set{z \in \CC}{\abs{z} = 1}\) are accumulation points for \(D = \set{z \in \CC}{\abs{z} < 1}\). Also, all the points in \(D\) are also accumulation points for \(D\). \autoref{fig:accumulation-point-c} demonstrates this example.
+        \item If we look at \(\set{z \in \CC}{\abs{z} \leq 1}\), then all the points are accumulation points. 
+    \end{itemize}
+\end{example}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[scale=0.3]{fig/accumulation-points.png}
+    \caption{Accumulation Points on Complex Unit Circle}
+    \label{fig:accumulation-point-c}
+\end{figure}
+
+\begin{lemma}[Accumulation Points are Limit Points]
+    Let \(X \subseteq \CC\) and \(a \in \CC\). Then \(a\) is an accumulation point for \(X\) if and only if there exists \(\para{x_n}\) in \(X \setminus \brce{a}\), such that \(\lim_{n \to \infty} x_n = a\).
+\end{lemma}
+
+Now we return to the definition of a limit. From the point we just saw, we want either \(a \in X\), the domain of \(f\), or \(a\) being an accumulation point of \(X\), if not in \(X\). \textbf{\textcolor{red}{I would prefer not to define the limit at an isolated point, since it would not make sense for a function to `approach' an isolated point. So we should only define the limit for \(a\) which is a limit point of \(X\)}}.
+
+We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). The idea is, no matter how small the threshold \(\epsilon > 0\), we may let the function be arbitrarily close to \(y\), as long as \(z\) is sufficiently close to \(a\). Formally, we want to define this as follows.
+
+\begin{definition}[Limit of a Function]
+    \label{def:fn-limit}%
+    Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\). We take some \(a \in X\) or \(a \in \CC \setminus X\) \textbf{\textcolor{red}{(see before for comments on the value that \(a\) should take)}} which is an accumulation point of \(X\).  We say \(f\) \emph{tends to} \(y \in \CC\) as \(z\) tends to \(a\), if
+    \[
+        \forall \epsilon > 0, \exists \delta = \delta \para{\epsilon} > 0, \forall \mathbf{\textcolor{red}{0 <}} \abs{z - a} < \delta, z \in X: \abs{f\para{z} - y} < \epsilon,
+    \]
+    and we denote this as \(f\para{z} \to y\) as \(z \to a\), or \(\lim_{z \to a} f\para{z} \to y\).
+
+    For \(a \in \CC \setminus X\) which is an accumulation point for \(X\) \textbf{\textcolor{red}{or \(a \in X\) (similarly I prefer not to define the limit at an isolated point)}}, we say \(f\) diverges to \(\infty\) as \(z \to a\), if \(\frac{f\para{z}}{\abs{f\para{z}}} \to l\) for some \(l \in \CC\) (the argument converges), and
+    \[
+        \forall L > 0, \exists \delta = \delta\para{L} > 0, \forall \mathbf{\textcolor{red}{0 <}} \abs{z - a} < \delta, z \in X: \abs{f\para{z}} > L.
+    \]
+\end{definition}
+
+\begin{remark}
+    \begin{itemize}
+        \item If \(a\) is an isolated point of \(X\), then we can always find \(\delta\) sufficiently small, so that
+        \[
+            \abs{z - a} < \delta, z \in X \iff z = a,
+        \]
+        then \(f\para{x} \to f\para{a}\) as \(z \to a\) trivially, So the definition of the limit makes sense for isolated points, but not so interesting. \textbf{\textcolor{red}{This argument does not make sense, if we add the \(0 < \) bit, since there is no points in a \(\delta\)-open neighbourhood (excluding \(a\)) when \(\delta\) is very small. Really, it would be a very bad idea to define the limit existing at isolated point, because it would be a separate case to deal with all the time.}}
+
+        \item For \(f\) diverging to infinity at \(a \in \CC\), we cannot have \(a \in X\), hence the restriction in the definition. \textbf{\textcolor{red}{This is not the case, since if we define the function
+            \[
+                f\para{x} = \begin{cases}
+                    \frac{1}{x^2}, & x \neq 0, \\
+                    0, & x = 0,
+                \end{cases}  
+            \]
+            then we really want \(f\para{x} \to \infty\) at \(x \to 0\), although it is defined.
+        }}
+    \end{itemize}
+\end{remark}
+
+\begin{example}[\(\frac{\sin x}{x}\) as \(x \to 0\)]
+    \label{ex:sin-x-x-limit}%
+    We claim that \(\frac{\sin x}{x} \to 1\) as \(x \to 0\). Using trigonometry, we have that
+    \[
+        \cos x < \frac{\sin x}{x} < 1
+    \]
+    for all \(x \in \oointv{0}{\frac{\pi}{2}}\). Hence,
+    \[
+        \abs{\frac{\sin x}{x} - 1} < 1 - \cos x = 2 \sin^2 \para{\frac{x}{2}} < \frac{x^2}{2}.
+    \]
+
+    Hence, for all \(\epsilon > 0\), we choose \(\delta\para{\epsilon} = \sqrt{2\epsilon}\), and hence
+    \[
+        \abs{x - 0} < \delta \implies \abs{\frac{\sin x}{x} - 1} < \frac{\para{\sqrt{2 \epsilon}}^2}{2} = \epsilon
+    \]
+    showing what we claimed as desired.
+\end{example}
+
+\begin{lemma}[Limit of Function and Limit of Sequences]
+    \label{lem:fn-limit-equivalent-seq-limit}%
+    Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\), and let \(a \in \CC\) either in \(X\) or an accumulation point of \(X\). Then
+    \[
+        f\para{z} \to y \text{ as } z \to a
+    \]
+    if and only if
+    \[
+        f\para{z_n} \to y
+    \]
+    for any \(\para{z_n}\) on \(X\), with \(z_n \to a\) \textbf{\textcolor{red}{and \(z_n \neq a\)}}.
+
+    Similarly, \(f\para{z}\) diverges to infinity, if and only if \(\para{f\para{z_n}}\) diverges for every \(\para{z_n}\) on \(X\), with \(z_n \to a\) \textbf{\textcolor{red}{and \(z_n \neq a\)}}.
+\end{lemma}
+
+\textcolor{red}{
+    \begin{remark}
+        \textbf{
+        This lemma would be boring for isolated points, since there is no such sequence that tends to an isolated point apart from the trivial sequence.}
+    \end{remark}
+}
+
+\begin{lemma}[Limit of Function is Unique]
+    \label{lem:fn-limit-unique}%
+    If \(\functiondomain{f}{X \subseteq \CC}{\CC}\) has a limit at \(a \in \CC\), then this limit is unique.
+\end{lemma}
+
+\begin{proof}
+    Suppose that \(f\para{z} \to y\) and \(f\para{z} \to x\) as \(z \to a\). We have that
+    \[
+        \abs{x - y} \leq \abs{x - f\para{z}} + \abs{f\para{z} - y}
+    \]
+    and using similar techniques with sequence limits, we have \(x = y\).
+\end{proof}
+
+\begin{lemma}[Function Limits Preserve Arithemetics]
+    \label{lem:fn-limits-preserve-arithemetics}%
+    Let \(\functiondomain{f, g}{X \subseteq \CC}{\CC}\), \(a \in \CC\) either in \(X\) or an accumulation point of \(X\) \textbf{\textcolor{red}{(really \(a\) should just be an accumulation point of \(X\))}}. Suppose \(\lim_{z \to a} f\para{z} = a\) and \(\lim_{z \to a} g\para{z} = b\), then
+    \begin{align*}
+        \lim_{x \to a} \para{f\para{z} + g\para{z}} &= a + b, \\
+        \lim_{x \to a} \para{f\para{z} \cdot g\para{z}} & = ab.
+    \end{align*}
+
+    Furthermore, if \(b \neq 0\) and there exists some \(\delta > 0\), such that for all \(\mathbf{\textcolor{red}{0 < }}\abs{z - a} < \delta\), we have \(g\para{z} \neq 0\), then
+    \[
+        \lim_{z \to a} \frac{f\para{z}}{g\para{z}} = \frac{a}{b}.
+    \]
+\end{lemma}
+
+\subsection{Continuity of Functions}
+
+What does it mean for a function to be continuous? Informally (and intuitively), this means that 
+
+From the previous section, we may compute \(\lim_{z \to a} f\para{z}\). If we are able to draw the graph 
+
+\begin{definition}[Continuity]
+    \label{def:continuity}%
+    Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\). We say \(f\) is \emph{continuous} if it is continuous at every point in \(X\).
+
+    We say \(f\) is continuous at \(a\), if \(\lim_{z \to a} f\para{z} = f\para{a}\), i.e., if
+    \[
+        \forall \epsilon > 0, \exists \delta = \delta\para{\epsilon}, \forall \abs{z - a} < \delta, z \in X: \abs{f\para{z} - f\para{a}} < \epsilon.
+    \]
+\end{definition}
+
+\begin{remark}
+    If \(a \in X\) is an isolated point, \(f\) is continuous at \(a\). \textbf{\textcolor{red}{This is still kind of bad.}}
+\end{remark}
+
+\begin{example}[Examples on Continuity]
+    \label{ex:continuity}
+    \begin{itemize}
+        \item \(f\para{z} = z\) is the identity function. This is continuous everywhere on the domain, say \(\CC\).
+        \item \[
+            f\para{x} = \begin{cases}
+                \sin \para{\frac{1}{x}}, & x \neq 0, \\
+                0, & x = 0.
+            \end{cases}
+        \]
+    \end{itemize}
 \end{example}
