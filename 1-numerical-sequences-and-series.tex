@@ -1243,14 +1243,13 @@ Conditionally convergent sequences have a very different style to absolutely con
 \end{proposition}
 
 \begin{proof}
-    We let \(s_k = \sum_{n = 1}^{k} \abs{a_n}\), and we know that \(s_k \to s\) as \(k \to \infty\) for some \(s \in \RR\).
+    We let \(s_k = \sum_{n = 1}^{k} a_n\), and we know that \(s_k \to s\) as \(k \to \infty\) for some \(s \in \RR\).
 
     This means that for all \(\epsilon > 0\), there is some \(N = N\para{\epsilon}\), such that
     \[
-        \forall n \geq N: \abs{s_k - s} < \epsilon.
+        \forall n \geq N: \abs{s_k - s} < \epsilon
     \]
-
-    Hence, if we sum the remaining terms of the sequence,
+    and that the remaining terms (since it absolutely converges)
     \[
         \sum_{k = N}^{\infty} \abs{a_n} < \epsilon.
     \]
@@ -1259,12 +1258,12 @@ Conditionally convergent sequences have a very different style to absolutely con
 
     Hence, for \(m \geq N_1\), we have
     \[
-        \sum_{n = 1}^{m} \abs{a_n'} = \sum_{n = 1}^{N} \abs{a_n} + \para{\para{m - N} \text{ terms of }\para{\abs{a_n}}\text{ sequence with index}\geq N}.
+        \sum_{n = 1}^{m} a_n' = \sum_{n = 1}^{N} a_n + \para{\para{m - N} \text{ terms of }\para{a_n}\text{ sequence with index}\geq N}.
     \]
 
     Hence,
     \[
-        \abs{\sum_{n = 1}^{m} \abs{a_n'} - s} \leq \abs{s_N - s} + \sum_{k = N}^{\infty} \abs{a_n} \leq 2\epsilon
+        \abs{\sum_{n = 1}^{m} a_n' - s} \leq \abs{s_N - s} + \sum_{k = N}^{\infty} \abs{a_n} \leq 2\epsilon
     \]
     where the second sum above is a `huge' overestimate of the \(\para{m - N}\) terms, (but guaranteed to be small), showing that the partial sums of the rearranged series converges to the value of the sum of the original series.
 \end{proof}
