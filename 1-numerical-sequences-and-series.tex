@@ -117,7 +117,7 @@ There are two definitions of divergence to infinity, one allows the behaviour to
     Let \(\para{x_n}, \para{y_n}\) and \(\para{z_n}\) be real sequences. Then,
     \begin{itemize}
         \item \emph{Limits preserve weak order.} If \(x_n \leq y\) for all \(n \in \NN\), and \(x_n \to x\), then \(x \leq y\);
-        \item \emph{Sandwich theorem.} If \(x_n \to x\) and \(z_n \to z\), and \(x_n \leq y_n \leq z_n\) for all \(n \in \NN\), then \(y_n \to x\).
+        \item \emph{Sandwich theorem.} If \(x_n \to x\) and \(z_n \to x\), and \(x_n \leq y_n \leq z_n\) for all \(n \in \NN\), then \(y_n \to x\).
     \end{itemize}
 \end{proposition}
 
@@ -128,6 +128,8 @@ There are two definitions of divergence to infinity, one allows the behaviour to
 \begin{proof}
     Left as an exercise.
 \end{proof}
+
+Having proved this, this allows us to show that the sequences have a unique limit in another way.
 
 \begin{proof}[to \autoref{lem:seq-limit-unique}, using \autoref{prop:seq-sandwich-theorem} (Sandwich Theorem)]
     Using the triangular inequality, we have
@@ -219,7 +221,7 @@ There are two definitions of divergence to infinity, one allows the behaviour to
 
 \begin{lemma}[Limits preserve Arithmetic for Sequences]
     \label{lem:seq-limits-arithmetic}%
-    Let \(x_n \to x\) and \(y_n \to y\). Then \(x_n + y_n \to x + y\) and \(x_n y_n \to xy\). Furthermore, \(x_n \neq 0\) for all \(n \in \NN\) and \(x \neq 0\), then \(\frac{1}{x_n} \to \frac{1}{x}\).
+    Let \(x_n \to x\) and \(y_n \to y\). Then \(x_n + y_n \to x + y\) and \(x_n y_n \to xy\). Furthermore, if \(x \neq 0\), then \(\frac{1}{x_n} \to \frac{1}{x}\).
 \end{lemma}
 
 \begin{proof}
@@ -266,7 +268,7 @@ Similarly, if we attempt to conclude some limiting behaviour of a sequence that 
 \end{theorem}
 
 \begin{proof}
-    Without loss of generality, assume that the sequence is strictly increasing. Use the supremum axiom of \(\RR\) that every non-empty subset of \(\RR\) that is bounded above has a supremum in \(\RR\), and we would like to show that such supremum of the elements of the sequence is in fact the limit.
+    Without loss of generality, assume that the sequence is strictly increasing. Use the supremum axiom of \(\RR\) that every non-empty subset of \(\RR\) that is bounded above has a supremum in \(\RR\), and we would like to show that such supremum of the elements of the sequence is in fact the limit. (Numbers and Sets provide details for the proof.)
 \end{proof}
 
 \subsection{Bolzano--Weierstrass Theorem}

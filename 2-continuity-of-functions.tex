@@ -84,15 +84,18 @@ We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). T
 
 \begin{remark}
     \begin{itemize}
-        \item We shall not worry about the limit at an isolated point, since there is not a good behaviour of `approaching' \(a\) in any sense. (Indeed, most of the following statements on limits consider only accumulation points.) Therefore, some choose to not define the limit at an isolated point, while others might choose to define \(\lim_{z \to a} f\para{z} = a\). The latter might be chosen since it would make the limit condition for \autoref{def:continuity} (Continuity) work for isolated points as well.
-        \item The lecturer claimed that the function may not diverge to infinity when the limit is taken at a point in the domain. \textbf{\textcolor{red}{Note that this is not true, and \(f\) may diverge to infinity at \(a \in \CC\), even with \(a \in X\) Consider the example.
+        \item We shall not worry about the limit at an isolated point, since there is not a good behaviour of `approaching' \(a\) in any sense. (Indeed, most of the following results on limits only concerns accumulation points.) Therefore, some choose to not define the limit at an isolated point, while others might choose to define \(\lim_{z \to a} f\para{z} = a\). The latter might be chosen since it would make the limit condition for \autoref{def:continuity} (Continuity) work for isolated points as well.
+        \item Note that \(f\) may diverge to infinity at \(a \in \CC\), even with \(a \in X\). Consider the example.
         \[
             f\para{x} = \begin{cases}
                 \frac{1}{x^2}, & x \neq 0, \\
                 0, & x = 0,
             \end{cases}  
         \]
-        and at \(x = 0\), \(f\para{0} = 0\) but \(f\para{x} \to \infty\) as \(x \to 0\).}}
+        and at \(x = 0\), \(f\para{0} = 0\) but
+        \[
+            \lim_{x \to 0} f\para{x} \to \infty.
+        \]
     \end{itemize}
 \end{remark}
 
@@ -111,18 +114,18 @@ We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). T
     \[
         \abs{x - 0} < \delta \implies \abs{\frac{\sin x}{x} - 1} < \frac{\para{\sqrt{2 \epsilon}}^2}{2} = \epsilon
     \]
-    showing what we claimed as desired.
+    for \(x > 0\), and since this function is even, the same behaviour holds for \(x < 0\), which finishes our proof.
 \end{example}
 
 \begin{lemma}[Limit of Function and Limit of Sequences]
     \label{lem:fn-limit-equivalent-seq-limit}%
     Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\), and let \(a \in \CC\) be an accumulation point of \(X\). Then
     \[
-        f\para{z} \to y \text{ as } z \to a
+        \lim_{z \to a} f\para{z} = y
     \]
     if and only if
     \[
-        f\para{z_n} \to y
+        \lim_{n \to \infty} f\para{z_n} = y
     \]
     for any \(\para{z_n}\) on \(X \setminus \brce{a}\), with \(z_n \to a\).
 
@@ -143,11 +146,11 @@ We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). T
     \[
         \abs{x - y} \leq \abs{x - f\para{z}} + \abs{f\para{z} - y}
     \]
-    and using similar techniques with sequence limits, we have \(x = y\). Concretely, let
+    and using similar techniques in \autoref{lem:seq-limit-unique} (Sequences have Unique Limit), we have \(x = y\).
 \end{proof}
 
-\begin{lemma}[Function Limits Preserve Arithemetics]
-    \label{lem:fn-limits-preserve-arithemetics}%
+\begin{lemma}[Function Limits Preserve Arithmetic]
+    \label{lem:fn-limits-preserve-arithmetic}%
     Let \(\functiondomain{f, g}{X \subseteq \CC}{\CC}\), and \(a \in \CC\) be an accumulation point of \(X\). Suppose \(\lim_{z \to a} f\para{z} = a\) and \(\lim_{z \to a} g\para{z} = b\), then
     \begin{align*}
         \lim_{x \to a} \para{f\para{z} + g\para{z}} &= a + b, \\
