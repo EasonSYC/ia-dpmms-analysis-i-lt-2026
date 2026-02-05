@@ -125,8 +125,25 @@ There are two definitions of divergence to infinity, one allows the behaviour to
     In the first part for \emph{limits preserve weak order}, note that \emph{limits does not preserve strong order}, i.e. we \emph{cannot} replace all \(\leq\)s with \(<\)s. Even if \(x_n < y\) for all \(n \in \NN\), we can only conclude \(x_n \to x \leq y\) if it converges.
 \end{remark}
 
-\begin{proof}
-    Left as an exercise.
+\begin{proof}[of \autoref{prop:seq-sandwich-theorem}]
+    \begin{itemize}
+        \item Suppose for contradiction that \(y > x\), and let \(\epsilon = y - x > 0\). Now, there must be some \(N \in \NN\), such that for all \(n \geq N\),
+        \[
+            \abs{x_n - x} < \epsilon,
+        \]
+        and in particular, \(x_n > x - \epsilon = y\). This contradicts with the assumption.
+
+        \item By definition, for all \(\epsilon > 0\), there is some \(N \in \NN\) such that for all \(n \geq N\),
+        \[
+            \abs{x_n - x}, \abs{z_n - x} < \epsilon.
+        \]
+
+        In particular, since \(x_n \leq y_n \leq z_n\), we have
+        \[
+            \abs{y_n - x} < \epsilon
+        \]
+        and this finishes the proof.
+    \end{itemize}
 \end{proof}
 
 Having proved this, this allows us to show that the sequences have a unique limit in another way.
@@ -155,6 +172,17 @@ Having proved this, this allows us to show that the sequences have a unique limi
     \[
         \abs{\re z}, \abs{\im z} \leq \abs{z}.
     \]
+
+    Now, since \(x_n \to x\), for all \(\epsilon > 0\), there is some \(N = N\para{\epsilon} \in \NN\), such that for all \(n \geq N\),
+    \[
+        \abs{x_n - x} < \epsilon.
+    \]
+
+    Now, note that
+    \[
+        \abs{\re\para{x_n} - \re\para{x}}, \abs{\im\para{x_n} - \im\para{x}} \leq \abs{x_n - x} < \epsilon,
+    \]
+    and so \(\re\para{x_n} \to \re\para{X}\), and \(\im\para{x_n} \to \im\para{x}\).
 
     \(\impliedby\). Note the inequality
     \[
@@ -224,9 +252,15 @@ Having proved this, this allows us to show that the sequences have a unique limi
     Let \(x_n \to x\) and \(y_n \to y\). Then \(x_n + y_n \to x + y\) and \(x_n y_n \to xy\). Furthermore, if \(x \neq 0\), then \(\frac{1}{x_n} \to \frac{1}{x}\).
 \end{lemma}
 
-\begin{proof}
-    We prove that \(x_n y_n \to xy\).
+\begin{proof}[for the Sum]
+    We note that if \(x_n \to x\) and \(y_n \to y\), let the \(N \in \NN\) for \(\epsilon > 0\) be \(N_1\para{\epsilon}\) and \(N_2\para{\epsilon}\). Therefore, for all \(n \geq \max\brce{N_1, N_2}\),
+    \[
+        \abs{\para{x_n + y_n} - \para{x + y}} = \abs{x_n - x} + \abs{y_n - y} < \epsilon
+    \]
+    and this finishes the proof for the sum.
+\end{proof}
 
+\begin{proof}[for the Product]
     Notice that
     \begin{align*}
         \abs{x_n y_n - xy} &= \abs{x_n y_n - x y_n + x y_n - xy} \\
@@ -244,7 +278,26 @@ Having proved this, this allows us to show that the sequences have a unique limi
         \abs{x_n y_n - xy} < \epsilon \para{\abs{x} + \abs{y_n}}.
     \]
 
-    Hence, by \autoref{lem:seq-convergence-bounded}, we may replace \(\abs{y_n}\) with some bound, and we are done.
+    Hence, by \autoref{lem:seq-convergence-bounded}, we may replace \(\abs{y_n}\) with some bound on it, and so we are done.
+\end{proof}
+
+\begin{proof}[for the Reciprocal]
+    Take \(\epsilon = \frac{1}{2} \abs{x}\), then let \(N \in \NN\) such that for all \(n \geq N\), we have
+    \[
+        \abs{x_n - x} < \epsilon = \frac{1}{2} \abs{x},
+    \]
+    then we certainly have \(\abs{x_n} > \frac{1}{2} \abs{x}\).
+
+    Let \(\delta > 0\) be arbitrary. (This will be the \(\epsilon\) for our proof.) Take \(\epsilon = \frac{1}{2} \abs{x}^2 \delta\), then let \(M \in \NN\) such that for all \(n \geq M\), we have
+    \[
+        \abs{x_n - x} < \frac{1}{2} \abs{x}^2.
+    \]
+
+    Hence, for \(n \geq \max\brce{N_1, N_2}\)
+    \begin{align*}
+        \abs{\frac{1}{x_n} - \frac{1}{x}} = \abs{\frac{x - x_n}{x x_n}} < \frac{2}{\abs{x}^2} \abs{x - x_n} < \delta
+    \end{align*}
+    which finishes our proof.
 \end{proof}
 
 Note that most of the \(n \in \NN\) above can be replaced with \(n\) sufficiently large -- since every time when we consider limits, we in fact only consider the behaviour for sufficiently large \(n\).

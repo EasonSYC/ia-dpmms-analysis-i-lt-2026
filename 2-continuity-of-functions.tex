@@ -132,6 +132,41 @@ We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). T
     Similarly, \(f\para{z}\) diverges to infinity, if and only if \(\para{f\para{z_n}}\) diverges to infinity for every \(\para{z_n}\) on \(X \setminus \brce{a}\), with \(z_n \to a\).
 \end{lemma}
 
+\begin{proof}
+    We prove for convergence, and the case for divergence is similar.
+    
+    Suppose that \(\lim_{z \to a} f\para{z} = y\). Let \(\epsilon > 0\) be arbitrary, and let \(\delta > 0\) be such that
+    \[
+        \forall z \in X, 0 < \abs{z - a} < \delta: \abs{f\para{z} - y} < \epsilon.
+    \]
+
+    Now, take any \(\para{z_n} \to a\) on \(X \setminus \brce{a}\). Since \(\delta > 0\), there is some \(N > 0\) such that
+    \[
+        \forall n \geq N: 0 < \abs{z_n - a} < \delta.
+    \]
+
+    Hence,
+    \[
+        \forall n \geq N: \abs{f\para{z_n} - y} < \epsilon
+    \]
+    showing that the limit of the sequence converges as desired.
+
+    Conversely, we prove using the contrapositive, so suppose \(\lim_{z \to a} f\para{z} \neq y\). Then for some \(\epsilon > 0\), we have for all \(\delta > 0\), we have
+    \[
+        \exists z \in X, 0 < \abs{z - a} < \delta: \abs{f\para{z} - y} \geq \epsilon.
+    \]
+
+    Taking \(\delta = 1, \frac{1}{2}, \frac{1}{3}, \ldots\), we construct a sequence of such \(z_n \in X\), and we have for all \(n \in \NN\),
+    \[
+        z_n \in X \quad \text{and} \quad 0 < \abs{z_n - a} < \frac{1}{n}
+    \]
+    which shows \(\para{z_n} \to a\) on \(X \setminus a\), and indeed,
+    \[
+        \abs{f\para{z_n} - y} \geq \epsilon,
+    \]
+    which shows that \(f\para{z_n} \notto y\). This finishes the proof.
+\end{proof}
+
 \begin{lemma}[Limit of Function is Unique]
     \label{lem:fn-limit-unique}%
     If \(\functiondomain{f}{X \subseteq \CC}{\CC}\) has a limit at \(a \in \CC\), then this limit is unique.
@@ -162,6 +197,10 @@ We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). T
         \lim_{z \to a} \frac{f\para{z}}{g\para{z}} = \frac{a}{b}.
     \]
 \end{lemma}
+
+\begin{proof}
+    The techniques in proving this is similar to what we did in \autoref{lem:seq-limits-arithmetic} (Limit of Sequence Preserve Arithmetic), so we will not repeat the proof here.
+\end{proof}
 
 \subsection{Continuity of Functions}
 
