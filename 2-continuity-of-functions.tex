@@ -61,41 +61,38 @@ In other words, \(0\) is an \emph{accumulation point} for \(\RR \setminus \brce{
     Let \(X \subseteq \CC\) and \(a \in \CC\). Then \(a\) is an accumulation point for \(X\) if and only if there exists \(\para{x_n}\) in \(X \setminus \brce{a}\), such that \(\lim_{n \to \infty} x_n = a\).
 \end{lemma}
 
-Now we return to the definition of a limit. From the point we just saw, we want either \(a \in X\), the domain of \(f\), or \(a\) being an accumulation point of \(X\), if not in \(X\). \textbf{\textcolor{red}{I would prefer not to define the limit at an isolated point, since it would not make sense for a function to `approach' an isolated point. So we should only define the limit for \(a\) which is a limit point of \(X\)}}.
+Now we return to the definition of a limit. From the point we just saw, we want \(a\) to be an accumulation point of \(X\), since otherwise the behaviour of \(f\) as \(z\) `approaches' \(a\) itself does not make sense -- we need a path for \(z\) to approach the point, via its domain! 
 
 We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). The idea is, no matter how small the threshold \(\epsilon > 0\), we may let the function be arbitrarily close to \(y\), as long as \(z\) is sufficiently close to \(a\). Formally, we want to define this as follows.
 
 \begin{definition}[Limit of a Function]
     \label{def:fn-limit}%
-    Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\). We take some \(a \in X\) or \(a \in \CC \setminus X\) \textbf{\textcolor{red}{(see before for comments on the value that \(a\) should take)}} which is an accumulation point of \(X\).  We say \(f\) \emph{tends to} \(y \in \CC\) as \(z\) tends to \(a\), if
+    Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\). We take some \(a \in \CC\) which is an accumulation point of \(X\).
+
+
+    We say \(f\) \emph{tends to} \(y \in \CC\) as \(z\) tends to \(a\), if
     \[
-        \forall \epsilon > 0, \exists \delta = \delta \para{\epsilon} > 0, \forall \mathbf{\textcolor{red}{0 <}} \abs{z - a} < \delta, z \in X: \abs{f\para{z} - y} < \epsilon,
+        \forall \epsilon > 0, \exists \delta = \delta \para{\epsilon} > 0, \forall 0 < \abs{z - a} < \delta, z \in X: \abs{f\para{z} - y} < \epsilon,
     \]
     and we denote this as \(f\para{z} \to y\) as \(z \to a\), or \(\lim_{z \to a} f\para{z} \to y\).
 
-    For \(a \in \CC \setminus X\) which is an accumulation point for \(X\) \textbf{\textcolor{red}{or \(a \in X\) (similarly I prefer not to define the limit at an isolated point)}}, we say \(f\) diverges to \(\infty\) as \(z \to a\), if \(\frac{f\para{z}}{\abs{f\para{z}}} \to l\) for some \(l \in \CC\) (the argument converges), and
+    Similarly, we say \(f\) diverges to \(\infty\) as \(z \to a\), if \(\frac{f\para{z}}{\abs{f\para{z}}} \to l\) for some \(l \in \CC\) (the argument converges), and
     \[
-        \forall L > 0, \exists \delta = \delta\para{L} > 0, \forall \mathbf{\textcolor{red}{0 <}} \abs{z - a} < \delta, z \in X: \abs{f\para{z}} > L.
+        \forall L > 0, \exists \delta = \delta\para{L} > 0, \forall 0 < \abs{z - a} < \delta, z \in X: \abs{f\para{z}} > L.
     \]
 \end{definition}
 
 \begin{remark}
     \begin{itemize}
-        \item If \(a\) is an isolated point of \(X\), then we can always find \(\delta\) sufficiently small, so that
+        \item We shall not worry about the limit at an isolated point, since there is not a good behaviour of `approaching' \(a\) in any sense. (Indeed, most of the following statements on limits consider only accumulation points.) Therefore, some choose to not define the limit at an isolated point, while others might choose to define \(\lim_{z \to a} f\para{z} = a\). The latter might be chosen since it would make the limit condition for \autoref{def:continuity} (Continuity) work for isolated points as well.
+        \item The lecturer claimed that the function may not diverge to infinity when the limit is taken at a point in the domain. \textbf{\textcolor{red}{Note that this is not true, and \(f\) may diverge to infinity at \(a \in \CC\), even with \(a \in X\) Consider the example.
         \[
-            \abs{z - a} < \delta, z \in X \iff z = a,
+            f\para{x} = \begin{cases}
+                \frac{1}{x^2}, & x \neq 0, \\
+                0, & x = 0,
+            \end{cases}  
         \]
-        then \(f\para{x} \to f\para{a}\) as \(z \to a\) trivially, So the definition of the limit makes sense for isolated points, but not so interesting. \textbf{\textcolor{red}{This argument does not make sense, if we add the \(0 < \) bit, since there is no points in a \(\delta\)-open neighbourhood (excluding \(a\)) when \(\delta\) is very small. Really, it would be a very bad idea to define the limit existing at isolated point, because it would be a separate case to deal with all the time.}}
-
-        \item For \(f\) diverging to infinity at \(a \in \CC\), we cannot have \(a \in X\), hence the restriction in the definition. \textbf{\textcolor{red}{This is not the case, since if we define the function
-            \[
-                f\para{x} = \begin{cases}
-                    \frac{1}{x^2}, & x \neq 0, \\
-                    0, & x = 0,
-                \end{cases}  
-            \]
-            then we really want \(f\para{x} \to \infty\) at \(x \to 0\), although it is defined.
-        }}
+        and at \(x = 0\), \(f\para{0} = 0\) but \(f\para{x} \to \infty\) as \(x \to 0\).}}
     \end{itemize}
 \end{remark}
 
@@ -119,7 +116,7 @@ We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). T
 
 \begin{lemma}[Limit of Function and Limit of Sequences]
     \label{lem:fn-limit-equivalent-seq-limit}%
-    Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\), and let \(a \in \CC\) either in \(X\) or an accumulation point of \(X\). Then
+    Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\), and let \(a \in \CC\) be an accumulation point of \(X\). Then
     \[
         f\para{z} \to y \text{ as } z \to a
     \]
@@ -127,40 +124,37 @@ We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). T
     \[
         f\para{z_n} \to y
     \]
-    for any \(\para{z_n}\) on \(X\), with \(z_n \to a\) \textbf{\textcolor{red}{and \(z_n \neq a\)}}.
+    for any \(\para{z_n}\) on \(X \setminus \brce{a}\), with \(z_n \to a\).
 
-    Similarly, \(f\para{z}\) diverges to infinity, if and only if \(\para{f\para{z_n}}\) diverges for every \(\para{z_n}\) on \(X\), with \(z_n \to a\) \textbf{\textcolor{red}{and \(z_n \neq a\)}}.
+    Similarly, \(f\para{z}\) diverges to infinity, if and only if \(\para{f\para{z_n}}\) diverges to infinity for every \(\para{z_n}\) on \(X \setminus \brce{a}\), with \(z_n \to a\).
 \end{lemma}
-
-\textcolor{red}{
-    \begin{remark}
-        \textbf{
-        This lemma would be boring for isolated points, since there is no such sequence that tends to an isolated point apart from the trivial sequence.}
-    \end{remark}
-}
 
 \begin{lemma}[Limit of Function is Unique]
     \label{lem:fn-limit-unique}%
     If \(\functiondomain{f}{X \subseteq \CC}{\CC}\) has a limit at \(a \in \CC\), then this limit is unique.
 \end{lemma}
 
-\begin{proof}
+\begin{proof}[using Sequences]
+    This is a corollary of \autoref{lem:fn-limit-equivalent-seq-limit} due to the uniqueness of the limit of a sequence.
+\end{proof}
+
+\begin{proof}[using \(\epsilon-\delta\)]
     Suppose that \(f\para{z} \to y\) and \(f\para{z} \to x\) as \(z \to a\). We have that
     \[
         \abs{x - y} \leq \abs{x - f\para{z}} + \abs{f\para{z} - y}
     \]
-    and using similar techniques with sequence limits, we have \(x = y\).
+    and using similar techniques with sequence limits, we have \(x = y\). Concretely, let
 \end{proof}
 
 \begin{lemma}[Function Limits Preserve Arithemetics]
     \label{lem:fn-limits-preserve-arithemetics}%
-    Let \(\functiondomain{f, g}{X \subseteq \CC}{\CC}\), \(a \in \CC\) either in \(X\) or an accumulation point of \(X\) \textbf{\textcolor{red}{(really \(a\) should just be an accumulation point of \(X\))}}. Suppose \(\lim_{z \to a} f\para{z} = a\) and \(\lim_{z \to a} g\para{z} = b\), then
+    Let \(\functiondomain{f, g}{X \subseteq \CC}{\CC}\), and \(a \in \CC\) be an accumulation point of \(X\). Suppose \(\lim_{z \to a} f\para{z} = a\) and \(\lim_{z \to a} g\para{z} = b\), then
     \begin{align*}
         \lim_{x \to a} \para{f\para{z} + g\para{z}} &= a + b, \\
         \lim_{x \to a} \para{f\para{z} \cdot g\para{z}} & = ab.
     \end{align*}
 
-    Furthermore, if \(b \neq 0\) and there exists some \(\delta > 0\), such that for all \(\mathbf{\textcolor{red}{0 < }}\abs{z - a} < \delta\), we have \(g\para{z} \neq 0\), then
+    Furthermore, if \(b \neq 0\), we have
     \[
         \lim_{z \to a} \frac{f\para{z}}{g\para{z}} = \frac{a}{b}.
     \]
@@ -168,24 +162,25 @@ We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). T
 
 \subsection{Continuity of Functions}
 
-What does it mean for a function to be continuous? Informally (and intuitively), this means that 
-
-From the previous section, we may compute \(\lim_{z \to a} f\para{z}\). If we are able to draw the graph 
-
 \begin{definition}[Continuity]
     \label{def:continuity}%
     Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\).
 
-    We say \(f\) is \emph{continuous at some point \(a \in X\)}, if \(\lim_{z \to a} f\para{z} = f\para{a}\), i.e., if
+    We say \(f\) is \emph{continuous at some point \(a \in X\)}, if
     \[
         \forall \epsilon > 0, \exists \delta = \delta\para{\epsilon}, \forall \abs{z - a} < \delta, z \in X: \abs{f\para{z} - f\para{a}} < \epsilon.
     \]
+
+    For \(a\) being an accumulation point, this is equivalent to saying
+    \[
+        \lim_{z \to a} f\para{z} = f\para{a}.
+    \] 
     
     We say \(f\) is \emph{continuous} if it is continuous at every point in \(X\).    
 \end{definition}
 
 \begin{remark}
-    If \(a \in X\) is an isolated point, \(f\) is continuous at \(a\). \textbf{\textcolor{red}{This is not very good.}}
+    If \(a \in X\) is an isolated point, \(f\) is then trivially continuous at \(a\).
 \end{remark}
 
 \begin{example}[Examples on Continuity]
