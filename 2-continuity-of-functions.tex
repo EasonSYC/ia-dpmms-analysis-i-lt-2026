@@ -85,6 +85,9 @@ We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). T
 \begin{remark}
     \begin{itemize}
         \item We shall not worry about the limit at an isolated point, since there is not a good behaviour of `approaching' \(a\) in any sense. (Indeed, most of the following results on limits only concerns accumulation points.) Therefore, some choose to not define the limit at an isolated point, while others might choose to define \(\lim_{z \to a} f\para{z} = a\). The latter might be chosen since it would make the limit condition for \autoref{def:continuity} (Continuity) work for isolated points as well.
+        
+        In particular, our definition does not work well for isolated points, since for sufficiently small \(\delta\), there is no \(z \in X\) such that \(0 < \abs{z - a} < \delta\), and our condition is trivially true for \emph{any} \(y\) which is not what we want.
+
         \item Note that \(f\) may diverge to infinity at \(a \in \CC\), even with \(a \in X\). Consider the example
         \[
             f\para{x} = \begin{cases}
@@ -117,8 +120,8 @@ We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). T
     for \(x > 0\), and since this function is even, the same behaviour holds for \(x < 0\), which finishes our proof.
 \end{example}
 
-\begin{lemma}[Limit of Function and Limit of Sequences]
-    \label{lem:fn-limit-equivalent-seq-limit}%
+\begin{lemma}[Sequencial Limits]
+    \label{lem:fn-sequential-limits}%
     Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\), and let \(a \in \CC\) be an accumulation point of \(X\). Then
     \[
         \lim_{z \to a} f\para{z} = y
@@ -205,7 +208,7 @@ We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). T
 \subsection{Continuity of Functions}
 
 \begin{definition}[Continuity]
-    \label{def:continuity}%
+    \label{def:fn-continuity}%
     Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\).
 
     We say \(f\) is \emph{continuous at some point \(a \in X\)}, if
@@ -213,27 +216,216 @@ We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). T
         \forall \epsilon > 0, \exists \delta = \delta\para{\epsilon}, \forall \abs{z - a} < \delta, z \in X: \abs{f\para{z} - f\para{a}} < \epsilon.
     \]
 
-    For \(a\) being an accumulation point, this is equivalent to saying
-    \[
-        \lim_{z \to a} f\para{z} = f\para{a}.
-    \] 
+    
     
     We say \(f\) is \emph{continuous} if it is continuous at every point in \(X\).    
 \end{definition}
 
 \begin{remark}
-    If \(a \in X\) is an isolated point, \(f\) is then trivially continuous at \(a\).
+    If \(a \in X\) is an isolated point, \(f\) is then trivially continuous at \(a\), because \(\abs{z - a} < \delta\) implies \(z = a\), so \(f\para{z} = f\para{a}\).
+
+    On the other hand, if \(a \in X\) is an accumulation point, this is equivalent to saying
+    \[
+        \lim_{z \to a} f\para{z} = f\para{a}.
+    \] 
 \end{remark}
 
 \begin{example}[Examples on Continuity]
-    \label{ex:continuity}
+    \label{ex:fn-continuity}
     \begin{itemize}
-        \item \(f\para{z} = z\) is the identity function. This is continuous everywhere on the domain, say \(\CC\).
-        \item \[
+        \item \(f\para{z} = z\) is the identity function. This is continuous everywhere on the domain, say \(\CC\). For all \(\epsilon > 0\), we choose \(\delta = \epsilon\), so for all \(\abs{z - a} < \delta\), we have \(\abs{f\para{z} - f\para{a}} = \abs{z - a} < \delta = \epsilon\).
+
+        \item If \(\functiondomain{f}{\RR}{\RR}\) satisfies \[
             f\para{x} = \begin{cases}
                 \sin \para{\frac{1}{x}}, & x \neq 0, \\
-                0, & x = 0.
+                0, & x = 0,
             \end{cases}
         \]
+        then \(f\) is not continuous at \(0\).
     \end{itemize}
 \end{example}
+
+To show the second example, it would be helpful to have another definition of continuity.
+
+\begin{definition}[Sequential Continuous]
+    \label{def:fn-sequential-continuous}%
+    Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\). We say \(f\) is \emph{sequential continuous} at \(a \in X\), if \(f\para{z_n} \to f\para{a}\) (as a sequence) for any \(\para{z_n}\) on \(X\) such that \(z_n \to a\).
+\end{definition}
+
+\begin{proposition}[Sequential Continuity is Continuity]
+    \label{prop:fn-seq-cont-iff-cont}%
+    A function is continuous at one point if and only if it is sequentially continuous at \(a\).
+\end{proposition}
+
+Using \autoref{prop:fn-seq-cont-iff-cont} (Sequential Continuity), we may show indeed that the second example of \autoref{ex:fn-continuity} is not continuous at \(0\). Let \(\para{x_n}\) on \(\RR\) with \(x_n \to 0\), given by
+\[
+    x_n = \frac{1}{\para{2n + \frac{1}{2}} \pi}
+\]
+and hence
+\[
+    f\para{x_n} = \sin\para{\para{2n + \frac{1}{2}} \pi} = 1
+\]
+and in particular, \(f\para{x_n} \to 1 \neq 0\).
+
+We now proof the proposition.
+
+\begin{proof}[of \autoref{prop:fn-seq-cont-iff-cont} (Sequential Continuity), by Definition]
+    We first show continuity implies sequential continuity. By continuity, for \(\epsilon > 0\), we have \(\delta = \delta\para{\epsilon} > 0\) such that
+    \[
+        \abs{z - a} < \delta \implies \abs{f\para{z} - f\para{a}} < \epsilon.
+    \]
+
+    Take \(\para{z_n}\) on \(X\) with \(z_n \to a\). By the definition of a sequence limit, there is some \(N = N\para{\epsilon} > 0\) such that
+    \[
+        n \geq N \implies \abs{f\para{z_n} - f\para{a}} < \epsilon,
+    \]
+    so we are done.
+
+    We show the converse by contrapositive. Suppose \(f\) instead is not continuous at \(a\). Then definition, for some \(\epsilon > 0\), we have
+    \[
+        \forall \delta > 0, \exists z = z\para{\delta} \in X, \abs{z - a} < \delta: \abs{f\para{z} - f\para{a}} \geq \epsilon.
+    \]
+
+    Take \(\delta = 1, \frac{1}{2}, \frac{1}{3}, \ldots, \frac{1}{n}, \ldots\) to find \(\para{z_n}\), by taking
+    \[
+        z_n = z \para{\frac{1}{n}},
+    \]
+    and we have
+    \[
+        \abs{f\para{z_n} - f\para{a}} \geq \epsilon.
+    \]
+
+    \(f\) is not sequentially continuous, as desired.
+\end{proof}
+
+\begin{proof}[of \autoref{prop:fn-seq-cont-iff-cont} (Sequential Continuity), using Sequential Limits]
+    The result is trivial on isolated points since the only sequence converging to an isolated point in the set is eventually the constant sequence at the point itself, and a function is trivially continuous at isolated points.
+
+    For accumulation points, this can be deduced from \autoref{lem:fn-sequential-limits} (Sequential Limits) and the definition of continuity using a limit. 
+    
+    Concretely, if \(f\) is sequential continuous, then taking any sequence \(\para{z_n}\) on \(X \setminus \brce{a}\) with \(z_n \to a\) will give \(f\para{z_n} \to f\para{a}\), showing that \(f\para{z} \to f\para{a}\), which gives continuity at an accumulation point.
+
+    Now assume \(f\) is continuous. For any sequence \(\para{z_n}\) on \(X\) with \(z_n \to a\), removing terms where \(z_n = a\) would not affect \(z_n \to a\). After removing these terms, we get a sequence \(\para{z'_n}\), and by considering the sequential limit (using continuity), we have \(f\para{z'_n} \to f\para{a}\). But now, adding those terms where \(z_n = a\) back to the sequence does not affect \(f\para{z'_n} \to f\para{a}\). This indeed shows sequential continuity.
+\end{proof}
+
+\begin{examples}[Continuity, Continued]
+    \label{ex:continuity-continued}%
+    \begin{itemize}
+        \item Let
+        \[
+            \function{f}{\RR}{\brce{0, 1}}
+            {x}{\indicator_{\QQ} \para{x} = \begin{cases}
+                1, & x \in \QQ, \\
+                0, & x \in \RR \setminus \QQ.
+            \end{cases}}
+        \]
+
+        This is discontinuous at every point \(a \in \RR\).
+
+        \begin{itemize}
+            \item If \(a \in \QQ\), take some irrational sequence \(\para{x_n}\) on \(\RR \setminus \QQ\) with \(x_n \to a\). Then
+            \[
+                f\para{x_n} = 0 \to 0 \neq 1 = f\para{a}.
+            \]
+            \item If \(a \in \RR \setminus \QQ\), taking a rational sequence with the same technique tells us that it cannot be continuous there either.
+        \end{itemize}
+
+        \item The function \(f\para{x} = \sin x\) for \(x \in \RR\) is continuous. Fix \(a \in \RR\), we have
+        \begin{align*}
+            \abs{f\para{x} - f\para{a}} &= \abs{\sin x - \sin a} \\
+            &\leq 2 \abs{\cos \para{\frac{x + a}{2}} \sin \para{\frac{x - a}{2}}} \\
+            &\leq 2 \abs{\sin \para{\frac{x - a}{2}}} \\
+            &\leq \abs{x - a},
+        \end{align*}
+        for \(\frac{x - a}{2} \in \ccintv{-\frac{\pi}{2}}{\frac{\pi}{2}}\). Therefore, for any \(\epsilon > 0\), we choose \(\delta\para{\epsilon} = \min\brce{\epsilon, \frac{\pi}{2}}\), and this shows continuity. Alternatively, we may also show this using sequential limits.
+    \end{itemize}
+\end{examples}
+
+Now we show standard properties of continuity.
+
+\begin{lemma}[Continuity is Preserved in Arithmetic]
+    \label{lem:fn-continuity-arithmetic}%
+    Let \(\functiondomain{f, g}{X \subseteq \CC}{\CC}\) be continuous at \(a \in X\). Then the sum \(f\para{x} + g\para{x}\), the product \(f\para{x}g\para{x}\), and the reciprocal \(\frac{1}{f\para{x}}\) (if \(f\para{a} \neq 0\)) are continuous at \(a\).
+\end{lemma}
+
+\begin{proof}
+    If \(a\) is an isolated point, this is trivially true. If \(a\) is an accumulation point, this follows from \autoref{lem:fn-limits-preserve-arithmetic} (Function Limits Preserve Arithmetic) using the definition of continuity using a limit.
+\end{proof}
+
+\begin{lemma}[Composition of Continuous Functions is Continuous]
+    \label{lem:fn-composition-continuous}%
+    Let \(U, V \subseteq \CC\), and \(\functiondomain{f}{U}{V}\), \(\functiondomain{g}{V}{\CC}\). If \(f\) is continuous at \(a \in U\), and \(g\) is continuous at \(f\para{a} \in V\), then \(\functiondomain{g \circ f}{U}{\CC}\) is continuous at \(a\).
+\end{lemma}
+
+\begin{proof}
+    Since \(g\) is continuous at \(f\para{a}\), for \(\epsilon > 0\), we have some \(\sigma = \sigma\para{\epsilon} > 0\), such that
+    \[
+        y \in V, \abs{y - f\para{a}} < \sigma \implies \abs{g\para{y} - g\para{f\para{a}}} < \epsilon.
+    \]
+
+    On the other hand, since \(f\) is continuous at \(a\), there is some \(\delta = \delta\para{\sigma}\) for \(\sigma > 0\), that
+    \[
+        z \in U, \abs{z - a} < \delta \implies \abs{f\para{z} - f\para{a}} < \delta.
+    \]
+
+    Therefore,
+    \begin{align*}
+        \forall \epsilon > 0, \exists \delta = \delta{\epsilon}: & z \in U, \abs{z - a} < \epsilon \\
+        & \implies f\para{z} \in V, \abs{f\para{z} - f\para{a}} < \sigma \\
+        & \implies \abs{g\para{f\para{z}} - g\para{f\para{a}}} < \epsilon
+    \end{align*}
+    as desired.
+\end{proof}
+
+\subsection{Extreme Value Theorem}
+
+We first discuss some topology on \(\CC\).
+
+\begin{definition}[Closed Set on \(\CC\)]
+    \label{def:closed-set-c}%
+    A set \(X \subseteq \CC\) is \emph{closed} if it contains all its limit/accumulation points. Equivalently, all sequences \(\para{x_n}\) in \(X\) which converge in \(\CC\) have \(\lim_{n \in \infty} x_n \in X\).
+\end{definition}
+
+\begin{examples}[Closed Set on \(\RR\)]
+    \label{ex:closed-set-r}%
+    The closed interval \(\ccintv{0}{1}\) is closed. The open interval \(\oointv{0}{1}\) is not closed, and neither are \(\cointv{0}{1}\) and \(\ocintv{0}{1}\). However, the interval \(\cointv{0}{\plusinfty}\) is closed, while \(\oointv{0}{\plusinfty}\) is not.
+\end{examples}
+
+\begin{definition}[Bounded Set on \(\CC\)]
+    \label{def:bounded-set-c}%
+    Say \(X \subseteq \CC\) is \emph{bounded}, if there is some \(M > 0\) such that
+    \[
+        X \subseteq \set{z \in \CC}{\abs{z} \leq M}.
+    \]
+
+    In other words, \(X\) is bounded if and only if \(\sup_{z \in X} \abs{z} < \infty\).
+\end{definition}
+
+\begin{examples}[Bounded Set on \(\RR\)]
+    \label{ex:bounded-set-r}%
+    The intervals \(\ccintv{0}{1}, \oointv{0}{1}, \cointv{0}{1}, \ocintv{0}{1}\) are bounded, while \(\cointv{0}{\plusinfty}\) and \(\oointv{0}{\plusinfty}\) are not bounded.
+\end{examples}
+
+\begin{definition}[Compact Set]
+    \label{def:compact-set}%
+    A set \(X \subseteq \CC\) is \emph{compact} if it is closed and bounded.
+\end{definition}
+
+\begin{theorem}[Continuity Prserves Compactness]
+    \label{thm:continuity-compactness}%
+    Let \(X \subseteq \CC\) be compact. If \(\functiondomain{f}{X}{\CC}\) is continuous, then \(f\para{X} \subseteq \CC\) is compact.
+\end{theorem}
+
+A corollary of \autoref{thm:continuity-compactness} on \(\RR\) is \autoref{thm:extreme-value} (Extreme Value Theorem).
+
+\begin{theorem}[Extreme Value Theorem]
+    \label{thm:extreme-value}%
+    Let \(X \subseteq \RR\) be compact. If \(\functiondomain{f}{X}{\RR}\) is continuous, then there is some \(a, b \in X\), such that
+    \[
+        f\para{a} = \sup f\para{X} = \sup_{z \in X} f\para{z}
+    \]
+    and
+    \[
+        f\para{b} = \inf f\para{X} = \inf_{z \in X} f\para{z}.
+    \]
+\end{theorem}
