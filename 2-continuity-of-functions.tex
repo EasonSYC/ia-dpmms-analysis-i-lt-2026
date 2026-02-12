@@ -420,6 +420,12 @@ We first discuss some topology on \(\CC\).
     A set \(X \subseteq \CC\) is \emph{compact} if it is closed and bounded.
 \end{definition}
 
+\begin{remark}
+    If we are working in \(\RR\), we may think of compact sets as finite, closed intervals, i.e., \(\ccintv{a}{b}\) for \(a \leq b\).
+\end{remark}
+
+The main result of this section is technically \autoref{thm:continuity-compactness}, since it applies to more general spaces, rather than \autoref{thm:extreme-value}, which only applies to \(\RR\).
+
 \begin{theorem}[Continuity Prserves Compactness]
     \label{thm:continuity-compactness}%
     Let \(X \subseteq \CC\) be compact. If \(\functiondomain{f}{X}{\CC}\) is continuous, then \(f\para{X} \subseteq \CC\) is compact.
@@ -437,4 +443,219 @@ A corollary of \autoref{thm:continuity-compactness} on \(\RR\) is \autoref{thm:e
     \[
         f\para{b} = \inf f\para{X} = \inf_{z \in X} f\para{z}.
     \]
+\end{theorem}
+
+\begin{remark}
+    The least upper bound axiom only tells us that the supremum and infimum exist for \(f\para{X}\). The point of \autoref{thm:extreme-value} (Extreme Value Theorem) is stating that these are in fact \emph{maximum} and \emph{minimum}.
+\end{remark}
+
+\begin{proof}[of \autoref{thm:extreme-value} (Extreme Value Theorem)]
+    We focus on the first equality regarding the supremum, since the second proof is analogous.
+
+    First, by \autoref{thm:continuity-compactness} (Continuity Preserves Compactness), since \(X\) is compact, \(f\para{X}\) is compact, hence bounded, and therefore let
+    \[
+        M = \sup f\para{X} \in \RR.
+    \]
+
+    By definition, \(\para{M - \frac{1}{n}}\) is not an upper bound of \(f\para{X}\) for any \(n \in \NN\). Hence, we can find a sequence \(\para{y_n}\) on \(f\para{X}\), such that
+    \[
+        M - \frac{1}{n} < y_n \leq M.
+    \]
+
+    Note that there is \(x_n \in X\) such that \(y_n = f\para{x_n}\). So we have a sequence \(\para{f\para{x_n}}\) on \(X\), with
+    \[
+        M - \frac{1}{n} < f\para{x_n} \leq M.
+    \]
+
+    Now, taking limits, we have
+    \[
+        M \leq \lim_{n \to \infty} f\para{x_n} \leq M,
+    \]
+    and hence using the fact that \(f\) is continuous,
+    \[
+        \lim_{n \to \infty} y_n = \lim_{n \to \infty} f\para{x_n} = M.
+    \]
+
+    Since \(f\para{X}\) is compact, it is closed, and hence
+    \[
+        M = \lim_{n \to \infty} y_n \in f\para{X},
+    \]
+    which finishes our proof.
+\end{proof}
+
+Now we prove \autoref{thm:continuity-compactness} (Continuity Preserves Compactness).
+
+\begin{proof}[of \autoref{thm:continuity-compactness}, that \(f\para{X}\) is Bounded]
+    Suppose on the contrary that \(f\para{X}\) is not bounded. Then for each \(n \in \NN\), we can find \(x_n \in X\), such that \(\abs{f\para{x_n}} > n\). Now, note \(\para{x_n}\) is a sequence in \(X\), and hence it is bounded since \(X\) is bounded.
+    
+    Applying \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass Theorem), we have a convergent subsequence \(\para{x_{n_k}}_{k \in \NN}\) and \(x \in \CC\) such that \(x_{n_k} \to x\). But since \(X\) is closed, in fact we have \(x \in X\).
+    
+    On the other hand, we have
+    \[
+        \abs{f\para{n_k}} > n_k \geq k
+    \]
+    so the sequence \(f\para{n_k}\) cannot converge as \(k \to \infty\), since it is not bounded. This means \(f\) cannot be continuous, giving a contradiction.
+\end{proof}
+
+\begin{proof}[of \autoref{thm:continuity-compactness}, that \(f\para{X}\) is Closed]
+    Take a sequence \(\para{y_n}\) in \(f\para{X}\) and suppose it converges to some \(y \in \CC\). We want to show that \(y \in f\para{X}\).
+
+    Since \(y_n \in f\para{X}\), we have some \(x_n \in X\), such that \(f\para{x_n} = y_n\). The sequence \(\para{x_n}\) is on \(X\), and hence is bounded.
+    
+    By \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass Theorem), we have a convergent subsequence \(\para{x_{n_k}}_{k \in \NN}\) that converges to some \(x\), and we have \(x \in X\) since \(X\) is closed.
+
+    Therefore, by continuity, we have
+    \[
+        y = \lim_{n \to \infty} y_n = \lim_{k \to \infty} y_{n_k} = \lim_{k \to \infty} f\para{x_{n_k}} = f\para{\lim_{k \to \infty} x_{n_k}} = f\para{x},
+    \]
+    so \(y = f\para{x} \in f\para{X}\).
+\end{proof}
+
+\subsection{Intermediate Value Theorem}
+
+\begin{theorem}[Intermediate Value Theorem]
+    \label{thm:intermediate-value}%
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be continuous. Then for any \(y\) between \(f\para{a}\) and \(f\para{b}\), there is some \(c \in \ccintv{a}{b}\), such that \(f\para{c} = y\).
+\end{theorem}
+
+\begin{figure}[ht!]
+    \centering
+    \begin{tikzpicture}[
+        declare function = { f(\x) = (\x - 3) * (\x - 4) * (\x - 5) + 7; }
+    ]
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = {\(x\)},
+            ylabel = {\(f\para{x}\)},
+            xmin = 0, xmax = 8,
+            ymin = 0, ymax = 14,
+            samples = 100,
+            domain = 2:6,
+            xtick = {\xa, \xc, \xb},
+            xticklabels = {\(a\), \(c\), \(b\)},
+            ytick = {\yc},
+            yticklabels = {\(y\)}
+        ]
+
+            \pgfmathsetmacro{\xa}{2.5};
+            \pgfmathsetmacro{\ya}{f(\xa)};
+            \pgfmathsetmacro{\xb}{5.2};
+            \pgfmathsetmacro{\yb}{f(\xb)};
+            \pgfmathsetmacro{\xc}{4};
+            \pgfmathsetmacro{\yc}{f(\xc)};
+
+            \addplot[no marks] {f(x)};
+            \node[right] at (axis cs:6, 13) {\(f\)};
+
+            \addplot[only marks, mark=*, mark size=1pt]
+                coordinates {(\xa, \ya) (\xb, \yb) (\xc, \yc)};
+
+            \node[above left] at (axis cs:\xa, \ya) {\(\para{a, f\para{a}}\)};
+            \node[below right] at (axis cs:\xb, \yb) {\(\para{b, f\para{b}}\)};
+            \node[below left] at (axis cs:\xc, \yc) {\(\para{c, y}\)};
+
+            \addplot[dotted] coordinates {(0, \yc) (\xc, \yc) (\xc, 0)};
+
+        \end{axis}
+    \end{tikzpicture}
+
+    \caption{Intermediate Value Theorem}
+    \label{fig:intermediate-value}
+\end{figure}
+
+\begin{corollary}[Continuous Functions maps Closed Intervals to Closed Intervals]
+    \label{cor:continuous-closed-intv}%
+    If \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) is continuous, then its image \(\img f = f\para{\ccintv{a}{b}}\) is a closed interval.
+\end{corollary}
+
+\begin{proof}
+    From \autoref{thm:extreme-value} (Extreme Value Theorem) we know that \(\min_{x \in \ccintv{a}{b}} f\para{x}\) and \(\max_{x \in \ccintv{a}{b}} f\para{x}\) exist. Let \(f\para{c} = \min_{x \in \ccintv{a}{b}} f\para{x}\) and \(f\para{d} = \max_{x \in \ccintv{a}{b}} f\para{x}\) for some \(c, d \in \ccintv{a}{b}\).
+
+    Applying \autoref{thm:intermediate-value} (Intermediate Value Theorem) shows that we indeed get all values between the minimum and the maximum, showing the image is indeed the closed interval
+    \[
+        \ccintv{\min_{x \in \ccintv{a}{b}} f\para{x}}{\max_{x \in \ccintv{a}{b}} f\para{x}}.
+    \]
+\end{proof}
+
+\begin{remark}
+    \autoref{thm:intermediate-value} (Intermediate Value Theorem) guarantees \emph{existence} but not \emph{uniqueness}. In particular, there may be several points whose image is \(y\) above.
+\end{remark}
+
+\begin{proof}[of \autoref{thm:intermediate-value} (Intermediate Value Theorem)]
+    If \(f \para{a} = f\para{b}\), then this is trivially true. Furthermore, if \(y = f\para{a}\) or \(y = f\para{b}\) then this is trivially true.
+
+    Now, we let \(f\para{a} < y < f\para{b}\). Set
+    \[
+        S = \set{x \in \ccintv{a}{b}}{f\para{x} \leq y}.
+    \]
+
+    Then \(a \in S\), so \(S\) is non-empty, and \(S\) is bounded above, so let
+    \[
+        c = \sup S \in \ccintv{a}{b}.
+    \]
+
+    We claim that \(f\para{c} = y\).
+
+    We first show that \(f\para{c} \leq y\). Suppose not, then \(f\para{c} > y\), so in particular, \(c > a\). Let \(\epsilon = f\para{c} - y > 0\). By the continuity of \(f\), we have some \(\delta > 0\), such that
+    \[
+        \abs{x - c} < \delta, x \in \ccintv{a}{b} \implies \abs{f\para{x} - f\para{c}} < \epsilon.
+    \]
+
+    Therefore, we have
+    \[
+         \abs{x - c} < \delta, x \in \ccintv{a}{b} \implies \abs{f\para{x} - f\para{c}} < \epsilon \implies f\para{x} > f\para{c} - \epsilon = y \implies x \notin S.
+    \]
+
+    Let \(I = \oointv{c - \delta}{c} \cap \ccintv{a}{b}\). \(I\) is non-empty since \(c > a\).
+
+    Consider \(I \cap S\). This intersection is non-empty since \(c > a\) and \(a \in S\), by the definition of a supremum. However, from above, \(x \in I \implies x \notin S\), so \(I \cap S\) is empty. This gives a contradiction.
+
+    Next, we show \(f\para{c} \geq y\). Suppose not, then \(f\para{c} < y\), so in particular, \(c < b\). Let \(\epsilon = y - f\para{c} > 0\). By continuity of \(f\), we have \(\delta > 0\) such that
+    \[
+        \abs{x - c} < \delta, x \in \ccintv{a}{b} \implies \abs{f\para{x} - f\para{c}} < \epsilon.
+    \]
+
+    Therefore, we have
+    \[
+        \abs{x - c} < \delta, x \in \ccintv{a}{b} \implies \abs{f\para{x} - f\para{c}} < \epsilon \implies f\para{x} < f\para{c} + \epsilon = y \implies x \in S.
+    \]
+    
+    Let \(I = \oointv{c}{c + \delta} \cap \ccintv{a}{b}\). This intersection is non-empty since \(c < b\).
+    
+    Consider \(I \cap S\). This intersection is empty by the definition of a supremum. However, from above, \(x \in I \implies x \in S\), so \(I \cap S\) is non-empty. This gives a contradiction.
+
+    Therefore, \(f\para{c} = y\), finishing the proof.
+\end{proof}
+
+\begin{example}[Existence of \(N\)-th Roots]
+    \label{ex:existence-nth-roots}%
+    We can apply to show the existence of \(N\)-th roots. Take \(t > 0\), and consider
+    \[
+        \function{f}{\ccintv{0}{1 + t}}{\RR}{x}{x^N}
+    \]
+    for some \(N \in \NN\). This is a continuous function, and we have
+    \[
+        0 = f\para{0} < t < \para{1 + t}^N = f\para{1 + t}.
+    \]
+
+    By \autoref{thm:intermediate-value}, there is some \(c \in \ccintv{0}{1 + t}\) such that \(f\para{c} = t\), and for this value of \(c\), we have \(c^N = t\). Hence, \(c\) is \emph{an} \(N\)-th positive root of \(t\).
+\end{example}
+
+\begin{definition}[Monotone Function]
+    \label{def:monotone-function}%
+    A function \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) is \emph{monotone}, if it is either
+    \begin{itemize}
+        \item \emph{increasing}, if for all \(a \leq x_1 \leq x_2 \leq b\), we have \(f\para{x_1} \leq f\para{x_2}\); or
+        \item \emph{decreasing}, if for all \(a \leq x_1 \leq x_2 \leq b\), we have \(f\para{x_1} \geq f\para{x_2}\).
+    \end{itemize}
+
+    We say the function is \emph{strictly increasing/decreasing} for the condition modified to \(f\para{x_1} < f\para{x_2}\) or \(f\para{x_1} > f\para{x_2}\).
+\end{definition}
+
+\begin{theorem}[Inverse Function Theorem for Monotone Functions]
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be continuous and strictly monotone. We set \(c = \min\brce{f\para{a}, f\para{b}}\) and \(d = \max\brce{f\para{a}, f\para{b}}\). Then the restriction of the co-domain
+    \[
+        \functiondomain{f}{\ccintv{a}{b}}{\ccintv{c}{d}}
+    \]
+    is bijective, and \(\functiondomain{f\inverse}{\ccintv{c}{d}}{\ccintv{a}{b}}\) exists, is continuous and strictly monotone, with the same monotonicity as \(f\).
 \end{theorem}
