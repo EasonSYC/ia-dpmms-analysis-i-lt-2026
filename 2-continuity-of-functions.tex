@@ -254,7 +254,7 @@ To show the second example, it would be helpful to have another definition of co
 
 \begin{proposition}[Sequential Continuity is Continuity]
     \label{prop:fn-seq-cont-iff-cont}%
-    A function is continuous at one point if and only if it is sequentially continuous at \(a\).
+    Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\) and \(a \in X\). \(f\) is continuous at \(a\) if and only if \(f\) is sequentially continuous at \(a\).
 \end{proposition}
 
 Using \autoref{prop:fn-seq-cont-iff-cont} (Sequential Continuity), we may show indeed that the second example of \autoref{ex:fn-continuity} is not continuous at \(0\). Let \(\para{x_n}\) on \(\RR\) with \(x_n \to 0\), given by
@@ -281,7 +281,7 @@ We now proof the proposition.
     \]
     so we are done.
 
-    We show the converse by contrapositive. Suppose \(f\) instead is not continuous at \(a\). Then definition, for some \(\epsilon > 0\), we have
+    We show the converse by contrapositive. Suppose \(f\) instead is not continuous at \(a\). Then by definition, for some \(\epsilon > 0\), we have
     \[
         \forall \delta > 0, \exists z = z\para{\delta} \in X, \abs{z - a} < \delta: \abs{f\para{z} - f\para{a}} \geq \epsilon.
     \]
@@ -374,12 +374,12 @@ Now we show standard properties of continuity.
 
     On the other hand, since \(f\) is continuous at \(a\), there is some \(\delta = \delta\para{\sigma}\) for \(\sigma > 0\), that
     \[
-        z \in U, \abs{z - a} < \delta \implies \abs{f\para{z} - f\para{a}} < \delta.
+        z \in U, \abs{z - a} < \delta \implies \abs{f\para{z} - f\para{a}} < \sigma.
     \]
 
     Therefore,
     \begin{align*}
-        \forall \epsilon > 0, \exists \delta = \delta{\epsilon}: & z \in U, \abs{z - a} < \epsilon \\
+        \forall \epsilon > 0, \exists \delta = \delta{\epsilon}: & z \in U, \abs{z - a} < \delta \\
         & \implies f\para{z} \in V, \abs{f\para{z} - f\para{a}} < \sigma \\
         & \implies \abs{g\para{f\para{z}} - g\para{f\para{a}}} < \epsilon
     \end{align*}
