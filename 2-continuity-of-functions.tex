@@ -84,7 +84,7 @@ We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). T
 
 \begin{remark}
     \begin{itemize}
-        \item We shall not worry about the limit at an isolated point, since there is not a good behaviour of `approaching' \(a\) in any sense. (Indeed, most of the following results on limits only concerns accumulation points.) Therefore, some choose to not define the limit at an isolated point, while others might choose to define \(\lim_{z \to a} f\para{z} = a\). The latter might be chosen since it would make the limit condition for \autoref{def:continuity} (Continuity) work for isolated points as well.
+        \item We shall not worry about the limit at an isolated point, since there is not a good behaviour of `approaching' \(a\) in any sense. (Indeed, most of the following results on limits only concerns accumulation points.) Therefore, some choose to not define the limit at an isolated point, while others might choose to define \(\lim_{z \to a} f\para{z} = f\para{a}\). The latter might be chosen since it would make the limit condition for \autoref{def:fn-continuity} (Continuity) work for isolated points as well.
         
         In particular, our definition does not work well for isolated points, since for sufficiently small \(\delta\), there is no \(z \in X\) such that \(0 < \abs{z - a} < \delta\), and our condition is trivially true for \emph{any} \(y\) which is not what we want.
 
@@ -176,7 +176,7 @@ We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). T
 \end{lemma}
 
 \begin{proof}[using Sequences]
-    This is a corollary of \autoref{lem:fn-limit-equivalent-seq-limit} due to the uniqueness of the limit of a sequence.
+    This is a corollary of \autoref{lem:fn-sequential-limits} due to the uniqueness of the limit of a sequence.
 \end{proof}
 
 \begin{proof}[using \(\epsilon-\delta\)]
@@ -356,6 +356,15 @@ Now we show standard properties of continuity.
     \label{lem:fn-composition-continuous}%
     Let \(U, V \subseteq \CC\), and \(\functiondomain{f}{U}{V}\), \(\functiondomain{g}{V}{\CC}\). If \(f\) is continuous at \(a \in U\), and \(g\) is continuous at \(f\para{a} \in V\), then \(\functiondomain{g \circ f}{U}{\CC}\) is continuous at \(a\).
 \end{lemma}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[scale=0.4]{fig/function-composition-continuity.png}
+    \caption{Function Composition preserves Continuity}
+    \label{fig:fn-composition-continuous}%
+\end{figure}
+
+\autoref{fig:fn-composition-continuous} visualises the condition required in \autoref{lem:fn-composition-continuous}.
 
 \begin{proof}
     Since \(g\) is continuous at \(f\para{a}\), for \(\epsilon > 0\), we have some \(\sigma = \sigma\para{\epsilon} > 0\), such that
