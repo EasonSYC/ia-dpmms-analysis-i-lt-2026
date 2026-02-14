@@ -1,0 +1,153 @@
+\section{Differentiation}
+\subsection{Basics}
+
+Informally, the derivative of a function is the instantaneous rate of change of a function at that point. \autoref{fig:derivative} shows a way to think about the gradient at some point \(c \in \ccintv{a}{b}\) -- namely approximating the gradient of a secent \(\frac{\delta y}{\delta x}\), and taking the limit as \(h = \delta x \to 0\).
+
+\begin{figure}[ht!]
+    \centering
+    \begin{tikzpicture}[
+        declare function = { f(\x) = 0.6 * (\x - 3) * (\x - 4) * (\x - 5) + 1.5 * (\x - 4) + 7; }
+    ]
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = {\(x\)},
+            ylabel = {\(f\para{x}\)},
+            xmin = 0, xmax = 8,
+            ymin = 0, ymax = 14,
+            samples = 100,
+            domain = 2:6,
+            xtick = {\xa, \xb, \xc, \xd},
+            xticklabels = {\(a\), \(b\), \(c\), \(c + h\)},
+            ytick = {\ya, \yb, \yc, \yd},
+            yticklabels = {\(f\para{a}\), \(f\para{b}\), \(f\para{c}\), \(f\para{c + h}\)}
+        ]
+
+            \pgfmathsetmacro{\xa}{2};
+            \pgfmathsetmacro{\ya}{f(\xa)};
+            \pgfmathsetmacro{\xb}{6};
+            \pgfmathsetmacro{\yb}{f(\xb)};
+            \pgfmathsetmacro{\xc}{3.5};
+            \pgfmathsetmacro{\yc}{f(\xc)};
+            \pgfmathsetmacro{\xd}{4.5};
+            \pgfmathsetmacro{\yd}{f(\xd)};
+
+            \addplot[no marks] {f(x)};
+            \node[right] at (axis cs: 6, 13) {\(f\)};
+
+            \addplot[only marks, mark=*, mark size=1pt]
+                coordinates {(\xa, \ya) (\xb, \yb) (\xc, \yc) (\xd, \yd)};
+
+            \addplot[dotted] coordinates {(0, \ya) (\xa, \ya) (\xa, 0)};
+            \addplot[dotted] coordinates {(0, \yb) (\xb, \yb) (\xb, 0)};
+            \addplot[dotted] coordinates {(0, \yc) (\xc, \yc) (\xc, 0)};
+            \addplot[dotted] coordinates {(0, \yd) (\xd, \yd) (\xd, 0)};
+
+            \draw[<->] (axis cs: \xc, \yc) -- (axis cs: \xd, \yc);
+
+            \node[below] at (axis cs: {(\xc + \xd) / 2}, \yc) {\(\delta x\)};
+
+            \draw[<->] (axis cs: \xc, \yc) -- (axis cs: \xc, \yd);
+
+            \node[left] at (axis cs: \xc, {(\yc + \yd) / 2}) {\(\delta y\)};
+        \end{axis}
+    \end{tikzpicture}
+
+    \caption{Derivative}
+    \label{fig:derivative}
+\end{figure}
+
+\begin{definition}[Derivative]
+    \label{def:derivative}%
+    Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\) and \(a \in X\) be an accumulation point. We say \(f\) is \emph{differentiable} at \(a\), if we have
+    \[
+        \lim_{x \to a} \frac{f\para{x} - f\para{a}}{x - a} = \lim_{h \to 0} \frac{f\para{a + h} - f\para{a}}{h}
+    \]
+    exists. The value of this limit is the \emph{derivative} of \(f\) evaluated at \(a\), denoted as \(f'\para{a}\) or \(\DiffFrac{f}{x} \para{a}\).
+\end{definition}
+
+\begin{remark}
+    We cannot really make sense of the derivative at an isolated point of the domain, since the point is not in the domain of the fraction, and not an accumulation point of the domain of the fraction either -- so the limit is undefined.
+
+    As for accumulation points, we can distinguish between \emph{interior points}, where we can approach that point along any direction (and we need the limit to be direction independent); and \emph{non-interior points} whose limit is restricted by the domain.
+\end{remark}
+
+\begin{examples}[Differentiability of Functions]
+    \label{ex:differentiability}%
+    \begin{itemize}
+        \item We take the identity function \(f\para{z} = z\). We have
+        \[
+            f'\para{z} = \lim_{h \to 0} \frac{f\para{z + h} - f\para{z}}{h} = \lim_{h \to 0} \frac{\para{z + h} - z}{h} = \lim_{h \to 0} 1 = 1.
+        \]
+
+        \item We take the complex conjugate function \(f\para{z} = \conjugate{z}\). We claim this is not differentiable at \emph{any} point.
+        
+        We consider the limits \(h \to 0\) along the real axis and the complex axis separately.
+
+        Take \(h = \lambda \in \RR\), we have
+        \[
+            \lim_{\lambda \to 0} \frac{f\para{z + \lambda} - f\para{z}}{\lambda} = \lim_{\lambda \to 0} \frac{\bar{\lambda}}{\lambda} = \lim_{\lambda \to 0} \frac{\lambda}{\lambda} = 1
+        \]
+        and \(h = i \lambda \in \RR\), we have
+        \[
+            \lim_{\lambda \to 0} \frac{f\para{z + i \lambda} - f\para{z}}{i\lambda} = \lim_{\lambda \to 0} \frac{\conjugate{i \lambda}}{i \lambda} = \lim_{\lambda \to 0} \frac{- i \lambda}{i \lambda} = -1.
+        \]
+
+        \item We consider the real sine function \(f\para{x} = \sin x\). We have
+        \begin{align*}
+            f'\para{x} &= \lim_{h \to 0} \frac{\sin \para{x + h} - \sin \para{x}}{h} \\
+            &= \lim_{h \to 0} \frac{\sin \para{h} \cos x}{h} + \lim_{h \to 0} \frac{\sin x \para{\cos h - 1}}{h} \\
+            &= \cos x \cdot 1 + 0 \\
+            &= \cos x.
+        \end{align*}
+    \end{itemize}
+\end{examples}
+
+Differentiability is a stronger property than continuity -- indeed we cannot differentiate functions that are not continuous.
+
+\begin{proposition}[Differentiability implies Continuity]
+    \label{prop:differentiability-implies-continuity}%
+    Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\) be differentiable at some \(a \in X\). Then it is continuous at \(a\).
+\end{proposition}
+
+We may derive properties of derivative from the properties of limits as well.
+
+\begin{lemma}[Properties of Derivatives]
+    \label{lem:properties-derivatives}%
+    Let \(\functiondomain{f, g}{X \subseteq \CC}{\CC}\) be differentiable at \(a \in X\). Then the sum \(f\para{x} + g\para{x}\), the product \(f\para{x} \cdot f\para{g}\), and the reciprocal \(\frac{1}{f\para{x}}\) (if defined, i.e. if \(f\para{a} \neq 0\)) are all differentiable at \(a\). Furthermore, we have
+    \begin{align*}
+        \para{f + g}' \para{a} &= f'\para{a} + g'\para{a}, \\
+        \para{fg}' \para{a} &= f'\para{a} g\para{a} + f\para{a} g'\para{a}, \\
+        \para{\frac{1}{f}}' \para{a} &= - \frac{f'\para{a}}{\brac{f\para{a}}^2}.
+    \end{align*}
+\end{lemma}
+
+\begin{proof}
+    The addition rule is trivial from \autoref{lem:fn-limits-preserve-arithmetic}.
+
+    We now look at the product.
+    \begin{align*}
+        \para{fg}'\para{a} &= \lim_{h \to 0} \frac{\para{fg}\para{a + h} - \para{fg}\para{a}}{h} \\
+        &= \lim_{h \to 0} \frac{f\para{a + h} g\para{a + h} - f\para{a} g\para{a}}{h} \\
+        &= \lim_{h \to 0} \frac{\para{f\para{a + h} - f\para{a}} g\para{a + h} + \para{g\para{a + h} - g\para{a}} f\para{a}}{h} \\
+        &= \lim_{h \to 0} g\para{a + h} \cdot \lim_{h \to 0} \frac{f\para{a + h} - f\para{a}}{h} + f\para{a} \cdot \lim_{h \to 0} \frac{g\para{a + h} - g\para{a}}{h} \\
+        &= g\para{a} \cdot f'\para{a} + f\para{a} \cdot g'\para{a},
+    \end{align*}
+    using continuity (implied by differentiability, stated in \autoref{prop:differentiability-implies-continuity}), in \(\lim_{h \to 0} g\para{a + h} = g\para{a}\).
+
+    As for the reciprocal,
+    \begin{align*}
+        \para{\frac{1}{f}}'\para{a} &= \lim_{h \to 0} \frac{\frac{1}{f\para{a + h}} - \frac{1}{f\para{a}}}{h} \\
+        &= \lim_{h \to 0} \frac{f\para{a} - f\para{a + h}}{h} \cdot \frac{1}{f\para{a} f\para{a + h}} \\
+        &= - \lim_{h \to 0} \frac{1}{f\para{a} f\para{a + h}} \cdot \lim_{h \to 0} \frac{f\para{a + h} - f\para{a}}{h} \\
+        &= - \frac{f'\para{a}}{\brac{f\para{a}}^2}.
+    \end{align*}
+\end{proof}
+
+\begin{examples}[Applications of Differentiation Rules]
+    \label{ex:aplication-of-differentiation-rules}%
+    \begin{itemize}
+        \item Let \(f\para{z} = z^2\), then it is differentiable with \(f'\para{z} = 2z\). By induction, for \(f\para{z} = z^n\) with \(n \in \NN\), we have \(f'\para{z} = n z^{n - 1}\).
+        \item Let \(f\para{z} = \frac{1}{z}\). It is differentiable on \(\CC \setminus\brce{0}\) with \(f'\para{z} = -\frac{1}{z^2}\). By induction, for \(f\para{z} = \frac{1}{z^n}\), we have \(f'\para{z} = - \frac{n}{z^{n + 1}}\).
+        \item More generally, rational functions \(\frac{p\para{x}}{q\para{x}}\) for polynomials \(p, q\) are differentiable, wherever it is defined.
+    \end{itemize}
+\end{examples}

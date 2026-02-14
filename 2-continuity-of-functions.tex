@@ -120,7 +120,7 @@ We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). T
     for \(x > 0\), and since this function is even, the same behaviour holds for \(x < 0\), which finishes our proof.
 \end{example}
 
-\begin{lemma}[Sequencial Limits]
+\begin{lemma}[Sequential Limits]
     \label{lem:fn-sequential-limits}%
     Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\), and let \(a \in \CC\) be an accumulation point of \(X\). Then
     \[
@@ -659,3 +659,47 @@ Now we prove \autoref{thm:continuity-compactness} (Continuity Preserves Compactn
     \]
     is bijective, and \(\functiondomain{f\inverse}{\ccintv{c}{d}}{\ccintv{a}{b}}\) exists, is continuous and strictly monotone, with the same monotonicity as \(f\).
 \end{theorem}
+
+\begin{proof}
+    Strict monotonicity tells us that the maximum and minimum must be obtained at endpoints, therefore the restriction of the co-domain is well-defined. We start by showing that \(f\), when its co-domain is restricted, is bijective. \autoref{cor:continuous-closed-intv} shows that \(f\) is surjective, and strict monotonicity guarantees injectivity.
+
+    Without loss of generality, let \(f\) be strictly increasing. Let \(\functiondomain{f\inverse}{\ccintv{c}{d}}{\ccintv{a}{b}}\). Suppose, on the contrary, that \(f\inverse\) is not strictly increasing. Then there is some \(c \leq y_1 < y_2 \leq d\) with \(f\inverse\para{y_1} \geq f\inverse\para{y_2}\). This means \(a \leq f\inverse\para{y_2} \leq f\inverse\para{y_1} \leq b\). Applying \(f\), and using that \(f\) is strictly increasing, we see
+    \[
+        f \circ f\inverse\para{y_2} \leq f \circ f\inverse\para{y_1}
+    \]
+    so
+    \[
+        y_2 \leq y_1
+    \]
+    giving a contradiction with \(y_1 < y_2\). This shows that \(f\inverse\) is indeed strictly increasing.
+
+    We need to check continuity of the \(f\inverse\). Fix \(y_0 \in \ccintv{c}{d}\) and that \(x_0 = f\inverse\para{y_0}\). We consider the three cases on where \(x_0\) and \(y_0\) is (in particular, when they are some endpoint of the interval).
+
+    \begin{itemize}
+        \item \(x_0 \in \oointv{a}{b}\). Let \(\epsilon > 0\) be arbitrary. Let \(\eta \in \ocintv{0}{\epsilon}\) be sufficiently small that \(\ccintv{x_0 - \eta}{x_0 + \eta} \in \ccintv{a}{b}\). Since \(f\) is strictly increasing, we have
+        \[
+            f\para{x_0 - \eta} < f\para{x_0} = y_0 < f\para{x_0 + \eta}.
+        \]
+
+        We take \(\delta = \min\brce{f\para{x_0 + \eta} - y_0, y_0 - f\para{x_0 - \eta}} > 0\). We have
+        \begin{align*}
+            \abs{y - y_0} < \delta, y \in \ccintv{c}{d} &\implies f\para{x_0 - \eta} \leq y_0 - \delta < y < y_0 + \delta \leq f\para{x_0 + \eta} \\
+            &\implies f\para{x_0 - \eta} < y < f\para{x_0 + \eta} \\
+            &\implies x_0 - \eta < f\inverse\para{y} = x_0 < x+0 + \eta \\
+            &\implies \abs{f\inverse\para{y} - x_0} < \eta \\
+            &\implies \abs{f\inverse\para{y} - f\inverse\para{y_0}} < \epsilon
+        \end{align*}
+        as desired.
+
+        \item \(x_0 = a\), and we have \(y_0 = f\para{a}\). Fix \(\epsilon > 0\), and we choose \(\eta = \min\brce{\epsilon, b - a}\), and set \(\delta = f\para{a + \eta} - f\para{a} > 0\). We have
+        \begin{align*}
+            \abs{y - y_0} < \delta, y \in \ccintv{c}{d} &\implies f\para{a} \leq y \leq f\para{a + \eta} \\
+            &\implies a \leq f\inverse\para{y} \leq a + \eta \\
+            &\implies \abs{f\inverse\para{y} - f\inverse\para{y_0}} < \eta \leq \epsilon.
+        \end{align*}
+
+        \item The case where \(x_0 = b\) is similar.
+    \end{itemize}
+
+    So \(f\) is continuous at any point \(y_0 \in \ccintv{c}{d}\), which implies that \(f\inverse\) is continuous.
+\end{proof}
