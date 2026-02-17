@@ -168,11 +168,43 @@ We may derive properties of derivative from the properties of limits as well.
     \label{prop:chain-rule}%
     Let \(U, V \subseteq \CC\), and let \(\functiondomain{f}{U}{V}\), and \(\functiondomain{g}{V}{\CC}\). Suppose \(f\) is differentiable at some \(a \in U\), and \(g\) is differentiable at some \(f\para{a} \in V\). Then the composition \(g \circ f\) is differentiable at \(a\), and that
     \[
-        g \circ f'\para{a} = g' \para{f\para{a}} \cdot f'\para{a}.
+        \para{g \circ f}'\para{a} = g' \para{f\para{a}} \cdot f'\para{a}.
     \]
 \end{proposition}
 
-In order to prove \autoref{prop:chain-rule}, it would be convenient to have an alternative characterisation of the derivative to prove this.
+\begin{proof}
+    One might be very tempted to say that
+    \[
+        \frac{g\para{f\para{x}} - g\para{f\para{a}}}{x - a} = \frac{g\para{f\para{x}} - g\para{f\para{a}}}{f\para{x} - f\para{a}} \cdot \frac{f\para{x} - f\para{a}}{x - a}
+    \]
+    and this finishes the proof. However, we need to deal with the case where we are dividing by zero. Therefore, we define a helper function
+    \[
+        Q\para{y} = \begin{cases}
+            \frac{g\para{y} - g\para{f\para{a}}}{y - f\para{a}}, & y \neq f\para{a}, \\
+            g'\para{f\para{a}}, & y = f\para{a},
+        \end{cases}
+    \]
+    and we claim that the quotient is always equal to
+    \[
+        Q\para{f\para{x}} \cdot \frac{f\para{x} - f\para{a}}{x - a}.
+    \]
+
+    For any \(x\), if \(f\para{x} \neq f\para{a}\), then the equality is from the cancellation of fraction from above. If \(f\para{x} = f\para{a}\), then the quotient is zero, and this expression is zero as well since the second term is zero.
+
+    Now it remains to take the limit of this expression. As \(x \to a\), the second factor tends to \(f'\para{a}\). For \(Q\para{y}\), note that since \(g\) is differentiable at \(f\para{a}\), so we have
+    \[
+        \lim_{y \to f\para{a}} Q\para{y} = g'\para{f\para{a}} = Q\para{f\para{a}}
+    \]
+    so \(Q\) is continuous at \(f\para{a}\). Furthermore, \(f\) is differentiable at \(a\), and hence continuous. Therefore, \(Q \circ f\) is continuous at \(a\), so its limit is simply \(Q\circ f\para{a} = g'\para{f\para{a}}\).
+
+    Taking the product of the limit of the two factors, we have
+    \[
+        g \circ f'\para{a} = g'\para{f\para{a}} \cdot f'\para{a}
+    \]
+    as desired.
+\end{proof}
+
+We may provide another characterisation of the derivative to give a proof of \autoref{prop:chain-rule} (Chain Rule) which could be generalised to higher dimensions.
 
 We have seen that \(f'\para{a}\) is the slope of the tangent line to the graph of \(f\) at \(a\). We can formalise this in the following way.
 
