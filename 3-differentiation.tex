@@ -22,14 +22,14 @@ Informally, the derivative of a function is the instantaneous rate of change of 
             yticklabels = {\(f\para{a}\), \(f\para{b}\), \(f\para{c}\), \(f\para{c + h}\)}
         ]
 
-            \pgfmathsetmacro{\xa}{2};
-            \pgfmathsetmacro{\ya}{f(\xa)};
-            \pgfmathsetmacro{\xb}{6};
-            \pgfmathsetmacro{\yb}{f(\xb)};
-            \pgfmathsetmacro{\xc}{3.5};
-            \pgfmathsetmacro{\yc}{f(\xc)};
-            \pgfmathsetmacro{\xd}{4.5};
-            \pgfmathsetmacro{\yd}{f(\xd)};
+            \pgfmathsetmacro{\xa}{2}
+            \pgfmathsetmacro{\ya}{f(\xa)}
+            \pgfmathsetmacro{\xb}{6}
+            \pgfmathsetmacro{\yb}{f(\xb)}
+            \pgfmathsetmacro{\xc}{3.5}
+            \pgfmathsetmacro{\yc}{f(\xc)}
+            \pgfmathsetmacro{\xd}{4.5}
+            \pgfmathsetmacro{\yd}{f(\xd)}
 
             \addplot[no marks] {f(x)};
             \node[right] at (axis cs: 6, 13) {\(f\)};
@@ -323,20 +323,19 @@ We can also write that \(f\para{a + h} = f\para{a} + Ah + o\para{h}\) using the 
             yticklabels = {\(f\para{a}\), \(f\para{b}\)},
             width = 12cm
         ]
+            \pgfmathsetmacro{\xa}{1}
+            \pgfmathsetmacro{\xb}{5}
+            \pgfmathsetmacro{\ya}{f(\xa)}
+            \pgfmathsetmacro{\yb}{f(\xb)}
 
-            \pgfmathsetmacro{\xa}{1};
-            \pgfmathsetmacro{\xb}{5};
-            \pgfmathsetmacro{\ya}{f(\xa)};
-            \pgfmathsetmacro{\yb}{f(\xb)};
+            \pgfmathsetmacro{\xc}{3 - 2 * sqrt(3) / 3}
+            \pgfmathsetmacro{\xd}{3 + 2 * sqrt(3) / 3}
+            \pgfmathsetmacro{\yc}{f(\xc)}
+            \pgfmathsetmacro{\yd}{f(\xd)}
 
-            \pgfmathsetmacro{\xc}{3 - 2 * sqrt(3) / 3};
-            \pgfmathsetmacro{\xd}{3 + 2 * sqrt(3) / 3};
-            \pgfmathsetmacro{\yc}{f(\xc)};
-            \pgfmathsetmacro{\yd}{f(\xd)};
+            \pgfmathsetmacro{\m}{(\yb - \ya) / (\xb - \xa)}
 
             \addplot[no marks] {f(x)};
-
-            \pgfmathsetmacro{\m}{(\yb - \ya) / (\xb - \xa)};
 
             \addplot[densely dashed, domain=0.5:5.5] {\ya + \m * (x - \xa)};
 
@@ -386,20 +385,19 @@ We introduce \autoref{prop:rolle} (which is a special case of \autoref{thm:mean-
             yticklabels = {\(f\para{a} = f\para{b}\)},
             width = 12cm
         ]
+            \pgfmathsetmacro{\xa}{1}
+            \pgfmathsetmacro{\xb}{5}
+            \pgfmathsetmacro{\ya}{f(\xa)}
+            \pgfmathsetmacro{\yb}{f(\xb)}
 
-            \pgfmathsetmacro{\xa}{1};
-            \pgfmathsetmacro{\xb}{5};
-            \pgfmathsetmacro{\ya}{f(\xa)};
-            \pgfmathsetmacro{\yb}{f(\xb)};
+            \pgfmathsetmacro{\xc}{3 - 2 * sqrt(3) / 3}
+            \pgfmathsetmacro{\xd}{3 + 2 * sqrt(3) / 3}
+            \pgfmathsetmacro{\yc}{f(\xc)}
+            \pgfmathsetmacro{\yd}{f(\xd)}
 
-            \pgfmathsetmacro{\xc}{3 - 2 * sqrt(3) / 3};
-            \pgfmathsetmacro{\xd}{3 + 2 * sqrt(3) / 3};
-            \pgfmathsetmacro{\yc}{f(\xc)};
-            \pgfmathsetmacro{\yd}{f(\xd)};
+            \pgfmathsetmacro{\m}{(\yb - \ya) / (\xb - \xa)}
 
             \addplot[no marks] {f(x)};
-
-            \pgfmathsetmacro{\m}{(\yb - \ya) / (\xb - \xa)};
 
             \addplot[densely dashed, domain=0.5:5.5] {\ya + \m * (x - \xa)};
 

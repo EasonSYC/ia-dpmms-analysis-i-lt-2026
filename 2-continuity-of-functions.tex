@@ -536,13 +536,12 @@ Now we prove \autoref{thm:continuity-compactness} (Continuity Preserves Compactn
             ytick = {\yc},
             yticklabels = {\(y\)}
         ]
-
-            \pgfmathsetmacro{\xa}{2.5};
-            \pgfmathsetmacro{\ya}{f(\xa)};
-            \pgfmathsetmacro{\xb}{5.2};
-            \pgfmathsetmacro{\yb}{f(\xb)};
-            \pgfmathsetmacro{\xc}{4};
-            \pgfmathsetmacro{\yc}{f(\xc)};
+            \pgfmathsetmacro{\xa}{2.5}
+            \pgfmathsetmacro{\ya}{f(\xa)}
+            \pgfmathsetmacro{\xb}{5.2}
+            \pgfmathsetmacro{\yb}{f(\xb)}
+            \pgfmathsetmacro{\xc}{4}
+            \pgfmathsetmacro{\yc}{f(\xc)}
 
             \addplot[no marks] {f(x)};
             \node[right] at (axis cs:6, 13) {\(f\)};
@@ -555,7 +554,6 @@ Now we prove \autoref{thm:continuity-compactness} (Continuity Preserves Compactn
             \node[below left] at (axis cs:\xc, \yc) {\(\para{c, y}\)};
 
             \addplot[dotted] coordinates {(0, \yc) (\xc, \yc) (\xc, 0)};
-
         \end{axis}
     \end{tikzpicture}
 
