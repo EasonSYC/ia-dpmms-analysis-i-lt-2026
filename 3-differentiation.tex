@@ -109,6 +109,18 @@ Differentiability is a stronger property than continuity -- indeed we cannot dif
     Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\) be differentiable at some \(a \in X\). Then it is continuous at \(a\).
 \end{proposition}
 
+\begin{proof}
+    Note that
+    \begin{align*}
+        \brac{\lim_{h \to 0} f\para{x + h}} - f\para{x} &= \lim_{h \to 0} \brac{f\para{x + h} - f\para{x}} \\
+        &= \lim_{h \to 0} \frac{f\para{x + h} - f\para{x}}{h} \cdot h \\
+        &= \lim_{h \to 0} \frac{f\para{x + h} - f\para{x}}{h} \cdot \lim_{h \to 0} h \\
+        &= f'\para{x} \cdot 0 \\
+        &= 0
+    \end{align*}
+    gives continuity as desired.
+\end{proof}
+
 We may derive properties of derivative from the properties of limits as well.
 
 \begin{lemma}[Properties of Derivatives]
@@ -151,3 +163,175 @@ We may derive properties of derivative from the properties of limits as well.
         \item More generally, rational functions \(\frac{p\para{x}}{q\para{x}}\) for polynomials \(p, q\) are differentiable, wherever it is defined.
     \end{itemize}
 \end{examples}
+
+\begin{proposition}[Chain Rule]
+    \label{prop:chain-rule}%
+    Let \(U, V \subseteq \CC\), and let \(\functiondomain{f}{U}{V}\), and \(\functiondomain{g}{V}{\CC}\). Suppose \(f\) is differentiable at some \(a \in U\), and \(g\) is differentiable at some \(f\para{a} \in V\). Then the composition \(g \circ f\) is differentiable at \(a\), and that
+    \[
+        g \circ f'\para{a} = g' \para{f\para{a}} \cdot f'\para{a}.
+    \]
+\end{proposition}
+
+In order to prove \autoref{prop:chain-rule}, it would be convenient to have an alternative characterisation of the derivative to prove this.
+
+We have seen that \(f'\para{a}\) is the slope of the tangent line to the graph of \(f\) at \(a\). We can formalise this in the following way.
+
+\begin{lemma}[Linear Approximation and Differentiability]
+    \label{lem:linear-approximation-differentiability}%
+    Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\). Then \(f\) be differentiable at \(a\), if and only if there is some \(A \in \CC\), and a function \(\functiondomain{\epsilon}{\set{z \in \CC}{z + a \in X}}{\CC}\) (an error function), with \(\epsilon\para{h} \to 0\) as \(h \to 0\), such that
+    \[
+        f\para{a + h} = f\para{a} + A h + \epsilon\para{h} \abs{h}.
+    \]
+
+    In particular, such \(A\) is \(f'\para{a}\).
+\end{lemma}
+
+\begin{remark}
+    This says that \(f\para{a + h}\) is approximately \(f\para{x} + Ah\), and the error function \(\epsilon\para{h}\) is to quantify the error in this approximation. This is also much easier to generalise to higher dimensions for functions in more general spaces (Banach spaces). In this more general case, \(A\) will be a linear operator.
+\end{remark}
+
+We can also write that \(f\para{a + h} = f\para{a} + Ah + o\para{h}\) using the little-\(o\) notation (and not big-\(O\)) to mean the same thing.
+
+\begin{proof}[of \autoref{lem:linear-approximation-differentiability}]
+    We assume there is such linear approximation. Then
+    \begin{align*}
+        \lim_{h \to 0} \frac{f\para{a + h} - f\para{a}}{h} &= \lim_{h \to 0} \frac{Ah + \epsilon\para{h} \cdot \abs{h}}{h} \\
+        &= A + \lim_{h \to 0} \para{\epsilon\para{h} \cdot \frac{\abs{h}}{h}} \\
+        &= A + 0 \\
+        &= A,
+    \end{align*}
+    since \(\frac{\abs{h}}{h}\) is bounded and \(\epsilon\para{h} \to 0\). Therefore, \(f\) is differentiable at \(a\), and hence \(f'\para{a} = A\).
+
+    On the other hand, if the function is differentiable at \(a\), let \(A = f'\para{a}\). We take the error function
+    \[
+        \epsilon\para{h} = \begin{cases}
+            \frac{f\para{a + h} - f\para{a} - Ah}{\abs{h}}, & h \neq 0, \\
+            0, & h = 0.
+        \end{cases}
+    \]
+    Then we can see by taking limits that \(\epsilon\para{h} \to 0\) as \(h \to 0\).
+\end{proof}
+
+\begin{proof}[of \autoref{prop:chain-rule} (Chain Rule)]
+    Since \(f, g\) are differentiable at \(a, f\para{a}\) respectively, there exist some error functions \(\epsilon_f, \epsilon_g\) such that \(\epsilon_f\para{h}, \epsilon_g\para{h} \to 0\) as \(h \to 0\), and that
+    \[
+        f\para{a + h} = f\para{a} + f'\para{a} h + \epsilon_f\para{h} \abs{h}
+    \]
+    and similarly
+    \[
+        g\para{f\para{a} + k} = g\para{f\para{a}} + g'\para{f\para{a}} k + \epsilon_g\para{k} \abs{k}.
+    \]
+
+    We now investigate the composition. Note that
+    \begin{align*}
+        g \circ f\para{a + h} - g \circ f\para{a} &= g\para{f\para{a + h}} - g\para{f\para{a}} \\
+        &= g\para{f\para{a} + f'\para{a} h + \epsilon_f\para{h} \abs{h}} - g\para{f\para{a}} \\
+        &= g\para{f\para{a}} + g'\para{f\para{a}} \cdot k + \epsilon_g \para{k} \cdot \abs{k} - g\para{f\para{a}} \\
+        &= g'\para{f\para{a}} \cdot k + \epsilon_g\para{k} \abs{k}
+    \end{align*}
+    where we let
+    \[
+        k = f'\para{a}h + \epsilon_f\para{h} \abs{h}.
+    \]
+
+    Hence,
+    \begin{align*}
+        g \circ f\para{a + h} - g \circ f\para{a} &= g'\para{f\para{a}} f'\para{a} h + g'\para{f\para{a}} \epsilon_f\para{h} \abs{h} + \epsilon_g\para{k} \abs{k} \\
+        &= g'\para{f\para{a}} f'\para{a} h + \epsilon\para{h} \abs{h}
+    \end{align*}
+    where we let
+    \[
+        \epsilon\para{h} = g'\para{f\para{a}} \epsilon_f\para{h} + \epsilon_g\para{h f'\para{a} + \epsilon_f\para{h} \abs{h}} \cdot \abs{\pm f'\para{a} + \epsilon_f\para{h}},
+    \]
+    where the \(\pm\) sign arises since we extracted \(h\) with \(\abs{h}\) out from the absolute value of \(k\).
+
+    We want to check that \(\epsilon\para{h} \to 0\) as \(h \to 0\). We conduct the limit term-by-term. Note that indeed,
+    \[
+        \lim_{h \to 0} \brac{g'\para{f\para{a}} \epsilon_f\para{h}} = g'\para{f\para{a}} \lim_{h \to 0} \epsilon_f\para{h} = 0,
+    \]
+    and since the inside term of the function \(\epsilon_g\) satisfies
+    \[
+        \lim_{h \to 0} \brac{h f'\para{a} + \epsilon_f\para{h} \abs{h}} = 0
+    \]
+    and also
+    \[
+        \lim_{h \to 0} \abs{\pm f'\para{a} + \epsilon_f\para{h}} = \abs{f'\para{a}},
+    \]
+    we have \(\epsilon\para{h} \to 0\). This proves the chain rule indeed.
+\end{proof}
+
+\begin{example}[Application of the Chain Rule]
+    \label{ex:application-chain-rule}%
+    We let
+    \[
+        f\para{x} = \begin{cases}
+            x \sin \para{\frac{1}{x}}, & x \neq 0, \\
+            0, & x = 0.
+        \end{cases}
+    \]
+
+    At \(x \neq 0\), the chain rule gives us that
+    \[
+        f'\para{x} = 1 \cdot \sin \para{\frac{1}{x}} + x \cdot \cos \para{\frac{1}{x}} \cdot \para{- \frac{1}{x^2}} = \sin \para{\frac{1}{x}} - \frac{1}{x} \cos \para{\frac{1}{x}}.
+    \]
+
+    At \(x = 0\), we have
+    \[
+        f'\para{0} = \lim_{h \to 0} \frac{f\para{h} - f\para{0}}{h} = \lim_{h \to 0} \sin \para{\frac{1}{h}}
+    \]
+    does not exist. Hence, \(f\) is not differentiable at \(0\). \(f\) is differentiable on \(\RR \setminus \brce{0}\).
+\end{example}
+
+\autoref{lem:linear-approximation-differentiability} gives another way to prove \autoref{prop:differentiability-implies-continuity} (Differentiability implies Continuity).
+
+\begin{proof}[of \autoref{prop:differentiability-implies-continuity}]
+    Recall that we have
+    \begin{align*}
+        f\para{x} &= \lim_{h \to 0} f\para{a + h} \\
+        &= \lim_{h \to 0} \para{f\para{a} + Ah + \epsilon\para{h} \cdot \abs{h}} \\
+        &= f\para{a} + A \cdot \lim_{h \to 0} h + \lim_{h \to 0} \cdot \para{\epsilon\para{h} \cdot \abs{h}} \\
+        &= f\para{a}.
+    \end{align*}
+\end{proof}
+
+\subsection{Mean Value Theorems}
+
+\begin{theorem}[Mean Value Theorem]
+    \label{thm:mean-value-thm}%
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) is continuous on \(\ccintv{a}{b}\) and differentiable on \(\oointv{a}{b}\). Then there is some \(c \in \oointv{a}{b}\) such that
+    \[
+        f'\para{c} = \frac{f\para{b} - f\para{a}}{b - a}.
+    \]
+\end{theorem}
+
+We introduce \autoref{lem:rolle} (which is a special case of \autoref{thm:mean-value-thm} (Mean Value Theorem)), whose proof is slightly easier -- but this can in fact be used to prove \autoref{thm:mean-value-thm} (Mean Value Theorem).
+
+\begin{lemma}[Rolle's Lemma]
+    \label{lem:rolle}%
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) is continuous on \(\ccintv{a}{b}\) and differentiable on \(\oointv{a}{b}\). If \(f\para{a} = f\para{b}\), then there is some \(c \in \oointv{a}{b}\) such that
+    \[
+        f'\para{c} = 0.
+    \]
+\end{lemma}
+
+\begin{proof}[of \autoref{thm:mean-value-thm} (Mean Value Theorem) using \autoref{lem:rolle} (Rolle's Lemma)]
+    We define a new function
+    \[
+        l\para{x} = \frac{f\para{b} - f\para{a}}{b - a} \cdot \para{x - a},
+    \]
+    and let
+    \[
+        \phi\para{x} = f\para{x} - l\para{x}.
+    \]
+
+    Then \(\phi\para{a} = \phi\para{b} = 0\), and \(\phi'\para{x} = f'\para{x} - \frac{f\para{b} - f\para{a}}{b - a}\). Note that since \(f\) is continuous on \(\ccintv{a}{b}\) and differentiable on \(\oointv{a}{b}\), so is \(\phi\), and hence by \autoref{lem:rolle} (Rolle's Lemma) there is some \(c \in \oointv{a}{b}\), such that
+    \[
+        \phi'\para{c} = 0.
+    \]
+
+    At \(x = c\), we have
+    \[
+        f'\para{c} = \phi'\para{c} + l'\para{c} = \frac{f\para{b} - f\para{a}}{b - a},
+    \]
+    as desired.
+\end{proof}
