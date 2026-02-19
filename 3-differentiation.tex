@@ -330,7 +330,7 @@ We can also write that \(f\para{a + h} = f\para{a} + Ah + \littleO\para{h}\) usi
 
 \begin{theorem}[Mean Value Theorem]
     \label{thm:mean-value-thm}%
-    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) is continuous on \(\ccintv{a}{b}\) and differentiable on \(\oointv{a}{b}\). Then there is some \(c \in \oointv{a}{b}\) such that
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be continuous on \(\ccintv{a}{b}\) and differentiable on \(\oointv{a}{b}\). Then there is some \(c \in \oointv{a}{b}\) such that
     \[
         f'\para{c} = \frac{f\para{b} - f\para{a}}{b - a}.
     \]
@@ -388,15 +388,15 @@ We can also write that \(f\para{a + h} = f\para{a} + Ah + \littleO\para{h}\) usi
     \label{fig:mean-value}
 \end{figure}
 
-We introduce \autoref{prop:rolle} (which is a special case of \autoref{thm:mean-value-thm} (Mean Value Theorem)), whose proof is slightly easier -- but this can in fact be used to prove \autoref{thm:mean-value-thm} (Mean Value Theorem).
+We introduce \autoref{thm:rolle} (which is a special case of \autoref{thm:mean-value-thm} (Mean Value Theorem)), whose proof is slightly easier -- but this can in fact be used to prove \autoref{thm:mean-value-thm} (Mean Value Theorem).
 
-\begin{proposition}[Rolle's Theorem]
-    \label{prop:rolle}%
-    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) is continuous on \(\ccintv{a}{b}\) and differentiable on \(\oointv{a}{b}\). If \(f\para{a} = f\para{b}\), then there is some \(c \in \oointv{a}{b}\) such that
+\begin{theorem}[Rolle's Theorem]
+    \label{thm:rolle}%
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be continuous on \(\ccintv{a}{b}\) and differentiable on \(\oointv{a}{b}\). If \(f\para{a} = f\para{b}\), then there is some \(c \in \oointv{a}{b}\) such that
     \[
         f'\para{c} = 0.
     \]
-\end{proposition}
+\end{theorem}
 
 \begin{figure}[ht!]
     \centering
@@ -450,19 +450,19 @@ We introduce \autoref{prop:rolle} (which is a special case of \autoref{thm:mean-
     \label{fig:rolle}
 \end{figure}
 
-\autoref{fig:mean-value} shows an illustration for \autoref{thm:mean-value-thm} (Mean Value Theorem), while \autoref{fig:rolle} gives an illustration for \autoref{prop:rolle} (Rolle's Theorem). Indeed, they are related by simply adding/subtracting a linear function (which has gradient equal to the secant), as would be illustrated in the proof below.
+\autoref{fig:mean-value} shows an illustration for \autoref{thm:mean-value-thm} (Mean Value Theorem), while \autoref{fig:rolle} gives an illustration for \autoref{thm:rolle} (Rolle's Theorem). Indeed, they are related by simply adding/subtracting a linear function (which has gradient equal to the secant), as would be illustrated in the proof below.
 
-\begin{proof}[of \autoref{thm:mean-value-thm} (Mean Value Theorem) using \autoref{prop:rolle} (Rolle's Theorem)]
+\begin{proof}[of \autoref{thm:mean-value-thm} (Mean Value Theorem) using \autoref{thm:rolle} (Rolle's Theorem)]
     We define a new function
     \[
-        l\para{x} = \frac{f\para{b} - f\para{a}}{b - a} \cdot \para{x - a},
+        l\para{x} = \frac{f\para{b} - f\para{a}}{b - a} \cdot \para{x - a} + f\para{a},
     \]
     and let
     \[
         \phi\para{x} = f\para{x} - l\para{x}.
     \]
 
-    Then \(\phi\para{a} = \phi\para{b} = f\para{a}\), and \(\phi'\para{x} = f'\para{x} - \frac{f\para{b} - f\para{a}}{b - a}\). Note that since \(f\) is continuous on \(\ccintv{a}{b}\) and differentiable on \(\oointv{a}{b}\), so is \(\phi\), and hence by \autoref{prop:rolle} (Rolle's Theorem) there is some \(c \in \oointv{a}{b}\), such that
+    Then \(\phi\para{a} = \phi\para{b} = 0\), and \(\phi'\para{x} = f'\para{x} - \frac{f\para{b} - f\para{a}}{b - a}\). Note that since \(f\) is continuous on \(\ccintv{a}{b}\) and differentiable on \(\oointv{a}{b}\), so is \(\phi\), and hence by \autoref{thm:rolle} (Rolle's Theorem) there is some \(c \in \oointv{a}{b}\), such that
     \[
         \phi'\para{c} = 0.
     \]
@@ -473,3 +473,240 @@ We introduce \autoref{prop:rolle} (which is a special case of \autoref{thm:mean-
     \]
     as desired.
 \end{proof}
+
+\begin{remark}
+    A corollary of \autoref{thm:mean-value-thm} (Mean Value Theorem) is as follows: given \(h\) such that \(a + h \in \ccintv{a}{b}\), we have some \(\theta = \theta\para{h} \in \oointv{0}{1}\), such that
+    \[
+        f\para{a + h} + f\para{a} + h f'\para{a + \theta\para{h}}.
+    \]
+
+    Notice the similarity of \autoref{lem:linear-approximation-differentiability} -- but here we have no error term, but the derivative is taken at some other point.
+\end{remark}
+
+We now look back at \autoref{thm:rolle} (Rolle's Theorem).
+
+\begin{proof}[of \autoref{thm:rolle} (Rolle's Theorem)]
+    By \autoref{thm:extreme-value} (Extreme Value Theorem), \(f\) attains its maximum and minimum values on \(\ccintv{a}{b}\), i.e., there are \(x_m, x_M \in \ccintv{a}{b}\), such that
+    \[
+        \sup_{x \in \ccintv{a}{b}} f = f\para{x_M} \quad \text{and} \quad \inf_{x \in \ccintv{a}{b}} f = f\para{x_m}.
+    \]
+
+    If \(x_m \in \oointv{a}{b}\), we have
+    \[
+        \sign \para{\frac{f\para{x_m + h} - f\para{x_m}}{{h}}} = \sign \para{h}.
+    \]
+
+    Hence, by taking \(h_n \to 0^-\) and \(h_n t0 0^+\), we see \(f'\para{x_m} = 0\).
+
+    Similarly, if \(x_M \in \oointv{a}{b}\), then
+    \[
+        \sign \para{\frac{f\para{x_M + h} - f\para{x_M}}{h}} = - \sign\para{h}
+    \]
+    and similarly as before, we have \(f'\para{M} = 0\).
+
+    If both the maximum and the minimum are attained at endpoints, this means the function is constant, and therefore the result is trivially true.
+\end{proof}
+
+\begin{corollary}[Sign of Derivative and Monotonicity]
+    \label{cor:sign-of-derivative-monotonicity}%
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be continuous on \(\ccintv{a}{b}\) and differentiable on \(\oointv{a}{b}\). Then
+    \begin{itemize}
+        \item if \(f'\para{x} \geq 0\) on \(\oointv{a}{b}\), then \(f\) is increasing;
+        \item if \(f'\para{x} > 0\) on \(\oointv{a}{b}\), then \(f\) is strictly increasing;
+        \item if \(f'\para{x} \leq 0\) on \(\oointv{a}{b}\), then \(f\) is decreasing;
+        \item if \(f'\para{x} < 0\) on \(\oointv{a}{b}\), then \(f\) is strictly decreasing;
+        \item if \(f'\para{x} = 0\) on \(\oointv{a}{b}\), then \(f\) is constant.
+    \end{itemize}
+\end{corollary}
+
+\begin{proof}
+    The final case is just a straightforward application of the first and the third case. The third and fourth case are equivalent to the first two.
+
+    We show it for the first case, and the proof can be adapted to the second case easily by removing/adding equal signs.
+
+    Suppose for the sake of contradiction that \(f\) is not increasing. Then for some \(a \leq c < d \leq d\) we have \(f\para{c} > f\para{d}\). By \autoref{thm:mean-value-thm} (Mean Value Theorem), there is some \(\xi \in \oointv{c}{d}\) such that
+    \[
+        f'\para{\xi} = \frac{f\para{c} - f\para{d}}{c - d} < 0
+    \]
+    which contradicts with \(f'\para{\xi} \geq 0\). This then finishes the proof.
+\end{proof}
+
+\begin{remark}
+    We cannot always replace \(\ccintv{a}{b}\) with some set \(X \subseteq \RR\). For instance, the function
+    \[
+        \function{f}{\QQ}{\RR}{x}{\begin{cases}
+            0, & x^2 > 2, \\
+            1, & x^2 < 2.
+        \end{cases}}
+    \]
+
+    This is continuous at any point in its domain, so it is continuous, and \(f'\para{x} = 0\) for any \(x \in \QQ\). However, this function is not constant.
+\end{remark}
+
+\begin{lemma}[Zero Derivative implies Constant]
+    \label{lem:zero-derivative-constant}%
+    For a differentiable function \(\functiondomain{f}{\CC}{\CC}\), and that \(f'\para{z} = 0\) for all \(z \in \CC\), then \(f\) is constant.
+\end{lemma}
+
+\begin{proof}
+    Our strategy is to reduce this to the \(\RR\) case. We fix some \(z \in \CC\) with \(z \neq 0\). We take
+    \[
+        g\para{t} = f\para{tz}
+    \]
+    where \(\functiondomain{g}{\ccintv{0}{1}}{\CC}\). Note that \(g\) is continuous on \(\ccintv{0}{1}\), and \(g\) is differentiable on \(\oointv{0}{1}\). We have
+    \[
+        g'\para{t} = z f'\para{tz} = 0
+    \]
+    for all \(z \in \CC\). Furthermore, we have
+    \[
+        g\para{t} = \re\para{g} \para{t} + i \cdot \im\para{g} \para{t}
+    \]
+    and hence
+    \[
+        g'\para{t} = \para{\re \para{g}}' \para{t} + i \para{\im \para{g}}' \para{t} = 0.
+    \]
+    
+    So \(\para{\re\para{g}}' \para{t} = \para{\im \para{g}}' \para{t} = 0\). Applying \autoref{cor:sign-of-derivative-monotonicity} to \(\re\para{g}\) and \(\im\para{g}\), we have both of them are constant, so \(g\) is constant. In particular, \(g\para{0} = g\para{1} = f\para{z}\).
+
+    But \(z\) was arbitrary, so \(f\para{z} = f\para{0}\) for all \(z \in \CC\).
+\end{proof}
+
+\begin{theorem}[Inverse Function Theorem for Differentiability]
+    \label{thm:inverse-fn-thm-differentiable}%
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be continuous on \(\ccintv{a}{b}\) and differentiable on \(\oointv{a}{b}\), with \(f'\para{x} > 0\) for all \(x \in \oointv{a}{b}\). Then \(\functiondomain{f}{\ccintv{a}{b}}{\ccintv{f\para{a}}{f\para{b}}}\) is bijective, with its inverse \(\functiondomain{f\inverse}{\ccintv{f\para{a}}{f\para{b}}}{\ccintv{a}{b}}\) being continuous and differentiable in \(\oointv{f\para{a}}{f\para{b}}\) with
+    \[
+        \para{f\inverse}' \para{y} = \frac{1}{f'\para{f\inverse\para{y}}}.
+    \] 
+\end{theorem}
+
+\begin{proof}
+    By \autoref{cor:sign-of-derivative-monotonicity}, \(f\) is strictly increasing, and by \autoref{thm:inverse-fn-thm-monotone}, \(f\) is bijection and \(f\inverse\) is continuous. It remains to show the differentiability part.
+
+    Let \(y \in \oointv{f\para{a}}{f\para{b}}\), and let \(x = f\inverse\para{y}\) be its unique pre-image. Given \(h\) such that \(y + h \in \oointv{f\para{a}}{f\para{b}}\), we take \(k\) such that \(y + h = f\para{x + k}\). In other words, let
+    \[
+        k = f\inverse\para{y + h} - x.
+    \]
+
+    Then, we have
+    \begin{align*}
+        \frac{f\inverse\para{y + h} - f\inverse\para{y}}{h} &= \frac{\para{x + k} - x}{f\para{x + k} - y} \\
+        &= \frac{k}{f\para{x + k} - f\para{x}} \\
+        &= \frac{1}{\frac{f\para{x + k} - f\para{x}}{k}}.
+    \end{align*}
+
+    As \(h \to 0\), the left-hand side has a limit of \(\para{f\inverse}' \para{y}\) by definition. Furthermore, we have
+    \[
+        \lim_{h \to 0} k = \para{\lim_{h \to 0} f\inverse\para{y + h}} - x = f\inverse\para{y} - x = 0
+    \]
+    since \(f\inverse\) is continuous. Therefore, the right-hand side has a limit of \(\frac{1}{f'\para{x}} = \frac{1}{f'\para{f\inverse\para{y}}}\), as desired.
+\end{proof}
+
+\begin{examples}[Application of Inverse Function Differentiation]
+    \label{ex:inverse-fn-differentiation}%
+    \begin{itemize}
+        \item Fix \(R > 0\), and for \(N \in \NN\), we let
+        \[
+            \function{f}{\ccintv{0}{R}}{\RR}{x}{x^N.}
+        \]
+
+        Then \(f\) is continuous on \(\ccintv{0}{R}\) and differentiable on \(\oointv{0}{R}\), with \(f'\para{x} = N x^{N - 1} > 0\) for \(x \in \oointv{o}{R}\), by \autoref{ex:aplication-of-differentiation-rules}.
+
+        Then, by \autoref{thm:inverse-fn-thm-differentiable}, \(\functiondomain{f}{\ccintv{0}{R}}{\ccintv{0}{R^N}}\) is a bijection, and \(f\inverse\para{y} = y^{\frac{1}{N}}\) is differentiable, with
+        \[
+            \para{f\inverse}' \para{y} = \frac{1}{f'\para{f\inverse\para{y}}} = \frac{1}{N \cdot \para{f\inverse\para{y}}^{N - 1}} = \frac{1}{N} y^{\frac{1}{N} - 1}.
+        \]
+
+        \item Let \(f\para{x} = e^x\). This is continuous and differentiable on \(\RR\) with \(f'\para{x} = e^x > 0\), for \(x \in \RR\). Then, there is an inverse function which we denote as the logarithm function
+        \[
+            f\inverse\para{y} = \log y,
+        \]
+        with derivative
+        \[
+            \para{f\inverse}'\para{y} = \frac{1}{e^{f\inverse\para{y}}} = \frac{1}{e^{\log y}} = \frac{1}{y}.
+        \]
+    \end{itemize}
+\end{examples}
+
+\begin{theorem}[Cauchy Mean Value Theorem]
+    \label{thm:cauchy-mvt}%
+    Let \(\functiondomain{f, g}{\ccintv{a}{b}}{\RR}\) be continuous on \(\ccintv{a}{b}\) and differentiable on \(\oointv{a}{b}\). Then there is some \(c \in \oointv{a}{b}\) such that
+    \[
+        g'\para{c} \cdot \para{f\para{b} - f\para{a}} = f'\para{c} \cdot \para{g\para{b} - g\para{a}}.
+    \]
+\end{theorem}
+
+Note that if we take \(g = \identity\) then this reduces to \autoref{thm:mean-value-thm} (Mean Value Theorem).
+
+The way to visualise \autoref{thm:cauchy-mvt} (Cauchy Mean Value Theorem) is to view \(f\) and \(g\) not as two functions -- we view them as the coordinates of some parametric curve \(\para{f\para{t}, g\para{t}}\), and the gradient of that curve is given by \(\frac{g'\para{c}}{f'\para{c}}\), while the secant line is given by \(\frac{g\para{b} - g\para{a}}{f\para{b} - f\para{a}}\), as demonstrated in \autoref{fig:cauchy-mvt}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[scale=0.5]{fig/cauchy-mvt.png}
+    \caption{Cauchy Mean Value Theorem}
+    \label{fig:cauchy-mvt}
+\end{figure}
+
+The proof strategy is similar -- we aim to reduce this to \autoref{thm:rolle} (Rolle's Theorem).
+
+\begin{proof}
+    Let the function be
+    \[
+        \phi\para{x} = \brac{g\para{x} - g\para{a}} \brac{f\para{b} - f\para{a}} - \brac{g\para{b} - g\para{a}} \brac{f\para{x} - f\para{a}}.
+    \]
+
+    Note that
+    \[
+        \phi'\para{x} = g'\para{x} \para{f\para{b} - f\para{a}} - f'\para{x} = \para{g\para{b} - g\para{a}},
+    \]
+    and we have
+    \[
+        \phi\para{a} = \phi\para{b} = 0.
+    \]
+
+    Applying \autoref{thm:rolle} (Rolle's Theorem) finishes the proof.
+\end{proof}
+
+\begin{theorem}[L'H\^{o}pital's Rule]
+    \label{thm:lhopitals}%
+    Let \(\minusinfty \leq a < b \leq \plusinfty\). Let \(\functiondomain{f, g}{\oointv{a}{b}}{\RR}\) be differentiable, and \(g'\para{x} \neq 0\) for all \(x \in \oointv{a}{b}\). Suppose:
+    \begin{itemize}
+        \item the limit
+        \[
+            \lim_{x \to a} \frac{f'\para{x}}{g'\para{x}} = A
+        \]
+        exists, where \(A \in \RR \cup \brce{\pminfty}\) could be infinite;
+        \item \(\lim_{x \to a} f\para{x} = \lim_{x \to a} g\para{x} = 0\), or \(\lim_{x \to a} g\para{x} = \pminfty\).
+    \end{itemize}
+
+    Then we have
+    \[
+        \lim_{x \to a} \frac{f\para{x}}{g\para{x}} = A.
+    \]
+\end{theorem}
+
+\begin{proof}
+    \textbf{\textcolor{red}{To-Do: Please wait until Example Sheet 3 is out.}}
+\end{proof}
+
+\begin{example}[Application of L'H\^{o}pital's Rule]
+    \label{ex:l-hopitals}%
+    We have seen in \autoref{ex:sin-x-x-limit} that
+    \[
+        \lim_{x \to 0} \frac{\sin x}{x} = 1.
+    \]
+
+    L'H\^{o}pital's Rule tells us that
+    \[
+        \lim_{x \to 0} \frac{\sin x}{x} = \lim_{x \to 0} \frac{\cos x}{1} = 1.
+    \]
+
+    Behind the scenes in the rule, we have for some \(\theta \in \oointv{0}{1}\), that
+    \[
+        \frac{\sin x}{x} = \frac{\sin x - \sin 0}{x - 0} = \frac{\cos \para{\theta x}}{1}.
+    \]
+    
+    Then we have
+    \[
+        \lim_{x \to 0} \frac{\sin x}{x} = \lim_{x \to 0} \cos \para{\theta x} = 1.
+    \]
+\end{example}
