@@ -667,7 +667,7 @@ The proof strategy is similar -- we aim to reduce this to \autoref{thm:rolle} (R
 \end{proof}
 
 \begin{theorem}[L'H\^{o}pital's Rule]
-    \label{thm:lhopitals}%
+    \label{thm:l-hopitals}%
     Let \(\minusinfty \leq a < b \leq \plusinfty\). Let \(\functiondomain{f, g}{\oointv{a}{b}}{\RR}\) be differentiable, and \(g'\para{x} \neq 0\) for all \(x \in \oointv{a}{b}\). Suppose:
     \begin{itemize}
         \item the limit
@@ -675,7 +675,7 @@ The proof strategy is similar -- we aim to reduce this to \autoref{thm:rolle} (R
             \lim_{x \to a} \frac{f'\para{x}}{g'\para{x}} = A
         \]
         exists, where \(A \in \RR \cup \brce{\pminfty}\) could be infinite;
-        \item \(\lim_{x \to a} f\para{x} = \lim_{x \to a} g\para{x} = 0\), or \(\lim_{x \to a} g\para{x} = \pminfty\).
+        \item \(\lim_{x \to a} f\para{x} = \lim_{x \to a} g\para{x} = 0\); or \(\lim_{x \to a} g\para{x} = \pminfty\).
     \end{itemize}
 
     Then we have
@@ -685,7 +685,7 @@ The proof strategy is similar -- we aim to reduce this to \autoref{thm:rolle} (R
 \end{theorem}
 
 \begin{proof}
-    \textbf{\textcolor{red}{To-Do: Please wait until Example Sheet 3 is out.}}
+    \textbf{\textcolor{red}{To-Do: Please wait until I finish Example Sheet 3.}}
 \end{proof}
 
 \begin{example}[Application of L'H\^{o}pital's Rule]
@@ -710,3 +710,262 @@ The proof strategy is similar -- we aim to reduce this to \autoref{thm:rolle} (R
         \lim_{x \to 0} \frac{\sin x}{x} = \lim_{x \to 0} \cos \para{\theta x} = 1.
     \]
 \end{example}
+
+Similar to \autoref{ex:inverse-fn-differentiation}, we also have a statement about a \emph{local} function inverse.
+
+\begin{proposition}[Local Inverse Function Theorem]
+    \label{prop:local-ivt}%
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be continuous on \(\ccintv{a}{b}\) and continuously differentiable on \(\oointv{a}{b}\). If there is some \(x_0 \in \oointv{a}{b}\) such that \(f'\para{x_0} \neq 0\). Then there exists \(\epsilon > 0\) with \(\ccintv{x_0 - \epsilon}{x_0 + \epsilon} \subseteq \oointv{a}{b}\) such that the restriction
+    \[
+        \functiondomain{f}{\oointv{x_0 - \epsilon}{x_0 + \epsilon}}{f\para{\oointv{x_0 - \epsilon}{x_0 + \epsilon}}}
+    \]
+    is bijective, and \(f\inverse\) is differentiable with derivative
+    \[
+        \para{f\inverse}'\para{y} = \frac{1}{f'\para{f\inverse\para{y}}}
+    \]
+    for all \(y \in f\para{\oointv{x_0 - \epsilon}{x_0 + \epsilon}}\).
+\end{proposition}
+
+\begin{proof}
+    \textbf{\textcolor{red}{To-Do: Please wait until I finish Example Sheet 3.}}
+\end{proof}
+
+\subsection{Higher Derivatives}
+\begin{definition}[Higher Order Derivatives]
+    \label{def:higher-order-derivatives}%
+    Suppose \(\functiondomain{f}{X \subseteq \CC}{\CC}\) is differentiable on \(X\), we say the function \(f\) is \emph{twice differentiable} on \(X\), if
+    \[
+        \function{f'}{X}{\CC}{x}{f'\para{x}}
+    \]
+    is differentiable. We define \(f\) is \emph{\(k\)-times differentiable} similarly, and denote this as \(f \in D^k\para{X}\).
+
+    We say \(f\) is \emph{\(k\)-times continuously differentiable}, and denote this as \(f \in C^k\para{X}\), if \(f\) is \(k\)-times differentiable and the \(k\)-th derivative
+    \[
+        \function{f^{\para{k}}}{X}{\CC}{x}{f^{\para{k}}\para{x}}
+    \]
+    is continuous.
+\end{definition}
+
+Note that the function spaces (differentiability classes) have the following containment relationship.
+\[
+    C^0\para{X} \supset D^1\para{X} \supset C^1\para{X} \supset D^2\para{X} \supset C^2\para{X} \supset \cdots,
+\]
+and that note these are strict inclusions.
+
+\begin{definition}[Smooth]
+    \label{def:smooth}%
+    We say \(\functiondomain{f}{X}{\CC}\) is \emph{smooth} if \(f \in D^k\para{X}\) for all \(k \in \NN\), and we denote this is
+    \[
+        f \in C^{\infty} \para{X}.
+    \]
+\end{definition}
+
+We saw from \autoref{lem:linear-approximation-differentiability} that \(f\) differentiable at \(a\) means \(f\) can be well-approximated by a linear function near \(a\), by
+\[
+    f\para{x} \approx f\para{a} + f'\para{a} \para{x - a}.
+\]
+
+Similarly, we may have
+\[
+    f\para{x} \approx f\para{a} + f'\para{a} \para{x - a} + \frac{1}{2} f''\para{a} \para{x - a}^2
+\]
+and in fact if it is \(n\)-times differentiable, we have
+\[
+    f\para{x} \approx \sum_{k = 0}^{n} \frac{f^{\para{k}} \para{a}}{k!} \cdot \para{x - a}^{k}.
+\]
+
+We want to quantify how correct this approximation is -- i.e., we want to quantify the \emph{remainder}.
+
+\begin{definition}[Taylor Polynomial, Taylor Series]
+    \label{def:taylor-polynomial-series}%
+    If \(\functiondomain{f}{X}{\CC}\) is \(n\)-times differentiable at \(x_0 \in X\), then for \(x_0 + h \in X\), the \emph{Taylor Polynomial} of degree \(n\) at \(x_0\) is defined as
+    \[
+        T_{n, f, x_0} \para{h} = \sum_{k = 0}^{n} \frac{f^{\para{k}} \para{x_0}}{k!} \cdot h^{k}.
+    \]
+
+    If \(f\) is smooth at \(x_0 \in X\), then the infinite series
+    \[
+        \sum_{k = 0}^{\infty} \frac{f^{\para{k}} \para{x_0}}{k!} \cdot h^{k}
+    \]
+    is the \emph{Taylor Series} of \(f\) at \(x_0\).
+\end{definition}
+
+We will see different versions of Taylor's Theorems, all of which aims to quantify what the remainder is, but giving it in different forms.
+
+\begin{definition}[Taylor Remainder]
+    Suppose \(\functiondomain{f}{X}{\CC}\) is \(\para{n - 1}\)-times differentiable at \(a \in X\). Then for \(h \in X\), we let
+    \[
+        R_{n, f, a} \para{h} = f\para{a + h} - T_{n - 1, f, a} \para{h} = f\para{a + h} - \sum_{k = 0}^{n - 1} \frac{f^{\para{k}} \para{a}}{k!} \cdot h^k
+    \]
+    be the \emph{Taylor remainder}.
+\end{definition}
+
+\subsubsection{Mean Value Forms of the Remainder}
+
+\begin{theorem}[Taylor's Theorem with Lagrange Remainder]
+    \label{thm:taylor-thm-langrange-remainder}%
+    Let \(\functiondomain{f}{\ccintv{a}{a + h}}{\RR}\) be \(n\) times differentiable on \(\oointv{a}{a + h}\) and \(\para{n - 1}\) times continuously differentiable on \(\ccintv{a}{a + h}\). Then the \emph{Lagrange Form of the Remainder} gives the Taylor remainder in the form
+    \[
+        R_{n, f, a} \para{h} = \frac{h^n}{n!} \cdot f^{\para{n}} \para{a + \theta h},
+    \]
+    for some \(\theta \in \oointv{0}{1}\).
+\end{theorem}
+
+\begin{remarks}
+    \begin{itemize}
+        \item When \(n = 1\), this simply gives \autoref{thm:mean-value-thm} (Mean Value Theorem).
+        \item Furthermore, there is nothing special about \(h > 0\): we could simply swap the bounds of the intervals (i.e. \(\ccintv{a}{a + h}\) to \(\ccintv{a + h}{a}\) and \(\oointv{a}{a + h}\) to \(\oointv{a + h}{a}\)), and we will still get a similar result.
+        \item If \(f \in C^n \para{\oointv{c}{d}}\) with \(\ccintv{a}{a + h} \subseteq \oointv{c}{d}\), then note that \(f^{\para{n}}\) is continuous on the closed interval, hence bounded, and let
+        \[
+            M_n = \sup_{x \in \ccintv{a}{a + h}} \abs{f^{\para{n}} \para{x}}.
+        \]
+
+        Then
+        \[
+            \abs{R_{n, f, a} \para{h}} \leq M_n \cdot \frac{h^n}{n!}
+        \]
+        and we have \(R_{n, f, a} \para{h} = \bigO \para{h^n}\) as \(h \to 0\). \textbf{However, this does not tell us that \(R_{n, f, a} \para{h} \to 0\) as \(n \to \infty\).} Even if \(f \in C^{\infty}\), we still do not know how \(M_n\) behaves with \(n\). (In other words, there are smooth functions that are not analytic (on \(\RR\)).)
+    \end{itemize}
+\end{remarks}
+
+\begin{proof}[(First Proof)]
+    Without loss of generality, we let \(a = 0\). Let
+    \[
+        \function{\phi}{\ccintv{0}{h}}{\RR}{t}{f\para{t} - T_{n - 1, f, 0} \para{h} - \frac{t^n}{n!} \cdot B}
+    \]
+    where we pick the constant \(B\) such that \(\phi\para{B} = 0\). Note that \(\phi\) is continuous, and that its \(\para{n - 1}\)-th derivatives is continuous on \(\ccintv{0}{h}\) and its \(n\)-th derivatives exists on \(\oointv{0}{h}\). Note that \(\phi\para{0} = 0\) and also \(\phi^{\para{k}} \para{0} = 0\) for all \(k = 0, \ldots, n - 1\).
+
+    By \autoref{thm:rolle} (Rolle's Theorem), sine we have
+    \[
+        \phi\para{0} = \phi\para{n} = 0
+    \] 
+    and hence we have some \(\theta_1 \in \oointv{0}{1}\) with \(\phi'\para{\theta_1 h} = 0\). Applying Rolle's Theorem again on the interval \(\ccintv{0}{\theta_1}\) with the function \(\phi''\), we have some \(\theta_2 \in \oointv{0}{1}\) with \(\phi''\para{\theta_2 \theta_1 h} = 0\).
+
+    Hence, by induction, we have some \(\theta_1, \theta_2, \ldots, \theta_n \in \oointv{0}{1}\), such that
+    \[
+        \phi^{\para{n}} \para{\theta_n \theta_{n - 1} \cdots \theta_{2} \theta_{1} h} = 0.
+    \]
+
+    We set \(\theta = \theta_n \theta_{n - 1} \cdots \theta_{2} \theta_{1} \in \oointv{0}{1}\), and hence there exists some \(\theta \in \oointv{0}{1}\), such that
+    \[
+        f^{\para{n}} \para{t} - B = \phi^{\para{n}} \para{\theta h} = 0,
+    \]
+    and hence
+    \[
+        B = f^{\para{n}} \para{\theta h},
+    \]
+    is indeed an error term, as desired.
+\end{proof}
+
+The first proof almost certainly much easier than the proof below, but this proof generalises the remainder into a more general case, which would be introduced in \autoref{thm:taylor-thm-cauchy-remainder} (Cauchy Form) and \autoref{thm:taylor-thm-schlomich-remainder} (Schl\"{o}milch Form).
+
+\begin{proof}[(Second Proof)]
+    Without loss of generality, set \(a = 0\). Let
+    \[
+        \function{g}{\ccintv{0}{h}}{\RR}{t}{f\para{h} - \sum_{k = 0}^{n - 1} \frac{f^{\para{k}} \para{t}}{k!} \cdot \para{h - t}^{k}.}
+    \]
+
+    Note that
+    \[
+        g\para{0} = f\para{h} - T_{n - 1, f, 0} \para{h}.
+    \]  
+
+    Note \(g\) is continuous on \(\ccintv{0}{h}\) and differentiable on \(\oointv{0}{h}\), with
+    \[
+        g'\para{t} = - \frac{f^{\para{n}}\para{t}}{\para{n - 1}!} \para{h - t}^{n - 1}.
+    \]
+
+    Therefore, for any \(p > 0\), set
+    \[
+        \phi_{p} \para{t} = g\para{t} - \frac{\para{h - t}^{p}}{h^p} g\para{0}.
+    \]
+
+    We may verify that \(\phi_{p} \para{h} = \phi_p \para{0} = 0\). Hence, by \autoref{thm:rolle} (Rolle's Theorem), there is some \(\theta \in \oointv{0}{1}\) such that
+    \[
+        \phi_p' \para{\theta h} = g' \para{\theta h} + \frac{p \para{h - \theta h}^{p - 1}}{h^p} \cdot g\para{0} = g'\para{\theta h} + \frac{p \para{1 - \theta}^{p - 1}}{h} \cdot g\para{0} = 0.
+    \]
+
+    Therefore, there is some \(\theta \in \oointv{0}{1}\), such that
+    \[
+        - \frac{h^{n - 1} \para{1 - \theta}^{n - 1}}{\para{n - 1}!} \cdot f^{\para{n}} \para{\theta h} + p \cdot \frac{\para{1 - \theta}^{p - 1}}{h} \cdot g\para{0} = 0.
+    \]
+
+    Hence, by rearranging, we have
+    \[
+        f\para{h} - T_{n - 1, f, 0} \para{h} = \frac{h^n}{p \para{n - 1}!} \para{1 - \theta}^{n - p} \cdot f^{\para{n}} \para{\theta h}.
+    \]
+
+    We take \(p = n\), and we have the result as desired.
+\end{proof}
+
+Although the second proof looks very horrible, this in fact gives another version of Taylor's theorem, with a different estimate -- since we can choose all \(p\)s!
+
+\begin{theorem}[Taylor's Theorem with Cauchy Remainder]
+    \label{thm:taylor-thm-cauchy-remainder}%
+    Let \(\functiondomain{f}{\ccintv{a}{a + h}}{\RR}\) be \(n\) times differentiable on \(\oointv{a}{a + h}\) and \(\para{n - 1}\) times continuously differentiable on \(\ccintv{a}{a + h}\). Then the \emph{Cauchy Form of the Remainder} gives the Taylor remainder in the form
+    \[
+        R_{n, f, a} \para{h} = \frac{h^{n}}{\para{n - 1}!} \cdot \para{1 - \theta}^{n - 1} f^{\para{n}} \para{a + \theta h},
+    \]
+    for some \(\theta \in \oointv{0}{1}\).
+\end{theorem}
+
+\begin{proof}
+    By putting \(p = 1\) into the second proof of \autoref{thm:taylor-thm-langrange-remainder}.
+\end{proof}
+
+Just as a generalisation, we introduce the name for the general form when we do not specify the value of \(p\).
+
+\begin{theorem}[Taylor's Theorem with Schl\"{o}milch Remainder]
+    \label{thm:taylor-thm-schlomich-remainder}%
+    Let \(\functiondomain{f}{\ccintv{a}{a + h}}{\RR}\) be \(n\) times differentiable on \(\oointv{a}{a + h}\) and \(\para{n - 1}\) times continuously differentiable on \(\ccintv{a}{a + h}\). Then the \emph{Schl\"{o}milch Form of the Remainder} gives the Taylor remainder in the form, for any fixed \(p > 0\),
+    \[
+        R_{n, f, a} \para{h} = \frac{h^{n}}{p \para{n - 1}!} \cdot \para{1 - \theta}^{n - p} f^{\para{n}} \para{a + \theta h},
+    \]
+    for some \(\theta \in \oointv{0}{1}\).
+\end{theorem}
+
+\begin{proof}
+    Identical to the second proof of \autoref{thm:taylor-thm-langrange-remainder}.
+\end{proof}
+
+\subsubsection{Asymptotic Form of the Remainder}
+
+A good question to ask is, must the Taylor polynomial be correct up to its degree? Is there a better degree-\(n\) that fits the function better?
+
+\begin{theorem}[Taylor's Theorem with Peano Remainder]
+    \label{thm:taylor-thm-peano-remainder}%
+    Let \(\functiondomain{f}{\ccintv{a}{a + h}}{\RR}\) be \(n\) times differentiable on the interval \(\ccintv{a}{a + h}\). Then the \emph{Peano Form of the Remainder} gives the Taylor remainder in the form
+    \[
+        R_{n, f, a} \para{h} = \littleO\para{h^n}.
+    \]
+\end{theorem}
+
+\begin{proof}
+    We may show this by induction on \(n\), and using \autoref{thm:l-hopitals} (L'H\^{o}pital's Rule). Without loss of generality, let \(a = 0\). Recall from the definition of the little-\(\littleO\) notation, that we want to show
+    \[
+        \lim_{h \to 0} \frac{R_{n, f, 0} \para{h}}{h^n} = 0.
+    \]
+
+    The base case where \(n = 1\) is proven in \autoref{lem:linear-approximation-differentiability}.
+
+    For the general case, recall that
+    \[
+        R_{n, f, 0} \para{h} = f\para{h} - \sum_{k = 0}^{n - 1} \frac{f^{\para{k}} \para{0}}{k!} \cdot h^n
+    \]
+    and since \(f\) is \(n\) times differentiable at \(0\), we have \(R\) is \(n\) times differentiable at \(0\), and in particular, continuous. Hence,
+    \[
+        \lim_{h \to 0} R_{n, f, 0} \para{h} = R_{n, f, 0} \para{0} = 0.
+    \]
+    
+    Therefore, this satisfies the setup of L'H\^{o}pital's Rule, and hence we calculate the derivative of \(R_{n, f, a} \para{h}\). We note
+    \[
+        R'_{n, f, 0} \para{h} = f'\para{h} - \sum_{k = 1}^{n - 1} \frac{f^{\para{k}} \para{0}}{\para{k - 1}!} \cdot h^{k - 1} = f'\para{h} - \sum_{k = 0}^{n - 2} \frac{f^{\para{k}} \para{0}}{k!} \cdot h^k.
+    \]
+
+    But therefore, from here, it suffices to show for \(f'\) (which is \(\para{n - 1}\) times differentiable at \(0\), and is def), that
+    \[
+        R_{n - 1, f', 0} = \littleO\para{h^{n - 1}}.
+    \]
+
+    This is indeed true by our induction hypothesis.
+\end{proof}
