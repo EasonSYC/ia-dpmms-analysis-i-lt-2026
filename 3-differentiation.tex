@@ -727,7 +727,18 @@ Similar to \autoref{ex:inverse-fn-differentiation}, we also have a statement abo
 \end{proposition}
 
 \begin{proof}
-    \textbf{\textcolor{red}{To-Do: Please wait until I finish Example Sheet 3.}}
+    Since \(f\) is continuously differentiable, we have \(f'\) is continuous, so there is some neighbourhood about \(x_0\) in \(\oointv{a}{b}\), say \(\ccintv{x_0 - \epsilon}{x_0 + \epsilon}\), such that \(f'\para{x} > 0\) for all \(x\) in this interval. Then applying the \autoref{thm:inverse-fn-thm-differentiable} (Inverse Function Theorem for Differentiability) over this interval gives the result as desired.
+
+    Concretely, to show such interval exist, we apply the definition of continuity on \(f'\) near \(x_0\). Take \(\epsilon = f'\para{x_0}\), then there is some \(\delta > 0\) such that
+    \[
+        \forall x \in \ccintv{a}{b}, \abs{x - x_0} < \delta: \abs{f'\para{x} - f'\para{x_0}} < f'\para{x_0}
+    \]
+    and hence, in particular,
+    \[
+        \forall x \in \ccintv{a}{b}, \abs{x - x_0} < \delta: f'\para{x} > 0.
+    \]
+
+    Now, note \(m = \min\brce{\delta, x_0 - a, b - x_0} > 0\), so take any \(0 < \epsilon < m\), then for all \(x \in \ccintv{x_0 - \epsilon}{x_0 + \epsilon}\), we have \(x_0 \in \ccintv{a}{b}\) and \(\abs{x - x_0} < \delta\), so \(f'\para{x} > 0\) for this restriction.
 \end{proof}
 
 \subsection{Higher Derivatives}
