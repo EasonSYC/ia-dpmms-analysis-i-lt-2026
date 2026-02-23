@@ -715,7 +715,7 @@ Similar to \autoref{ex:inverse-fn-differentiation}, we also have a statement abo
 
 \begin{proposition}[Local Inverse Function Theorem]
     \label{prop:local-ivt}%
-    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be continuous on \(\ccintv{a}{b}\) and continuously differentiable on \(\oointv{a}{b}\). If there is some \(x_0 \in \oointv{a}{b}\) such that \(f'\para{x_0} \neq 0\). Then there exists \(\epsilon > 0\) with \(\ccintv{x_0 - \epsilon}{x_0 + \epsilon} \subseteq \oointv{a}{b}\) such that the restriction
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be continuous on \(\ccintv{a}{b}\) and continuously differentiable on \(\oointv{a}{b}\). Suppose there is some \(x_0 \in \oointv{a}{b}\) such that \(f'\para{x_0} \neq 0\). Then there exists some \(\epsilon > 0\) with \(\ccintv{x_0 - \epsilon}{x_0 + \epsilon} \subseteq \oointv{a}{b}\) such that the restriction
     \[
         \functiondomain{f}{\oointv{x_0 - \epsilon}{x_0 + \epsilon}}{f\para{\oointv{x_0 - \epsilon}{x_0 + \epsilon}}}
     \]
@@ -733,7 +733,7 @@ Similar to \autoref{ex:inverse-fn-differentiation}, we also have a statement abo
 \subsection{Higher Derivatives}
 \begin{definition}[Higher Order Derivatives]
     \label{def:higher-order-derivatives}%
-    Suppose \(\functiondomain{f}{X \subseteq \CC}{\CC}\) is differentiable on \(X\), we say the function \(f\) is \emph{twice differentiable} on \(X\), if
+    Suppose \(\functiondomain{f}{X \subseteq \CC}{\CC}\) is differentiable on \(X\). We say the function \(f\) is \emph{twice differentiable} on \(X\), if
     \[
         \function{f'}{X}{\CC}{x}{f'\para{x}}
     \]
