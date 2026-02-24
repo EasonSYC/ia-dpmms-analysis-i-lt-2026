@@ -943,42 +943,45 @@ Just as a generalisation, we introduce the name for the general form when we do 
 
 This section is not mentioned in the lecture, but I think it just really makes sense to include it here.
 
-A good question to ask is, must the Taylor polynomial be correct up to its degree? Is there a better degree-\(n\) that fits the function better?
+A good question to ask is, must the Taylor polynomial be correct up to its degree? Is there a better degree-\(n\) polynomial that fits the function better?
 
 \begin{theorem}[Taylor's Theorem with Peano Remainder]
     \label{thm:taylor-thm-peano-remainder}%
-    Let \(\functiondomain{f}{\ccintv{a}{a + h}}{\RR}\) be \(n\) times differentiable on the interval \(\ccintv{a}{a + h}\). Then the \emph{Peano Form of the Remainder} gives the Taylor remainder in the form
+    Let \(\functiondomain{f}{\oointv{c}{d}}{\RR}\) be \(\para{n - 1}\) times differentiable. Then for any \(a \in \oointv{c}{d}\), the \emph{Peano Form of the Remainder} gives the Taylor remainder in the form
     \[
-        R_{n, f, a} \para{h} = \littleO\para{h^n}.
+        R_{n, f, a} \para{h} = \littleO\para{h^{n - 1}}.
     \]
 \end{theorem}
 
 \begin{proof}
     We may show this by induction on \(n\), and using \autoref{thm:l-hopitals} (L'H\^{o}pital's Rule). Without loss of generality, let \(a = 0\). Recall from the definition of the little-\(\littleO\) notation, that we want to show
     \[
-        \lim_{h \to 0} \frac{R_{n, f, 0} \para{h}}{h^n} = 0.
+        \lim_{h \to 0} \frac{R_{n, f, 0} \para{h}}{h^{n - 1}} = 0.
     \]
 
-    The base case where \(n = 1\) is proven in \autoref{lem:linear-approximation-differentiability}.
+    The base case where \(n = 1\) is trivial, and for \(n = 2\) is proven in \autoref{lem:linear-approximation-differentiability}.
 
     For the general case, recall that
     \[
-        R_{n, f, 0} \para{h} = f\para{h} - \sum_{k = 0}^{n - 1} \frac{f^{\para{k}} \para{0}}{k!} \cdot h^n
+        R_{n, f, 0} \para{h} = f\para{h} - \sum_{k = 0}^{n - 1} \frac{f^{\para{k}} \para{0}}{k!} \cdot h^n.
     \]
-    and since \(f\) is \(n\) times differentiable at \(0\), we have \(R\) is \(n\) times differentiable at \(0\), and in particular, continuous. Hence,
+
+    Since \(f\) is \(n\) times differentiable at \(0\), we have \(R\) is \(n\) times differentiable at \(0\), and in particular, continuous. Hence,
     \[
         \lim_{h \to 0} R_{n, f, 0} \para{h} = R_{n, f, 0} \para{0} = 0.
     \]
     
     Therefore, this satisfies the setup of L'H\^{o}pital's Rule, and hence we calculate the derivative of \(R_{n, f, a} \para{h}\). We note
     \[
-        R'_{n, f, 0} \para{h} = f'\para{h} - \sum_{k = 1}^{n - 1} \frac{f^{\para{k}} \para{0}}{\para{k - 1}!} \cdot h^{k - 1} = f'\para{h} - \sum_{k = 0}^{n - 2} \frac{f^{\para{k}} \para{0}}{k!} \cdot h^k.
+        R'_{n, f, 0} \para{h} = f'\para{h} - \sum_{k = 1}^{n - 1} \frac{f^{\para{k}} \para{0}}{\para{k - 1}!} \cdot h^{k - 1} = f'\para{h} - \sum_{k = 0}^{n - 2} \frac{f^{\para{k + 1}} \para{0}}{k!} \cdot h^k = R_{n - 1, f', 0} \para{h}.
     \]
 
-    But therefore, from here, it suffices to show for \(f'\) (which is \(\para{n - 1}\) times differentiable at \(0\), and is def), that
+    Therefore, it suffices to show for \(f'\) (which is \(\para{n - 1}\) times differentiable), that
     \[
-        R_{n - 1, f', 0} = \littleO\para{h^{n - 1}}.
+        R_{n - 1, f', 0} \para{h} = \littleO\para{h^{n - 2}}.
     \]
 
     This is indeed true by our induction hypothesis.
 \end{proof}
+
+This result shows that the remainder term must have strictly higher order than \(h^{n - 1}\), and hence Taylor's Polynomial is indeed the best \(n\)-th order polynomial we can get, in the asymptotic sense.
