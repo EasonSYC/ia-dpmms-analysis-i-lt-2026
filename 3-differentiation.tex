@@ -844,13 +844,13 @@ We will see different versions of Taylor's Theorems, all of which aims to quanti
     \[
         \function{\phi}{\ccintv{0}{h}}{\RR}{t}{f\para{t} - T_{n - 1, f, 0} \para{h} - \frac{t^n}{n!} \cdot B}
     \]
-    where we pick the constant \(B\) such that \(\phi\para{B} = 0\). Note that \(\phi\) is continuous, and that its \(\para{n - 1}\)-th derivatives is continuous on \(\ccintv{0}{h}\) and its \(n\)-th derivatives exists on \(\oointv{0}{h}\). Note that \(\phi\para{0} = 0\) and also \(\phi^{\para{k}} \para{0} = 0\) for all \(k = 0, \ldots, n - 1\).
+    where we pick the constant \(B\) such that \(\phi\para{h} = 0\). Note that \(\phi\) is continuous, and that its \(\para{n - 1}\)-th derivatives is continuous on \(\ccintv{0}{h}\) and its \(n\)-th derivatives exists on \(\oointv{0}{h}\). Note that \(\phi\para{0} = 0\) and also \(\phi^{\para{k}} \para{0} = 0\) for all \(k = 0, \ldots, n - 1\).
 
-    By \autoref{thm:rolle} (Rolle's Theorem), sine we have
+    Since we have
     \[
-        \phi\para{0} = \phi\para{n} = 0
+        \phi\para{0} = \phi\para{h} = 0,
     \] 
-    and hence we have some \(\theta_1 \in \oointv{0}{1}\) with \(\phi'\para{\theta_1 h} = 0\). Applying Rolle's Theorem again on the interval \(\ccintv{0}{\theta_1}\) with the function \(\phi''\), we have some \(\theta_2 \in \oointv{0}{1}\) with \(\phi''\para{\theta_2 \theta_1 h} = 0\).
+    by \autoref{thm:rolle} (Rolle's Theorem), we have some \(\theta_1 \in \oointv{0}{1}\) with \(\phi'\para{\theta_1 h} = 0\). Applying Rolle's Theorem again on the interval \(\ccintv{0}{\theta_1}\) with the function \(\phi''\), we have some \(\theta_2 \in \oointv{0}{1}\) with \(\phi''\para{\theta_2 \theta_1 h} = 0\).
 
     Hence, by induction, we have some \(\theta_1, \theta_2, \ldots, \theta_n \in \oointv{0}{1}\), such that
     \[
