@@ -748,9 +748,9 @@ Similar to \autoref{ex:inverse-fn-differentiation}, we also have a statement abo
     \[
         \function{f'}{X}{\CC}{x}{f'\para{x}}
     \]
-    is differentiable. We define \(f\) is \emph{\(k\)-times differentiable} similarly, and denote this as \(f \in D^k\para{X}\).
+    is differentiable. We define \(f\) is \emph{\(k\)-times differentiable} similarly, and denote this as \(f \in \diffClass{k} \para{X}\).
 
-    We say \(f\) is \emph{\(k\)-times continuously differentiable}, and denote this as \(f \in C^k\para{X}\), if \(f\) is \(k\)-times differentiable and the \(k\)-th derivative
+    We say \(f\) is \emph{\(k\)-times continuously differentiable}, and denote this as \(f \in \contClass{k} \para{X}\), if \(f\) is \(k\)-times differentiable and the \(k\)-th derivative
     \[
         \function{f^{\para{k}}}{X}{\CC}{x}{f^{\para{k}}\para{x}}
     \]
@@ -759,15 +759,15 @@ Similar to \autoref{ex:inverse-fn-differentiation}, we also have a statement abo
 
 Note that the function spaces (differentiability classes) have the following containment relationship.
 \[
-    C^0\para{X} \supset D^1\para{X} \supset C^1\para{X} \supset D^2\para{X} \supset C^2\para{X} \supset \cdots,
+    \contClass{0}\para{X} \supset \diffClass{1}\para{X} \supset \contClass{1}\para{X} \supset \diffClass{2}\para{X} \supset \contClass{2}\para{X} \supset \cdots,
 \]
 and that note these are strict inclusions.
 
 \begin{definition}[Smooth]
     \label{def:smooth}%
-    We say \(\functiondomain{f}{X}{\CC}\) is \emph{smooth} if \(f \in D^k\para{X}\) for all \(k \in \NN\), and we denote this is
+    We say \(\functiondomain{f}{X}{\CC}\) is \emph{smooth} if \(f \in \diffClass{k}\para{X}\) for all \(k \in \NN\), and we denote this is
     \[
-        f \in C^{\infty} \para{X}.
+        f \in \smoothClass \para{X}.
     \]
 \end{definition}
 
@@ -826,7 +826,7 @@ We will see different versions of Taylor's Theorems, all of which aims to quanti
     \begin{itemize}
         \item When \(n = 1\), this simply gives \autoref{thm:mean-value-thm} (Mean Value Theorem).
         \item Furthermore, there is nothing special about \(h > 0\): we could simply swap the bounds of the intervals (i.e. \(\ccintv{a}{a + h}\) to \(\ccintv{a + h}{a}\) and \(\oointv{a}{a + h}\) to \(\oointv{a + h}{a}\)), and we will still get a similar result.
-        \item If \(f \in C^n \para{\oointv{c}{d}}\) with \(\ccintv{a}{a + h} \subset \oointv{c}{d}\), then note that \(f^{\para{n}}\) is continuous on the closed interval, hence bounded, and let
+        \item If \(f \in \contClass{n} \para{\oointv{c}{d}}\) with \(\ccintv{a}{a + h} \subset \oointv{c}{d}\), then note that \(f^{\para{n}}\) is continuous on the closed interval, hence bounded, and let
         \[
             M_n = \sup_{x \in \ccintv{a}{a + h}} \abs{f^{\para{n}} \para{x}}.
         \]
@@ -835,7 +835,7 @@ We will see different versions of Taylor's Theorems, all of which aims to quanti
         \[
             \abs{R_{n, f, a} \para{h}} \leq M_n \cdot \frac{\abs{h}^n}{n!}
         \]
-        and we have \(R_{n, f, a} \para{h} = \bigO \para{h^n}\) as \(h \to 0\), or in other words, the approximation gets better as the point \(a + h\) gets closer to \(a\). \textbf{However, this does not tell us that \(R_{n, f, a} \para{h} \to 0\) as \(n \to \infty\)}, or in other words, adding more terms does not necessarily make our approximation better. Even if \(f \in C^{\infty}\), we still do not know how \(M_n\) behaves with \(n\). (In other words, there are smooth functions that are not analytic (on \(\RR\)).)
+        and we have \(R_{n, f, a} \para{h} = \bigO \para{h^n}\) as \(h \to 0\), or in other words, the approximation gets better as the point \(a + h\) gets closer to \(a\). \textbf{However, this does not tell us that \(R_{n, f, a} \para{h} \to 0\) as \(n \to \infty\)}, or in other words, adding more terms does not necessarily make our approximation better. Even if \(f \in \smoothClass\), we still do not know how \(M_n\) behaves with \(n\). (In other words, there are smooth functions that are not analytic (on \(\RR\)).)
     \end{itemize}
 \end{remarks}
 
@@ -925,7 +925,7 @@ Although the second proof looks very horrible, this in fact gives another versio
 \end{proof}
 
 \begin{remark}
-    Similarly, if we have \(f \in C^n \para{\oointv{c}{d}}\) with \(\ccintv{a}{a + h} \subset \oointv{c}{d}\), then as in previous remark, we may set
+    Similarly, if we have \(f \in \contClass{n} \para{\oointv{c}{d}}\) with \(\ccintv{a}{a + h} \subset \oointv{c}{d}\), then as in previous remark, we may set
     \[
         M_n = \sup_{x \in \ccintv{a}{a + h}} \abs{f^{\para{n}} \para{x}}
     \]
@@ -993,7 +993,7 @@ This looks like an even worse estimate, since \(\para{n - 1}!\) on the denominat
 
 \begin{definition}[Analytic Function]
     \label{def:analytic}%
-    We say that \(f \in C^{\infty} \para{\oointv{c}{d}}\) is \emph{analytic}, denoted as \(f \in C^{\omega} \para{\oointv{c}{d}}\), if for every \(a \in \oointv{c}{d}\), there exists an \(r > 0\), such that for all \(\abs{h} < r\),
+    We say that \(f \in \smoothClass \para{\oointv{c}{d}}\) is \emph{analytic}, denoted as \(f \in \analyticClass \para{\oointv{c}{d}}\), if for every \(a \in \oointv{c}{d}\), there exists an \(r > 0\), such that for all \(\abs{h} < r\),
     \[
         f\para{a + h} = \sum_{k = 0}^{\infty} \frac{f^{\para{k}} \para{a}}{k!} \cdot h^k = \lim_{n \to \infty} T_{n, f, a} \para{h}.
     \]
