@@ -1,0 +1,97 @@
+\section{Integration of Functions}
+
+\subsection{Basics}
+
+We have learnt before that the integral
+\[
+    \int_{a}^{b} f\para{x} \Diff x
+\]
+gives the signed area under the graph of \(f\), for \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\). We now aim to quantify it rigorously.
+
+We may attempt to approximate the function using rectangles -- specifically using rectangles \emph{taller} than the function to \emph{overestimate}, and \emph{lower} than the function to \emph{underestimate}. Ideally, if we make the width of the split smaller and smaller, however we split it, that the overestimate and the underestimate will eventually `converge' to the same limit -- which makes the function \emph{integrable}. (Warning: it is hard to quantify `smaller and smaller'!)
+
+\begin{definition}[Upper and Lower Riemann Sums]
+    \label{def:upper-lower-riemann-sum}%
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be bounded. Let a \emph{partition/dissection} \(\partition = \brce{x_0, x_1, \ldots, x_n}\) with \(a = x_0 < x_1 < \cdots x_n = b\) be given. Then we let
+    \[
+        \upperSum \para{f, \partition} = \sum_{j = 1}^{n} \para{\sup_{x \in \ccintv{x_{j - 1}}{x_{j}}} f\para{x}} \cdot \para{x_j - x_{j - 1}}
+    \]
+    as the \emph{Upper Riemann Sum}, and similarly,
+    \[
+        \lowerSum \para{f, \partition} = \sum_{j = 1}^{n} \para{\inf_{x \in \ccintv{x_{j - 1}}{x_{j}}} f\para{x}} \cdot \para{x_j - x_{j - 1}}
+    \]
+    as the \emph{Lower Riemann Sum}, of the function \(f\) associated to the partition \(\partition\).
+\end{definition}
+
+\begin{example}[Riemann Sums]
+    \label{ex:riemann-sums}%
+    Consider the function
+    \[
+        f\para{x} = \begin{cases}
+            1, & x \in \QQ, \\
+            0, & x \in \RR \setminus \QQ
+        \end{cases}
+    \]
+    on \(\ccintv{0}{1}\). For any \(\partition\) we take, we will have both rationals and irrationals in \(I_j = \ccintv{x_{j - 1}}{x_j}\), and hence we always have
+    \[
+        \upperSum \para{f, \partition} = 1, \quad \lowerSum \para{f, \partition} = 0.
+    \]
+\end{example}
+
+We assumed that \(f\) is bounded, and say \(\sup_{x \in \ccintv{a}{b}} \abs{f} = k\), then
+\begin{align*}
+    \upperSum\para{f, \partition} &= \sum_{j = 1}^{n} \para{\sup_{\ccintv{a}{b}} \abs{f}} \para{x_j - x_{j - 1}} \\
+    &\leq k \sum_{j = 1}^{n} \para{x_j - x_{j - 1}} \\
+    &= k \para{b - a},
+\end{align*}
+and similarly,
+\[
+    \lowerSum\para{f, \partition} \geq -k \para{b - a}.
+\]
+
+Also, we have \(\upperSum\para{f, \partition} \geq \lowerSum\para{f, \partition}\). Therefore, the sets
+\[
+    \set{\upperSum\para{f, \partition}}{\partition \text{ is a partition of }\ccintv{a}{b}}
+\]
+and
+\[
+    \set{\lowerSum\para{f, \partition}}{\partition \text{ is a partition of }\ccintv{a}{b}}
+\]
+are both bounded, non-empty sets.
+
+\begin{definition}[Upper and Lower Integrals]
+    \label{def:upper-lower-int}%
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be bounded. We say
+    \[
+        \upperInt \para{f} = \inf_{\partition\text{ is a partition of }\ccintv{a}{b}} \upperSum \para{f, \partition}
+    \]
+    be the \emph{upper integral} of \(f\), and similarly,
+    \[
+        \lowerInt \para{f} = \sup_{\partition\text{ is a partition of }\ccintv{a}{b}} \lowerSum \para{f, \partition}
+    \]
+    be the \emph{lower integral} of \(f\).
+\end{definition}
+
+Note we actually didn't take a `limit' as the width tends to zero -- that is slightly tougher to formalise (it is possible to do so, as the limit of a mesh), but this works just as well (since narrowing the widths seems to decrease the error, which makes it smaller for overestimates, and larger for underestimates).
+
+\begin{definition}[Riemann Integral]
+    \label{def:riemann-integral}%
+    We say \(f\) is \emph{Riemann Integrable} if \(\upperInt \para{f} = \lowerInt \para{f}\), and we denote the \emph{Riemann Integral} as
+    \[
+        I\para{f} = \int_{a}^{b} f\para{x} \Diff x = \upperInt\para{f} = \lowerInt\para{f}.
+    \]
+\end{definition}
+
+\begin{remark}
+    We have
+    \[
+        \int_{a}^{b} f = - \int_{b}^{a} f.
+    \]
+\end{remark}
+
+\begin{example}[Non-Riemann Integrable Function]
+    \label{ex:non-riemann-integrable-fn}%
+    Continuing from \autoref{ex:riemann-sums}, we note that \(\upperInt\para{f} = 1\) while \(\lowerInt\para{f} = 0\). Hence, this function is not Riemann integrable.
+    
+    Just as a remark, it is Lebesgue integrable using the Lebesgue measure, and the result is \(0\) -- intuitively, there are `way too few' rational numbers (and this is saying \(\QQ\) has zero Lebesgue measure, since it is countable).
+\end{example}

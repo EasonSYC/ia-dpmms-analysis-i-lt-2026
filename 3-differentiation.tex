@@ -924,7 +924,102 @@ Although the second proof looks very horrible, this in fact gives another versio
     By putting \(p = 1\) into the second proof of \autoref{thm:taylor-thm-langrange-remainder}.
 \end{proof}
 
-Just as a generalisation, we introduce the name for the general form when we do not specify the value of \(p\).
+\begin{remark}
+    Similarly, if we have \(f \in C^n \para{\oointv{c}{d}}\) with \(\ccintv{a}{a + h} \subset \oointv{c}{d}\), then as in previous remark, we may set
+    \[
+        M_n = \sup_{x \in \ccintv{a}{a + h}} \abs{f^{\para{n}} \para{x}}
+    \]
+    and by \autoref{thm:taylor-thm-cauchy-remainder}, then we have
+    \[
+        \abs{R_{n, f, a} \para{h}} \leq M_n \cdot \frac{\abs{h}^n}{\para{n - 1}!}.
+    \]
+\end{remark}
+
+This looks like an even worse estimate, since \(\para{n - 1}!\) on the denominator gives a bigger error than \(\para{n}!\). However, this is not necessarily true -- as the following example will demonstrate.
+
+\begin{example}[Applicaton of Taylor's Theorems]
+    \label{ex:application-taylor}%
+    Consider the function \(f\para{x} = x^q\) for some rational \(q \in \QQ\). This function is smooth on \(\oointv{0}{\plusinfty}\). We may attempt to calculate its derivates by
+    \[
+        f^{\para{k}} \para{x} = q \cdot \para{q - 1} \cdot \para{q - 2} \cdots \para{q - k + 1} x^{q - k}.
+    \]
+
+    We may calculate the Taylor polynomial at \(a\) as
+    \[
+        T_{n - 1, f, 1} \para{x} = \sum_{k = 0}^{n - 1} \frac{q \para{q - 1} \cdots \para{q - k + 1}}{k!} \cdot x^k = \sum_{k = 0}^{n - 1} \binom{q}{k} x^k.
+    \]
+
+    We now look at
+    \[
+        R_{n, f, 1} \para{x} = \para{1 + x}^{q} - \sum_{k = 0}^{n - 1} \binom{q}{k} x^k
+    \]
+    in \(\oointv{-1}{1}\).
+
+    We evaluate both remainders. If we use \autoref{thm:taylor-thm-langrange-remainder} (Lagrange Remainder), we have some \(\theta \in \oointv{0}{1}\) such that
+    \[
+        R_{n, f, 1} \para{x} = \binom{q}{n} \para{1 + \theta x}^{q - n} x^n.
+    \]
+
+    If \(n \geq q\), then \(\para{1 + \theta x}^{q - n} \leq 1\) for \(x \in \oointv{0}{1}\), and hence
+    \[
+        \abs{R_{n, f, 1} \para{x}} \leq \abs{\binom{q}{n} x^n} \to 0
+    \]
+    as \(n \to \infty\), for any \(x \in \oointv{0}{1}\). However, this argument fails for \(x \in \oointv{-1}{0}\).
+
+    If we use \autoref{thm:taylor-thm-cauchy-remainder} (Cauchy Remainder), we have some \(\theta \in \oointv{0}{1}\) (not necessarily identical to the \(\theta\) before), that
+    \begin{align*}
+        R_{n, f, 1} \para{x} &= \binom{q}{n} \cdot n \cdot \para{1 - \theta}^{n - 1} \cdot \para{1 + \theta x}^{q - n} \cdot x^n \\
+        &= \para{1 - \theta}^{n - 1} q \binom{q - 1}{n - 1} \para{1 + \theta x}^{q - n} x^n \\
+        &= q \binom{q - 1}{n - 1} \cdot \para{\frac{1 - \theta}{1 + \theta x}}^{n - 1} \cdot \para{1 + \theta x}^{q - 1} x^n.
+    \end{align*}
+
+    Now, for any \(x \in \oointv{-1}{1}\), we have \(1 + \theta x = \para{1 - \theta} + \theta \para{x + 1} \geq 1 - \theta\). Hence, we have
+    \[
+        \para{\frac{1 - \theta}{1 + \theta x}}^{n - 1} \leq 1
+    \]
+    as long as \(n \geq 1\). Hence, we may apply a bound the remainder by
+    \[
+        \abs{R_{n, f, 1} \para{x}} \leq \abs{qx} \cdot \abs{\binom{q - 1}{n - 1} x^{n - 1}} \cdot \abs{1 + \theta x}^{q - 1}.
+    \]
+
+    Note that only the middle term depends on \(n\). Therefore,
+    \[
+        \abs{R_{n, f, 1} \para{x}} \to 0
+    \]
+    as \(n \to \infty\) for every \(x \in \oointv{-1}{1}\).
+    
+    So the Cauchy remainder gives us that the remainder is exponentially small as \(n \to \infty\), for all \(x \in \oointv{-1}{1}\), while the Lagrange remainder only guaranteed that for the range of \(x \in \cointv{0}{1}\).
+\end{example}
+
+\begin{definition}[Analytic Function]
+    \label{def:analytic}%
+    We say that \(f \in C^{\infty} \para{\oointv{c}{d}}\) is \emph{analytic}, denoted as \(f \in C^{\omega} \para{\oointv{c}{d}}\), if for every \(a \in \oointv{c}{d}\), there exists an \(r > 0\), such that for all \(\abs{h} < r\),
+    \[
+        f\para{a + h} = \sum_{k = 0}^{\infty} \frac{f^{\para{k}} \para{a}}{k!} \cdot h^k = \lim_{n \to \infty} T_{n, f, a} \para{h}.
+    \]
+
+    Equivalently, we have
+    \[
+        \lim_{n \to \infty} R_{n, f, a} \para{h} = 0.
+    \]
+
+    In other words, analytic functions are functions whose Taylor series at any point converges to the function within some non-zero radius.
+\end{definition}
+
+\begin{example}[Analytic Function]
+    \label{ex:analytic-fn}%
+    As in \autoref{ex:application-taylor}, the function \(x^q\) is analytic in \(\oointv{0}{2}\) -- in other words, \(\para{1 + x}^q\) is analytic in \(\oointv{-1}{1}\).
+\end{example}
+
+\begin{remark}
+    Even if \(R_{n, f, a} \para{h} \notto 0\) as \(n \to \infty\), this \emph{does not mean} that the Taylor series
+    \[
+        \sum_{k = 0}^{\infty} \frac{f^{\para{k}} \para{a}}{k!} \cdot h^k
+    \]
+    does not converge -- it just means that the Taylor series does not converge to the actual function value. (In \(\RR\), there are smooth functions that are not analytic.)
+\end{remark}
+
+Finally, just for completeness, we introduce the name for the general form when we do not specify the value of \(p\).
 
 \begin{theorem}[Taylor's Theorem with Schl\"{o}milch Remainder]
     \label{thm:taylor-thm-schlomich-remainder}%
