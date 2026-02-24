@@ -826,7 +826,7 @@ We will see different versions of Taylor's Theorems, all of which aims to quanti
     \begin{itemize}
         \item When \(n = 1\), this simply gives \autoref{thm:mean-value-thm} (Mean Value Theorem).
         \item Furthermore, there is nothing special about \(h > 0\): we could simply swap the bounds of the intervals (i.e. \(\ccintv{a}{a + h}\) to \(\ccintv{a + h}{a}\) and \(\oointv{a}{a + h}\) to \(\oointv{a + h}{a}\)), and we will still get a similar result.
-        \item If \(f \in C^n \para{\oointv{c}{d}}\) with \(\ccintv{a}{a + h} \subseteq \oointv{c}{d}\), then note that \(f^{\para{n}}\) is continuous on the closed interval, hence bounded, and let
+        \item If \(f \in C^n \para{\oointv{c}{d}}\) with \(\ccintv{a}{a + h} \subset \oointv{c}{d}\), then note that \(f^{\para{n}}\) is continuous on the closed interval, hence bounded, and let
         \[
             M_n = \sup_{x \in \ccintv{a}{a + h}} \abs{f^{\para{n}} \para{x}}.
         \]
@@ -835,7 +835,7 @@ We will see different versions of Taylor's Theorems, all of which aims to quanti
         \[
             \abs{R_{n, f, a} \para{h}} \leq M_n \cdot \frac{\abs{h}^n}{n!}
         \]
-        and we have \(R_{n, f, a} \para{h} = \bigO \para{h^n}\) as \(h \to 0\). \textbf{However, this does not tell us that \(R_{n, f, a} \para{h} \to 0\) as \(n \to \infty\).} Even if \(f \in C^{\infty}\), we still do not know how \(M_n\) behaves with \(n\). (In other words, there are smooth functions that are not analytic (on \(\RR\)).)
+        and we have \(R_{n, f, a} \para{h} = \bigO \para{h^n}\) as \(h \to 0\), or in other words, the approximation gets better as the point \(a + h\) gets closer to \(a\). \textbf{However, this does not tell us that \(R_{n, f, a} \para{h} \to 0\) as \(n \to \infty\)}, or in other words, adding more terms does not necessarily make our approximation better. Even if \(f \in C^{\infty}\), we still do not know how \(M_n\) behaves with \(n\). (In other words, there are smooth functions that are not analytic (on \(\RR\)).)
     \end{itemize}
 \end{remarks}
 
