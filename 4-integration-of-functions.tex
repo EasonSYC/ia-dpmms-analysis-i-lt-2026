@@ -40,7 +40,7 @@ We may attempt to approximate the function using rectangles -- specifically usin
 
 We assumed that \(f\) is bounded, and say \(\sup_{x \in \ccintv{a}{b}} \abs{f} = k\), then
 \begin{align*}
-    \upperSum\para{f, \partition} &= \sum_{j = 1}^{n} \para{\sup_{\ccintv{a}{b}} \abs{f}} \para{x_j - x_{j - 1}} \\
+    \upperSum\para{f, \partition} &= \sum_{j = 1}^{n} \para{\sup_{\ccintv{a}{b}} f} \para{x_j - x_{j - 1}} \\
     &\leq k \sum_{j = 1}^{n} \para{x_j - x_{j - 1}} \\
     &= k \para{b - a},
 \end{align*}
