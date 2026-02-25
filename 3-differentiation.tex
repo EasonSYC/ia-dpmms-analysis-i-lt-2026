@@ -672,20 +672,70 @@ The proof strategy is similar -- we aim to reduce this to \autoref{thm:rolle} (R
     \begin{itemize}
         \item the limit
         \[
-            \lim_{x \to a} \frac{f'\para{x}}{g'\para{x}} = A
+            \lim_{x \to a} \frac{f'\para{x}}{g'\para{x}} = l
         \]
-        exists, where \(A \in \RR \cup \brce{\pminfty}\) could be infinite;
+        exists, where \(l \in \RR \cup \brce{\pminfty}\) could be infinite;
         \item \(\lim_{x \to a} f\para{x} = \lim_{x \to a} g\para{x} = 0\); or \(\lim_{x \to a} g\para{x} = \pminfty\).
     \end{itemize}
 
     Then we have
     \[
-        \lim_{x \to a} \frac{f\para{x}}{g\para{x}} = A.
+        \lim_{x \to a} \frac{f\para{x}}{g\para{x}} = l.
     \]
 \end{theorem}
 
 \begin{proof}
-    \textbf{\textcolor{red}{To-Do: Please wait until I finish Example Sheet 3.}}
+    \textbf{\(\frac{0}{0}\) Case.} We may set \(f\para{a} = g\para{a} = 0\) in this case. We first note that \(g\para{x} \neq 0\). If so, then Rolle's theorem would imply that \(g'\para{t} = 0\) for some \(t\) between \(a\) and \(x\).
+
+    By \autoref{thm:cauchy-mvt} (Cauchy's Mean Value Theorem), for any \(x \in \oointv{a}{b}\), there is some \(c\para{x} \in \oointv{a}{x}\), such that
+    \[
+        \frac{f'\para{c\para{x}}}{g'\para{c\para{x}}} = \frac{f\para{x} - f\para{a}}{g\para{x} - g\para{a}} = \frac{f\para{x}}{g\para{x}}.
+    \]
+
+    We have \(c\para{x} \to a\) as \(x \to a\), with \(c\para{x} \neq a\). Now, if we have
+    \[
+        \lim_{x \to a} \frac{f'\para{x}}{g'\para{x}} = l,
+    \]
+    then we have
+    \[
+        \lim_{x \to a} \frac{f'\para{c\para{x}}}{g'\para{c\para{x}}} = l,
+    \]
+    and hence
+    \[
+        \lim_{x \to a} \frac{f\para{x}}{g\para{x}} = l
+    \]
+    as desired.
+
+    \textbf{\(\frac{?}{\infty}\) Case.} This case is mostly similar. We may first restrict the domain such that \(g\para{x} \neq 0\) anywhere. Let \(\epsilon > 0\) be arbitrary. Since \(\lim_{x \to a} \frac{f'\para{x}}{g'\para{x}} = l\), we have some \(\delta\para{\epsilon} > 0\), such that
+    \[
+        \forall x \in \oointv{a}{a + \delta}: \abs{\frac{f'\para{x}}{g'\para{x}} - l} < \epsilon.
+    \]
+    
+    We fix \(d \in \oointv{a}{a + \delta}\) such that \(g\para{d}\) takes the same sign as \(\lim_{x \to a} g\para{x}\). For any \(x \in \oointv{a}{d}\), applying \autoref{thm:cauchy-mvt} (Cauchy's Mean Value Theorem), there is some \(c\para{x} \in \oointv{x}{d}\), such that
+    \[
+        \frac{f'\para{c\para{x}}}{g'\para{c\para{x}}} = \frac{f\para{x} - f\para{d}}{g\para{x} - g\para{d}}.
+    \]
+
+    Since \(c\para{x} \in \oointv{x}{d}\), we have \(c\para{x} \in \oointv{a}{a + \epsilon}\). Therefore, we have
+    \[
+        \abs{\frac{f\para{x} - f\para{d}}{g\para{x} - g\para{d}} - l} < \epsilon.
+    \]
+
+    Dividing top and bottom by \(g\para{x}\), we have
+    \[
+        \abs{\frac{\frac{f\para{x}}{g\para{x}} - \frac{f\para{d}}{g\para{x}}}{1 - \frac{g\para{d}}{g\para{x}}} - l} < \epsilon.
+    \]
+
+    This implies
+    \[
+        \abs{1 - \frac{g\para{d}}{g\para{x}}} \para{l - \epsilon} < \frac{f\para{x}}{g\para{x}} - \frac{f\para{d}}{g\para{x}} < \abs{1 - \frac{g\para{d}}{g\para{x}}} \para{l + \epsilon}.
+    \]
+
+    Therefore, taking \(x \to a\), we have
+    \[
+        l - \epsilon \leq \liminf_{x \to a} \frac{f\para{x}}{g\para{x}} \leq \limsup_{x \to a} \frac{f\para{x}}{g\para{x}} \leq l + \epsilon
+    \]
+    and taking \(\epsilon \to 0\) gives the desired result. (The final two lines could be replaced with more elementary \(\epsilon-\delta\)s, but I am just not bothered to do that.)
 \end{proof}
 
 \begin{example}[Application of L'H\^{o}pital's Rule]
