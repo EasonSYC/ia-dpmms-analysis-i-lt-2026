@@ -63,11 +63,11 @@ are both bounded, non-empty sets.
     \label{def:upper-lower-int}%
     Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be bounded. We say
     \[
-        \upperInt \para{f} = \inf_{\partition\text{ is a partition of }\ccintv{a}{b}} \upperSum \para{f, \partition}
+        \upperI \para{f} = \inf_{\partition\text{ is a partition of }\ccintv{a}{b}} \upperSum \para{f, \partition}
     \]
     be the \emph{upper integral} of \(f\), and similarly,
     \[
-        \lowerInt \para{f} = \sup_{\partition\text{ is a partition of }\ccintv{a}{b}} \lowerSum \para{f, \partition}
+        \lowerI \para{f} = \sup_{\partition\text{ is a partition of }\ccintv{a}{b}} \lowerSum \para{f, \partition}
     \]
     be the \emph{lower integral} of \(f\).
 \end{definition}
@@ -76,9 +76,9 @@ Note we actually didn't take a `limit' as the width tends to zero -- that is sli
 
 \begin{definition}[Riemann Integral]
     \label{def:riemann-integral}%
-    We say \(f\) is \emph{Riemann Integrable} if \(\upperInt \para{f} = \lowerInt \para{f}\), and we denote the \emph{Riemann Integral} as
+    We say \(f\) is \emph{Riemann Integrable} if \(\upperI \para{f} = \lowerI \para{f}\), and we denote the \emph{Riemann Integral} as
     \[
-        I\para{f} = \int_{a}^{b} f\para{x} \Diff x = \upperInt\para{f} = \lowerInt\para{f}.
+        I\para{f} = \int_{a}^{b} f\para{x} \Diff x = \upperI\para{f} = \lowerI\para{f}.
     \]
 \end{definition}
 
@@ -91,7 +91,7 @@ Note we actually didn't take a `limit' as the width tends to zero -- that is sli
 
 \begin{example}[Non-Riemann Integrable Function]
     \label{ex:non-riemann-integrable-fn}%
-    Continuing from \autoref{ex:riemann-sums}, we note that \(\upperInt\para{f} = 1\) while \(\lowerInt\para{f} = 0\). Hence, this function is not Riemann integrable.
+    Continuing from \autoref{ex:riemann-sums}, we note that \(\upperI\para{f} = 1\) while \(\lowerI\para{f} = 0\). Hence, this function is not Riemann integrable.
     
     Just as a remark, it is Lebesgue integrable using the Lebesgue measure, and the result is \(0\) -- intuitively, there are `way too few' rational numbers (and this is saying \(\QQ\) has zero Lebesgue measure, since it is countable).
 \end{example}
