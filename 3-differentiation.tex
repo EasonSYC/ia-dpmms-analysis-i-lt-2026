@@ -741,7 +741,7 @@ Similar to \autoref{ex:inverse-fn-differentiation}, we also have a statement abo
     Now, note \(m = \min\brce{\delta, x_0 - a, b - x_0} > 0\), so take any \(0 < \epsilon < m\), then for all \(x \in \ccintv{x_0 - \epsilon}{x_0 + \epsilon}\), we have \(x_0 \in \ccintv{a}{b}\) and \(\abs{x - x_0} < \delta\), so \(f'\para{x} > 0\) for this restriction.
 \end{proof}
 
-\subsection{Higher Derivatives}
+\subsection{Higher Derivatives and Taylor's Theorem}
 \begin{definition}[Higher Order Derivatives]
     \label{def:higher-order-derivatives}%
     Suppose \(\functiondomain{f}{X \subseteq \CC}{\CC}\) is differentiable on \(X\). We say the function \(f\) is \emph{twice differentiable} on \(X\), if
@@ -850,7 +850,7 @@ We will see different versions of Taylor's Theorems, all of which aims to quanti
     \[
         \phi\para{0} = \phi\para{h} = 0,
     \] 
-    by \autoref{thm:rolle} (Rolle's Theorem), we have some \(\theta_1 \in \oointv{0}{1}\) with \(\phi'\para{\theta_1 h} = 0\). Applying Rolle's Theorem again on the interval \(\ccintv{0}{\theta_1}\) with the function \(\phi''\), we have some \(\theta_2 \in \oointv{0}{1}\) with \(\phi''\para{\theta_2 \theta_1 h} = 0\).
+    by \autoref{thm:rolle} (Rolle's Theorem), we have some \(\theta_1 \in \oointv{0}{1}\) with \(\phi'\para{\theta_1 h} = 0\). Applying Rolle's Theorem again on the interval \(\ccintv{0}{\theta_1 h}\) with the function \(\phi'\), we have some \(\theta_2 \in \oointv{0}{1}\) with \(\phi''\para{\theta_2 \theta_1 h} = 0\).
 
     Hence, by induction, we have some \(\theta_1, \theta_2, \ldots, \theta_n \in \oointv{0}{1}\), such that
     \[
