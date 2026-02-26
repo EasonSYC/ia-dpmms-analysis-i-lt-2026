@@ -63,16 +63,16 @@ are both bounded, non-empty sets.
     \label{def:upper-lower-int}%
     Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be bounded. We say
     \[
-        \upperI \para{f} = \inf_{\partition\text{ is a partition of }\ccintv{a}{b}} \upperSum \para{f, \partition}
+        \upperI \para{f} = \upperInt_{a}^{b} f \para{x} \Diff x = \inf_{\partition\text{ is a partition of }\ccintv{a}{b}} \upperSum \para{f, \partition}
     \]
     be the \emph{upper integral} of \(f\), and similarly,
     \[
-        \lowerI \para{f} = \sup_{\partition\text{ is a partition of }\ccintv{a}{b}} \lowerSum \para{f, \partition}
+        \lowerI \para{f} = \lowerInt_{a}^{b} f \para{x} \Diff x \sup_{\partition\text{ is a partition of }\ccintv{a}{b}} \lowerSum \para{f, \partition}
     \]
     be the \emph{lower integral} of \(f\).
 \end{definition}
 
-Note we actually didn't take a `limit' as the width tends to zero -- that is slightly tougher to formalise (it is possible to do so, as the limit of a mesh), but this works just as well (since narrowing the widths seems to decrease the error, which makes it smaller for overestimates, and larger for underestimates).
+Note we actually didn't take a `limit' as the width tends to zero -- that is slightly tougher to formalise (it is possible to do so, as the limit of a mesh), but this works just as well (since narrowing the widths seems to decrease the error, which makes it smaller for overestimates, and larger for underestimates) -- but note because of this, lots of properties of the integral is \textbf{not} a direct consequence of the properties of the limit, which is a common misconception.
 
 \begin{definition}[Riemann Integral]
     \label{def:riemann-integral}%
@@ -83,7 +83,7 @@ Note we actually didn't take a `limit' as the width tends to zero -- that is sli
 \end{definition}
 
 \begin{remark}
-    We have
+    We define by convention
     \[
         \int_{a}^{b} f = - \int_{b}^{a} f.
     \]
@@ -95,3 +95,225 @@ Note we actually didn't take a `limit' as the width tends to zero -- that is sli
     
     Just as a remark, it is Lebesgue integrable using the Lebesgue measure, and the result is \(0\) -- intuitively, there are `way too few' rational numbers (and this is saying \(\QQ\) has zero Lebesgue measure, since it is countable).
 \end{example}
+
+The coarsest possible partition for \(\ccintv{a}{b}\) is the partition \(\brce{a, b}\). Our intuition is that a finer partition leads to a better estimate for the area.
+
+\begin{lemma}[Refinements provide Better Estimates]
+    \label{lem:refinement-better-estimate}%
+    Let \(\partition, \partition'\) be two partitions of \(\ccintv{a}{b}\), with \(\partition' \supseteq \partition\) (i.e., \(\partition'\) is a \emph{refinement} of \(\partition\)). Then we have
+    \[
+        \lowerSum\para{f, \partition} \leq \lowerSum\para{f, \partition'} \leq \upperSum\para{f, \partition'} \leq \upperSum\para{f, \partition}.
+    \]
+\end{lemma}
+
+\begin{proof}
+    We show this by induction on refining the partition point-by-point.
+    
+    Take \(\partition = \brce{x_0, x_1, \ldots, x_n}\) where \(0 = x_0 < x_1 < \cdots < x_n = b\). Pick \(y \in \oointv{x_{k - 1}}{x_k}\) for some \(k\).
+
+    Set
+    \[
+        \partition' = \partition \cup \brce{y} = \brce{x_0, \ldots, x_{k - 1}, y, x_k, \ldots, x_n}.
+    \]
+
+    Then, the only change in the sum is the supremum
+    \[
+        \sup_{x \in \ccintv{x_{n - 1}}{y}} f\para{x}, \sup_{x \in \ccintv{y}{x_n}} f\para{x} \leq \sup_{x \in \ccintv{x_{n - 1}}{x_n}} f\para{x}.
+    \]
+
+    Multiplying by the widths, we can see that
+    \[
+        \para{y - x_{k - 1}} \sup_{x \in \ccintv{x_{k - 1}}{y}} f\para{x} + \para{x_k - y} \sup_{x \in \ccintv{y}{x_k}} f\para{x} \leq \para{x_k - x_{k - 1}} \sup_{x \in \ccintv{x_{k - 1}}{x_k}} f\para{x}.
+    \]
+
+    Hence, we have
+    \[
+        \upperSum\para{f, \partition'} \leq \upperSum \para{f, \partition}.
+    \]
+
+    Similarly, we may show (replacing with infimums and the opposite inequalities), that
+    \(
+        \lowerSum\para{f, \partition'} \geq \lowerSum \para{f, \partition}.
+    \)
+
+    If \(\partition'\) differs by \(n\) points, we repeat this argument \(n\) times (since partitions are defined to be finite).
+\end{proof}
+
+\begin{lemma}[Upper Sums are always more than Lower Sums]
+    \label{lem:upper-greater-lower-sum}%
+    Let \(\partition\) and \(\partition'\) be partitioned \(\ccintv{a}{b}\) (but not necessarily one being the refinement of the other). Then we have
+    \[
+        \lowerSum\para{f, \partition} \leq \upperSum\para{f, \partition'}
+    \]
+    and similarly
+    \[
+        \lowerSum\para{f, \partition'} \leq \upperSum\para{f, \partition}.
+    \]
+\end{lemma}
+
+\begin{proof}
+    We take the common refinement \(\partition \cup \partition'\). Therefore, by \autoref{lem:refinement-better-estimate},
+    \[
+        \lowerSum\para{f, \partition} \leq \upperSum\para{f, \partition \cup \partition'} \leq \upperSum\para{f, \partition \cup \partition'} \leq \upperSum\para{f, \partition'}.
+    \]
+\end{proof}
+
+\begin{corollary}[Upper Integrals are always more than Lower Integraks]
+    \label{cor:upper-greater-lower-int}%
+    We have for any bounded \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\), that
+    \[
+        \lowerI\para{f} = \lowerInt_{a}^{b} f\para{x} \Diff x \leq \upperInt_{a}^{b} f\para{x} \Diff x = \upperI \para{f}.
+    \]
+\end{corollary}
+
+\begin{proof}
+    We have \(\lowerSum\para{f, \partition} \leq \upperSum\para{f, \partition'}\) from \autoref{lem:upper-greater-lower-sum}. Taking the infimum over all \(\partition'\) gives
+    \[
+        \lowerSum\para{f, \partition} \leq \inf_{\partition'} \upperSum\para{f, \partition'} = \upperI.
+    \]
+
+    Taking the supremum over all \(\partition\) gives
+    \[
+        \lowerI = \sup_{\partition} \lowerSum\para{f, \partition} \leq \upperI
+    \]
+    as desired.
+\end{proof}
+
+Another way of viewing integrability is as follows: we can always find a partition \(\partition\) of \(\ccintv{a}{b}\), such that the upper sum (overestimate) and the lower sum (underestimate) differ by, at most, any arbitrary threshold that we specify.
+
+\begin{proposition}[Riemann Integrability Criteria]
+    \label{prop:riemann-integrability-criteria}%
+    Let \(\functiondomain{f}{\ccintv{a}{b}}\) be bounded. Then \(f\) is Riemann integrable, if and only if
+    \[
+        \forall \epsilon > 0, \exists \partition: \upperSum\para{f, \partition} - \lowerSum\para{f, \partition} < \epsilon,
+    \]
+    where \(\partition\) is a partition.
+\end{proposition}
+
+\begin{proof}
+    Suppose that the criteria is true. We have
+    \[
+        0 \leq \upperI\para{f} - \lowerI\para{f} \leq \upperSum\para{f, \partition} - \lowerSum\para{f, \partition} < \epsilon,
+    \]
+    for any \(\epsilon > 0\), and so we must have \(\upperI\para{f} - \lowerI\para{f} = 0\).
+
+    Now, suppose that \(f\) is Riemann integrable. By the definition of the supremum and infimum, we can always find partitions \(\partition, \partition'\) such that
+    \[
+        \upperSum\para{f, \partition} \leq \upperI\para{f} + \frac{\epsilon}{2}
+    \]
+    and
+    \[
+        \lowerSum\para{f, \partition'} \geq \lowerI\para{f} + \frac{\epsilon}{2}.
+    \]
+
+    Therefore,
+    \[
+        \upperSum\para{f, \partition} - \lowerSum\para{f, \partition'} \leq \epsilon.
+    \]
+
+    To conclude, we take a common refinement \(\partition \cup \partition'\), and then we have
+    \[
+        \upperSum\para{f, \partition \cup \partition'} - \lowerSum\para{f, \partition \cup \partition'} \leq \upperSum\para{f, \partition} - \lowerSum\para{f, \partition'} \leq \epsilon,
+    \]
+    so we are done.
+\end{proof}
+
+Note that this is equivalent to the following sequential version.
+
+\begin{proposition}[Sequential Riemann Integrability Criteria]
+    \label{prop:sequential-riemann-integrability-criteria}%
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be bounded. Then \(f\) is Riemann integrable, if and only if there is a sequence of partitions \(\para{\partition_n}_{n \in \NN}\), such that
+    \[
+        \upperSum\para{f, \partition_n} - \lowerSum\para{f, \partition_n} \to 0
+    \]
+    as \(n \to \infty\).
+\end{proposition}
+
+\begin{examples}[Integrals of Functions]
+    \label{ex:integral-fn}%
+    \begin{enumerate}
+        \item Let \(f\para{x} = x\) be defined on \(\ccintv{0}{1}\). Let the partition be
+        \[
+            \partition_n = \brce{0, \frac{1}{n}, \ldots, \frac{n - 1}{n}, 1}.
+        \]
+
+        Then, we have
+        \begin{align*}
+            \upperSum\para{f, \partition_n} &= \sum_{j = 1}^{n} \frac{1}{n} \sup_{x \in \ccintv{\frac{j - 1}{n}}{\frac{j}{n}}} x \\
+            &= \frac{1}{n^2} \cdot \sum_{j = 1}^{n} \sup_{x \in \ccintv{j - 1}{j}} x \\
+            &= \frac{1}{n^2} \sum_{j = 1}^{n} j \\
+            &= \frac{1}{n^2} \cdot \frac{n \para{n + 1}}{2} \\
+            &= \frac{1}{2} \para{1 + \frac{1}{n}}.
+        \end{align*}
+
+        Similarly, we compute the lower sum as
+        \begin{align*}
+            \lowerSum\para{f, \partition_n} &= \sum_{j = 1}^{n} \frac{1}{n}\inf_{x \in \ccintv{\frac{j - 1}{n}}{\frac{j}{n}}} x \\
+            &= \frac{1}{n^2} \cdot \frac{n \para{n - 1}}{2} \\
+            &= \frac{1}{2} \para{1 - \frac{1}{n}}.
+        \end{align*}
+
+        With the original definition in \autoref{def:riemann-integral}, we notice
+        \[
+            \lowerI\para{f} = \sup_{\partition} \lowerSum\para{f, \partition} \geq \sup_{n \in \NN} \lowerSum\para{f, \partition_n} = \frac{1}{2},
+        \]
+        and similarly,
+        \[
+            \upperI\para{f} = \inf_{\partition} \upperSum\para{f, \partition} \leq \inf_{n \in \NN} \upperSum\para{f, \partition_n} = \frac{1}{2},
+        \]
+
+        But by \autoref{cor:upper-greater-lower-int}, we have
+        \[
+            \frac{1}{2} \leq \lowerI\para{f} \leq \upperI\para{f} \leq \frac{1}{2}
+        \]
+        and hence
+        \[
+            \lowerI\para{f} = \upperI\para{f} = \frac{1}{2}
+        \]
+        so \(\int_{0}^{1} f\para{x} \Diff x = \frac{1}{2}\).
+
+        With \autoref{prop:sequential-riemann-integrability-criteria} (Sequential Riemann Integrability Criteria), we note
+        \[
+            \upperSum\para{f, \partition_{n}} - \lowerSum\para{f, \partition_{n}} = \frac{1}{n} \to 0
+        \]
+        as \(n \to \infty\). So this function is integrable.
+
+        \item Consider the piecewise-defined function
+        \[
+            f\para{x} = \begin{cases}
+                0, & x \leq \frac{1}{2}, \\
+                1, & x > \frac{1}{2}
+            \end{cases}
+        \]
+        defined on \(\ccintv{0}{1}\).
+
+        Similarly, we take the same partitions \(\partition_n\). Then
+        \[
+            \sup_{x \in \ccintv{x_{k - 1}}{x_k}} f\para{x} - \inf_{x \in \ccintv{x_{k - 1}}{x_k}} f\para{x} = \begin{cases}
+                1, & x_{k - 1} \leq \frac{1}{2} < x_k,\\
+                0, & \text{otherwise}.
+            \end{cases}
+        \]
+
+        There is always precisely one interval satisfying this difference being \(1\), so
+        \[
+            \upperSum\para{f, \partition_n} - \lowerSum\para{f, \partition_n} = \frac{1}{n} \to 0
+        \]
+        as \(n \to \infty\). So the function is integrable.
+    \end{enumerate}
+\end{examples}
+
+We want to find some more sufficient conditions on integrability.
+
+\begin{proposition}[Monotone Functions are Integrable]
+    Any monotonic \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) is integrable.
+\end{proposition}
+
+\begin{proof}
+    First, \(f\) is bounded by \(\max{\abs{f\para{a}}, \abs{f\para{b}}}\) so is indeed bounded.
+
+    Note that for any partition \(\partition\), we have
+    \begin{align*}
+        \upperSum\para{f, \partition} - \lowerSum\para{f, \partition} = \para{\sup_{I_j} f - \inf_{I_j} f} \abs{I_j}.
+    \end{align*}
+\end{proof}
