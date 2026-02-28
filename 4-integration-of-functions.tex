@@ -306,14 +306,211 @@ Note that this is equivalent to the following sequential version.
 We want to find some more sufficient conditions on integrability.
 
 \begin{proposition}[Monotone Functions are Integrable]
+    \label{prop:monotonic-integrable}%
     Any monotonic \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) is integrable.
 \end{proposition}
 
 \begin{proof}
-    First, \(f\) is bounded by \(\max{\abs{f\para{a}}, \abs{f\para{b}}}\) so is indeed bounded.
+    First, \(f\) is bounded by \(\max\brce{\abs{f\para{a}}, \abs{f\para{b}}}\) so is indeed bounded.
 
     Note that for any partition \(\partition\), we have
+    \[
+        \upperSum\para{f, \partition} - \lowerSum\para{f, \partition} = \sum_{j = 1}^{n} \para{\sup_{I_j} f - \inf_{I_j} f} \abs{I_j},
+    \]
+    for \(I_j = \ccintv{x_{j - 1}}{x_j}\), and \(\abs{I_j} = x_j - x_{j - 1}\).
+
+    But since \(f\) is monotone, the supremum and the infimums are obtained at the endpoints of the intervals. Without loss of generality, suppose \(f\) is increasing, and
+    \[
+        \sup_{x \in I_j} f\para{x} = f\para{x_j}, \quad \text{and} \quad \inf_{x \in I_j} f\para{x} = f\para{x_{j - 1}}.
+    \]
+
+    Hence, we have
+    \[
+        \upperSum\para{f, \partition} - \lowerSum\para{f, \partition} = \sum_{j = 1}^{n} \brac{f\para{x_j} - f\para{x_{j - 1}}} \abs{I_j}.
+    \]
+
+    We set a particular partition
+    \[
+        \partition_n = \brce{a, a + \frac{b - a}{n}, a + \frac{2\para{b - a}}{n}, \ldots, a + \frac{\para{n - 1} \para{n - a}}{n}, b},
+    \]
+    and so \(\abs{I_j} = \frac{b - a}{n}\). Hence,
+    \[
+        \upperSum\para{f, \partition_n} - \lowerSum\para{f, \partition_n} = \frac{b - a}{n} \cdot \sum_{j = 1}^{n} \brac{f\para{a + \frac{j \para{b - a}}{n}} - f\para{a + \frac{\para{j - 1} \para{b - a}}{n}}}
+    \]
+    and by telescoping, we have
+    \[
+        \upperSum\para{f, \partition_n} - \lowerSum\para{f, \partition_n} = \frac{b - a}{n} \brac{f\para{b} - f\para{a}} \to 0
+    \]
+    as \(n \to \infty\). Using \autoref{prop:sequential-riemann-integrability-criteria} (Sequential Version of Riemann Integrability Criteria), \(f\) is integrable, as desired.
+\end{proof}
+
+\begin{proposition}[Continuous Functions are Integrable]
+    \label{prop:continuous-integrable}%
+    Any continuous \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) is integrable.
+\end{proposition}
+
+\begin{proof}
+    \(f\) is bounded by \autoref{thm:extreme-value} (Extreme Value Theorem).
+
+    We show by contradiction.
+
+    If \(f\) is not integrable, by \autoref{prop:riemann-integrability-criteria} (Riemann Integrability Criteria), there is some \(\epsilon > 0\), such that
+    \[
+        \forall \partition: \upperSum\para{f, \partition} - \lowerSum\para{f, \partition} > \epsilon.
+    \]
+
+    Therefore, we have
+    \[
+        \para{b - a} \cdot \max_{1 \leq j \leq n} \osc_{I_j} f \geq \sum_{k = 1}^{n} \abs{I_k} \cdot \para{\sup_{I_j} f - \inf_{I_j} f} = \upperSum\para{f, \partition} - \lowerSum\para{f, \partition} > \epsilon,
+    \]
+    where we define
+    \[
+        \osc f = \sup f - \inf f
+    \]
+    to be the \emph{oscillation}.
+
+    Therefore, there is some \(j\) in any partition \(\partition\), such that
+    \[
+        \osc_{x \in I_j} f\para{x} = \sup_{x_1 \in I_j} f\para{x_1} - \inf_{x_2 \in I_j} f\para{x_2} > \frac{\epsilon}{b - a}.
+    \]
+
+    Therefore, by \autoref{thm:extreme-value} (Extreme Value Theorem), there is some \(y, z \in \ccintv{x_{j - 1}}{x_j}\), such that
+    \[
+        f\para{y} - f\para{z} > \frac{\epsilon}{b - a}.
+    \]
+
+    Since this is true for all partitions, it should also be true for the \(\partition_n\)s given in the previous proof (by splitting up equally). So for each \(n\), we have some \(y_n, z_n\) such that
+    \[
+        \abs{y_n - z_n} < \frac{b - a}{n} \quad \text{and} \quad \abs{f\para{y_n} - f\para{z_n}} > \frac{\epsilon}{b - a}.
+    \]
+
+    By \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass Theorem), \(\para{y_n}, \para{z_n}\) have convergent subsequences. So for the subsequence index \(\para{n_k}\), we have \(\para{y_{n_k}} \to y\) for some \(y \in \ccintv{a}{b}\), and hence
+    \[
+        \abs{z_{n_k} - y_{n_k}} < \frac{b - a}{n_k} \to 0
+    \]
+    as \(n \to \infty\), so \(z_{n_k} \to y\) as well. Imposing sequential continuity, but \(\para{f\para{y_{n_k}}}\) and \(\para{f\para{z_{n_k}}}\) do not have the same limit. This gives a contradiction with the continuity of \(f\).
+\end{proof}
+
+\begin{definition}[Piecewise Continuous]
+    \label{def:piecewise-continuous}%
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\). We say \(f\) is \emph{piecewise continuous} if there is some partition \(\partition\) of \(\ccintv{a}{b}\), such that the restriction on every open interval
+    \[
+        \rightbar{f}_{\oointv{x_{j - 1}}{x_j}}
+    \]
+    is continuous, and has a finite (one-sided) limit as \(x \to x_j\).
+\end{definition}
+
+\begin{proposition}[Piecewise Continuous Functions are Integrable]
+    \label{prop:piecewise-continuous-integrable}%
+    Any piecewise continuous function \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) is integrable, and
+    \[
+        \int_{a}^{b} f\para{x} \Diff x = \sum_{j = 1}^{k} \int_{x_{j - 1}}^{x_j} \overline{f_j} \para{x} \Diff x,
+    \]
+    where \(\overline{f_j}\)s are defined to be
+    \[
+        \overline{f_j} \para{x} = \begin{cases}
+            f\para{x}, & x_{j - 1} < x < x_j, \\
+            f\para{x_j^{-}} = \lim_{x \to x_j^{-}} f\para{x}, & x = x_j, \\
+            f\para{x_{j - 1}^{+}} = \lim_{x \to x_{j - 1}^{+}} f\para{x}, & x = x_{j - 1}.
+        \end{cases}
+    \]
+\end{proposition}
+
+This is a very strong result. It not only guarantees integrability, but also tells us a way to calculate the integral.
+
+\begin{lemma}[Altering Finitely Many Points retains the Integral]
+    \label{lem:individual-points-retains-integrable}%
+    Suppose \(\functiondomain{f, g}{\ccintv{a}{b}}{\RR}\) is bounded. Suppose \(g\) is integrable, and the set of difference points
+    \[
+        \set{x \in \ccintv{a}{b}}{f\para{x} \neq g\para{x}} = \brce{z_1, \ldots, z_N}
+    \]
+    for some finite \(N\). Then \(f\) is integrable, and
+    \[
+        \int_{a}^{b} f\para{x} \Diff x = \int_{a}^{b} g\para{x} \Diff x.
+    \]
+\end{lemma}
+
+\begin{proof}
+    Set \(M = \sup_{x \in \ccintv{a}{b}} \abs{f\para{x}}\). Fix \(\epsilon > 0\), then by \autoref{prop:riemann-integrability-criteria} (Riemann Integrability Criteria), there is some \(\partition\) of \(\ccintv{a}{b}\) such that
+    \[
+        \upperSum\para{g, \partition} - \lowerSum\para{g, \partition} < \epsilon.
+    \]
+
+    We choose the intervals \(J_k = \ccintv{z_k - r_k}{z_k + r_k}\) with
+    \[
+        \sum_{k = 1}^{N} \abs{J_k} = 2 \sum_{k = 1}^{N} r_k < \epsilon_0
+    \]
+    and such that they are disjoint. (If \(z_k = a\), we take the interval \(\ccintv{z_k}{z_k + r_k}\) and similarly for \(z_k = b\).)
+
+    Consider the new partition
+    \[
+        \partition' = \partition \cup \brce{z_1 \pm r_1, z_2 \pm r_2, \ldots, z_N \pm r_N}.
+    \]
+
+    Let
+    \[
+        J = \bigcup_{k = 1}^{N} J_k.
+    \]
+
+    Note that
+    \[
+        \upperSum\para{g, \partition'} - \lowerSum\para{g, \partition'} \leq \upperSum\para{g, \partition} - \lowerSum\para{g, \partition} < \epsilon.
+    \]
+
+    We now bound the upper and lower sums of \(f\). We have
     \begin{align*}
-        \upperSum\para{f, \partition} - \lowerSum\para{f, \partition} = \para{\sup_{I_j} f - \inf_{I_j} f} \abs{I_j}.
+        \upperSum\para{f, \partition'} - \lowerSum\para{f, \partition'} &= \sum_{j = 1}^{n} \abs{I_j} \para{\sup_{I_j} - \inf_{I_j} f} \\
+        &= \sum_{j = 1, I_j \subset J}^{n} \abs{I_j} \para{\sup_{I_j} - \inf_{I_j} f} + \sum_{j = 1, I_j \nsubset J}^{n} \abs{I_j} \para{\sup_{I_j} - \inf_{I_j} f}.
+    \end{align*}
+
+    Note that \(I_j \nsubset J\), then \(f = g\), and hence
+    \begin{align*}
+        \sum_{j = 1, I_j \nsubset J}^{n} \abs{I_j} \para{\sup_{I_j} - \inf_{I_j} f} &\leq \sum_{j = 1}^{n} \abs{I_j} \para{\sup_{i_j} g - \inf_{I_j} g} \\
+        &= \upperSum\para{g, \partition'} - \lowerSum\para{g, \partition'} \\
+        &< \epsilon.
+    \end{align*}
+
+    For \(I_j \subset J\), then we have
+    \[
+        \para{\sup_{I_j} f - \inf_{I_j} f} \leq 2M,
+    \]
+    and hence
+    \[
+        \sum_{j = 1, I_j \subset J}^{n} \abs{I_j} \para{\sup_{I_j} f - \inf_{I_j} f} \leq 2M \sum_{j = 1, I_j \subset J}^{n} \abs{I_j} \leq 2M \cdot \sum_{k = 1}^{N} \abs{J_k} < 2M \epsilon.
+    \]
+
+    Hence,
+    \[
+        \upperSum\para{f, \partition'} - \lowerSum\para{f, \partition'} < \para{2< + 1} \epsilon.
+    \]
+\end{proof}
+
+Now we prove \autoref{prop:piecewise-continuous-integrable} (Piecewise Continuous Functions are Integrable).
+
+\begin{proof}[of \autoref{prop:piecewise-continuous-integrable} (Piecewise Continuous Functions are Integrable)]
+    By \autoref{lem:individual-points-retains-integrable}, we have that the restrictions \(\rightbar{f}_{\ccintv{x_{j - 1}}{x_j}}\) is integrable, and
+    \[
+        \int_{x_{j - 1}}^{x_j} f\para{x} \Diff x = \int_{x_{j - 1}}^{x_j} \overline{f_j} \para{x} \Diff x.
+    \]
+
+    To conclude, we use \autoref{prop:additivity-integral} (Additivity of the Integral).
+
+    To calculate the integrals, we have
+    \[
+        \lowerSum\para{f, \partition'} \leq \int_{a}^{b} f\para{x} \Diff x \leq \upperSum\para{f, \partition'} \text{ and } \lowerSum\para{f, \partition'} \leq \int_{a}^{b} g\para{x} \Diff x \leq \upperSum\para{g, \partition'}.
+    \]
+
+    Hence,
+    \begin{align*}
+        \int_{a}^{b} f\para{x} \Diff x - \int_{a}^{b} g\para{x} \Diff x &\leq \upperSum\para{f, \partition'} - \upperSum\para{g, \partition'} + \upperSum\para{g, \partition'} - \lowerSum\para{g, \partition'} \\
+        &< \epsilon + \epsilon.
     \end{align*}
 \end{proof}
+
+\begin{proposition}[Additivity of Integral]
+    \label{prop:additivity-integral}%
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR`'}\) and \(c \in \oointv{a}{b}\). Then \(f\) is integrable, if and only if the restrictions \(\rightbar{f}_{\ccintv{a}{c}}\) and \(\rightbar{f}_{\ccintv{c}{b}}\) are integrable, and furthermore
+    \[
+        \int_{a}^{b} f\para{x} \Diff x = \int_{a}^{c} \rightbar{f}_{\ccintv{a}{c}} \para{x} \Diff x + \int_{c}^{b} \rightbar{f}_{\ccintv{c}{b}} \para{x} \Diff x.
+    \]
+\end{proposition}
