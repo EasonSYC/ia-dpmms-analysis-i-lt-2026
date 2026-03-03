@@ -646,11 +646,40 @@ Now we prove \autoref{prop:piecewise-continuous-integrable} (Piecewise Continuou
 \end{proposition}
 
 \begin{proof}[of Finite Case]
-    \textbf{\textcolor{red}{Please wait until I finish Sheet 3.}}
+    Without loss of generality, let the set of discontinuities be \(D = \brce{d_1 < \cdots < d_k}\). We consider the restrictions
+    \[
+        \rightbar{f}_{\ccintv{a}{d_1}}, \rightbar{f}_{\ccintv{d_1}{d_2}}, \ldots, \rightbar{f}_{\ccintv{d_{k - 1}}{d_k}}, \rightbar{f}_{\ccintv{d_k}{b}}.
+    \]
+
+    It suffices to show that all these functions are integrable, since if so, we would have
+    \begin{align*}
+        &\phantom{=} \int_{a}^{d_1} \rightbar{f}_{\ccintv{a}{d_1}} \para{x} \Diff x + \int_{d_1}^{d_2} \rightbar{f}_{\ccintv{d_1}{d_2}} \para{x} \Diff x + \cdots + \int_{d_{k - 1}}^{d_k} \rightbar{f}_{\ccintv{d_{k - 1}}{d_k}} \para{x} \Diff x + \int_{d_k}^{b} \rightbar{f}_{\ccintv{d_k}{b}} \para{x} \Diff x \\
+        &= \int_{a}^{d_1} f\para{x} \Diff x + \int_{d_1}^{d_2} f\para{x} \Diff x + \cdots + \int_{d_{k - 1}}^{d_k} f\para{x} \Diff x + \int_{d_k}^{b} f\para{x} \Diff x \\
+        &= \int_{a}^{b} f\para{x} \Diff x.
+    \end{align*}
+
+    Let \(\functiondomain{g}{\ccintv{c}{d}}{\RR}\) be one of the restrictions above, which may only be discontinuous at \(c\) or \(d\). Since \(f\) is bounded, we have \(g\) is bounded, so let \(M = \sup_{x \in \ccintv{c}{d}} \abs{g\para{x}}\). Then for any subset \(S \subseteq \ccintv{c}{d}\), we have
+    \[
+        \osc_{x \in S} f\para{x} \leq 2M.
+    \]
+
+    Let \(\epsilon > 0\) be arbitrary. Take \(\delta < \min\brce{\frac{d - c}{2}, \frac{\epsilon}{6M}}\), and the restriction of \(g\) on \(\ccintv{c + \delta}{d - \delta}\). \(g\) is continuous on this interval, and hence integrable. Let \(\partition'\) be a partition on \(\ccintv{c + \delta}{d - \delta}\), such that
+    \[
+        \upperSum\para{g, \partition'} - \lowerSum\para{g, \partition'} < \frac{\epsilon}{3}.
+    \]
+
+    Now, we consider the partition \(\partition = \brce{c, d} \cup \partition'\). Then, we have
+    \begin{align*}
+        \upperSum\para{g, \partition} - \lowerSum\para{g, \partition} &= \delta \cdot \osc_{x \in \ccintv{c}{c + \delta}} f\para{x} + \delta \cdot \osc_{x \in \ccintv{d - \delta}{d}} f\para{x} + \para{\upperSum\para{g, \partition'} - \lowerSum\para{g, \partition'}} \\
+        &< \frac{\epsilon}{6M} \cdot 2M + \frac{\epsilon}{6M} \cdot 2M + \frac{\epsilon}{3} \\
+        &= \epsilon.
+    \end{align*}
+
+    This shows \(g\) is integrable, and hence by the above argument showing \(f\) is integrable as well.
 \end{proof}
 
 \begin{remark}
-    If \(f\) is Riemann integrable, then \(D\) must be uncountable. However, there are functions with \(D\) uncountable, yet \(f\) is Riemann integrable. One example of this is the indicator of the Cantor Set. (Since the Cantor Set has zero Lebesgue Measure.)
+    If \(f\) is not Riemann integrable, then \(D\) must be uncountable. However, there are functions with \(D\) uncountable, yet \(f\) is Riemann integrable. One example of this is the indicator of the Cantor Set. (Since the Cantor Set has zero Lebesgue Measure.)
 \end{remark}
 
 We finally prove several fundamental properties of integrals. However, before this, we first write down lemmas on supremum/infimums and upper/lower sums.
