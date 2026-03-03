@@ -481,7 +481,7 @@ This is a very strong result. It not only guarantees integrability, but also tel
 
     Hence,
     \[
-        \upperSum\para{f, \partition'} - \lowerSum\para{f, \partition'} < \para{2< + 1} \epsilon.
+        \upperSum\para{f, \partition'} - \lowerSum\para{f, \partition'} < \para{2M + 1} \epsilon.
     \]
 \end{proof}
 
@@ -509,8 +509,341 @@ Now we prove \autoref{prop:piecewise-continuous-integrable} (Piecewise Continuou
 
 \begin{proposition}[Additivity of Integral]
     \label{prop:additivity-integral}%
-    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR`'}\) and \(c \in \oointv{a}{b}\). Then \(f\) is integrable, if and only if the restrictions \(\rightbar{f}_{\ccintv{a}{c}}\) and \(\rightbar{f}_{\ccintv{c}{b}}\) are integrable, and furthermore
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) and \(c \in \oointv{a}{b}\). Then \(f\) is integrable, if and only if the restrictions \(\rightbar{f}_{\ccintv{a}{c}}\) and \(\rightbar{f}_{\ccintv{c}{b}}\) are integrable, and furthermore
     \[
         \int_{a}^{b} f\para{x} \Diff x = \int_{a}^{c} \rightbar{f}_{\ccintv{a}{c}} \para{x} \Diff x + \int_{c}^{b} \rightbar{f}_{\ccintv{c}{b}} \para{x} \Diff x.
     \]
 \end{proposition}
+
+\begin{proof}
+    We set \(I_L = \ccintv{a}{c}\), \(I_R = \ccintv{c}{b}\), and let the restrictions be
+    \[
+        f_L = \rightbar{f}_{I_L}, \quad f_R = \rightbar{f}_{I_R}.
+    \]
+
+    If \(f\) is integrable, then there is some partition \(\partition\) of \(\ccintv{a}{b}\), such that
+    \[
+        \upperSum\para{f, \partition} - \lowerSum\para{f, \partition} < \epsilon.
+    \]
+
+    We add the point \(c\) into the partition (and it will only decrease the difference, so does not change the inequality), and let \(c = x_l\) for some \(l \in \brce{0, \ldots, n}\). Then, the partition can be split up into two parts
+    \[
+        \partition = \partition_L \cup \partition_R,
+    \]
+    where
+    \[
+        \partition_L = \brce{a = x_0, x_1, \ldots, x_{l - 1}, x_l = c}, \quad \partition_R = \brce{c = x_l, x_{l + 1}, \ldots, x_{n - 1}, x_n = b},
+    \]
+    which are partitions of \(I_L = \ccintv{a}{c}\) and \(I_R = \ccintv{c}{b}\) respectively.
+    
+    Furthermore,
+    \[
+        \upperSum\para{f, \partition} = \upperSum\para{f_L, \partition_L} + \upperSum\para{f_R, \partition_R}
+    \]
+    and similarly,
+    \[
+        \lowerSum\para{f, \partition} = \lowerSum\para{f_L, \partition_L} + \lowerSum\para{f_R, \partition_R}.
+    \]
+
+    Summing these two, we have
+    \[
+        \para{\upperSum\para{f_L, \partition_L} - \lowerSum\para{f_L, \partition_L}} + \para{\upperSum\para{f_R, \partition_R} - \lowerSum\para{f_R, \partition_R}} < \epsilon,
+    \]
+    and hence both differences are \(< \epsilon\) since they are non-negative. This tells us \(f_L\) and \(f_R\) are both integrable.
+
+    Suppose now that \(f_L\) and \(f_R\) are integrable. Now, suppose \(\partition_L\) and \(\partition_R\) are partitions of \(I_L\) and \(I_R\) respectively, such that
+    \[
+        \upperSum\para{f_L, \partition_L} - \lowerSum\para{f_L, \partition_L} < \epsilon, \quad \upperSum\para{f_R, \partition_R} - \lowerSum\para{f_R, \partition_R} < \epsilon.
+    \]
+
+    The union of the two partitions \(\partition = \partition_L \cup \partition_R\) is a partition of the whole interval \(\ccintv{a}{b}\).
+
+    Therefore,
+    \[
+        \upperSum\para{f, \partition} - \lowerSum\para{f, \partition} < \epsilon,
+    \]
+    and hence we may conclude \(f\) is integrable in \(\ccintv{a}{b}\).
+
+    To show the equality of the integrals holds, we have for any \(\epsilon > 0\), that there are partitions \(\partition_L\) and \(\partition_R\), respectively, that
+    \[
+        \int_{a}^{b} f\para{x} \Diff x \geq \lowerSum\para{f_L, \partition_L} + \lowerSum\para{f_R, \partition_R} \geq \int_{a}^{c} f_L\para{x} \Diff x + \int_{c}^{b} f_R\para{x} \Diff x - 2\epsilon,
+    \]
+    and similarly,
+    \[
+        \int_{a}^{b} f\para{x} \Diff x \leq \upperSum\para{f_L, \partition_L} + \upperSum\para{f_R, \partition_R} \leq \int_{a}^{c} f_L\para{x} \Diff x + \int_{c}^{b} f_R\para{x} \Diff x + 2\epsilon.
+    \]
+
+    Therefore,
+    \[
+        \abs{\int_{a}^{b} f\para{x} \Diff x - \para{\int_{a}^{c} f_L\para{x} \Diff x + \int_{c}^{b} f_R\para{x} \Diff x}} < 2 \epsilon.
+    \]
+
+    Therefore, the integrals are equal, as desired.
+\end{proof}
+
+\autoref{ex:thomae-function} will show a function which is not monotone or piecewise continuous, but is still integrable.
+
+\begin{example}[Thomae's Function / Popcorn Function]
+    \label{ex:thomae-function}%
+    Thomae's Function is defined as
+    \[
+        \function{f}{\ccintv{0}{1}}{\RR}{x}{\begin{cases}
+            \frac{1}{q}, & x \in \QQ, x = \frac{p}{q}, \gcd\brce{p, q} = 1, \\
+            0, & x \notin \QQ.
+        \end{cases}}
+    \]
+
+    Since \(\RR \setminus \QQ\) is dense in \(\RR\), we have
+    \[
+        \lowerSum\para{f, \partition} = 0
+    \]
+    for any partition \(\partition\) of \(\ccintv{0}{1}\), and hence \(\lowerI\para{f} = 0\).
+
+    We claim \(f\) is integrable, so we want to show that for any \(\epsilon > 0\), there is some partition \(\partition\) such that \(\upperSum\para{f, \partition} < \epsilon\).
+
+    We pick \(N \in \NN\), such that \(\frac{1}{N} < \epsilon\). Consider the set of points
+    \[
+        X_N = \set{x \in \ccintv{0}{1}}{f\para{x} \geq \frac{1}{N}}.
+    \]
+
+    Note that this set is finite, since
+    \[
+        X_N \subseteq \set{\frac{p}{q}}{1 \leq q \leq N, 0 \leq p \leq q}.
+    \]
+
+    Therefore, we let
+    \[
+        X_N = \brce{y_1, \ldots, y_M}
+    \]
+    for some finite \(M \in \NN\). Now, define a partition \(\partition\), such that:
+    \begin{enumerate}
+        \item each \(y_k\) is in some subinterval of \(P\); and
+        \item these subintervals have length \(< \frac{\epsilon}{M}\).
+    \end{enumerate}
+
+    Computing the upper Riemann sum, we have
+    \begin{align*}
+        \upperSum\para{f, \partition} &= \sum_{I \in \partition} \abs{I} \cdot \sup_{x \in I} f\para{x} \\
+        &= \sum_{I \in \partition, I \cap X_N \neq \emptyset} \abs{I} \cdot \sup_{x \in I} f\para{x} + \sum_{I \in \partition, I \cap X_N \neq \emptyset} \abs{I} \cdot \sup_{x \in I} f\para{x} \\
+        &\leq \sum_{I \in \partition, I \cap X_N \neq \emptyset} \abs{I} + \frac{1}{N} \cdot \sum_{I \in \partition, I \cap X_N = \emptyset} \abs{I} \\
+        &\leq M \cdot \frac{\epsilon}{M} + \frac{1}{N} \cdot 1 \\
+        &< 2 \epsilon.
+    \end{align*}
+
+    Comparing to the \autoref{ex:non-riemann-integrable-fn} (Dirichlet Function), these function may both look `crazy' -- yet Riemann integrability properties differ -- but there are reasons for that.
+\end{example}
+
+\begin{proposition}[Countable Discontinuities implies Integrability]
+    \label{prop:countable-discontinuity-implies-integrability}%
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be bounded, and let its set of discontinuities be
+    \[
+        D = \set{x \in \ccintv{a}{b}}{f \text{ is not continuous at }x}.
+    \]
+    
+    If \(D\) is finite or countable, then \(f\) is Riemann integrable.
+    
+    \textit{[The countably infinite case is non-examinable.]}
+\end{proposition}
+
+\begin{proof}[of Finite Case]
+    \textbf{\textcolor{red}{Please wait until I finish Sheet 3.}}
+\end{proof}
+
+\begin{remark}
+    If \(f\) is Riemann integrable, then \(D\) must be uncountable. However, there are functions with \(D\) uncountable, yet \(f\) is Riemann integrable. One example of this is the indicator of the Cantor Set. (Since the Cantor Set has zero Lebesgue Measure.)
+\end{remark}
+
+We finally prove several fundamental properties of integrals. However, before this, we first write down lemmas on supremum/infimums and upper/lower sums.
+
+\begin{lemma}[Properties of Supremum and Infimum]
+    \label{lem:properties-supremum-infimum}%
+    Let \(I\) be a closed and bounded interval, and \(\functiondomain{f, g}{I}{\RR}\) be bounded.
+
+    \begin{enumerate}
+        \item \textit{Supremums and Infimums preserve Weak Inequalities.} If \(f\para{x} \leq g\para{x}\) for all \(x\), then
+        \[
+            \sup_{x \in I} f\para{x} \leq \sup_{x \in I} g\para{x}
+            \quad \text{and} \quad
+            \inf_{x \in I} f\para{x} \leq \inf_{x \in I} g\para{x}.
+        \]
+        \item \textit{Supremum of the Negative is Negative the Infimum.} We have
+        \[
+            \sup_{x \in I} \para{-f\para{x}} = -\inf_{x \in I} f\para{x}
+            \quad \text{and} \quad
+            \inf_{x \in I} \para{-f\para{x}} = -\sup_{x \in I} f\para{x}.
+        \]
+
+        \item \textit{Supremums and Infimums preserve Scalar Multiples.} For any \(\lambda > 0\), we have
+        \[
+            \sup_{x \in I} \para{\lambda f\para{x}} = \lambda \sup_{x \in I} f\para{x}
+            \quad \text{and} \quad
+            \inf_{x \in I} \para{\lambda f\para{x}} = \lambda \inf_{x \in I} f\para{x}
+        \]
+
+        \item \textit{Triangular Inequalities.} We have
+        \[
+            \sup_{x \in I} \para{f\para{x} + g\para{x}} \leq \sup_{x \in I} f\para{x} + \sup_{x \in I} g\para{x}
+            \quad \text{and} \quad
+            \inf_{x \in I} \para{f\para{x} + g\para{x}} \geq \inf_{x \in I} f\para{x} + \inf_{x \in I} g\para{x}.
+        \]
+        
+        \item \textit{Absolute Values.} We have
+        \[
+            \sup_{x \in I} \abs{f\para{x}} - \inf_{x \in I} \abs{f\para{x}} \leq \sup_{x \in I} f\para{x} - \inf_{x \in I} f\para{x}.
+        \]
+
+        \item \textit{Squares.} We have
+        \[
+            \sup_{x \in I} \para{f\para{x}^2} - \inf_{x \in I} \para{f\para{x}^2} \leq 2 \sup_{x \in I} \abs{f\para{x}} \para{\sup_{x \in I} f\para{x} - \inf_{x \in I} f\para{x}}.
+        \]
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    \begin{enumerate}
+        \item We prove for the supremum. We have for any \(x \in I\), that
+        \[
+            \sup_{x \in I} g\para{x} \geq g\para{x} \geq f\para{x},
+        \]
+        and hence
+        \[
+            \sup_{x \in I} f\para{x} \leq \sup_{x \in I} g\para{x}.
+        \]
+
+        \item We prove for the supremum. On one hand, we have
+        \begin{align*}
+            &\phantom{\implies} \forall x \in I: \inf_{x \in I} f\para{x} \leq f\para{x} \\
+            &\implies \forall x \in I: - \inf_{x \in I} f\para{x} \geq -f\para{x} \\
+            &\implies - \inf_{x \in I} f\para{x} \geq \sup_{x \in I} \para{- f\para{x}}.
+        \end{align*}
+
+        On the other hand, we have
+        \begin{align*}
+            &\phantom{\implies} \forall x \in I: \sup_{x \in I} \para{- f\para{x}} \geq -f\para{x} \\
+            &\implies \forall x \in I: f\para{x} \geq -\sup_{x \in I} \para{- f\para{x}}  \\
+            &\implies \inf f\para{x} \geq - \sup_{x \in I} \para{- f\para{x}} \\
+            &\implies - \inf f\para{x} \leq \sup_{x \in I} \para{- f\para{x}}.
+        \end{align*}
+
+        \item We prove for the supremum. On one hand, we have
+        \begin{align*}
+            &\phantom{\implies} \forall x \in I: \sup_{x \in I} \para{\lambda f\para{x}} \geq \lambda f\para{x} \\
+            &\implies \forall x \in I: \frac{1}{\lambda} \cdot \sup_{x \in I} \para{\lambda f\para{x}} \geq f\para{x} \\
+            &\implies \frac{1}{\lambda} \cdot \sup_{x \in I} \para{\lambda f\para{x}} \geq \sup_{x \in I} f\para{x} \\
+            &\implies \sup_{x \in I} \para{\lambda f\para{x}} \geq \lambda \sup_{x \in I} f\para{x}.
+        \end{align*}
+
+        On the other hand, we have
+        \begin{align*}
+            &\phantom{\implies} \forall x \in I: \sup_{x \in I} \para{f\para{x}} \geq f\para{x} \\
+            &\implies \forall x \in I: \lambda \sup_{x \in I} \para{f\para{x}} \geq \lambda f\para{x} \\
+            &\implies \lambda \sup_{x \in I} \para{f\para{x}} \geq \sup_{x \in I} \para{\lambda f\para{x}}.
+        \end{align*}
+
+        \item We prove for the supremum. We have for any \(x \in I\), that
+        \[
+            \sup_{x \in I} f\para{x} \geq f\para{x}
+            \quad \text{and} \quad
+            \sup_{x \in I} g\para{x} \geq g\para{x}.
+        \]
+
+        Summing them, we have
+        \[
+            \sup_{x \in I} f\para{x} + \sup_{x \in I} g\para{x} \geq f\para{x} + g\para{x},
+        \]
+        and hence
+        \[
+             \sup_{x \in I} f\para{x} + \sup_{x \in I} g\para{x} \geq \sup_{x \in I} \para{f\para{x} + g\para{x}}.
+        \]
+    \end{enumerate}
+    \textbf{\textcolor{red}{The remaining proofs will come next lecture.}}
+\end{proof}
+
+\begin{lemma}[Properties of Upper and Lower Sum]
+    \label{lem:properties-upper-lower-sum}%
+    Let \(\functiondomain{f, g}{I}{\RR}\) be bounded, and let \(\partition\) be a partition of \(\ccintv{a}{b}\).
+
+    \begin{enumerate}
+        \item \textit{Upper and Lower Sums preserve Weak Inequalities.} If \(f\para{x} \leq g\para{x}\) for all \(x\), then
+        \[
+            \upperSum\para{f, \partition} \leq \upperSum\para{g, \partition}
+            \quad \text{and} \quad
+            \lowerSum\para{f, \partition} \leq \lowerSum\para{g, \partition}.
+        \]
+
+        \item \textit{Upper Sum of the Negative is Negative the Lower Sum.} We have
+        \[
+            \upperSum\para{-f, \partition} = -\lowerSum\para{f, \partition}
+            \quad \text{and} \quad
+            \lowerSum\para{-f, \partition} = -\upperSum\para{f, \partition}.
+        \]
+
+        \item \textit{Upper and Lower Sums preserve Scalar Multiples}. For any \(\lambda > 0\), we have
+        \[
+            \upperSum\para{\lambda f, \partition} = \lambda \upperSum\para{f, \partition}
+            \quad \text{and} \quad
+            \lowerSum\para{\lambda f, \partition} = \lambda \lowerSum\para{f, \partition}.
+        \]
+
+        \item \textit{Triangular Inequalities.} We have
+        \[
+            \upperSum\para{f + g, \partition} \leq \upperSum\para{f, \partition} + \upperSum\para{g, \partition}
+            \quad \text{and} \quad
+            \lowerSum\para{f + g, \partition} \geq \lowerSum\para{f, \partition} + \lowerSum\para{g, \partition}.
+        \]
+
+        \item \textit{Absolute Values.} We have
+        \[
+            \upperSum\para{\abs{f}, \partition} - \lowerSum\para{\abs{f}, \partition} \leq \upperSum\para{f, \partition} - \lowerSum\para{f, \partition}.
+        \]
+
+        \item \textit{Squares.} We have
+        \[
+            \upperSum\para{f^2, \partition} - \lowerSum\para{f^2, \partition} \leq 2 \sup_{x \in I} \abs{f\para{x}} \para{\upperSum\para{f, \partition} - \lowerSum\para{f, \partition}}.
+        \]
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    These are direct consequences of application of \autoref{lem:properties-supremum-infimum}.
+\end{proof}
+
+\begin{lemma}[Integrals preserve Weak Inequalities]
+    \label{lem:integral-preserve-weak-inequalities}%
+    Let \(\functiondomain{f, g}{\ccintv{a}{b}}{\RR}\) be integrable. If \(f \leq g\), then
+    \[
+        \int_{a}^{b} f\para{x} \Diff x \leq \int_{a}^{b} g\para{x} \Diff x.
+    \]
+\end{lemma}
+
+\begin{lemma}[Integration is Linear]
+    \label{lem:integral-linear}%
+    Let \(\functiondomain{f, g}{\ccintv{a}{b}}{\RR}\) be integrable. For any \(\lambda \in \RR\), we have
+    \[
+        \int_{a}^{b} \lambda f\para{x} \Diff x = \lambda \int_{a}^{b} f\para{x} \Diff x,
+    \]
+    and
+    \[
+        \int_{a}^{b} \brac{f\para{x} + g\para{x}} \Diff x = \int_{a}^{b} f\para{x} \Diff x + \int_{a}^{b} g\para{x} \Diff x.
+    \]
+\end{lemma}
+
+\begin{lemma}[Integral of Absolute Value and Triangular Inequality]
+    \label{lem:integral-absolute-value-triangular-inequality}%
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be integrable. Then \(\abs{f}\) is integrable, and
+    \[
+        \abs{\int_{a}^{b} f\para{x} \Diff x} \leq \int_{a}^{b} \abs{f\para{x}} \Diff x.
+    \]
+\end{lemma}
+
+\begin{lemma}[Product of Integrable Functions is Integrable]
+    \label{lem:integral-product}%
+    Let \(\functiondomain{f, g}{\ccintv{a}{b}}{\RR}\) be integrable. Then the product \(f\para{x} \cdot g\para{x}\) is integrable.
+\end{lemma}
+
+\begin{remark}
+    We do not have a formula for this case, and it is generally the case that
+    \[
+        \int_{a}^{b} f\para{x} g\para{x} \Diff x \neq \int_{a}^{b} f\para{x} \Diff x \cdot \int_{a}^{b} g\para{x} \Diff x.
+    \]
+\end{remark}
