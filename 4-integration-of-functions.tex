@@ -784,8 +784,28 @@ We finally prove several fundamental properties of integrals. However, before th
         \[
              \sup_{x \in I} f\para{x} + \sup_{x \in I} g\para{x} \geq \sup_{x \in I} \para{f\para{x} + g\para{x}}.
         \]
+
+        \item If \(f \geq 0\) on all of \(I\), or \(f \leq 0\) on all of \(I\), this is an immediate consequence of (2).
+        
+        If \(\inf_{x \in I} f\para{x} \leq 0 \leq \sup_{x \in I} f\para{x}\), then
+        \begin{align*}
+            \sup_{x \in I} \abs{f\para{x}} - \inf_{x \in I} \abs{f\para{x}} &\leq \sup_{x \in I} \abs{f \para{x}} \\
+            &\leq \max \brce{\sup_{x \in I} f\para{x}, \sup_{x \in I} \para{-f\para{x}}} \\
+            &\leq \sup_{x \in I} f\para{x} + \sup_{x \in I} \para{-f\para{x}} \\
+            &= \sup_{x \in I} f\para{x} - \inf_{x \in I} f\para{x}.
+        \end{align*}
+
+        \item We have
+        \[
+            f\para{x}^2 - f\para{y}^2 = \para{f\para{x} - f\para{y}} \para{f\para{x} + f\para{y}}
+        \]
+        for all \(x, y \in I\). Therefore,
+        \begin{align*}
+            \sup_{x \in I} f\para{x}^2 - \inf_{y \in I} f\para{x}^2 &\leq \sup_{x \in I} \inf_{y \in I} \para{\brac{f\para{x} - f\para{y}} \brac{f\para{x} + f\para{y}}} \\
+            &\leq 2 \sup_{x \in I} \abs{f\para{x}} \sup_{x \in I} \inf_{y \in I} \brac{f\para{x} - f\para{y}} \\
+            &= 2 \sup_{x \in I} \abs{f\para{x}} \para{\sup_{x \in I} f\para{x} - \inf_{x \in I} f\para{x}}.
+        \end{align*}
     \end{enumerate}
-    \textbf{\textcolor{red}{The remaining proofs will come next lecture.}}
 \end{proof}
 
 \begin{lemma}[Properties of Upper and Lower Sum]
@@ -845,6 +865,10 @@ We finally prove several fundamental properties of integrals. However, before th
     \]
 \end{lemma}
 
+\begin{proof}
+    From \autoref{lem:properties-upper-lower-sum}, we have \(\upperSum\para{f, \partition} \leq \upperSum\para{g, \partition}\), so taking infimum over all partitions gives us the result as desired.
+\end{proof}
+
 \begin{lemma}[Integration is Linear]
     \label{lem:integral-linear}%
     Let \(\functiondomain{f, g}{\ccintv{a}{b}}{\RR}\) be integrable. For any \(\lambda \in \RR\), we have
@@ -857,6 +881,21 @@ We finally prove several fundamental properties of integrals. However, before th
     \]
 \end{lemma}
 
+\begin{proof}
+    Scalar multiplication arises from properties 2 and 3 of \autoref{lem:properties-upper-lower-sum}, dealing with the cases \(\lambda > 0\) and \(\lambda < 0\) (and the trivial case \(\lambda = 0\)) separately.
+    
+    For the sum, we have from property 4 of \autoref{lem:properties-upper-lower-sum}, that
+    \[
+        \lowerSum\para{f, \partition} + \lowerSum\para{g, \partition} \leq \lowerSum\para{f + g, \partition} \leq \upperSum\para{f + g, \partition} \leq \upperSum\para{f, \partition} + \upperSum\para{g, \partition}.
+    \]
+
+    Therefore,
+    \[
+        \lowerI\para{f} + \lowerI\para{g} \leq \lowerI\para{f + g} \leq \upperI\para{f + g} \leq \upperI\para{f} + \upperI\para{g},
+    \]
+    and we have the result as desired.
+\end{proof}
+
 \begin{lemma}[Integral of Absolute Value and Triangular Inequality]
     \label{lem:integral-absolute-value-triangular-inequality}%
     Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be integrable. Then \(\abs{f}\) is integrable, and
@@ -865,10 +904,46 @@ We finally prove several fundamental properties of integrals. However, before th
     \]
 \end{lemma}
 
+\begin{proof}
+    For any partition \(\partition\) of \(\ccintv{a}{b}\), from \autoref{lem:properties-upper-lower-sum}, Property 5, we have
+    \[
+        \upperSum\para{\abs{f}, \partition} - \lowerSum\para{\abs{f}, \partition} \leq \upperSum\para{f, \partition} - \lowerSum\para{f, \partition},
+    \]
+    so if \(f \para{x}\) is integrable, we have \(\abs{f \para{x}}\) is integrable.
+
+    Since we have
+    \[
+        - \abs{f \para{x}} \leq f\para{x} \leq \abs{f\para{x}},
+    \]
+    by \autoref{lem:integral-preserve-weak-inequalities}, we have
+    \[
+        -\int_{a}^{b} \abs{f\para{x}} \Diff x \leq \int_{a}^{b} f\para{x} \Diff x \leq \int_{a}^{b} \abs{f\para{x}} \Diff x,
+    \]
+    and hence
+    \[
+        \abs{\int_{a}^{b} f\para{x}} \Diff x \leq \int_{a}^{b} \abs{f\para{x}} \Diff x.
+    \]
+\end{proof}
+
 \begin{lemma}[Product of Integrable Functions is Integrable]
     \label{lem:integral-product}%
     Let \(\functiondomain{f, g}{\ccintv{a}{b}}{\RR}\) be integrable. Then the product \(f\para{x} \cdot g\para{x}\) is integrable.
 \end{lemma}
+
+\begin{proof}
+    Note that
+    \[
+        f\para{x} g\para{x} = \frac{1}{4} \brac{\para{f\para{x} + g\para{x}}^2 - \para{f\para{x} - g\para{x}}^2},
+    \]
+    so it suffices to show that \(f\para{x}\) is integrable implies \(f\para{x}^2\) is integrable.
+
+    For any partition \(\partition\) of \(\ccintv{a}{b}\), we have
+    \[
+        \upperSum\para{f^2, \partition} - \lowerSum\para{f^2, \partition} \leq 2 \sup_{x \in I} \abs{f\para{x}} \para{\upperSum\para{f, \partition} - \lowerSum\para{f, \partition}}.
+    \]
+
+    But note \(2 \sup_{x \in I} \abs{f\para{x}}\) is a constant.
+\end{proof}
 
 \begin{remark}
     We do not have a formula for this case, and it is generally the case that
@@ -876,3 +951,175 @@ We finally prove several fundamental properties of integrals. However, before th
         \int_{a}^{b} f\para{x} g\para{x} \Diff x \neq \int_{a}^{b} f\para{x} \Diff x \cdot \int_{a}^{b} g\para{x} \Diff x.
     \]
 \end{remark}
+
+\subsection{Fundamental Theorem of Calculus}
+
+We will think about the `integral of \(f\)' in this section as a function \(F\), known as the \emph{indefinite integral}, or the \emph{antiderivative} (the name will make sense later), which is the value of the integral of \(f\) over a varying upper bound
+\[
+    \function{F}{\ccintv{a}{b}}{\RR}{x}{\int_{a}^{x} f\para{t} \Diff t.}
+\]
+
+If we want \(F\) to be differentiable, it must be continuous.
+
+\begin{proposition}[Indefinite Integral is Continuous]
+    \label{prop:indef-integral-continuous}%
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be Riemann integrable, and let \(F\) be defined as above. Then \(F\) is continuous on \(\ccintv{a}{b}\).
+\end{proposition}
+
+\begin{proof}
+    We have
+    \begin{align*}
+        \abs{F\para{x + h} - F\para{x}} &= \abs{\int_{a}^{x + h} f\para{t} \Diff t - \int_{a}^{x} f\para{t} \Diff t} \\
+        &= \abs{\int_{x}^{x + h} f\para{t} \Diff t} \\
+        &\leq \int_{x}^{x + h} \abs{f\para{t}} \Diff t \\
+        &\leq \sup_{x \in \ccintv{a}{b}} \abs{f} \cdot \abs{h}.
+    \end{align*}
+
+    Hence, as \(h \to 0\), \(\abs{F\para{x + h} - F\para{x}} \to 0\), showing \(F\) is continuous.
+\end{proof}
+
+\begin{theorem}[Fundamental Theorem of Calculus, Part I]
+    \label{thm:ftc-1}%
+    If \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) is Riemann Integrable, and \(f\) is continuous at \(x_0\), then the \(F\) defined above is differentiable at \(x_0\), and
+    \[
+        F'\para{x_0} = \rightbar{\DiffOp{x}}_{x = x_0} \int_{a}^{x} f\para{t} \Diff t = f\para{x_0}.
+    \]
+\end{theorem}
+
+\begin{proof}
+    We use \autoref{lem:linear-approximation-differentiability}, i.e., we study the function
+    \[
+        \epsilon\para{h} = \frac{F\para{x_0 + h} - F\para{x_0} - h f\para{x_0}}{\abs{h}},
+    \]
+    and we want to show that \(\epsilon \to 0\) as \(h \to 0\). We have
+    \begin{align*}
+        \abs{F\para{x_0 + h} - F\para{x_0} - h f\para{x_0}} &= \abs{\int_{x_0}^{x_0 + h} f\para{t} \Diff t - h \cdot f\para{x_0}} \\
+        &= \abs{\int_{x_0}^{x_0 + h} \para{f\para{t} - f\para{x_0}} \Diff t} \\
+        &\leq \int_{x_0}^{x_0 + h} \abs{f\para{t} - f\para{x_0}} \Diff t \\
+        &\leq \sup_{t \in \ccintv{0}{h}} \abs{f\para{x_0 + t} - f\para{x_0}} \cdot \abs{h}.
+    \end{align*}
+
+    Hence,
+    \[
+        \abs{\epsilon\para{h}} \leq \sup_{t \in \ccintv{0}{h}} \abs{f\para{x_0 + t} - f\para{x_0}} \to 0,
+    \]
+    as \(t \to 0\) due to continuity, as desired.
+\end{proof}
+
+\begin{example}[Non-Differentiable Indefinite Integral]
+    \label{ex:non-differentiable-indefinite-integral}%
+    Take \(\ccintv{a}{b} = \ccintv{-1}{1}\), with
+    \[
+        f\para{x} = \begin{cases}
+            -1, & x \leq 0, \\
+            1, & x > 0.
+        \end{cases}
+    \]
+
+    \(f\) is piecewise continuous, and \(F\) defined above is given by
+    \[
+        F\para{x} = \int_{-1}^{x} f\para{x} \Diff x = \begin{cases}
+            -x - 1, & x \leq 0 \\
+            x - 1, & x \geq 0
+        \end{cases}
+        = \abs{x} - 1.
+    \]
+
+    \(F\) is continuous on \(\ccintv{-1}{1}\), as expected from \autoref{prop:indef-integral-continuous}, but it is not differentiable at \(x = 0\).
+\end{example}
+
+\begin{figure}[ht!]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = {\(x\)},
+            ylabel = {\(y\)},
+            xmin = -1.25, xmax = 1.25,
+            ymin = -1.25, ymax = 1.25,
+            xtick = \empty,
+            ytick = \empty,
+            domain = -1:1,
+            samples = 100,
+            clip = false
+        ]
+            \addplot[no marks, dashed] coordinates {(-1, -1) (0, -1)};
+            \addplot[no marks, dashed] coordinates {(0, 1) (1, 1)};
+
+            \node[right] at (axis cs:1, 1) {\(f\para{x}\)};
+            \node[below right] at (axis cs:1, 0) {\(F\para{x}\)};
+
+            \addplot[no marks, thick] coordinates {(-1, 0) (0, -1)};
+            \addplot[no marks, thick] coordinates {(0, -1) (1, 0)};
+
+            \addplot[only marks, mark=*, mark size=1pt] coordinates {(-1, -1) (-1, 0) (0, -1) (1, 0) (1, 1)};
+            \addplot[only marks, mark=o, mark size=1pt] coordinates {(0, 1)};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Function with Non-Differentiable Indefinite Integral}
+    \label{fig:function-non-differentiable-indefinite-integral}%
+\end{figure}
+
+\begin{corollary}[Integral of Continuous Derivative]
+    \label{cor:integral-continuous-derivative}%
+    If \(f\para{x} = g'\para{x}\) is continuous on \(\ccintv{a}{b}\), then
+    \[
+        F\para{x} = \int_{a}^{x} f\para{t} \Diff t = g\para{x} - g\para{a}
+    \]
+    for all \(x \in \ccintv{a}{b}\).
+\end{corollary}
+
+\begin{proof}
+    By \autoref{thm:ftc-1} (Fundamental Theorem of Calculus), we have
+    \[
+        \para{F\para{x} - g\para{x}}' = 0
+    \]
+    on \(\ccintv{a}{b}\), and hence \(F\para{x} - g\para{x}\) is a constant, and in other words,
+    \[
+        F\para{x} - g\para{x} = F\para{a} - g\para{a}.
+    \]
+
+    Hence, since \(F\para{a} = 0\), we have
+    \[
+        F\para{x} = g\para{x} - g\para{a}
+    \]
+    for all \(x \in \ccintv{a}{b}\).
+\end{proof}
+
+The continuity condition is very strong -- but we can generalise the condition to a much stronger result.
+
+\begin{theorem}[Fundamental Theorem of Calculus, Part II]
+    \label{thm:ftc-2}%
+    If \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) is Riemann integrable, and \(f\para{x} = F'\para{x}\) for some differentiable \(\functiondomain{F}{\ccintv{a}{b}}{\RR}\), then we have
+    \[
+        \int_{a}^{b} f\para{t} \Diff t = \int_{a}^{b} F'\para{t} \Diff t = F\para{b} - F\para{a}.
+    \]
+\end{theorem}
+
+\begin{proof}
+    Let \(\partition\) be any partition. Applying \autoref{thm:mean-value-thm} (Mean Value Theorem) to \(F\) on intervals of this partition gives
+    \[
+        F\para{x_j} - F\para{x_{j - 1}} = f\para{t_j} \cdot \para{x_j - x_{j - 1}}
+    \]
+    for some \(t_j \in \oointv{x_j}{x_{j - 1}}\).
+
+    Summing over all \(j\)s, we have
+    \[
+        F\para{b} - F\para{a} = \sum_{j = 1}^{n} f\para{t_j} \para{x_j - x_{j - 1}}.
+    \]
+
+    Since we have \(\inf_{x \in \ccintv{x_{j - 1}}{x_j}} \leq f\para{t_j} \leq \sup_{x \in \ccintv{x_{j - 1}}{x_j}}\), this means
+    \[
+        \lowerSum\para{f, \partition} \leq F\para{b} - F\para{a} \leq \upperSum\para{f, \partition}.
+    \]
+
+    Hence, we must have
+    \[
+        \lowerI\para{f} \leq F\para{b} - F\para{a} \leq \upperI\para{f},
+    \]
+    and since \(f\) is integrable, we have
+    \[
+        I\para{f} = F\para{b} - F\para{a},
+    \]
+    as desired.
+\end{proof}
