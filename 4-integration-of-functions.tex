@@ -1123,3 +1123,227 @@ The continuity condition is very strong -- but we can generalise the condition t
     \]
     as desired.
 \end{proof}
+
+Now, we may use this, with our known differentiation rules, to derive some (already familiar) integration rules.
+
+\begin{proposition}[Integration by Parts]
+    \label{prop:integration-by-parts}%
+    Let \(f, g \in \contClass{1} \para{\ccintv{a}{b}}\) be continuously differentiable. Then
+    \[
+        \int_{a}^{b} f'\para{x} g\para{x} \Diff x = f\para{b} g\para{b} - f\para{a} g\para{a} - \int_{a}^{b} f\para{x} g'\para{x} \Diff x.
+    \]
+\end{proposition}
+
+\begin{proof}
+    This follows from \autoref{thm:ftc-2} (Fundamental Theorem of Calculus) and by product rule. We have
+    \[
+        f'\para{x} g\para{x} = \para{f\para{x} g\para{x}}' - f\para{x} g'\para{x}.
+    \]
+
+    Integrate over \(\ccintv{a}{b}\), and using \autoref{thm:ftc-2} gives the result as desired.
+\end{proof}
+
+\begin{proposition}[Integration by Substitution]
+    \label{prop:integration-by-substitution}%
+    Let \(f \in \contClass{0} \para{\ccintv{a}{b}}\) be continuous, and \(\functiondomain{g}{\ccintv{\alpha}{\beta}}{\ccintv{a}{b}}\) be continuously differentiable, with \(g\para{\alpha} = a\), and \(g\para{\beta} = b\). Then
+    \[
+        \int_{a}^{b} f\para{x} \Diff x = \int_{\alpha}^{\beta} f\para{g\para{t}} g'\para{t} \Diff t.
+    \]
+\end{proposition}
+
+\begin{proof}
+    Set
+    \[
+        F\para{x} = \int_{a}^{x} f\para{t} \Diff t.
+    \]
+    
+    Then \(F\) is well-defined and differentiable, by \autoref{thm:ftc-1} (Fundamental Theorem of Calculus). Set \(\functiondomain{h = F \circ g}{\ccintv{a}{b}}{\RR}\). Then \(h\) is differentiable, and by \autoref{prop:chain-rule} (Chain Rule), we have
+    \[
+        h'\para{t} = F'\para{g\para{t}} g'\para{t}.
+    \]
+
+    Hence, by applying \autoref{thm:ftc-2} twice, we have
+    \begin{align*}
+        \int_{a}^{b} f\para{x} \Diff x &= F\para{b} - F\para{a} \\
+        &= F\para{g\para{\beta}} - F\para{g\para{\alpha}} \\
+        &= h\para{\beta} - h\para{\alpha} \\
+        &= \int_{\alpha}^{\beta} h'\para{t} \Diff t \\
+        &= \int_{\alpha}^{\beta} f\para{g\para{t}} g'\para{t} \Diff t.
+    \end{align*}
+\end{proof}
+
+A very important application of this is providing another remainder for Taylor's Theorem.
+
+\begin{theorem}[Taylor's Theorem with Integral Remainder]
+    \label{thm:taylor-thm-integral-remainder}%
+    Let \(\functiondomain{f}{\ccintv{a}{a + h}}{\RR}\) be \(n\) times continuously differentiable on \(\oointv{a}{a + h}\). Then the \emph{Integral Form of the Remainder} gives the Taylor remainder in the form
+    \begin{align*}
+        R_{n, f, a} \para{h} &= \frac{h^{n}}{\para{n - 1}!} \cdot \int_{0}^{1} \para{1 - t}^{n - 1} f^{\para{n}} \para{a + th} \Diff t \\
+        &= \frac{1}{\para{n - 1}!} \cdot \int_{0}^{h} \para{h - u}^{n - 1} f^{\para{n}} \para{a + u} \Diff u.
+    \end{align*}
+\end{theorem}
+
+\begin{remark}
+    By \autoref{thm:extreme-value} (Extreme Value Theorem), there is some \(M_n = \sup_{x \in \ccintv{0}{h}} \abs{f^{\para{n}} \para{a + h}}\), since \(f^{\para{n}}\) is continuous. Then, we have
+    \[
+        \abs{R_{n, f, a} \para{h}} \leq \abs{\frac{h^n}{\para{n - 1}!} \cdot M_n \cdot \int_{0}^{1} \para{1 - t}^{n - 1} \Diff t} = \frac{\abs{h^n}}{n!} \cdot M_n
+    \]
+
+    If we knew \(\sup_{n \geq 0} M_n = M < \plusinfty\), we have
+    \[
+        \abs{R_{n, f, a} \para{h}} \leq \frac{M \abs{h^n}}{n!} \to 0
+    \]
+    as \(n \to \infty\), for all \(\abs{h} < 1\). Therefore, \(f\) is analytic around \(a\).
+\end{remark}
+
+\begin{remark}[on Complex Differentiability]
+    This version generalises to complex functions as well. However, the reason we do not discuss much differentiability and Taylor Theorems in \(
+    \CC\), is because if the function is differentiable over \(\CC\), then it is smooth, and this comes with the estimates on \(M_n\), telling us that all smooth functions on \(\CC\) are analytic.
+\end{remark}
+
+\begin{proof}
+    Using \autoref{prop:integration-by-parts} (Integration by Parts), we have
+    \begin{align*}
+        &\phantom{=} \frac{1}{\para{n - 1}!} \cdot \int_{0}^{h} \para{h - u}^{n - 1} f^{\para{n}} \para{a + u} \Diff u \\
+        &= - h^{n - 1} \cdot \frac{f^{\para{n - 1}} \para{a}}{\para{n - 1}!} + \frac{1}{\para{n - 2}!} \int_{0}^{h} \para{h - u}^{n - 2} f^{\para{n - 1}} \para{a + u} \Diff u \\
+        &= \cdots \\
+        &= - \sum_{k = 1}^{n - 1} \frac{f^{\para{k}} \para{a}}{k!} \cdot h^k + \int_{0}^{h} f'\para{a + u} \Diff u \\
+        &= - \sum_{k = 0}^{n - 1} \frac{f^{\para{k}} \para{a}}{k!} \cdot h^k + f\para{a + h},
+    \end{align*}
+    as desired.
+\end{proof}
+
+We may start from this point and give alternative proofs of the mean-value form of the remainders.
+
+\begin{theorem}[Mean Value Theorem for Integrals]
+    \label{thm:mvt-integrals}%
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be continuous. Then there is some \(c \in \oointv{a}{b}\), such that
+    \[
+        \int_{a}^{b} f\para{x} \Diff x = f\para{c} \cdot \para{b - a}.
+    \]
+\end{theorem}
+
+\begin{proof}
+    Applying \autoref{thm:mean-value-thm} (Mean Value Theorem) to the function
+    \[
+        F\para{x} = \int_{a}^{x} f\para{t} \Diff t,
+    \]
+    there is some \(c \in \oointv{a}{b}\), giving
+    \[
+        \frac{F\para{b} - F\para{a}}{b - a} = F'\para{c}.
+    \]
+
+    Using \autoref{thm:ftc-1} (Fundamental Theorem of Calculus), we may get the result as desired.
+\end{proof}
+
+There is a more general version of this theorem, just like how Cauchy's Mean Value Theorem is more general than the Mean Value Theorem.
+
+\begin{theorem}[Cauchy Mean Value Theorem for Integrals]
+    \label{thm:cauchy-mvt-integrals}%
+    Let \(\functiondomain{f, g}{\ccintv{a}{b}}{\RR}\) be continuous, and \(g\para{x} \neq 0\) for all \(x \in \ccintv{a}{b}\). Then there is some \(c \in \oointv{a}{b}\), such that
+    \[
+        \int_{a}^{b} f\para{x} g\para{x} \Diff x = f\para{c} \cdot \int_{a}^{b} g\para{x} \Diff x.
+    \]
+\end{theorem}
+
+\begin{proof}
+    Applying \autoref{thm:cauchy-mvt} (Cauchy Mean Value Theorem) to the functions
+    \[
+        F\para{x} = \int_{a}^{x} f\para{t} g\para{t} \Diff t \quad \text{and} \quad G\para{x} = \int_{a}^{x} g\para{t} \Diff t,
+    \]
+    there is some \(c \in \oointv{a}{b}\), giving
+    \[
+        \para{F\para{b} - F\para{a}} G'\para{c} = F'\para{c} \para{G\para{b} - G\para{a}}.
+    \]
+
+    Hence, using \autoref{thm:ftc-1} (Fundamental Theorem of Calculus), we may simplify this result, as desired.
+\end{proof}
+
+We prove the two forms of the Lagrange remainder, but with slightly stronger conditions.
+
+\begin{proof}[of \autoref{thm:taylor-thm-langrange-remainder} (Lagrange Form of the Remainder), assuming continuity of \(f^{\para{n}}\)]
+    Let \(g\para{t} = \para{1 - t}^{n - 1}\). Then using \autoref{thm:taylor-thm-integral-remainder} (Integral Form of the Remainder) and \autoref{thm:cauchy-mvt-integrals} (Cauchy Mean Value Theorem for Integrals), there is some \(\theta \in \oointv{0}{1}\), such that
+    \begin{align*}
+        R_{n, f, a} \para{h} &= \frac{h^n}{\para{h - 1}!} f^{\para{n}} \para{a + \theta h} \int_{0}^{1} \para{1 - t}^n \Diff t \\
+        &= \frac{h^n}{n!} \cdot f^{\para{n}} \para{a + \theta h}.
+    \end{align*}
+\end{proof}
+
+\begin{proof}[of \autoref{thm:taylor-thm-cauchy-remainder} (Cauchy Form of the Remainder), assuming continuity of \(f^{\para{n}}\)]
+    Let \(g\para{t} = 1\) be constant. Then using \autoref{thm:taylor-thm-integral-remainder} (Integral Form of the Remainder) and \autoref{thm:mvt-integrals} (Mean Value Theorem for Integrals), there is some \(\theta \in \oointv{0}{1}\), such that
+    \begin{align*}
+        R_{n, f, a} \para{h} &= \frac{h^n}{\para{h - 1}!} \para{1 - \theta}^{h} f^{\para{n}} \para{a + \theta h} \int_{0}^{1} \Diff t \\
+        &= \frac{h^n}{\para{n - 1}!} \cdot \para{1 - \theta}^{n - 1} \cdot f^{\para{n}} \para{a + \theta h}.
+    \end{align*}
+\end{proof}
+
+\begin{proof}[of \autoref{thm:taylor-thm-schlomich-remainder} (Schl\"{o}mich Form of the Remainder), asusming continuitiy of \(f^{\para{n}}\)]
+    Let \(g\para{t} = \para{1 - t}^{p - 1}\). Then using \autoref{thm:taylor-thm-integral-remainder} (Integral Form of the Remainder), and \autoref{thm:cauchy-mvt-integrals} (Cauchy Mean Value Theorem for Integrals), there is some \(\theta \in \oointv{0}{1}\), such that
+    \begin{align*}
+        R_{n, f, a} \para{h} &= \frac{h^n}{\para{n - 1}!} \cdot \int_{0}^{1} \para{1 - t}^{n - 1} f^{\para{n}} \para{a + th} \Diff t \\
+        &= \frac{h^n}{\para{n - 1}!} \cdot \int_{0}^{1} \brac{f^{\para{n}} \para{a + th} \cdot \para{1 - t}^{n - p}} \cdot \para{1 - t}^{p - 1} \Diff t \\
+        &= \frac{h^n}{\para{n - 1}!} \cdot f^{\para{n}} \para{a + \theta h} \cdot \para{1 - \theta}^{n - p} \cdot \int_{0}^{1} \para{1 - t}^{p - 1} \Diff t \\
+        &= \frac{h^n}{p \para{n - 1}!} \cdot \para{1 - \theta}^{n - p} f^{\para{n}} \para{a + \theta h}.
+    \end{align*}
+\end{proof}
+
+\subsection{Improper Integrals}
+
+\begin{definition}[Improper Integrals over an Unbounded Domain]
+    Suppose \(\functiondomain{f}{\cointv{a}{\plusinfty}}{\RR}\) is integrable on \(\ccintv{a}{R}\), for all \(R \in \cointv{a}{\plusinfty}\). We let
+    \[
+        \function{F}{\cointv{a}{\plusinfty}}{\RR}{R}{\int_{a}^{R} f\para{x} \Diff x}.
+    \]
+
+    Then we say the improper integral
+    \[
+        \int_{a}^{\plusinfty} f\para{x} \Diff x
+    \]
+    exists/converges, if \(L = \lim_{R \to \plusinfty} F\para{x}\) exists and is finite, and we set
+    \[
+        \int_{a}^{\plusinfty} f\para{x} \Diff x = L.
+    \]
+
+    Similarly, we may define \(\int_{\minusinfty}^{b} g\para{x} \Diff x\).
+
+    If \(\functiondomain{f}{\RR}{\RR}\) is such that \(\int_{a}^{\plusinfty} f\para{x} \Diff x = L_1\) and \(\int_{\minusinfty}^{a} f\para{x} \Diff x = L_2\), for some \(a \in \RR\), then we say the improper integral
+    \[
+        \int_{\minusinfty}^{\plusinfty} f\para{x} \Diff x
+    \]
+    exists, and we set
+    \[
+        \int_{\minusinfty}^{\plusinfty} f\para{x} \Diff x = \int_{\minusinfty}^{a} f\para{x} \Diff x + \int_{a}^{\plusinfty} f\para{x} \Diff x = \lim_{R_1 \to \plusinfty} \int_{a}^{R_1} f\para{x} \Diff x + \lim_{R_2 \to \minusinfty} \int_{R_2}^{a} f\para{x} \Diff x.
+    \]
+\end{definition}
+
+\begin{remark}
+    This is different from taking the limit
+    \[
+        \lim_{R \to \plusinfty} \brac{\int_{-R}^{R} f\para{x} \Diff x}.
+    \]
+
+    If the above indefinite integral exists, then this new limit (the Cauchy Principle Value) exists and is equal -- but not necessarily otherwise.
+\end{remark}
+
+\begin{examples}[of Improper Integrals over Unbounded Intervals]
+    \label{ex:improper-integrals-unbounded-intervals}%
+    \begin{itemize}
+        \item The integral
+        \[
+            \int_{1}^{\plusinfty} \frac{1}{x^p} \Diff x = \lim_{R \to \plusinfty} \int_{1}^{R} \frac{1}{x^p} \Diff x
+        \]
+        exists, if and only if \(p > 1\).
+
+        \item We have
+        \[
+            \int_{2}^{\plusinfty} \frac{1}{x \log^2 x} \Diff x = \lim_{R \to \plusinfty} \int_{2}^{R} \frac{\Diff x}{x \log^2 x} = \frac{1}{\log 2}.
+        \]
+
+        \item The \emph{Gaussian Integral} is given by
+        \[
+            \int_{\minusinfty}^{\plusinfty} e^{- x^2} \Diff x.
+        \]
+
+        However, its antiderivative is difficult to calculate. We can use alternative methods to show this converges.
+    \end{itemize}
+\end{examples}
