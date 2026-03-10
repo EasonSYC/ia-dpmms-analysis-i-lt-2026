@@ -918,7 +918,7 @@ We will see different versions of Taylor's Theorems, all of which aims to quanti
     is indeed an error term, as desired.
 \end{proof}
 
-The first proof almost certainly much easier than the proof below, but this proof generalises the remainder into a more general case, which would be introduced in \autoref{thm:taylor-thm-cauchy-remainder} (Cauchy Form) and \autoref{thm:taylor-thm-schlomich-remainder} (Schl\"{o}milch Form).
+The first proof almost certainly much easier than the proof below, but this proof generalises the remainder into a more general case, which would be introduced in \autoref{thm:taylor-thm-cauchy-remainder} (Cauchy Form) and \autoref{thm:taylor-thm-schlomilch-remainder} (Schl\"{o}milch Form).
 
 \begin{proof}[(Second Proof)]
     Without loss of generality, set \(a = 0\). Let
@@ -1072,7 +1072,7 @@ This looks like an even worse estimate, since \(\para{n - 1}!\) on the denominat
 Finally, just for completeness, we introduce the name for the general form when we do not specify the value of \(p\).
 
 \begin{theorem}[Taylor's Theorem with Schl\"{o}milch Remainder]
-    \label{thm:taylor-thm-schlomich-remainder}%
+    \label{thm:taylor-thm-schlomilch-remainder}%
     Let \(\functiondomain{f}{\ccintv{a}{a + h}}{\RR}\) be \(n\) times differentiable on \(\oointv{a}{a + h}\) and \(\para{n - 1}\) times continuously differentiable on \(\ccintv{a}{a + h}\). Then the \emph{Schl\"{o}milch Form of the Remainder} gives the Taylor remainder in the form, for any fixed \(p > 0\),
     \[
         R_{n, f, a} \para{h} = \frac{h^{n}}{p \para{n - 1}!} \cdot \para{1 - \theta}^{n - p} f^{\para{n}} \para{a + \theta h},
