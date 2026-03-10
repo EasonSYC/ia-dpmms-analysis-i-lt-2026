@@ -1355,3 +1355,365 @@ We prove the two forms of the Lagrange remainder, but with slightly stronger con
         However, its antiderivative is difficult to calculate (and is in fact non-elementary). We can use alternative methods to show this converges.
     \end{itemize}
 \end{examples}
+
+\subsubsection{Tests on Convergence of Improper Integrals}
+
+We introduce some tests for improper integrals. However, the most obvious test for infinite series in fact fails for improper integrals!
+
+\begin{remark}
+    Recall the \(n\)th term test for series, introduced in \autoref{prop:ser-test-nth-term}. However, this does not necessarily work for improper integrals, even if the function is continuous. Formally,
+    \[
+        \int_{a}^{\plusinfty} f\para{x} \Diff x \text{ exists} \notimplies \lim_{x \to \plusinfty} f\para{x} = 0.
+    \]
+
+    Indeed, if the limit exists, then it must be zero, but the limit does necessarily exist.
+\end{remark}
+
+We first investigate the convergence of improper integrals of non-negative functions, so we introduce \autoref{prop:fn-monotone-convergence-theorem} for monotone functions.
+
+\begin{proposition}[Monotone Convergence Theorem for Functions]
+    \label{prop:fn-monotone-convergence-theorem}%
+    Let \(\functiondomain{f}{\cointv{a}{\plusinfty}}{\RR}\) be increasing.
+
+    \begin{itemize}
+        \item If \(f\) is bounded above, then we have
+        \[
+            \lim_{x \to \plusinfty} f\para{x} \Diff x = \sup_{x \geq a} f\para{x}.
+        \]
+        \item If \(f\) is not bounded above, then we have
+        \[
+            \lim_{x \to \plusinfty} f\para{x} \Diff x = \plusinfty.
+        \]
+    \end{itemize}
+
+    Similarly, let \(\functiondomain{g}{\cointv{a}{\plusinfty}}{\RR}\) be decreasing.
+
+    \begin{itemize}
+        \item If \(g\) is bounded below, then we have
+        \[
+            \lim_{x \to \plusinfty} g\para{x} \Diff x = \inf_{x \geq a} g\para{x}.
+        \]
+        \item If \(g\) is not bounded below, then we have
+        \[
+            \lim_{x \to \plusinfty} g\para{x} \Diff x = \minusinfty.
+        \]
+    \end{itemize}
+\end{proposition}
+
+\begin{proof}
+    We prove this for increasing functions, and the decreasing case is similar.
+
+    Let \(\epsilon > 0\). If \(f\para{x}\) is bounded above, by the definition of the supremum, there is some \(R \in \cointv{a}{\plusinfty}\), such that
+    \[
+        \sup_{x \geq a} f\para{x} - \epsilon < f\para{R} \leq \sup_{x \geq a} f\para{x}.
+    \]
+
+    This means that for all \(x > R\), we have
+    \[
+        \sup_{x \geq a} f\para{x} - \epsilon < f\para{R} \leq f\para{x} \leq \sup_{x \geq a} f\para{x},
+    \]
+    so in particular,
+    \[
+        \abs{f\para{x} - \sup_{x \geq a} f\para{x}} < \epsilon,
+    \]
+    showing the limit as desired.
+
+    However, if \(f\para{x}\) is not bounded above, for any threshold \(M > 0\), there is some \(R \in \cointv{a}{\plusinfty}\), such that
+    \[
+        f\para{R} > M.
+    \]
+
+    Hence, for all \(x > R\), we have
+    \[
+        f\para{x} \geq f\para{R} > M,
+    \]
+    which shows divergence to \(\plusinfty\) as desired.
+\end{proof}
+
+\begin{proposition}[Comparison Test for Integrals]
+    \label{prop:int-test-comparison}%
+    Let \(\functiondomain{f, g}{\cointv{a}{\plusinfty}}{\RR}\) be integrable over any finite interval \(\ccintv{a}{R}\) for \(R \geq a\), and satisfies that \(0 \leq f\para{x} \leq g\para{x}\) for all \(x \in \cointv{a}{\plusinfty}\). Then the following holds.
+
+    \begin{enumerate}
+        \item If the improper integral of \(g\) to infinity exists, then so does the improper integral of \(f\), and we have
+        \[
+            \int_{a}^{\plusinfty} f\para{x} \Diff x \leq \int_{a}^{\plusinfty} g\para{x} \Diff x.
+        \]
+
+        \item If the improper integral of \(f\) to infinity diverges (to infinity), then so does the improper integral of \(g\).
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Let
+    \[
+        F\para{R} = \int_{a}^{R} f\para{x} \Diff x \quad \text{and} \quad G\para{R} = \int_{a}^{R} g\para{x} \Diff x.
+    \]
+
+    Note that \(F\) and \(G\) are both increasing, with
+    \[
+        0 \leq F\para{R} \leq G\para{R}.
+    \]
+
+    \begin{enumerate}
+        \item Since \(G\) converges, it is bounded above, and therefore so is \(F\). Hence, \(F\) converges, and since limit preserve weak inequalities, we have
+        \[
+            \lim_{R \to \plusinfty} F\para{R} = \int_{a}^{\plusinfty} f\para{x} \Diff x \leq \int_{a}^{\plusinfty} g\para{x} \Diff x = \lim_{R \to \plusinfty} G\para{R}.
+        \]
+        
+
+        \item Since \(f \geq 0\), from \autoref{prop:fn-monotone-convergence-theorem}, we have
+        \[
+            \lim_{R \to \plusinfty} F\para{R} = \plusinfty
+        \]
+        necessarily, and in particular, \(F\) is not bounded above.
+
+        But we have \(G\para{R} \geq F\para{R}\), so \(G\) is not bounded above either, and hence
+        \[
+            \lim_{R \to \plusinfty} G\para{R} = \int_{a}^{\plusinfty} g\para{x} \Diff x = \plusinfty.
+        \]
+    \end{enumerate}
+\end{proof}
+
+\begin{example}[Application of Direct Comparison Test]
+    \label{ex:app-direct-comparison-test}%
+    We return to the Gaussian integral. For \(x \geq 1\), we have \(x^2 \geq x\), so \(e^{-x^2} \leq e^{-x}\).
+
+    Therefore, we have
+    \[
+        \int_{1}^{\plusinfty} e^{-x^2} \Diff x \leq \int_{1}^{\plusinfty} e^{-x} \Diff x = \brac{- \frac{1}{e^x}}^{\plusinfty}_{1} = \frac{1}{e}.
+    \]
+
+    Hence,
+    \[
+        \int_{\minusinfty}^{\plusinfty} e^{-x^2} \Diff x = 2 \int_{0}^{\plusinfty} e^{-x^2} \Diff x = 2 \int_{1}^{\plusinfty} e^{-x^2} \Diff x + 2 \int_{0}^{1} e^{-x^2} \Diff x
+    \]
+    so the improper integral converges, as desired.
+\end{example}
+
+\begin{proposition}[Ratio Test for Integrals]
+    \label{prop:int-test-ratio}%
+    Let \(\functiondomain{f, g}{\cointv{a}{\plusinfty}}{\RR}\) be integrable over any finite interval \(\ccintv{a}{R}\) for \(R \geq a\), satisfying \(f\para{x}, g\para{x} \geq 0\) for all \(x \in \cointv{a}{\plusinfty}\), and
+    \[
+        \lim_{x \to \plusinfty} \frac{f\para{x}}{g\para{x}} = L \in \oointv{0}{\plusinfty}.
+    \]
+
+    Then,
+    \[
+        \int_{a}^{\plusinfty} f\para{x} \Diff x \text{ exists} \iff \int_{a}^{\plusinfty} g\para{x} \Diff x \text{ exists}.
+    \]
+\end{proposition}
+
+\begin{proof}
+    \textbf{\textcolor{red}{To-Do.}} % TODO!!!
+\end{proof}
+
+\begin{remark}
+    If \(\lim_{x \to \plusinfty} \frac{f\para{x}}{g\para{x}} = 0\), then \(f\para{x} \leq g\para{x}\) for sufficiently large \(x\), and hence by comparison test,
+    \[
+        \int_{a}^{\plusinfty} g\para{x} \Diff x \text{ exists} \implies \int_{a}^{\plusinfty} f\para{x} \Diff x \text{ exists},
+    \]
+    but not necessarily the other direction.
+
+    Similarly, if \(\lim_{x \to \plusinfty} \frac{f\para{x}}{g\para{x}} = \plusinfty\), then \(f\para{x} \geq g\para{x}\) for sufficiently large \(x\), and hence by comparison test,
+    \[
+        \int_{a}^{\plusinfty} f\para{x} \Diff x \text{ exists} \implies \int_{a}^{\plusinfty} g\para{x} \Diff x \text{ exists},
+    \]
+    but not necessarily the other direction either.
+\end{remark}
+
+\begin{examples}[Application of Ratio Test]
+    \label{ex:application-ratio-test}%
+    \begin{itemize}
+        \item For the function \(e^{-x^2}\), we have
+        \[
+            \lim_{x \to \plusinfty} \frac{e^{-x^2}}{e^{-x}} = 0,
+        \]
+        and we have
+        \[
+            \int_{0}^{\plusinfty} e^{-x} \Diff x = 1 < \plusinfty.
+        \]
+
+        Therefore, the improper integral of \(e^{-x^2}\) converges.
+
+        \item For the function we have \(\frac{x}{x^4 + 1}\), we have
+        \[
+            \lim_{x \to \plusinfty} \frac{\frac{x}{x^4 + 1}}{\frac{1}{x^3}} = 1.
+        \]
+
+        Hence, using \autoref{prop:int-test-ratio} (Ratio Test), since the improper integral of \(\frac{1}{x^3}\) converges, so does the improper integral of \(\frac{x}{x^4 + 1}\).
+    \end{itemize}
+\end{examples}
+
+\begin{proposition}[Root Test for Integrals]
+    \label{prop:int-test-root}%
+    Let \(\functiondomain{f}{\cointv{a}{\plusinfty}}{\RR}\) be non-negative and integrable on \(\ccintv{a}{R}\) for any \(R \geq a\), and suppose the limit
+    \[
+        L = \lim_{x \to \plusinfty} f\para{x}^{\frac{1}{x}}
+    \]
+    exists. Considering the improper integral
+    \[
+        \int_{a}^{\plusinfty} f\para{x} \Diff x,
+    \]
+    \begin{itemize}
+        \item if \(L < 1\), the improper integral converges; 
+        \item if \(L > 1\), the improper integral diverges.
+    \end{itemize}
+\end{proposition}
+
+\begin{proof}
+    \textbf{\textcolor{red}{To-Do.}} % TODO!!!
+\end{proof}
+
+There is a similar notion of Cauchy sequences in improper integrals.
+
+\begin{proposition}[Cauchy-Ness is Equivalent to Convergence of Improper Integrals]
+    \label{prop:int-cauchy}%
+    Let \(\functiondomain{f}{\cointv{a}{\plusinfty}}{\RR}\) be integrable on \(\ccintv{a}{R}\) for any \(R \geq a\). Then the improper integral
+    \[
+        \int_{a}^{\plusinfty} f\para{x} \Diff x
+    \]
+    converges, if and only if for any \(\epsilon > 0\), there is some \(R \geq a\), such that for all \(R \leq x_1 \leq x_2\), we have
+    \[
+        \abs{\int_{x_1}^{x_2} f\para{x} \Diff x} < \epsilon.
+    \]
+\end{proposition}
+
+\begin{proof}
+    \textbf{\textcolor{red}{To-Do.}} % TODO!!!
+\end{proof}
+
+Similar to when we did series, there is a notion of `absolute convergence' for integrals -- which allows us to extend the above tests to improper integrals of functions whose values are not necessarily positive.
+
+\begin{proposition}[Absolute Convergence implies Convergence for Improper Integrals]
+    \label{prop:int-absolute-convergence}%
+    Let \(\functiondomain{f}{\cointv{a}{\plusinfty}}{\RR}\) be integrable on \(\ccintv{a}{R}\) for any \(R \geq a\). Then if the improper integral of its absolute value
+    \[
+        \int_{a}^{\plusinfty} \abs{f\para{x}} \Diff x
+    \]
+    converges, then so does the improper integral
+    \[
+        \int_{a}^{\plusinfty} f\para{x} \Diff x.
+    \]
+\end{proposition}
+
+\begin{proof}[using \autoref{prop:int-test-comparison} (Comparison Test)]
+    We note that we have
+    \[
+        0 \leq f\para{x} + \abs{f\para{x}} \leq 2 \abs{f\para{x}},
+    \]
+    so the result follow from \autoref{prop:int-test-comparison} (Comparison Test for Improper Integrals).
+\end{proof}
+
+\begin{proof}[using \autoref{prop:int-cauchy} (Cauchy is equivalent to Convergence)]
+    \textbf{\textcolor{red}{To-Do.}} % TODO!!!
+\end{proof}
+
+The final test is the Dirichlet test, which investigates the integral of the product of two functions.
+
+\begin{proposition}[Dirichlet Test for Improper Integrals]
+    \label{prop:int-test-dirichlet}%
+    Let \(f \in \contClass{0} \para{\cointv{a}{\plusinfty}}\) be continuous, and suppose it has a bounded antiderivative
+    \[
+        F\para{x} = \int_{a}^{x} f\para{t} \Diff t.
+    \]
+
+    Let \(g \in \contClass{1} \para{\cointv{a}{\plusinfty}}\) be continuously differentiable, monotone, and satisfies
+    \[
+        \lim_{x \to \plusinfty} g\para{x} = 0.
+    \]
+
+    Then the improper integral
+    \[
+        \int_{a}^{\plusinfty} f\para{x} g\para{x} \Diff x
+    \]
+    converges.
+\end{proposition}
+
+Similar to the proofs of \autoref{prop:ser-test-dirichlet} (Dirichlet Test for Infinite Series) using \autoref{lem:ser-summation-by-parts} (Summation by Parts), we use \autoref{prop:integration-by-parts} (Integration by Parts).
+
+\begin{proof}[using \autoref{prop:int-absolute-convergence} (Absolute Convergence)]
+    \textbf{\textcolor{red}{To-Do.}} % TODO!!!
+\end{proof}
+
+\begin{proof}[using \autoref{prop:int-cauchy} (Cauchy)]
+    \textbf{\textcolor{red}{To-Do.}} % TODO!!!
+\end{proof}
+
+\subsubsection{Integrals over Isolated Singularity}
+
+We now investigate another type of improper integrals.
+
+\begin{definition}[Improper Integrals over Isolated Singularity]
+    \label{def:improper-integral-isolated-singularity}%
+    Let \(\functiondomain{f}{\ocintv{a}{b}}{\RR}\), and suppose that \(f\) is integrable over all \(\ccintv{a + \delta}{b}\) for all \(0 < \delta \leq b - a\). Then, let
+    \[
+        \function{F}{\ocintv{0}{b - a}}{\RR}{\delta}{\int_{a + \delta}^{b} f\para{x} \Diff x}.
+    \]
+
+    We say the \emph{improper integral} \(\int_{a}^{b} f\para{x} \Diff x\) exists/converges, if the limit
+    \[
+        \lim_{\delta \to 0^+} F\para{\delta}
+    \]
+    exists, and we denote this value as
+    \[
+        \int_{a}^{b} f\para{x} \Diff x = \lim_{\delta \to 0^+} F\para{\delta},
+    \]
+    and we say it does not exist/diverges otherwise.
+
+    We may similarly define this for \(\functiondomain{f}{cointv{a}{b}}{\RR}\).
+
+    Let \(\functiondomain{f}{\ccintv{B}{b} \setminus \brce{a}}{\RR}\) is such that
+    \[
+        \int_{B}^{a} f\para{x} \Diff x = l_1 \quad \text{and} \quad \int_{a}^{b} f\para{x} \Diff x = l_2
+    \]
+    both converges, then we say the improper integral \(\int_{B}^{b} f\para{x} \Diff x\) exists, and we denote this value as
+    \[
+        \int_{B}^{b} f\para{x} \Diff x = l_1 + l_2.
+    \]
+\end{definition}
+
+\begin{remark}
+    Similar to the improper integral from \(\minusinfty\) to \(\plusinfty\) case, we are in fact taking two separate limits
+    \[
+        \int_{B}^{b} f\para{x} \Diff x = \lim_{\delta_1 \to 0^+} \int_{B}^{a - \delta} f\para{x} \Diff x + \lim_{\delta_2 \to 0^+} \int_{a + \delta}^{b} f\para{x} \Diff x.
+    \]
+
+    (The limit where we take both limits simultaneously is called the Cauchy Principle Value.)
+\end{remark}
+
+\begin{examples}[Improper Integrals over Isolated Singularity]
+    \label{ex:improper-integral-isolated-singularity}%
+    \begin{itemize}
+        \item We investigate the convergence of the improper integral \(\int_{0}^{1} \frac{1}{x^p} \Diff x\) for \(p > 0\). Note that
+        \[
+            \int_{\delta}^{1} \frac{1}{x^p} \Diff x = \begin{cases}
+                \log 1 - \log \delta, & p = 1, \\
+                \frac{\delta^{1 - p} - 1}{1 - p}, & p \neq 1.
+            \end{cases}
+        \]
+
+        So this integral converges if and only if \(p < 1\).
+
+        \item We have, using the substitution \(u = \log\para{1 / x}\), that
+        \[
+            \int_{0}^{\frac{1}{2}} \frac{\Diff x}{x \log\para{1 / x}^p} = \int_{\plusinfty}^{\log 2} \para{- \frac{1}{u^p}} \Diff u = \int_{\log 2}^{\plusinfty} \frac{1}{u^p} \Diff u
+        \]
+        converges if and only if \(p > 1\).
+    \end{itemize}
+\end{examples}
+
+From the examples, we see that we may use some substitution to change the improper integral with the isolated point to some improper integral to infinity. This is formally expressed in \autoref{lem:conversion-types-improper-integrals}, but this should only be regarded as a broad idea rather than a concrete lemma.
+
+\begin{lemma}[Conversion between Types of Improper Integrals]
+    \label{lem:conversion-types-improper-integrals}%
+    Let \(\functiondomain{f}{\ocintv{a}{b}}{\RR}\) be Riemann integrable on \(\cointv{a + \delta}{b}\) for all \(0 < \delta < b - a\). For some continuously differentiable bijection
+    \[
+        \functiondomain{\phi}{\cointv{c}{\plusinfty}}{\ocintv{a}{b}}
+    \]
+    which is strictly decreasing with \(\phi\para{c} = b\) and \(\lim_{t \to \plusinfty} \phi\para{t} = a\). Then
+    \[
+        \int_{a}^{b} f\para{x} \Diff x = \int_{c}^{\plusinfty} f\para{\phi\para{t}} \para{- \phi'\para{t}} \Diff t,
+    \]
+    in the sense that they either both converge (to the same value) or both diverge.
+\end{lemma}
