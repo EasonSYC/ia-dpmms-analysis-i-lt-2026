@@ -1199,19 +1199,6 @@ Next, we look at sequences with infinitely many terms that are negative.
     showing convergence indeed.
 \end{proof}
 
-\begin{proposition}[Dirichlet's Test]
-    \label{prop:ser-test-dirichlet}%
-    Let \(\para{a_n}\) be a positive, decreasing sequence of reals, and \(a_n \to 0\) as \(n \to \infty\), and \(\para{b_n}\) be another sequence (real or complex) with bounded partial sums (i.e. the partial sums form a bounded sequence). Then the resultant series
-    \[
-        \sum_{n = 1}^{\infty} a_n b_n
-    \]
-    converges.
-\end{proposition}
-
-\begin{proof}
-    See Example Sheet.
-\end{proof}
-
 We now study the idea of `signs' in the series.
 
 \begin{definition}[Absolute Convergence]
@@ -1225,10 +1212,10 @@ We now study the idea of `signs' in the series.
 
 But why do we even bother studying absolute convergence -- what is its relation with simply `convergence'?
 
-\begin{lemma}[Absolute Convergence implies Convergence]
-    \label{lem:ser-absolute-convergence-implies-convergence}%
+\begin{theorem}[Absolute Convergence implies Convergence]
+    \label{thm:ser-absolute-convergence-implies-convergence}%
     Absolute convergence implies convergence.
-\end{lemma}
+\end{theorem}
 
 \begin{remark}
     The converse is false by examining \autoref{ex:alternating-harmonic} (Alternating Harmonic Series).
@@ -1321,4 +1308,75 @@ Conditionally convergent sequences have a very different style to absolutely con
         \abs{\sum_{n = 1}^{m} a_n' - s} \leq \abs{s_N - s} + \sum_{k = N}^{\infty} \abs{a_n} \leq 2\epsilon
     \]
     where the second sum above is a `huge' overestimate of the \(\para{m - N}\) terms, (but guaranteed to be small), showing that the partial sums of the rearranged series converges to the value of the sum of the original series.
+\end{proof}
+
+Now, we introduce the final test.
+
+\begin{proposition}[Dirichlet's Test]
+    \label{prop:ser-test-dirichlet}%
+    Let \(\para{a_n}\) be a sequence (real or complex) with bounded partial sums (i.e. the partial sums form a bounded sequence), and\(\para{b_n}\) be a positive, decreasing sequence of reals, and \(b_n \to 0\) as \(n \to \infty\). Then the product series
+    \[
+        \sum_{n = 1}^{\infty} a_n b_n
+    \]
+    converges.
+\end{proposition}
+
+We introduce a useful lemma which is similar to integration by parts, and is indeed named similarly.
+
+\begin{lemma}[Summation by Parts]
+    \label{lem:ser-summation-by-parts}%
+    Let \(\para{a_n}, \para{b_n}\) be two sequences, and let
+    \[
+        S_n = \sum_{i = 1}^{n} a_n
+    \]
+    be the partial sums of \(a_n\), with the convention that \(S_0 = 0\). Then we have
+    \[
+        \sum_{j = m}^{n} a_j b_j = S_n b_n - S_{m - 1} b_m + \sum_{j = m}^{n - 1} S_j \para{b_j - b_{j + 1}}.
+    \]
+\end{lemma}
+
+\begin{proof}
+    For any \(1 \leq m \leq n\), we have
+    \begin{align*}
+        \text{Right-Hand Side} &= \sum_{j = m}^{n} S_j b_j - \sum_{j = m - 1}^{n - 1} S_j b_{j + 1} \\
+        &= \sum_{j = m}^{n} S_j b_j - \sum_{j = m}^{n} S_{j - 1} b_j \\
+        &= \sum_{j = m}^{n} \para{S_j - S_{j - 1}} b_j \\
+        &= \sum_{j = m}^{n} a_j b_j \\
+        &= \text{Left-Hand Side}
+    \end{align*}
+    as desired.
+\end{proof}
+
+\begin{proof}[using \autoref{thm:ser-absolute-convergence-implies-convergence} (Absolute Convergence)]
+    We apply the \autoref{lem:ser-summation-by-parts} for \(m = 1\), which gives
+    \[
+        \sum_{j = 1}^{n} a_j b_j = S_n b_n + \sum_{j = 1}^{n - 1} S_j \para{b_j - b_{j + 1}}.
+    \]
+
+    Let \(M\) be a bound of \(S_n\), so \(\abs{S_n} \leq M\) for all \(n \in \NN\). Therefore,
+    \[
+        0 \leq \abs{S_n b_n} \leq M b_n
+    \]
+    and hence \(S_n b_n \to 0\).
+
+    Furthermore,
+    \begin{align*}
+        \sum_{j = 1}^{n - 1} \abs{S_j \para{b_j - b_{j + 1}}} &= \sum_{j = 1}^{n - 1} \abs{S_j} \para{b_j - b_{j + 1}} \\
+        &\leq M \sum_{j = 1}^{n - 1} \para{b_j - b_{j + 1}} \\
+        &= M \para{b_1 - b_n}.
+    \end{align*}
+
+    Taking \(n \to \infty\) gives
+    \[
+        \sum_{j = 1}^{\infty} \abs{S_j \para{b_j - b_{j + 1}}} \to M b_1,
+    \]
+    and by \autoref{thm:ser-absolute-convergence-implies-convergence} (Absolute Convergence implies Convergence), the sum
+    \[
+        \sum_{j = 1}^{\infty} S_j \para{b_j - b_{j + 1}}
+    \]
+    converges. Hence, \(\sum_{j = 1}^{\infty} a_j b_j\) converges.
+\end{proof}
+
+\begin{proof}[using \autoref{thm:completeness-of-r-and-c} (Cauchy Sequences Converge)]
+    \textbf{\textcolor{red}{To-Do.}} % TODO!!!
 \end{proof}
