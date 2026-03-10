@@ -1430,6 +1430,52 @@ We first investigate the convergence of improper integrals of non-negative funct
     which shows divergence to \(\plusinfty\) as desired.
 \end{proof}
 
+Similar to the Cauchy characterisation (\autoref{thm:completeness-of-r-and-c}) of the limit of a sequence, we may characterise the limit of a function similarly as well.
+
+\begin{proposition}[Cauchy Criteria for Function Limit at Infinity]
+    \label{prop:cauchy-criteria-funciton-limit-infinity}%
+    Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\) be such that \(\infty\) is an accumulation point of \(X\). Then \(f\para{x}\) converges to some finite limit as \(x \to \infty\), if and only if
+    \[
+        \forall \epsilon > 0, \exists R > 0, \forall x_1, x_2 \in X, \abs{x_1}, \abs{x_2} > R: \abs{f\para{x_1} - f\para{x_2}} < \epsilon.
+    \]
+\end{proposition}
+
+\begin{proof}
+    Suppose that \(f\para{x} \to L \in \CC\) as \(x \to \infty\), and let \(\epsilon > 0\) be arbitrary. By the definition of a limit, for some \(R > 0\), we have
+    \[
+        \forall x \in X, \abs{x} > R: \abs{f\para{x} - L} < \frac{\epsilon}{2}.
+    \]
+
+    Hence, for all \(x_1, x_2 \in X, \abs{x_1}, \abs{x_2} > R\), we have
+    \begin{align*}
+        \abs{f\para{x_1} - f\para{x_2}} &\leq \abs{f\para{x_1} - L} + \abs{f\para{x_2} - L} \\
+        &< \frac{\epsilon}{2} + \frac{\epsilon}{2} \\
+        &= \epsilon
+    \end{align*}
+    as desired.
+
+    On the other hand, suppose that the Cauchy criteria holds. Let \(\para{z_n}_{n \in \NN}\) be a sequence on \(X\) with limit \(\infty\). Then, the sequence \(\para{f\para{z_n}}_{n \in \NN}\) is Cauchy, and hence tends to some limit \(L \in \CC\).
+
+    Now, let \(\epsilon > 0\) be arbitrary, and let \(R > 0\) be such that
+    \[
+        \forall x_1, x_2 \in X, \abs{x_1}, \abs{x_2} > R: \abs{f\para{x_1} - f\para{x_2}} < \frac{\epsilon}{2},
+    \]
+    and let \(n > 0\) be sufficiently large, such that
+    \[
+        \abs{z_n} > R \quad \text{and} \quad \abs{f\para{z_n} - L} < \frac{\epsilon}{2}
+    \]  
+
+    For any \(x \in X, \abs{x} > R\), we have
+    \begin{align*}
+        \abs{f\para{x} - L} &\leq \abs{f\para{x} - f\para{z_n}} + \abs{f\para{z_n} - L} \\
+        &< \frac{\epsilon}{2} + \frac{\epsilon}{2} \\
+        &= \epsilon
+    \end{align*}
+    as desired.
+\end{proof}
+
+Now we introduce the tests.
+
 \begin{proposition}[Comparison Test for Integrals]
     \label{prop:int-test-comparison}%
     Let \(\functiondomain{f, g}{\cointv{a}{\plusinfty}}{\RR}\) be integrable over any finite interval \(\ccintv{a}{R}\) for \(R \geq a\), and satisfies that \(0 \leq f\para{x} \leq g\para{x}\) for all \(x \in \cointv{a}{\plusinfty}\). Then the following holds.
@@ -1580,7 +1626,7 @@ There is a similar notion of Cauchy sequences in improper integrals.
 \end{proposition}
 
 \begin{proof}
-    \textbf{\textcolor{red}{To-Do.}} % TODO!!!
+    This is a direct consequence of \autoref{prop:cauchy-criteria-funciton-limit-infinity} (Cauchy Criteria for Function Limit at Infinity).
 \end{proof}
 
 Similar to when we did series, there is a notion of `absolute convergence' for integrals -- which allows us to extend the above tests to improper integrals of functions whose values are not necessarily positive.
@@ -1606,7 +1652,19 @@ Similar to when we did series, there is a notion of `absolute convergence' for i
 \end{proof}
 
 \begin{proof}[using \autoref{prop:int-cauchy} (Cauchy is equivalent to Convergence)]
-    \textbf{\textcolor{red}{To-Do.}} % TODO!!!
+    Let
+    \[
+        F\para{x} = \int_{a}^{x} f\para{t} \Diff t, \quad G\para{x} = \int_{a}^{x} \abs{f\para{t}} \Diff t.
+    \]
+
+    Hence, we have for \(x_1, x_2 \geq a\).
+    \begin{align*}
+        \abs{F\para{x_2} - F\para{x_1}} &= \abs{\int_{x_1}^{x_2} f\para{t} \Diff t} \\
+        &\leq \int_{x_1}^{x_2} \abs{f\para{t}} \Diff t \\
+        &= G\para{x_2} - G\para{x_1}.
+    \end{align*}
+
+    This shows that if \(G\) Cauchy, then \(F\) is as well. But by \autoref{prop:int-cauchy}, this means if \(G\) converges, then \(F\) converges as well, finishing the proof.
 \end{proof}
 
 The final test is the Dirichlet test, which investigates the integral of the product of two functions.
@@ -1633,7 +1691,31 @@ The final test is the Dirichlet test, which investigates the integral of the pro
 Similar to the proofs of \autoref{prop:ser-test-dirichlet} (Dirichlet Test for Infinite Series) using \autoref{lem:ser-summation-by-parts} (Summation by Parts), we use \autoref{prop:integration-by-parts} (Integration by Parts).
 
 \begin{proof}[using \autoref{prop:int-absolute-convergence} (Absolute Convergence)]
-    \textbf{\textcolor{red}{To-Do.}} % TODO!!!
+    We let
+    \[
+        F\para{x} = \int_{a}^{x} f\para{t} \Diff t, \quad H\para{x} = \int_{a}^{x} f\para{t} g\para{t} \Diff t.
+    \]
+
+    Both \(F\) and \(G\) are continuously differentiable. Hence, using  integration by parts, we have
+    \begin{align*}
+        H\para{x} &= \int_{a}^{x} F'\para{t} g\para{t} \Diff t \\
+        &= F\para{x} g\para{x} - F\para{a} g\para{a} - \int_{a}^{x} F\para{t} g'\para{t} \Diff t
+    \end{align*}
+
+    Let \(M = \sup_{x \geq a} \abs{F\para{x}}\). For the final term, we have the integral of the absolute value is
+    \begin{align*}
+        \int_{a}^{x} \abs{F\para{t} g'\para{t}} \Diff t &\leq \sup_{x \geq a} \abs{F\para{t}} \cdot \int_{a}^{x} \abs{g'\para{t}} \Diff t \\
+        &= \pm M \cdot \int_{a}^{x} g'\para{t} \Diff t \\
+        &= M \cdot \abs{g\para{a} - g\para{x}}.
+    \end{align*}
+
+    Hence, as \(x \to \plusinfty\), we have
+    \[
+        \int_{a}^{\plusinfty} \abs{F\para{t} g'\para{t}} \Diff t \leq M \cdot \abs{g\para{a}},
+    \]
+    so the improper integral of  \(\abs{F\para{t} g'\para{t}}\) converges, and hence the improper integral of \(F\para{t} g'\para{t}\) converges, by \autoref{prop:int-absolute-convergence} (Absolute Convergence of Improper Integral).
+
+    Hence, as \(x \to \infty\), \(F\para{x}\) is bounded while \(g\para{x} \to 0\), so \(F\para{x} g\para{x} \to 0\), and the final improper integral converges. So \(H\) converges, as desired.
 \end{proof}
 
 \begin{proof}[using \autoref{prop:int-cauchy} (Cauchy)]
@@ -1661,7 +1743,7 @@ We now investigate another type of improper integrals.
     \]
     and we say it does not exist/diverges otherwise.
 
-    We may similarly define this for \(\functiondomain{f}{cointv{a}{b}}{\RR}\).
+    We may similarly define this for \(\functiondomain{f}{\cointv{a}{b}}{\RR}\).
 
     Let \(\functiondomain{f}{\ccintv{B}{b} \setminus \brce{a}}{\RR}\) is such that
     \[
