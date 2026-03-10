@@ -801,7 +801,7 @@ We finally prove several fundamental properties of integrals. However, before th
         \]
         for all \(x, y \in I\). Therefore,
         \begin{align*}
-            \sup_{x \in I} f\para{x}^2 - \inf_{y \in I} f\para{x}^2 &\leq \sup_{x \in I} \inf_{y \in I} \para{\brac{f\para{x} - f\para{y}} \brac{f\para{x} + f\para{y}}} \\
+            \sup_{x \in I} f\para{x}^2 - \inf_{y \in I} f\para{y}^2 &\leq \sup_{x \in I} \inf_{y \in I} \para{\brac{f\para{x} - f\para{y}} \brac{f\para{x} + f\para{y}}} \\
             &\leq 2 \sup_{x \in I} \abs{f\para{x}} \sup_{x \in I} \inf_{y \in I} \brac{f\para{x} - f\para{y}} \\
             &= 2 \sup_{x \in I} \abs{f\para{x}} \para{\sup_{x \in I} f\para{x} - \inf_{x \in I} f\para{x}}.
         \end{align*}
@@ -1108,7 +1108,7 @@ The continuity condition is very strong -- but we can generalise the condition t
         F\para{b} - F\para{a} = \sum_{j = 1}^{n} f\para{t_j} \para{x_j - x_{j - 1}}.
     \]
 
-    Since we have \(\inf_{x \in \ccintv{x_{j - 1}}{x_j}} \leq f\para{t_j} \leq \sup_{x \in \ccintv{x_{j - 1}}{x_j}}\), this means
+    Since we have \(\inf_{x \in \ccintv{x_{j - 1}}{x_j}} f\para{x} \leq f\para{t_j} \leq \sup_{x \in \ccintv{x_{j - 1}}{x_j}} f\para{x}\), this means
     \[
         \lowerSum\para{f, \partition} \leq F\para{b} - F\para{a} \leq \upperSum\para{f, \partition}.
     \]
@@ -1157,7 +1157,7 @@ Now, we may use this, with our known differentiation rules, to derive some (alre
         F\para{x} = \int_{a}^{x} f\para{t} \Diff t.
     \]
     
-    Then \(F\) is well-defined and differentiable, by \autoref{thm:ftc-1} (Fundamental Theorem of Calculus). Set \(\functiondomain{h = F \circ g}{\ccintv{a}{b}}{\RR}\). Then \(h\) is differentiable, and by \autoref{prop:chain-rule} (Chain Rule), we have
+    Then \(F\) is well-defined and differentiable, by \autoref{thm:ftc-1} (Fundamental Theorem of Calculus). Set \(\functiondomain{h = F \circ g}{\ccintv{\alpha}{\beta}}{\RR}\). Then \(h\) is differentiable, and by \autoref{prop:chain-rule} (Chain Rule), we have
     \[
         h'\para{t} = F'\para{g\para{t}} g'\para{t}.
     \]
