@@ -1,1 +1,239 @@
 \section{Sequence and Series of Functions}
+
+\begin{definition}[Sequence of Functions]
+    \label{def:seq-of-fn}%
+    We say \(\para{f_n}_{n \in \NN} = \para{f_1, f_2, \ldots}\) is a \emph{sequence of \(\CC\)-valued functions on \(X \subseteq \CC\)}, if we have \(\functiondomain{f_n}{X}{\CC}\) for each \(n \in \NN\).
+\end{definition}
+
+\begin{definition}[Pointwise Convergence]
+    \label{def:pointwise-convergence}%
+    If, for any \(x \in Y \subseteq X \subseteq \CC\), the numerical sequence \(\para{f_n \para{x}}_{n}\) converges, then we say the sequence \emph{pointwise converges} on \(Y\) to the function
+    \[
+        \function{f}{Y}{\CC}{x}{\lim_{n \to \infty} f_n \para{x},}
+    \]
+    and we say \(f_n \to f\) pointwise on \(Y\).
+\end{definition}
+
+\begin{definition}[Series of Functions]
+    \label{def:series-of-functions}%
+    Let \(\para{f_n}_{n}\) be a sequence of functions. We call the infinite sum
+    \[
+        \sum_{n = 1}^{\infty} f_n = f_1 + f_2 + \cdots
+    \]
+    as a \emph{series} of \(\CC\)-valued functions on \(X\).
+
+    If the infinite sum converges for all \(x \in Y \subseteq X\), then we define the function
+    \[
+        \function{f}{Y}{\CC}{x}{\sum_{n = 1}^{\infty} f_n \para{x}}
+    \]
+    as the series.
+\end{definition}
+
+If we know the integrability, continuity, or differentiability of \(f_n\), can we say anything about \(f\) in that respect? The answer is non-trivial, since we only know before that they work for finite sums -- while for infinite sums we are dealing with two limits. In other words, we are studying whether we may swap limit/differentiation/integration/infinite summation operators. For example, as we have seen before, we can only swap limits with function operations when the function is continuous.
+
+As an example, if we want to show that \(f\) is continuous at some \(a\), then we want to show
+\[
+    \lim_{x \to a} \lim_{n \to \infty} f_n \para{x} = \lim_{n \to \infty} \lim_{x \to a} f_n \para{x}.
+\]
+
+But a counterexample may be constructed. For example, reducing our perspective to sequences, we define
+\[
+    s_{m, n} = \frac{m}{m + n}.
+\]
+
+We have
+\[
+    \lim_{n \to \infty} \lim_{m \to \infty} s_{m, n} = \lim_{n \to \infty} 1 = 1,
+\]
+while swapping limits gives
+\[
+    \lim_{m \to \infty} \lim_{n \to \infty} s_{m, n} = \lim_{m \to \infty} 0 = 0.
+\]
+
+We will focus on an easier case where our functions \(f_n\) are always given in the form
+\[
+    f_n \para{x} = c_n \para{x - a}^n
+\]
+where \(a\) is the \emph{centre}, and \(c_n\) as the \emph{coefficients}.
+
+\subsection{Basics of Power Series}
+
+\begin{definition}[Power Series]
+    \label{def:power-series}%
+    Let \(a \in \CC\) and \(\para{c_n}_{n \in \NN}\) be a numerical sequence in \(\CC\). We call
+    \[
+        \sum_{n = 0}^{\infty} c_n \para{x - a}^n
+    \]
+    a \emph{power series} \emph{centred at \(a\)}, and with \emph{coefficients} \(\para{c_n}_n\).
+\end{definition}
+
+\begin{example}[Taylor Series is Power Series]
+    \label{ex:taylor-series}%
+    If \(f\) is smooth at \(a\), then its Taylor series at \(a\) is a power series with coefficients
+    \[
+        c_n = \frac{f^{\para{n}} \para{a}}{n!}.
+    \]
+\end{example}
+
+Every power series trivially converges at its centre where \(x = a\).
+
+We first study the convergence of power series, i.e., the set
+\[
+    Y = \set{x \in \CC}{\sum_{n = 0}^{\infty} c_n \para{x - a}^{n} \text{ converges at }x}.
+\]
+
+\begin{lemma}[Convergence at one Point implies Absolute Convergence in Smaller Radius]
+    \label{lem:convergence-one-point-implies-convergence-smaller-radius}%
+    If the power series
+    \[
+        \sum_{n = 0}^{\infty} c_n \para{x - a}^{n}
+    \]
+    converges for some \(x\), and we have \(\abs{y - a} < \abs{x - a}\), then the series
+    \[
+        \sum_{n = 0}^{\infty} c_n \para{y - a}^{n}
+    \]
+    converges absolutely.
+\end{lemma}
+
+\begin{proof}
+    We conduct a comparison test to geometric series. Let
+    \[
+        r = \frac{\abs{y - a}}{\abs{x - a}} < 1.
+    \]
+
+    Then the power series about \(y\) satisfies
+    \[
+        \abs{c_n \para{y - a}^{n}} \leq \abs{c_n \para{x - a}^{n}} \cdot \abs{\frac{y - a}{x - a}}^n = \abs{c_n \para{x - a}^{n}} \cdot r^n
+    \]
+    for \(r < 1\).
+
+    Now, since the series converges at \(x\), we have
+    \[
+        \lim_{n \to \infty} c_n \para{x - a}^{n} = 0,
+    \]
+    and in particular this sequence is bounded., so there is some \(M > 0\), such that
+    \[
+        \abs{c_n \para{x - a}^{n}} \leq M.
+    \]
+
+    Hence,
+    \[
+        \abs{c_n \para{y - a}^n} \leq M r^n
+    \]
+    for \(r < 1\), and comparing to the geometric series, we see that the series
+    \[
+        \sum_{n = 0}^{\infty} \abs{c_n \para{y - a}^{n}}
+    \]
+    converges, and hence the desired series is absolutely convergent.
+\end{proof}
+
+\begin{proposition}[Existence of Radius of Convergence]
+    \label{prop:existence-radius-convergence}%
+    Let \(\sum_{n = 0}^{\infty} c_n \para{x - a}^{n}\) be a power series. Then there is some \(R \in \ccintv{0}{\plusinfty}\), which is known as the \emph{radius of convergence} of the power series, such that
+    \begin{itemize}
+        \item the series converges absolutely for \(\abs{x - a} < R\); and
+        \item the series diverges for \(\abs{x - a} > R\).
+    \end{itemize}
+\end{proposition}
+
+\begin{remark}
+    On the circle \(\abs{x - a} = R\) on the complex plane (or two points in \(\RR\)), we do not claim any behaviour on the convergence/divergence of those points -- it may diverge, converge absolutely, or converge conditionally on different points on the circle.
+\end{remark}
+
+If \(R = 0\), this means the series only converges at \(x = a\), and if \(R = \plusinfty\), this means the series converges absolutely for any \(x \in \CC\).
+
+\begin{proof}
+    We look at the set
+    \[
+        A = \set{r \geq 0}{\exists x \in \CC, \abs{x - a} = r: \text{ the power series converges at }x}.
+    \]
+
+    Trivially, \(0 \in A\). This tells us that \(A\) is non-empty. Set
+    \[
+        R = \sup A \in \ccintv{0}{\plusinfty}.
+    \]
+
+    If \(R = \plusinfty\), this means we have points converging at arbitrarily large radius, so by \autoref{lem:convergence-one-point-implies-convergence-smaller-radius}, this means the power series converge absolutely for any \(x \in \CC\).
+
+    Now, if \(R\) is finite, by definition of the supremum, we know that the power series diverges for any point strictly further away from \(a\) than \(R\).
+    
+    For any \(\abs{y - a} < R\), then by the definition of the supremum, there is some \(r \in A\) with \(\abs{y - a} < r \leq R\). Then, some point \(x \in A\) gives convergence at radius \(r\). So since \(\abs{y - a} < r = \abs{x - a}\), by \autoref{lem:convergence-one-point-implies-convergence-smaller-radius}, the power series converges absolutely at \(y\).
+\end{proof}
+
+To compute the radius of convergence of power series, we may use the usual tests for numerical series, namely \autoref{prop:ser-test-root} (Root Test) and \autoref{prop:ser-test-ratio}.
+
+\begin{proposition}[Root Test for Power Series]
+    \label{prop:power-series-test-root}%
+    Let \(\para{c_n}_n\) be a sequence in \(\CC\), such that
+    \[
+        L = \lim_{n \to \infty} \sqrt[n]{\abs{c_n}}
+    \]
+    exists (or is \(\plusinfty\)). Then the radius of convergence is given by
+    \[
+        R = \frac{1}{L}.
+    \]
+\end{proposition}
+
+\begin{proposition}[Ratio Test for Power Series]
+    \label{prop:power-series-test-ratio}%
+    Let \(\para{c_n}_n\) be a sequence in \(\CC\), such that
+    \[
+        L = \lim_{n \to \infty} \abs{\frac{c_{n + 1}}{c_n}}
+    \]
+    exists (or is \(\plusinfty\)). Then the radius of convergence is given by
+    \[
+        R = \frac{1}{L}.
+    \]
+\end{proposition}
+
+\begin{remark}
+    If we have the `upgraded' version of the ratio test using \(\limsup\), then changing the \(L\) above to use \(\limsup\) will guarantee its existence, and could be used as an alternative definition.
+\end{remark}
+
+\begin{examples}[Radius of Convergence]
+    \label{ex:radius-of-convergence}%
+    \begin{itemize}
+        \item The series
+        \[
+            \sum_{n = 0}^{\infty} \frac{x^n}{n!}
+        \]
+        converges absolutely on all of \(\CC\), i.e., \(R = \plusinfty\). Indeed, the coefficients are given by \(c_n = \frac{1}{n!}\), and \autoref{prop:power-series-test-ratio} gives
+        \[
+            L = \lim_{n \to \infty} \frac{1 / \para{n + 1}!}{1 / n!} = \lim_{n \to \infty} \frac{1}{n + 1} = 0.
+        \]
+        
+        \item The series
+        \[
+            \sum_{n = 0}^{\infty} n! x^n
+        \]
+        has a zero radius of convergence.
+
+        \item We investigate the convergence of the series
+        \[
+            \sum_{n = 1}^{\infty} \frac{x^n}{n^2}.
+        \]
+
+        The ratio test gives
+        \[
+            \lim_{n \to \infty} \abs{\frac{\frac{1}{\para{n + 1}^2}}{\frac{1}{n^2}}} = 1
+        \]
+        which gives \(R = 1\). Therefore, the power series converges absolutely with \(\abs{x} < 1\), and diverges with \(\abs{x} > 1\).
+
+        For \(\abs{x} = 1\), we note that
+        \[
+            \sum_{n = 1}^{\infty} \abs{\frac{x^n}{n^2}} = \sum_{n = 1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
+        \]
+        converges absolutely.
+
+        Therefore, this power series converges absolutely for \(\abs{x} \leq 1\), and diverges \(\abs{x} > 1\).
+
+        \item Now investigating the series
+        \[
+            \sum_{n = 1}^{\infty} \frac{x^n}{n}.
+        \]
+
+        The radius of convergence remains to be \(1\). However, with \(\abs{x} = 1\), the behaviour is more subtle.
+
+        If \(x = 1\), this gives divergence since this is the harmonic series. However, if \(x = -1\), this gives (conditional) convergence since this is the alternating harmonic series.
+    \end{itemize}
+\end{examples}
