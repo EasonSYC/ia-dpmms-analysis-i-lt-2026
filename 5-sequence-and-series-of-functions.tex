@@ -399,7 +399,7 @@ Clearly, we need to be careful: term-by-term operations might not hold on the \e
     \]
 \end{proposition}
 
-\begin{proof}[(Non-Examinable)]
+\begin{proof}[(Non-Examinable, Using Integrability, Real Power Series)]
     We let \(g\) be the series we claim to be the derivative. If \(g\) has radius of convergence at least \(R\), then \(g\) is continuous on \(\ccintv{a - r}{a + r}\) for all \(r < R\) by \autoref{prop:continuity-of-power-series} (Continuity of Power Series), and using \autoref{prop:integrability-of-power-series-term-by-term} (Integrability of Power Series), we have
     \[
         \int_{a}^{x} g\para{t} \Diff t = \sum_{n = 1}^{\infty} n c_n \frac{\para{x - a}^{n}}{n} = f\para{x} - c_0.
@@ -429,6 +429,48 @@ Clearly, we need to be careful: term-by-term operations might not hold on the \e
         \sum_{n = 1}^{\infty} n c_n \para{x - a}^{n - 1}
     \]
     converges also in \(\abs{x - a} < r\), for all \(r < R\).
+\end{proof}
+
+\begin{proof}[(Non-Examinable, Direct, Complex Power Series)]
+    Consider \(x_0 \in B_R\para{a}\). Let \(\abs{x_0 - a} < r < R\) and \(\abs{x - a} < r\).
+
+    Recall the identity
+    \[
+        \frac{\para{x - a}^n - \para{x_0 - a}^n}{x - x_0} = \sum_{k = 0}^{n - 1} \para{x - a}^k \para{x_0 - a}^{n - 1 - k}.
+    \]
+
+    Subtracting the target derivative term \(n \para{x - a}^{n - 1}\), we have
+    \begin{align*}
+        \frac{\para{x - a}^n - \para{x_0 - a}^n}{x - x_0} - n \para{x_0 - a}^{n - 1} &= \sum_{k = 0}^{n - 1} \para{\para{x - a}^k \para{x_0 - a}^{n - 1 - k} - \para{x_0 - a}^{n - 1}} \\
+        &= \sum_{k = 0}^{n - 1} \para{x_0 - a}^{n - 1 - k} \para{\para{x - a}^k - \para{x_0 - a}^k} \\
+        &= \para{x - x_0} \sum_{k = 0}^{n - 1} \para{x_0 - a}^{n - 1 - k} \sum_{j = 0}^{k - 1} \para{x - a}^{j} \para{x_0 - a}^{k - 1 - j}.
+    \end{align*}
+
+    We have
+    \[
+        \abs{x - a}, \abs{x_0 - a} < r,
+    \]
+    and hence
+    \[
+        \abs{\frac{\para{x - a}^n - \para{x_0 - a}^n}{x - x_0} - n \para{x - a}^{n - 1}} \leq \abs{x - x_0} \binom{n}{2} r^{n - 2}.
+    \]
+
+    We may check that
+    \[
+        \sum_{n = 2}^{\infty} \abs{c_n} \binom{n}{2} r^{n - 2}
+    \]
+    converges, and let this sum be \(M\).
+    
+    Now we investigate the difference of the power series. Since both series converge, we may subtract them term-by-term, giving
+    \[
+        \frac{f\para{x} - f\para{x_0}}{x - x_0} - \sum_{n = 1}^{\infty} n c_n \para{x_0 - a}^{n - 1} = \sum_{n = 2}^{\infty} c_n \para{\frac{\para{x - a}^n - \para{x_0 - a}^n}{x - x_0} - n \para{x_0 - a}^{n - 1}},
+    \]
+    and hence
+    \[
+        \abs{\frac{f\para{x} - f\para{x_0}}{x - x_0} - \sum_{n = 1}^{\infty} n c_n \para{x_0 - a}^{n - 1}} \leq \abs{x - x_0} \sum_{n = 2}^{\infty} \abs{c_n} \binom{n}{2} r^{n - 2} = M \abs{x - x_0}.
+    \]
+
+    Taking \(x \to x_0\) gives us the desired result.
 \end{proof}
 
 \begin{examples}[Differentiating and Integrating Power Series]
