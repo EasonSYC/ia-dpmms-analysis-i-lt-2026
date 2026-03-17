@@ -494,3 +494,283 @@ Clearly, we need to be careful: term-by-term operations might not hold on the \e
         \]
     \end{itemize}
 \end{examples}
+
+\subsection{Exponentials and Logarithms}
+
+\begin{definition}[Exponential Function]
+    \label{def:exponential-function}%
+    We define the \emph{exponential function}, denoted as \(\exp\), as
+    \[
+        \function{\exp}{\CC}{\CC}{z}{\sum_{n = 0}^{\infty} \frac{z^n}{n!}.}
+    \]
+\end{definition}
+
+\begin{remarks}
+    This definition of the exponential agrees with our high-school understanding of \(e^x\) in the following ways.
+    \begin{itemize}
+        \item Since \(e^x\) differentiates to \(e^x\), evaluating the derivatives at \(x = 0\) tells us that the Taylor series would be equal to
+        \[
+            \sum_{n = 0}^{\infty} \frac{z^n}{n!}
+        \]
+        which agrees with our definition of \(\exp\).
+
+        \item Using \autoref{thm:taylor-thm-langrange-remainder} (Taylor's Theorem) with Lagrange's Remainder, we may evaluate the remainder term as
+        \[
+            R_{n, 0} \para{x} = \frac{e^c x^n}{n!}
+        \]
+        for some \(c \in \ccintv{0}{x}\). Hence,
+        \[
+            \abs{R_{n, 0} \para{x}} = \abs{e^c} \frac{\abs{x}^n}{n!} \to 0
+        \]
+        as \(n \to \infty\). Hence,
+        \[
+            e^x = \sum_{n = 0}^{\infty} \frac{x^n}{n!}
+        \]
+        for all real number \(x \in \RR\).
+    \end{itemize}
+\end{remarks}
+
+\begin{lemma}[Properties of Exponential Function]
+    \label{lem:properties-exp}%
+    We have
+    \begin{itemize}
+        \item \(\exp\) is smooth, with \(\exp'\para{z} = \exp\para{z}\);
+        \item \(\exp\para{0} = 1\); and
+        \item \(\exp\para{a + b} = \exp\para{a} \cdot \exp\para{b}\).
+    \end{itemize}
+\end{lemma}
+
+\begin{proof}
+    The first two properties arise from differentiating/dividing the power series.
+
+    For the third property, we set
+    \[
+        f_{a, b} \para{z} = \exp\para{a + b - z} \cdot \exp\para{z}.
+    \]
+
+    Then we have
+    \begin{align*}
+        f'\para{z} &= - \exp'\para{a + b - z} \exp\para{z} + \exp\para{a + b - z} \exp'\para{z} \\
+        &= - f\para{z} + f\para{z} \\
+        &= 0
+    \end{align*}
+    and hence \(f\) is constant on \(\CC\). Therefore,
+    \[
+        \exp\para{a} \exp\para{b} = f\para{b} = f\para{0} = \exp\para{a + b}.
+    \]
+\end{proof}
+
+\begin{lemma}[Properties of Exponential Function on \(\RR\)]
+    \label{lem:properties-exp-r}%
+    Consider the restriction of \(\exp\) on \(\RR\)
+    \[
+        \functiondomain{\rightbar{\exp}_{\RR}}{\RR}{\RR}.
+    \]
+
+    Then
+    \begin{itemize}
+        \item \(\exp\) is smooth, with \(\exp'\para{x} = \exp\para{x}\);
+        \item \(\exp\para{x + y} = \exp\para{x} \cdot \exp\para{y}\);
+        \item \(\exp\para{x} > 0\) for all \(x \in \RR\);
+        \item \(\exp \para{x} \to \plusinfty\) as \(x \to \plusinfty\), and \(\exp \para{x} \to \minusinfty\) as \(x \to \minusinfty\);
+        \item \(\exp\) is strictly increasing;
+        \item \(\functiondomain{\exp}{\RR}{\oointv{0}{\plusinfty}}\) is a bijection.
+    \end{itemize}
+\end{lemma}
+
+\begin{proof}
+    The first two properties follow from \autoref{lem:properties-exp}.
+
+    For \(x > 0\), note that every term in the infinite series is positive, and in particular,
+    \[
+        \exp\para{x} \geq 1 + x > 0
+    \]
+    for all \(x > 0\), with \(\exp\para{x} \to \plusinfty\) as \(x \to \plusinfty\).
+
+    On the other hand, for \(x < 0\), note we have
+    \[
+        \exp\para{-x} \cdot \exp\para{x} = \exp\para{0} = 1,
+    \]
+    so since \(\exp\para{-x} > 0\), we must have \(\exp\para{x} > 0\). Furthermore,
+    \[
+        \exp\para{x} = \frac{1}{\exp\para{-x}} \to 0
+    \]
+    as \(x \to \minusinfty\), since \(\exp\para{-x} \to \plusinfty\).
+
+    Since \(\exp'\para{x} = \exp\para{x} > 0\), it is strictly increasing, and hence injective into \(\oointv{0}{\plusinfty}\). Now given any
+    \[
+        y \in \oointv{0}{\plusinfty} = \oointv{\lim_{x \to \minusinfty} \exp\para{x}}{\lim_{x \to \plusinfty} \exp\para{x}},
+    \]
+    we have some \(a, b \in \RR\), with \(\exp a < y < \exp b\), so by \autoref{thm:intermediate-value} (Intermediate Value Theorem), there is some \(x \in \ccintv{a}{b}\) such that \(\exp\para{x} = y\). This shows that it is surjective, hence finishing the proof.
+\end{proof}
+
+Since \(\exp\) is a bijection, it must have some inverse function.
+
+\begin{definition}[Logarithm Function]
+    \label{def:log}%
+    The \emph{logarithm function}, denoted as \(\log\), is defined as the inverse of the exponential function.
+
+    \[
+        \functiondomain{\log}{\oointv{0}{\plusinfty}}{\RR}.
+    \]
+\end{definition}
+
+\begin{lemma}[Properties of Logarithm Functions]
+    \label{lem:properties-log}%
+    We have
+    \begin{itemize}
+        \item \(\log\) is bijective with \(\log \exp x = x\) for all \(x \in \RR\), and \(\exp \log x = x\) for all \(x \in \oointv{0}{\plusinfty}\);
+        \item \(\log\para{yz} = \log y + \log z\);
+        \item \(\log\) is smooth and strictly increasing, with \(\log' \para{x} = \frac{1}{x}\);
+        \item \(\log\para{1} = 0\), and \(\log y = \int_1^x \frac{1}{t} \Diff t\);
+        \item \(\log y \to \plusinfty\) as \(y \to \plusinfty\), and \(\log y \to \minusinfty\) as \(y \to 0^+\).
+    \end{itemize}
+\end{lemma}
+
+\begin{proof}
+    The first property is by definition.
+
+    For any \(y = \exp u \in \oointv{0}{\plusinfty}\) and \(z = \exp v \in \oointv{0}{\plusinfty}\), we have
+    \[
+        \log \para{yz} = \log \para{\exp u \cdot \exp v} = \log \para{\exp \para{u + v}} = u + v = \log y + \log z
+    \]
+    as desired.
+
+    For the third property, we may apply \autoref{thm:inverse-fn-thm-differentiable} (Inverse Function Theorem) to get
+    \[
+        \log'\para{y} = \frac{1}{\exp'\para{\log y}} = \frac{1}{y}.
+    \]
+
+    For the fourth property, the first point comes from \(\exp 0 = 1\), and hence by \autoref{thm:ftc-1} (Fundamental Theorem of Calculus), we have
+    \[
+        \log y = \int_1^y \log' t \Diff t = \int_1^y \frac{1}{t} \Diff t.
+    \]
+
+    The final part inherits from the limit properties of the exponential function.
+\end{proof}
+
+\begin{remark}
+    We have, for \(y \in \oointv{-1}{1}\), that
+    \begin{align*}
+        \log\para{1 + y} &= \int_0^y \frac{\Diff t}{1 + t} \\
+        &= \int_0^y \frac{\Diff t}{1 - \para{-t}} \\
+        &= \int_0^y \sum_{n = 0}^{\infty} \para{-1}^n t^n \Diff t \\
+        &= \sum_{n = 0}^{\infty} \int_0^y \para{-1}^n t^n \Diff t \\
+        &= \sum_{n = 0}^{\infty} \frac{\para{-1}^{n} y^{n + 1}}{n + 1}.
+    \end{align*}
+
+    In particular, using Analysis II techniques, we may show that in the case for \(y = 1\), that
+    \[
+        \log 2 = \sum_{n = 1}^{\infty} \frac{\para{-1}^{n - 1}}{n}.
+    \]
+\end{remark}
+
+Now, we are ready to define more general powers.
+
+\begin{definition}[Powers]
+    \label{def:general-powers}%
+    We define for \(x > 0\), the \emph{base}, and \(\alpha \in \RR\), the \emph{exponent}, that
+    \[
+        \Gamma_{\alpha} \para{x} = \exp \para{\alpha \log x}.
+    \]
+\end{definition}
+
+\begin{remark}
+    We will soon see that this is consistent with \(x^\alpha\) defined before using elementary methods, in particular, for \(\alpha \in \QQ\), and for \(\exp x\) and \(e^x\) for \(x \in \RR\).
+\end{remark}
+
+\begin{lemma}[Properties of Powers]
+    \label{lem:properties-power}%
+    For any \(x, y > 0, \alpha, \beta \in \RR\), we have
+    \begin{itemize}
+        \item \(\Gamma_\alpha \para{xy} = \Gamma_\alpha \para{x} \Gamma_\alpha \para{y}\);
+        \item \(\Gamma_{\alpha + \beta} \para{x} = \Gamma_\alpha \para{x} \Gamma_\beta \para{x}\);
+        \item \(\Gamma_\alpha \para{\Gamma_\beta \para{x}} = \Gamma_{\alpha \beta} \para{x}\);
+        \item \(\Gamma_1\para{x} = x\) and \(\Gamma_0 \para{x} = 1\).
+    \end{itemize}
+\end{lemma}
+
+\begin{proof}
+    The first, second and fourth property follows directly from the properties of the exponential and the logarithm.
+
+    For the third property, we have
+    \begin{align*}
+        \Gamma_\alpha \para{\Gamma_\beta \para{x}} &= \exp\para{\alpha \log\para{\exp \para{\beta \log x}}} \\
+        &= \exp\para{\alpha \beta \log x} \\
+        &= \Gamma_{\alpha \beta} \para{x}
+    \end{align*}
+    as desired.
+\end{proof}
+
+As a corollary, we see that for natural numbers \(p, q \in \NN\) and \(x > 0\), we have
+\[
+    \Gamma_p \para{x} = \underbrace{\Gamma_1 \para{x} \cdots \Gamma_1 \para{x}}_{p \text{ terms}} = x^p,
+\]
+and
+\[
+    \Gamma_{-p} \para{x} = \underbrace{\Gamma_{-1} \para{x} \cdots \Gamma_{-1} \para{x}}_{p \text{ terms}} = x^{-p}.
+\]
+
+Furthermore, we have
+\[
+    \para{\Gamma_{1 / p} \para{x}}^{p} = \underbrace{\Gamma_{1 / p} \para{x} \cdots \Gamma_{1 / p} \para{x}}_{p \text{ terms}} = \Gamma_{1 / p + \cdots + 1 / p} \para{x} = \Gamma_1 \para{x} = x,
+\]
+and hence
+\[
+    \Gamma_{1 / p} \para{x} = x^{1 / p}.
+\]
+
+Hence,
+\[
+    x^{p / q} = \Gamma_{p / q} \para{x},
+\]
+and we have
+\[
+    \Gamma_{\alpha} \para{x} = x^\alpha
+\]
+for all \(\alpha \in \QQ\).
+
+As for the agreement with the exponential function, we have
+\[
+    \exp\para{x} = \exp\para{x \log e} = \Gamma_x \para{e} = e^x.
+\]
+
+We now study some limit properties on monomials, exponentials and logarithms.
+
+\begin{proposition}[Limit Properties of Monomials, Exponentials and Logarithms]
+    \label{prop:lim-prop-monomial-exponential-logarithm}%
+    We have the following properties.
+    \begin{enumerate}
+        \item \emph{Exponentials dominate Monomials.} For all \(r \in \RR\), we have \(x^r \exp\para{-x} \to 0\) as \(x \to \plusinfty\).
+        \item \emph{Monomials dominate Logarithms.} For all \(r > 0\), we have \(x^{-r} \log x \to 0\) as \(x \to \plusinfty\), and \(x^r \log x \to 0\) as \(x \to 0^+\).
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    For the first limit, we let \(x > 1\). Then, since \(x > 0\), we have
+    \[
+        \exp x = \sum_{k = 0}^{\infty} \frac{x^k}{k!} > \frac{x^n}{n!},
+    \]  
+    for all \(n \in \NN\).
+
+    We pick \(n\) such that \(n - r \geq 1\), then
+    \[
+        0 \leq \frac{x^r}{\exp x} \leq \frac{n!}{x^{n - r}} \leq \frac{n!}{x}.
+    \]
+
+    Taking the limit as \(x \to \plusinfty\), and using the sandwich theorem gives us the result as desired.
+
+    For the second limit, we have \(t^{-1} \leq t^{\epsilon - 1}\) for all \(t \geq 1\) and \(\epsilon > 0\). Pick \(\epsilon\) such that \(r > \epsilon\), then
+    \[
+        0 \leq x^{-r} \log x = x^{-r} \int_{1}^{x} \frac{\Diff t}{t} \leq x^{-r} \int_{1}^{x} t^{\epsilon - 1} \Diff t = \frac{x^{\epsilon - r}}{\epsilon}
+    \]
+    and take \(x \to \plusinfty\) with the sandwich theorem gives the result as desired.
+
+    For the limit where \(x \to 0^+\), we note
+    \begin{align*}
+        \lim_{x \to 0^+} \para{x^r \log x} &= - \lim_{t \to \plusinfty} \para{t \exp \para{- rt}} && x = e^{-t} \\
+        &= - \lim_{y \to \plusinfty} \para{\frac{y e^{-y}}{r}} && y = rt \\
+        &= 0
+    \end{align*}
+    by the first limit.
+\end{proof}
