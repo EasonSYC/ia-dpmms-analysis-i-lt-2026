@@ -659,10 +659,20 @@ Since \(\exp\) is a bijection, it must have some inverse function.
         &= \sum_{n = 0}^{\infty} \frac{\para{-1}^{n} y^{n + 1}}{n + 1}.
     \end{align*}
 
-    In particular, using Analysis II techniques, we may show that in the case for \(y = 1\), that
+    In particular, using Analysis II techniques (Abel's Theorem), or quite some tedious integral comparison, we may show that in the case for \(y = 1\), that
     \[
         \log 2 = \sum_{n = 1}^{\infty} \frac{\para{-1}^{n - 1}}{n}.
     \]
+
+    We have
+    \begin{align*}
+        \abs{\log 2 - \sum_{n = 0}^{N} \int_{0}^{1} \para{-1}^n t^n \Diff t} &= \abs{\int_{0}^{§} \frac{\Diff t}{1 + t} - \int_{0}^{1} \frac{1 - \para{-t}^{N + 1}}{1 + t} \Diff t} \\
+        &\leq \int_{0}^{1} \abs{\frac{1}{1 + t} - \frac{1 - \para{-t}^{N + 1}}{1 + t}} \Diff t \\
+        &\leq \int{0}^{1} t^{N + 1} \Diff t \\
+        &= \frac{1}{N + 2} \\
+        &\to 0
+    \end{align*}
+    as \(N \to \infty\)
 \end{remark}
 
 Now, we are ready to define more general powers.
@@ -774,3 +784,155 @@ We now study some limit properties on monomials, exponentials and logarithms.
     \end{align*}
     by the first limit.
 \end{proof}
+
+\subsection{Trigonometric Functions}
+
+\begin{definition}[Trigonometric Functions]
+    \label{def:trigonometric-functions}%
+    We define the \emph{cosine function} as
+    \[
+        \function{\cos}{\CC}{\CC}{z}{\frac{1}{2} \brac{\exp \para{iz} + \exp \para{- iz}} = \sum_{k = 0}^{\infty} \frac{\para{-1}^k z^{2k}}{\para{2k}!},}
+    \]
+    and the \emph{sine function} as
+    \[
+        \function{\sin}{\CC}{\CC}{z}{\frac{1}{2i} \brac{\exp \para{iz} - \exp \para{- iz}} = \sum_{k = 0}^{\infty} \frac{\para{-1}^k z^{2k + 1}}{\para{2k + 1}!}}
+    \]
+\end{definition}
+
+\begin{lemma}[Properties of the Trigonometric Functions]
+    \label{lem:properties-trigonometric-functions}%
+    We have for \(w, z \in \CC\), that:
+    \begin{itemize}
+        \item \(\cos 0 = 1, \sin 0 = 0\);
+        \item \(\cos' z = - \sin z\), \(\sin' z = \cos z\);
+        \item \(\sin \para{z + w} = \sin z \cos w + \cos z \sin w\);
+        \item \(\cos \para{z + w} = \cos z \cos w - \sin z \sin w\);
+        \item \(\sin^2 z + \cos^2 z = 1\).
+    \end{itemize}
+\end{lemma}
+
+\begin{proof}
+    These are all direct consequences of the definition using the complex exponentials.
+\end{proof}
+
+\begin{remark}
+    If we restrict the functions to \(\RR\), then in particular, the final line tells us that for \(x \in \RR\)
+    \[
+        \abs{\sin x}, \abs{\cos x} \leq 1,
+    \]
+    but this is not necessarily true for all of \(\CC\).
+\end{remark}
+
+\begin{proposition}[Periodicity of Trigonometric Functions]
+    \label{prop:periodicity-trigonometric-functions}%
+    There is some smallest positive real number \(\pi\), such that
+    \[
+        \cos \para{\frac{\pi}{2}} = 0, \quad \sin \para{\frac{\pi}{2}} = 1,
+    \]
+    and that for all \(x \in \RR\), we have
+    \begin{itemize}
+        \item \(\functiondomain{\sin}{\RR}{\RR}\) and \(\functiondomain{\cos}{\RR}{\RR}\) are periodic with period \(2 \pi\);
+        \item \(\sin \para{x + \pi} = - \sin x\), and \(\cos \para{x + \pi} = - \cos x\);
+        \item \(\sin \para{x + \frac{\pi}{2}} = \cos x\), and \(\cos \para{x + \frac{\pi}{2}} = - \sin x\).
+    \end{itemize}
+\end{proposition}
+
+\begin{proof}
+    Once we showed the existence of the smallest \(\pi > 0\), the remaining three propositions follow from the additions formulae.
+
+    We look at \(x \in \oointv{0}{2}\), since by differentiating, we have
+    \[
+        \cos' x = - \sin x = - \brac{\para{x - \frac{x^3}{3!}} + \para{\frac{x^5}{5!} - \frac{x^7}{7!}} + \cdots} > 0,
+    \]
+    since all the terms in the brackets are positive, using that the series is absolutely convergent, and hence bracketing of terms is allowed. Thus, \(\cos\) has at most one root \(\oointv{0}{2}\). To see that the existence of the root, we have
+    \[
+        \cos \para{\sqrt{2}} = \para{1 - \frac{\para{\sqrt{2}}^2}{2!}} + \para{\frac{\para{\sqrt{2}}^4}{4!} - \frac{\para{\sqrt{2}}^6}{6!}} + \cdots > 0
+    \]
+    and
+    \[
+        \cos \para{\sqrt{3}} = \para{1 - \frac{\para{\sqrt{3}}^2}{2!} + \frac{\para{\sqrt{3}}^4}{4!}} - \para{\frac{\para{\sqrt{3}}^6}{6!} - \frac{\para{\sqrt{3}}^8}{8!}} - \cdots < 0.
+    \]
+    
+    By intermediate value theorem, \(\cos\) has a root \(\pi / 2 \in \oointv{\sqrt{2}}{\sqrt{3}} \subset \oointv{0}{2}\). Now, we have
+    \[
+        \sin^2\para{\frac{\pi}{2}} = 1 - \cos^2 \para{\frac{\pi}{2}} = 1
+    \]
+    tells us that \(\sin \para{\pi / 2} = \pm 1\). But since \(\pi / 2 \in \oointv{0}{2}\), we have \(\sin \para{\pi / 2} > 0\), so \(\sin \para{\pi / 2} = 1\).
+\end{proof}
+
+\begin{corollary}[Properties of Complex Exponentials]
+    \label{cor:properties-complex-exponentials}%
+    \begin{enumerate}
+        \item The function \(\exp \para{ix}\) for \(x \in \RR\) is periodic, with period \(2 \pi\);
+        \item \emph{Euler's Identity}. \(\exp \para{i \pi} = -1\);
+        \item \(\exp \para{i \pi / 2} = i\).
+    \end{enumerate}
+\end{corollary}
+
+Finally, we aim to give \(\pi\) a geometric interpretation.
+
+\begin{lemma}[Perimeter of Unit Circle]
+    \label{lem:perimeter-unit-circle}%
+    \(2\pi\) is the perimeter of the unit circle
+    \[
+        \mathcal{S}^1 = \set{z \in \CC}{\abs{z} = 1}.
+    \]
+\end{lemma}
+
+\begin{proof}
+    If we can show the map
+    \[
+        \function{\gamma}{\cointv{0}{2\pi}}{\mathcal{S}^1}{t}{\exp \para{it}}
+    \]
+    is a bijection, then we get that
+    \begin{align*}
+        \text{perimeter of }\mathcal{S}^1 &= \text{length of }\gamma \\
+        &= \int_{0}^{2 \pi} \abs{\gamma' \para{t}} \Diff t \\
+        &= \int_{0}^{2 \pi} \abs{i \exp \para{it}} \Diff t \\
+        &= \int_{0}^{2 \pi} \Diff t \\
+        &= 2 \pi.
+    \end{align*}
+
+    \textbf{Surjectivity.} Take \(z \in \mathcal{S}^1\), and we write \(z = a + ib\), with \(a^2 + b^2 = 1\), with \(a, b \in \RR\). The restriction
+    \[
+        \functiondomain{\cos}{\ccintv{0}{\pi}}{\ccintv{-1}{1}}
+    \]
+    is continuous and strictly monotone. Hence, there is some \(t \in \ccintv{0}{\pi}\) with \(\cos t = a\).
+
+    Furthermore, the restriction
+    \[
+        \functiondomain{\sin}{\ccintv{0}{\pi}}{\ccintv{0}{1}}
+    \]
+    is non-negative, so \(\sin t = \sqrt{1 - a^2}\).
+    
+    \begin{itemize}
+        \item If \(b = \sqrt{1 - a^2}\), we get \(\sin t = b\).
+        \item If \(b = - \sqrt{1 - a^2}\), we have \(b = - \sin t\), which is to say \(b = \sin \para{2 \pi - t}\). But \(\cos t = \cos \para{-t} = \cos \para{2\pi - t}\).
+    \end{itemize}
+
+    Hence, there is some \(t \in \cointv{0}{2\pi}\), such that \(z = \exp \para{it}\).
+
+    \textbf{Injectivity.} This is true since \autoref{cor:properties-complex-exponentials} tells us that \(\exp\para{it}\) has a least positive period of \(2 \pi\), and so it is injective when restricted to \(\cointv{0}{2\pi}\).
+\end{proof}
+
+This allows us now to define the usual trigonometric functions \(\tan, \arccos\) \dots
+
+\subsection{Hyperbolic Trigonometric Functions}
+
+\begin{definition}[Hyperbolic Trigonometric Functions]
+    We define the \emph{hyperbolic cosine} as
+    \[
+        \function{\cosh}{\CC}{\CC}{z}{\frac{1}{2} \para{\exp z + \exp \para{-z}} = \cos \para{iz},}
+    \]
+    and the \emph{hyperbolic sine} as 
+    \[
+        \function{\sinh}{\CC}{\CC}{z}{\frac{1}{2} \para{\exp z - \exp \para{-z}} = i \sin \para{iz}.}
+    \]
+\end{definition}
+
+We may show that
+\begin{itemize}
+    \item \(\cosh' z = \sinh z\);
+    \item \(\sinh' z = \cosh z\);
+    \item \(\cosh^2 z - \sinh^2 z = 1\).
+\end{itemize}
