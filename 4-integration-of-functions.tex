@@ -335,7 +335,7 @@ We want to find some more sufficient conditions on integrability.
 
     We set a particular partition
     \[
-        \partition_n = \brce{a, a + \frac{b - a}{n}, a + \frac{2\para{b - a}}{n}, \ldots, a + \frac{\para{n - 1} \para{n - a}}{n}, b},
+        \partition_n = \brce{a, a + \frac{b - a}{n}, a + \frac{2\para{b - a}}{n}, \ldots, a + \frac{\para{n - 1} \para{b - a}}{n}, b},
     \]
     and so \(\abs{I_j} = \frac{b - a}{n}\). Hence,
     \[
@@ -365,7 +365,7 @@ We want to find some more sufficient conditions on integrability.
 
     Therefore, we have
     \[
-        \para{b - a} \cdot \max_{1 \leq j \leq n} \osc_{I_j} f \geq \sum_{k = 1}^{n} \abs{I_k} \cdot \para{\sup_{I_j} f - \inf_{I_j} f} = \upperSum\para{f, \partition} - \lowerSum\para{f, \partition} > \epsilon,
+        \para{b - a} \cdot \max_{1 \leq j \leq n} \osc_{I_j} f \geq \sum_{k = 1}^{n} \abs{I_k} \cdot \para{\sup_{I_k} f - \inf_{I_k} f} = \upperSum\para{f, \partition} - \lowerSum\para{f, \partition} > \epsilon,
     \]
     where we define
     \[
