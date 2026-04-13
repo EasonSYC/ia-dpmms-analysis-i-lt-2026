@@ -189,7 +189,7 @@ We may derive properties of derivative from the properties of limits as well.
         Q\para{f\para{x}} \cdot \frac{f\para{x} - f\para{a}}{x - a}.
     \]
 
-    For any \(x\), if \(f\para{x} \neq f\para{a}\), then the equality is from the cancellation of fraction from above. If \(f\para{x} = f\para{a}\), then the quotient is zero, and this expression is zero as well since the second term is zero.
+    For any \(x \neq a\), if \(f\para{x} \neq f\para{a}\), then the equality is from the cancellation of fraction from above. If \(x \neq a\) but \(f\para{x} = f\para{a}\), then the quotient is zero, and this expression is zero as well since the second term is zero.
 
     Now it remains to take the limit of this expression. As \(x \to a\), the second factor tends to \(f'\para{a}\). For \(Q\para{y}\), note that since \(g\) is differentiable at \(f\para{a}\), so we have
     \[
@@ -656,7 +656,7 @@ The proof strategy is similar -- we aim to reduce this to \autoref{thm:rolle} (R
 
     Note that
     \[
-        \phi'\para{x} = g'\para{x} \para{f\para{b} - f\para{a}} - f'\para{x} = \para{g\para{b} - g\para{a}},
+        \phi'\para{x} = g'\para{x} \para{f\para{b} - f\para{a}} - f'\para{x} \para{g\para{b} - g\para{a}},
     \]
     and we have
     \[
@@ -991,54 +991,54 @@ This looks like an even worse estimate, since \(\para{n - 1}!\) on the denominat
     \label{ex:application-taylor}%
     Consider the function \(f\para{x} = x^q\) for some rational \(q \in \QQ\). This function is smooth on \(\oointv{0}{\plusinfty}\). We may attempt to calculate its derivates by
     \[
-        f^{\para{k}} \para{x} = q \cdot \para{q - 1} \cdot \para{q - 2} \cdots \para{q - k + 1} x^{q - k}.
+        f^{\para{k}} \para{x} = q \cdot \para{q - 1} \cdot \para{q - 2} \cdots \para{q - k + 1} \cdot x^{q - k}.
     \]
 
-    We may calculate the Taylor polynomial at \(a\) as
+    We may calculate the Taylor polynomial at \(1\) as
     \[
-        T_{n - 1, f, 1} \para{x} = \sum_{k = 0}^{n - 1} \frac{q \para{q - 1} \cdots \para{q - k + 1}}{k!} \cdot x^k = \sum_{k = 0}^{n - 1} \binom{q}{k} x^k.
+        T_{n - 1, f, 1} \para{h} = \sum_{k = 0}^{n - 1} \frac{q \para{q - 1} \cdots \para{q - k + 1}}{k!} \cdot h^k = \sum_{k = 0}^{n - 1} \binom{q}{k} h^k.
     \]
 
     We now look at
     \[
-        R_{n, f, 1} \para{x} = \para{1 + x}^{q} - \sum_{k = 0}^{n - 1} \binom{q}{k} x^k
+        R_{n, f, 1} \para{h} = \para{1 + h}^{q} - \sum_{k = 0}^{n - 1} \binom{q}{k} h^k
     \]
-    in \(\oointv{-1}{1}\).
+    in \(\oointv{-1}{1}\). In particular, we would like to study if the remainder converges to \(0\) as \(n \to \infty\). (This is trivial for \(h = 0\).)
 
     We evaluate both remainders. If we use \autoref{thm:taylor-thm-langrange-remainder} (Lagrange Remainder), we have some \(\theta \in \oointv{0}{1}\) such that
     \[
-        R_{n, f, 1} \para{x} = \binom{q}{n} \para{1 + \theta x}^{q - n} x^n.
+        R_{n, f, 1} \para{h} = \binom{q}{n} \para{1 + \theta h}^{q - n} h^n.
     \]
 
-    If \(n \geq q\), then \(\para{1 + \theta x}^{q - n} \leq 1\) for \(x \in \oointv{0}{1}\), and hence
+    If \(n \geq q\), then \(\para{1 + \theta h}^{q - n} \leq 1\) for \(h \in \cointv{0}{1}\), and hence
     \[
-        \abs{R_{n, f, 1} \para{x}} \leq \abs{\binom{q}{n} x^n} \to 0
+        \abs{R_{n, f, 1} \para{h}} \leq \abs{\binom{q}{n} h^n} \to 0
     \]
-    as \(n \to \infty\), for any \(x \in \oointv{0}{1}\). However, this argument fails for \(x \in \oointv{-1}{0}\).
+    as \(n \to \infty\), for any \(h \in \cointv{0}{1}\). However, this argument fails for \(h \in \oointv{-1}{0}\).
 
     If we use \autoref{thm:taylor-thm-cauchy-remainder} (Cauchy Remainder), we have some \(\theta \in \oointv{0}{1}\) (not necessarily identical to the \(\theta\) before), that
     \begin{align*}
-        R_{n, f, 1} \para{x} &= \binom{q}{n} \cdot n \cdot \para{1 - \theta}^{n - 1} \cdot \para{1 + \theta x}^{q - n} \cdot x^n \\
-        &= \para{1 - \theta}^{n - 1} q \binom{q - 1}{n - 1} \para{1 + \theta x}^{q - n} x^n \\
-        &= q \binom{q - 1}{n - 1} \cdot \para{\frac{1 - \theta}{1 + \theta x}}^{n - 1} \cdot \para{1 + \theta x}^{q - 1} x^n.
+        R_{n, f, 1} \para{h} &= \binom{q}{n} \cdot n \cdot \para{1 - \theta}^{n - 1} \cdot \para{1 + \theta h}^{q - n} \cdot h^n \\
+        &= \para{1 - \theta}^{n - 1} q \binom{q - 1}{n - 1} \para{1 + \theta h}^{q - n} h^n \\
+        &= q \binom{q - 1}{n - 1} \cdot \para{\frac{1 - \theta}{1 + \theta h}}^{n - 1} \cdot \para{1 + \theta h}^{q - 1} h^n.
     \end{align*}
 
-    Now, for any \(x \in \oointv{-1}{1}\), we have \(1 + \theta x = \para{1 - \theta} + \theta \para{x + 1} \geq 1 - \theta\). Hence, we have
+    Now, for any \(h \in \oointv{-1}{1}\), we have \(1 + \theta h = \para{1 - \theta} + \theta \para{h + 1} \geq 1 - \theta\). Hence, we have
     \[
-        \para{\frac{1 - \theta}{1 + \theta x}}^{n - 1} \leq 1
+        \para{\frac{1 - \theta}{1 + \theta h}}^{n - 1} \leq 1
     \]
     as long as \(n \geq 1\). Hence, we may apply a bound the remainder by
     \[
-        \abs{R_{n, f, 1} \para{x}} \leq \abs{qx} \cdot \abs{\binom{q - 1}{n - 1} x^{n - 1}} \cdot \abs{1 + \theta x}^{q - 1}.
+        \abs{R_{n, f, 1} \para{h}} \leq \abs{qh} \cdot \abs{\binom{q - 1}{n - 1} h^{n - 1}} \cdot \abs{1 + \theta h}^{q - 1}.
     \]
 
     Note that only the middle term depends on \(n\). Therefore,
     \[
-        \abs{R_{n, f, 1} \para{x}} \to 0
+        \abs{R_{n, f, 1} \para{h}} \to 0
     \]
-    as \(n \to \infty\) for every \(x \in \oointv{-1}{1}\).
+    as \(n \to \infty\) for every \(h \in \oointv{-1}{1}\).
     
-    So the Cauchy remainder gives us that the remainder is exponentially small as \(n \to \infty\), for all \(x \in \oointv{-1}{1}\), while the Lagrange remainder only guaranteed that for the range of \(x \in \cointv{0}{1}\).
+    So the Cauchy remainder gives us that the remainder is exponentially small as \(n \to \infty\), for all \(h \in \oointv{-1}{1}\), while the Lagrange remainder only guaranteed that for the range of \(h \in \cointv{0}{1}\).
 \end{example}
 
 \begin{definition}[Analytic Function]
@@ -1108,10 +1108,10 @@ A good question to ask is, must the Taylor polynomial be correct up to its degre
 
     For the general case, recall that
     \[
-        R_{n, f, 0} \para{h} = f\para{h} - \sum_{k = 0}^{n - 1} \frac{f^{\para{k}} \para{0}}{k!} \cdot h^n.
+        R_{n, f, 0} \para{h} = f\para{h} - \sum_{k = 0}^{n - 1} \frac{f^{\para{k}} \para{0}}{k!} \cdot h^k.
     \]
 
-    Since \(f\) is \(n\) times differentiable at \(0\), we have \(R\) is \(n\) times differentiable at \(0\), and in particular, continuous. Hence,
+    Since \(f\) is \(\para{n - 1}\) times differentiable at \(0\), we have \(R\) is \(\para{n - 1}\) times differentiable at \(0\), and in particular, continuous. Hence,
     \[
         \lim_{h \to 0} R_{n, f, 0} \para{h} = R_{n, f, 0} \para{0} = 0.
     \]
@@ -1121,7 +1121,7 @@ A good question to ask is, must the Taylor polynomial be correct up to its degre
         R'_{n, f, 0} \para{h} = f'\para{h} - \sum_{k = 1}^{n - 1} \frac{f^{\para{k}} \para{0}}{\para{k - 1}!} \cdot h^{k - 1} = f'\para{h} - \sum_{k = 0}^{n - 2} \frac{f^{\para{k + 1}} \para{0}}{k!} \cdot h^k = R_{n - 1, f', 0} \para{h}.
     \]
 
-    Therefore, it suffices to show for \(f'\) (which is \(\para{n - 1}\) times differentiable), that
+    Therefore, it suffices to show for \(f'\) (which is \(\para{n - 2}\) times differentiable), that
     \[
         R_{n - 1, f', 0} \para{h} = \littleO\para{h^{n - 2}}.
     \]

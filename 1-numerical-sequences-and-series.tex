@@ -1366,11 +1366,7 @@ We introduce a useful lemma which is similar to integration by parts, and is ind
         &= M \para{b_1 - b_n}.
     \end{align*}
 
-    Taking \(n \to \infty\) gives
-    \[
-        \sum_{j = 1}^{\infty} \abs{S_j \para{b_j - b_{j + 1}}} \to M b_1,
-    \]
-    and by \autoref{thm:ser-absolute-convergence-implies-convergence} (Absolute Convergence implies Convergence), the sum
+    As \(n \to \infty\), the right-hand side converges to \(M b_1\), imposing an upper bound on the partial absolute sums. Therefore, by \autoref{thm:ser-absolute-convergence-implies-convergence} (Absolute Convergence implies Convergence), the sum
     \[
         \sum_{j = 1}^{\infty} S_j \para{b_j - b_{j + 1}}
     \]
