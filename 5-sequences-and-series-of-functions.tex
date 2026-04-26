@@ -668,7 +668,7 @@ Since \(\exp\) is a bijection, it must have some inverse function.
     \begin{align*}
         \abs{\log 2 - \sum_{n = 0}^{N} \int_{0}^{1} \para{-1}^n t^n \Diff t} &= \abs{\int_{0}^{§} \frac{\Diff t}{1 + t} - \int_{0}^{1} \frac{1 - \para{-t}^{N + 1}}{1 + t} \Diff t} \\
         &\leq \int_{0}^{1} \abs{\frac{1}{1 + t} - \frac{1 - \para{-t}^{N + 1}}{1 + t}} \Diff t \\
-        &\leq \int{0}^{1} t^{N + 1} \Diff t \\
+        &\leq \int_{0}^{1} t^{N + 1} \Diff t \\
         &= \frac{1}{N + 2} \\
         &\to 0
     \end{align*}
@@ -842,7 +842,7 @@ We now study some limit properties on monomials, exponentials and logarithms.
 
     We look at \(x \in \oointv{0}{2}\), since by differentiating, we have
     \[
-        \cos' x = - \sin x = - \brac{\para{x - \frac{x^3}{3!}} + \para{\frac{x^5}{5!} - \frac{x^7}{7!}} + \cdots} > 0,
+        \cos' x = - \sin x = - \brac{\para{x - \frac{x^3}{3!}} + \para{\frac{x^5}{5!} - \frac{x^7}{7!}} + \cdots} < 0,
     \]
     since all the terms in the brackets are positive, using that the series is absolutely convergent, and hence bracketing of terms is allowed. Thus, \(\cos\) has at most one root \(\oointv{0}{2}\). To see that the existence of the root, we have
     \[
