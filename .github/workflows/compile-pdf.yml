@@ -10,49 +10,5 @@ on:
 
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    name: Build PDF
-
-    steps:
-      - name: Checkout
-        id: checkout
-        uses: actions/checkout@v6
-        with:
-          submodules: recursive
-
-      - name: Setup TeX Live
-        uses: EasonSYC/latex-style-setup@main
-
-      - name: Declare Commit Information as Variables
-        run:
-          echo "commit_sha=$(git rev-parse --short "${{ github.SHA }}")" >> "$GITHUB_ENV"
-
-          echo "commit_date=$(git log -1 --format=%cd --date=format:%Y%m%d)" >> "$GITHUB_ENV"
-
-          echo "SHA - ${{ env.commit_sha }}"
-
-          echo "DATE - ${{ env.commit_date }}"
-      
-      - name: Override Version File
-        run:
-          echo "" >> version.tex
-
-          echo "\renewcommand{\DATE}{${{ env.commit_date }}}" >> version.tex
-
-          echo "\renewcommand{\COMMITSHA}{${{ env.commit_sha }}}" >> version.tex
-
-          cat version.tex
-      
-      - name: Compile PDF
-        run: latexmk -pdflatex -interaction=nonstopmode -file-line-error main.tex
-
-      - name: Rename PDF
-        run: mv main.pdf ${{ github.event.repository.name }}-${{ env.commit_date }}-${{ env.commit_sha }}.pdf
-
-      - name: Upload PDF file
-        id: upload-pdf
-        uses: actions/upload-artifact@v7
-        with:
-          archive: false
-          path: ${{ github.event.repository.name }}-${{ env.commit_date }}-${{ env.commit_sha }}.pdf
+  call-build:
+    uses: EasonSYC/cambridge-notes-workflow/.github/workflows/compile-pdf.yml@main
