@@ -37,7 +37,7 @@ jobs:
       - name: Override Version File
         run:
           echo "" >> version.tex
-          
+
           echo "\renewcommand{\DATE}{${{ env.commit_date }}}" >> version.tex
 
           echo "\renewcommand{\COMMITSHA}{${{ env.commit_sha }}}" >> version.tex
@@ -55,4 +55,4 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           archive: false
-          path: ${{ github.event.repository.name }}.pdf
+          path: ${{ github.event.repository.name }}-${{ env.commit_date }}-${{ env.commit_sha }}.pdf
