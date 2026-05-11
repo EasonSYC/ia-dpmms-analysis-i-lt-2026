@@ -30,11 +30,14 @@ jobs:
 
           echo "commit_date=$(git log -1 --format=%cd --date=format:%Y%m%d)" >> "$GITHUB_ENV"
 
-          echo "SHA ${{ env.commit_sha }}"
-          echo "Date ${{ env.commit_date }}"
+          echo "SHA - ${{ env.commit_sha }}"
+
+          echo "DATE - ${{ env.commit_date }}"
       
       - name: Override Version File
         run:
+          echo "" >> version.tex
+          
           echo "\renewcommand{\DATE}{${{ env.commit_date }}}" >> version.tex
 
           echo "\renewcommand{\COMMITSHA}{${{ env.commit_sha }}}" >> version.tex
