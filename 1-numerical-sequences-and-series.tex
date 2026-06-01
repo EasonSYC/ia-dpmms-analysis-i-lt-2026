@@ -408,7 +408,7 @@ To prove this result, we first give the following lemmas which are useful.
 
 Now, we prove \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass). We find an algorithm that works for \emph{any} sequence that extracts a convergent subsequence.
 
-\begin{proof}[of \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass)]
+\begin{proof}[of \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass), using Nested Interval Theorem]
     We are given \(\para{x_n}\) and its bound, say \(M > 0\), such that \(\abs{x_n} \leq M\) for all \(n \in \NN\). We want to construct a sequence of nested intervals, from which we can sample our subsequence, since that would ensure our subsequence would converge, to the unique intersection point of the nested intervals.
 
     Let \(a_1 = -M, b_1 = +M\), so \(I_1 = \ccintv{-M}{M} \supseteq \set{x_n}{n \in \NN}\).
@@ -434,15 +434,62 @@ Now, we prove \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass). We find 
     and the result then follows (maybe by taking a limit \(k \to \infty\)). However, this does depend on certain topological properties on the sets \(I_n\), and note that an infinite intersection is not about taking some limit, so the proof using \autoref{prop:seq-sandwich-theorem} (Sandwich Theorem) is included.
 \end{remark}
 
+\begin{proof}[of \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass), using \autoref{thm:monotone-convergence} (Monotone Convergence Theorem)]
+    We first consider the set of indices
+    \[
+        P = \set{n \in \NN}{\forall m \geq n: x_m \geq x_n}.
+    \]
+
+    If such set is infinite, say \(P = \brce{n_1, n_2, \ldots} \subseteq \NN\) for \(n_1 < n_2 < n_3 < \cdots\), then the subsequence \(\para{x_{n_t}}_{t \in \NN}\) is an increasing sequence.
+
+    Now we assume such set is finite, and let \(N = \max P\). For all \(n > N\), we have \(n \notin P\), and hence
+    \[
+        \exists m = m\para{n} \geq n: x_m < x_n.
+    \]
+
+    We construct a subsequence recursively as follows. Let \(n_1 = n + 1\), and let \(n_2 = m\para{n_1} \geq n_1 > B\), \(n_3 = m\para{n_2} \geq n_2 > N\), etc. This creates a (strictly) decreasing subsequence \(\para{x_{n_t}}_{t \in \NN}\).
+
+    Applying \autoref{thm:monotone-convergence} (Monotone Convergence Theorem) and using the bounded assumption gives us a convergent subsequence as desired.
+\end{proof}
+
 The Bolzano--Weierstrass theorem for Complex Sequences hold as well. We can use
 \[
     x_n = \re x_n + i \im x_n
 \]
-and apply the real version of the Bolzano--Weierstrass to the complex version. (Alternatively, a similar mechanism may also be applied to the real and complex parts simultaneously.)
+and apply the real version of the Bolzano--Weierstrass to the real and complex parts, one after another. (Alternatively, a similar mechanism may also be applied to the real and complex parts simultaneously.)
+
+An interesting application of Bolzano--Weierstrass Theorem is the following proposition.
+
+\begin{proposition}[Convergence via Subsequences]
+    \label{prop:convergence-via-subsequences}%
+    Let \(\para{x_n}\) be bounded. If all convergent subsequences converge to the same limit, then \(x_n\) converges to the same limit.
+
+    In other words, if \(x_n\) does not converge, then there are two convergent subsequences that converge to different limits.
+\end{proposition}
+
+\begin{proof}
+    We proof the contrapositive. By Bolzano--Weierstrass theorem, since the sequence \(\para{x_n}\) is bounded, there is some subsequence of \(\para{x_n}_{n \in \NN}\), say \(\para{x_{n_k}}_{k \in \NN}\), that converges to some limit \(L\).
+
+    We aim to construct another subsequence that does not converge to \(L\). Since \(\para{x_n}\) diverges, in particular, \(x_n \notto L\), and hence for some \(\epsilon > 0\), we have
+    \[
+        \forall N \in \NN, \exists n = n\para{N} > N: \abs{x_n - L} > \epsilon.
+    \]
+
+    We recursively define a new subsequence \(\para{x_{m_k}}_{k \in \NN}\) as follows.
+
+    For \(k = 1\), let \(N_1 = 1\), and let \(m_1 = n\para{N_1} > N_1\).
+    
+    For \(k = 2\), let \(N_2 = m_1\), and let \(m_2 = n\para{N_2} > N_2\). And this continues on.
+
+    Note that \(\para{m_k}_{k \in \NN}\) is indeed strictly increasing, and \(\para{x_{m_k}}_{k \in \NN}\) must be bounded. Applying Bolzano--Weierstrass on this subsequence gives some convergent \(\para{x_{m_{k_t}}}_{t \in \NN}\), say \(x_{m_{k_t}} \to L'\) as \(t \to \infty\).
+    
+    But since for the previous \(\epsilon\), we have \(\abs{x_{m_k} - L} > \epsilon\) for all \(k \in \NN\), and in particular, \(\abs{x_{m_{k_t}} - L} > \epsilon\) for all \(t \in \NN\), so it is impossible for \(L' = L\).
+\end{proof}
 
 \subsection{Cauchy Sequences}
 
 \begin{definition}[Cauchy Sequence]
+    \label{def:seq-cauchy}%
     A sequence \(\para{x_n}\) is \emph{Cauchy} if
     \[
         \forall \epsilon > 0, \exists N = N \para{\epsilon} \in \NN, \forall m, n \geq N: \abs{x_m - x_n} < \epsilon.
@@ -1387,4 +1434,57 @@ We introduce a useful lemma which is similar to integration by parts, and is ind
         \abs{\sum_{j = m}^{n} a_j b_j} \leq 2 M b_m < \epsilon
     \]
     and this shows that the partial sums of \(a_j b_j\) is Cauchy, hence convergent.
+\end{proof}
+
+Another result we have is that there is `no slowest divergent series'.
+
+\begin{lemma}[No Slowest Divergent Series]
+    \label{lem:no-slowest-divergent-series}%
+    Suppose that \(\sum a_n\) diverges to infinity and \(a_n > 0\). Then there is a sequence \(\para{b_n}\) with \(\frac{b_n}{a_n} \to 0\) and \(\sum b_n\) divergent.
+\end{lemma}
+
+\begin{proof}
+        We let the partial sums of \(\para{a_n}\) be
+    \[
+        S_n = \sum_{m = 1}^{n} a_m,
+    \]
+    and we construct the sequence
+    \[
+        b_n = \frac{a_n}{S_n}.
+    \]
+
+    We must have
+    \[
+        \frac{b_n}{a_n} = \frac{1}{S_n} \to 0.
+    \]
+
+    Let the partial sums of \(b_n\) be
+    \[
+        S'_n = \sum_{m = 1}^{n} b_m.
+    \]
+
+    To show the infinite series of \(b_n\) diverges, we show that \(S'_n\) is not Cauchy. Indeed, for any \(m_1, m_2 \in \NN\), where \(m_1 > m_2\), we have
+    \begin{align*}
+        S'_{m_1} - S'_{m_2} &= \sum_{n = m_2}^{m_1} b_n \\
+        &= \sum_{n = m_2}^{m_1} \frac{a_n}{S_n} \\
+        &> \frac{1}{S_{m_1}} \sum_{n = m_2}^{m_1} a_n \\
+        &= \frac{S_{m_1} - S_{m_2}}{S_{m_1}} \\
+        &= 1 - \frac{S_{m_2}}{S_{m_1}},
+    \end{align*}
+    which shows for all \(m, n \in \NN\), \(m > n\), we have
+    \[
+        S'_{m} - S'_{n} > 1 - \frac{S_n}{S_m}.
+    \]
+
+    To show that \(S'_n\) is not Cauchy, we want to show that
+    \[
+        \exists \epsilon > 0, \forall N \in \NN, \exists m, n \geq N : \abs{S'_m - S'_n} \geq \epsilon.
+    \]
+
+    We let \(0 < \epsilon < 1\), say \(\epsilon = \frac{1}{2}\), so \(1 - \epsilon > 0\). Let \(N \in \NN\) be arbitrary, and let \(n = N\). We have
+    \[
+        1 - \frac{S_n}{S_m} \geq \epsilon \iff \frac{S_n}{S_m} \leq 1 - \epsilon \iff S_m \geq \frac{S_n}{1 - \epsilon}.
+    \]
+
+    Note that \(n = N\) is fixed, so the right-hand side is a constant. Since the sequence \(\para{S_m}\) is positive and diverges to infinity, the terms can be arbitrarily large however large \(m\) is, and in particular it can be larger than \(\frac{S_n}{1 - \epsilon}\), for some \(m > N\). This provides a diverging lower bound for \(\para{S'_n}\), finishing our proof on \(S'_n\) is divergent, and hence \(\sum b_n\) is divergent.
 \end{proof}
