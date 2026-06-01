@@ -1551,11 +1551,11 @@ Now we introduce the tests.
 \end{proposition}
 
 \begin{proof}
-    By definition of the limit, we have for sufficiently large \(a\), say \(a > R\), then
+    By definition of the limit, we have for sufficiently large \(a\), say \(a > R\), that
     \[
         \frac{L}{2} \leq \frac{f\para{x}}{g\para{x}} \leq \frac{3L}{2},
     \]
-    and hence
+    by taking \(\epsilon = \frac{L}{2}\) in the definition. Hence,
     \[
         0 \leq g\para{x} \leq \frac{2}{L} f\para{x}
     \]
@@ -1769,7 +1769,24 @@ Similar to the proofs of \autoref{prop:ser-test-dirichlet} (Dirichlet Test for I
 \end{proof}
 
 \begin{proof}[using \autoref{prop:int-cauchy} (Cauchy)]
-    \textbf{\textcolor{red}{To-Do.}} % TODO!!!
+    We define the indefinite integrals similarly as above, and using integration by parts (identically), we have
+    \begin{align*}
+        H\para{x} &= \int_{m}^{n} F'\para{t} g\para{t} \Diff t \\
+        &= F\para{n} g\para{n} - F\para{m} g\para{m} - \int_{m}^{n} F\para{t} g'\para{t} \Diff t
+    \end{align*}
+    for all \(a \leq m \leq n\). Let \(M = \sup_{x \geq a} \abs{F\para{x}}\). We suppose \(g\) is positive and decreasing (the increasing case can be dealt with similarly). Taking absolute values, we have
+    \begin{align*}
+        \abs{\int_{m}^{n} F'\para{t} g\para{t} \Diff t} &\leq M g\para{n} + M g\para{m} + \int_{m}^{n} M \cdot \para{- g'\para{t}} \Diff t \\
+        &= M \brac{g\para{n} + g\para{m} + \int_{m}^{n} \para{- g'\para{t}} \Diff t} \\
+        &= M \brac{g\para{n} + g\para{m} + \para{g\para{m} - g\para{n}}} \\
+        &= 2 M g\para{m}.
+    \end{align*}
+
+    Let \(\epsilon > 0\) be arbitrary. Since \(g\para{n} \to 0\), we have some \(R \in \NN\) such that \(\abs{g\para{n}} < \frac{\epsilon}{2M}\) for all \(n \geq R\). Then, for all \(R \leq m \leq n\), we have
+    \[
+        \abs{\int_{m}^{n} F'\para{t} g\para{t} \Diff t} \leq 2M g\para{m} < \epsilon,
+    \]
+    and this shows that the integrals over bounded domains are Cauchy, hence convergent.
 \end{proof}
 
 \subsubsection{Integrals over Isolated Singularity}
