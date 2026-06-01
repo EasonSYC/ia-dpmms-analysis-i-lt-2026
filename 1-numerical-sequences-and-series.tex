@@ -36,7 +36,7 @@ There are two definitions of divergence to infinity, one allows the behaviour to
 
 \begin{definition}[Divergence to Infinity for a Sequence]
     \label{def:seq-divergence-to-infinity}%
-    A sequence \(\para{x_n}\) \emph{diverges to infinity} if the argument part\(\frac{x_n}{\abs{x_n}}\)converges, and the modulus part satisfies
+    A sequence \(\para{x_n}\) \emph{diverges to infinity} if its modulus satisfies
     \[
         \forall L > 0, \exists N = N \para{L} \in \NN, \forall n \geq N: \abs{x_n} > L.
     \]
@@ -47,14 +47,12 @@ There are two definitions of divergence to infinity, one allows the behaviour to
 \end{remark}
 
 \begin{remarks}[on divergence to infinity]
-    This definition may cause some confusion in some things that we took for granted before.
+    Another definition of divergence to infinity (rarely seen) would require the argument part \(\frac{x_n}{\abs{x_n}}\) to converge. This definition may cause some confusion in some things that we took for granted before.
 
     \begin{enumerate}
         \item This definition of divergence to infinity effectively states that it diverges to infinity along some particular direction eventually.
         
         For example, the real sequence \(x_n = \para{-1}^{n - 1} n\) (i.e., \(1, -2, 3, -4, \ldots\)) does \emph{not} diverge to infinity. Similarly, the complex sequence \(x_n = \exp\para{in} \cdot n\) does \emph{not} diverge to infinity either.
-
-        \item If we only mean the `size' of the terms diverges to infinity, then we should specify \(\abs{x_n} \to \infty\), rather than \(x_n \to \infty\). The above two examples both satisfy this.
         
         \item This gives examples of sequences with \(x_n \to 0\) with \(x_n \neq 0\) for all \(n\), but \(\frac{1}{x_n} \notto \infty\). We may only conclude that \(\abs{\frac{1}{x_n}} \to \infty\).
     \end{enumerate}
@@ -73,7 +71,7 @@ There are two definitions of divergence to infinity, one allows the behaviour to
             \abs{x_n - 0} = \frac{1}{2^n} < \epsilon.
         \]
 
-        \item Let \(x_n = in\), then \(x_n \to \infty\), since we have \(\frac{x_n}{\abs{x_n}} = i \to i\), and for any given \(L > 0\), let \(N = 1 + \ceil{L}\), then for all \(n \geq N\),
+        \item Let \(x_n = in\), then \(x_n \to \infty\), since for any given \(L > 0\), let \(N = 1 + \ceil{L}\), then for all \(n \geq N\),
         \[
             \abs{x_n} = \frac{x_n}{i} = n > L.
         \]
