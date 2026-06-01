@@ -791,6 +791,94 @@ Similar to \autoref{ex:inverse-fn-differentiation}, we also have a statement abo
     Now, note \(m = \min\brce{\delta, x_0 - a, b - x_0} > 0\), so take any \(0 < \epsilon < m\), then for all \(x \in \ccintv{x_0 - \epsilon}{x_0 + \epsilon}\), we have \(x_0 \in \ccintv{a}{b}\) and \(\abs{x - x_0} < \delta\), so \(f'\para{x} > 0\) for this restriction.
 \end{proof}
 
+\subsection{Darboux's Theorem}
+
+A really cool application of \autoref{thm:extreme-value} (Extreme Value Theorem), \autoref{thm:mean-value-thm} (Mean Value Theorem) and \autoref{thm:intermediate-value} (Intermediate Value Theorem) is the following theorem.
+
+\begin{theorem}[Darboux's Theorem]
+    If \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) is differentiable with \(a < b\), then for all \(f'\para{a} < z < f'\para{b}\) or \(f'\para{b} < z < f'\para{a}\), there exists some \(c\) with \(a < c < b\), such that \(f'\para{c} = z\).
+\end{theorem}
+
+\begin{proof}[using \autoref{thm:extreme-value} (Extreme Value Theorem)]
+    We assume that \(f'\para{a} < z < f'\para{b}\) and the other case is similar. We define the function \(\functiondomain{\phi}{\ccintv{a}{b}}{\RR}\) with
+    \[
+        \phi\para{x} = f\para{x} - zx.
+    \]
+
+    Since \(f\) is differentiable, it must be continuous, and by \autoref{thm:extreme-value} (Extreme Value Theorem), \(\phi\) attains its bounds.
+
+    Let \(m \in \ccintv{a}{b}\) be such that
+    \[
+        \phi\para{m} = \inf_{x \in \ccintv{a}{b}} \phi\para{x}.
+    \]
+
+    First, if \(m = a\), then \(\phi\para{a} \leq \phi\para{x}\) for all \(x \in \ocintv{a}{b}\). Hence, we have
+    \[
+        f\para{a} - az \leq f\para{x} - xz.
+    \]
+
+    Rearranging, we have
+    \[
+        z \leq \frac{f\para{x} - f\para{a}}{x - a}
+    \]
+    and taking \(x \to a\) gives \(z \leq f'\para{a}\), which is a contradiction with \(z > f'\para{a}\). So \(m \neq a\)
+
+    Similarly, \(m \neq b\), so \(m \in \oointv{a}{b}\).
+
+    Hence, for any \(x \in \cointv{a}{m}\), we have \(\phi\para{x} \geq \phi\para{m}\) but \(x - m < 0\), so
+    \[
+        \frac{\phi\para{x} - \phi\para{m}}{x - m} \leq 0,
+    \]
+    and hence in the limit (the limit exists, since \(f\) is differentiable implies \(\phi\) is differentiable),
+    \[
+        \phi'\para{m} \leq 0.
+    \]
+
+    Similarly, considering \(x \in \ocintv{m}{b}\), we have \(\phi'\para{m} \geq 0\). So \(\phi'\para{m} = 0\), and hence \(f'\para{m} = z\), finishing our proof.
+\end{proof}
+
+\begin{proof}[using \autoref{thm:mean-value-thm} (Mean Value Theorem) and \autoref{thm:intermediate-value} (Intermediate Value Theorem)]
+    We consider the helper functions
+    \[
+        g\para{x} = \begin{cases}
+            f'\para{a}, & x = a, \\
+            \frac{f\para{x} - f\para{a}}{x - a}, & a < x \leq b,
+        \end{cases}
+    \]
+    and
+    \[
+        h\para{x} = \begin{cases}
+            \frac{f\para{x} - f\para{b}}{x - b}, & a \leq x < b, \\
+            f'\para{b}, & x = b.
+        \end{cases}
+    \]
+
+    Now, note that
+    \[
+        g\para{b} = h\para{a} = \frac{f\para{a} - f\para{b}}{a - b}.
+    \]
+
+    Hence, for \(f'\para{a} < z < f'\para{b}\), it must lie within either the image of \(g\), or the image of \(h\), since \(g\) and \(h\) are both continuous, and by \autoref{thm:intermediate-value} (Intermediate Value Theorem). In the first case,
+    \[
+        z = \frac{f\para{t} - f\para{a}}{t - a}
+    \]
+    for some \(a < t \leq b\), and in the second case,
+    \[
+        z = \frac{f\para{t} - f\para{b}}{t - b}
+    \]  
+    for some \(a \leq t < b\). Either case, we have
+    \[
+        z = \frac{f\para{\alpha} - f\para{\beta}}{\alpha - \beta}
+    \]
+    for \(\ccintv{\alpha}{\beta} \subseteq \ccintv{a}{b}\).
+
+    Therefore, by \autoref{thm:mean-value-thm} (Mean Value Theorem), we have
+    \[
+        z = f' \para{c}  
+    \]
+    for some \(\alpha < c < \beta\), and hence for some \(a < c < b\).
+\end{proof}
+
 \subsection{Higher Derivatives and Taylor's Theorem}
 \begin{definition}[Higher Order Derivatives]
     \label{def:higher-order-derivatives}%
