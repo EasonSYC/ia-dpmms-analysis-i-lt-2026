@@ -785,6 +785,45 @@ We now study some limit properties on monomials, exponentials and logarithms.
     by the first limit.
 \end{proof}
 
+\begin{proposition}[Important Limit involving \(e\)]
+    We have
+    \[
+        \para{1 + \frac{a}{n}}^n \to \exp \para{a}
+    \]
+    as \(n \to \infty\), for all \(a \in \RR\).
+\end{proposition}
+
+\begin{proof}
+    We consider \(\log\para{1 + x}\) on \(\ccintv{0}{a / n}\), where \(n > \abs{a}\). By \autoref{thm:mean-value-thm} (Mean Value Theorem), there is some \(c \in \oointv{0}{a / n}\) (or the other way round for the interval if \(a < 0\)), such that
+    \[
+        \rightbar{\DiffOp{x}}_{x = c} \log \para{1 + x} = \frac{\log\para{1 + a / n} - \log\para{1 + 0}}{a / n - 0},
+    \]
+    which means
+    \[
+        \frac{1}{1 + c} = \frac{\log \para{1 + a / n}}{a / n},
+    \]
+    so
+    \[
+        n \log \para{1 + \frac{a}{n}} = \frac{a}{1 + c}
+    \]
+    for some \(c \in \ccintv{0}{a / n}\).
+
+    We want to show that
+    \[
+        \para{1 + \frac{a}{n}}^n \to \exp\para{a},
+    \]
+    and it is equivalent to show that
+    \[
+        n \log\para{1 + \frac{a}{n}} \to a.
+    \]
+
+    As \(n \to \infty, c \in \oointv{0}{a / n}\) so \(c \to 0\), and hence
+    \[
+        n \log\para{1 + \frac{a}{n}} = \frac{a}{1 + c} \to a
+    \]
+    and this shows the result as desired.
+\end{proof}
+
 \subsection{Trigonometric Functions}
 
 \begin{definition}[Trigonometric Functions]
