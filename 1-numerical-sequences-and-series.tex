@@ -1488,3 +1488,39 @@ Another result we have is that there is `no slowest divergent series'.
 
     Note that \(n = N\) is fixed, so the right-hand side is a constant. Since the sequence \(\para{S_m}\) is positive and diverges to infinity, the terms can be arbitrarily large however large \(m\) is, and in particular it can be larger than \(\frac{S_n}{1 - \epsilon}\), for some \(m > N\). This provides a diverging lower bound for \(\para{S'_n}\), finishing our proof on \(S'_n\) is divergent, and hence \(\sum b_n\) is divergent.
 \end{proof}
+
+\begin{proposition}[Convergence of Product Series]
+    If both \(\sum a_n\) and \(\sum b_n\) both converges absolutely, then \(\sum a_n b_n\) converges absolutely.
+\end{proposition}
+
+\begin{remark}
+    This is not true for non-absolute convergent series, with the following counterexample. Let \(a_n = b_n = \para{-1}^{n + 1} \frac{1}{\sqrt{n}}\). By \autoref{prop:ser-test-alternating} (Alternating Series Test), since \(\frac{1}{\sqrt{n}} \to 0\) and is decreasing, \(\sum a_n\) and \(\sum b_n\) both converge.
+
+    But \(a_n b_n = \frac{1}{n}\) and \(\sum a_n b_n\) is the harmonic series, which diverges.
+\end{remark}
+
+\begin{proof}[using Bounds]
+    Since \(\sum a_n\) converges, \(a_n\) is bounded, say \(a_n \leq M\) for all \(n\). Then,
+    \[
+            0 \leq \abs{a_n b_n} \leq M \abs{b_n}
+    \]
+
+    So by \autoref{prop:ser-test-comparison} (Comparison Test), the product series \(a_n b_n\) converges absolutely.
+\end{proof}
+
+\begin{remark}
+    Note we only used the condition that \(a_n\) is bounded here, so the conditions can be weakened.
+\end{remark}
+
+\begin{proof}[using Cauchy--Schwarz]
+    Without loss of generality, we take \(a_n, b_n \geq 0\) (by taking the moduli of the terms).
+
+    Since \(\sum a_n\) and \(\sum b_n\) converge absolutely, we have \(\sum a_n^2\) and \(\sum b_n^2\) converge absolutely. Hence,
+    \[
+        \para{\sum_{n = 1}^{m} \para{a_n b_n}}^2 \leq \para{\sum_{n = 1}^{m} a_n^2} \cdot \para{\sum_{n = 1}^{m} b_n^2}
+    \]
+    and therefore the partial sums of the product series are bounded above. Since the partial sums are increasing, they converge.
+\end{proof}
+\begin{remark}
+    The conditions for this can be weakened -- for example using H\"older's inequality, a more general version of Cauchy--Schwarz.
+\end{remark}
