@@ -1608,8 +1608,45 @@ Now we introduce the tests.
 \end{proposition}
 
 \begin{proof}
-    \textbf{\textcolor{red}{To-Do.}} % TODO!!!
+    Note that \(L \geq 0\).
+
+    \begin{itemize}
+        \item Suppose \(0 \leq L < 1\). Let \(0 \leq L < r < 1\). For some \(R \geq a\), we have
+        \[
+            \forall x > R: f\para{x}^{1 / x} < r,
+        \]
+        and hence
+        \[
+            \forall x > R: 0 \leq f\para{x} < r^x.
+        \]
+
+        Since \(0 < r < 1\), the improper integral of \(r^x\) to infinity converges by direct integration. Therefore, by the direct comparison test, the improper integral of \(f\para{x}\) converges.
+
+        \item Now, suppose \(L > 1\). Let \(L > r > 1\). For some \(R \geq a\), we have
+        \[
+            \forall x > R: f\para{x}^{1 / x} > r > 0,
+        \]
+        and hence
+        \[
+            \forall x > R: f\para{x} > r^x > 0.
+        \]
+
+        Since \(r > 1\), the improper integral of \(r^x\) to infinity diverges by direct integration. Hence, by the direct comparison test, the improper integral of \(f\para{x}\) diverges.
+    \end{itemize}
 \end{proof}
+
+\begin{remark}
+    When \(L = 1\), this test is inconclusive. A divergent case may be given by \(f\para{x} = 1\). A convergent case may be given by \(f\para{x} = \frac{1}{x^2}\) (its convergence can be shown by direct integration). As for the limit, we have
+    \begin{align*}
+        \lim_{x \to \plusinfty} \para{\frac{1}{x^2}}^{1 / x} &= \lim_{x \to \plusinfty} x^{- 2 / x} \\
+        &= \lim_{x \to \plusinfty} \exp\para{- 2 \cdot \frac{\log x}{x}} \\
+        &= \exp\para{-2 \lim_{x \to \plusinfty} \frac{\log x}{x}} \\
+        &= \exp\para{-2 \lim_{x \to \plusinfty} \frac{1 / x}{1}} \\
+        &= \exp\para{-2 \cdot 0} \\
+        &= 1
+    \end{align*}
+    by applying l'H\^{o}pital's rule.
+\end{remark}
 
 There is a similar notion of Cauchy sequences in improper integrals.
 
@@ -1705,7 +1742,7 @@ Similar to the proofs of \autoref{prop:ser-test-dirichlet} (Dirichlet Test for I
     Let \(M = \sup_{x \geq a} \abs{F\para{x}}\). For the final term, we have the integral of the absolute value is
     \begin{align*}
         \int_{a}^{x} \abs{F\para{t} g'\para{t}} \Diff t &\leq \sup_{x \geq a} \abs{F\para{t}} \cdot \int_{a}^{x} \abs{g'\para{t}} \Diff t \\
-        &= \pm M \cdot \int_{a}^{x} g'\para{t} \Diff t \\
+        &= M \cdot \int_{a}^{x} \pm g'\para{t} \Diff t \\
         &= M \cdot \abs{g\para{a} - g\para{x}}.
     \end{align*}
 
