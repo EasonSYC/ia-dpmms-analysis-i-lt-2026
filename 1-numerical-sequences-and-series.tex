@@ -1372,5 +1372,19 @@ We introduce a useful lemma which is similar to integration by parts, and is ind
 \end{proof}
 
 \begin{proof}[using \autoref{thm:completeness-of-r-and-c} (Cauchy Sequences Converge)]
-    \textbf{\textcolor{red}{To-Do.}} % TODO!!!
+    Similarly, since \(S_n\) is bounded, let \(\abs{S_n} \leq M\) for all \(n \in \NN\). Then, using \autoref{lem:ser-summation-by-parts} (Summation by Parts),
+    \begin{align*}
+        \abs{\sum_{j = m}^{n} a_j b_j} &\leq M b_n + M b_m + \sum_{j = m}^{n - 1} M \para{b_j - b_{j + 1}} \\
+        &\leq M \brac{b_n + b_m + \sum_{j = m}^{n - 1} \para{b_j - b_{j + 1}}} \\
+        &= M \brac{b_n + b_m + \para{b_m - b_n}} \\
+        &= 2 M b_m.
+    \end{align*}
+
+    Let \(\epsilon > 0\) be arbitrary. Since \(b_n \to 0\), we let \(N \in \NN\) be such that \(\abs{b_n} < \frac{\epsilon}{2M}\) for all \(n \geq N\).
+    
+    Then, for all \(N \leq m \leq n\), we have
+    \[
+        \abs{\sum_{j = m}^{n} a_j b_j} \leq 2 M b_m < \epsilon
+    \]
+    and this shows that the partial sums of \(a_j b_j\) is Cauchy, hence convergent.
 \end{proof}
