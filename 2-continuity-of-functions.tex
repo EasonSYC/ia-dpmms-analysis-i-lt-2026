@@ -46,7 +46,7 @@ In other words, \(0\) is an \emph{accumulation point} for \(\RR \setminus \brce{
     \begin{itemize}
         \item The set \(X = \brce{0} \cup \ccintv{1}{2}\) has \(0\) as an isolated point. On the other hand, all points in \(\ccintv{1}{2}\) are accumulation points for \(X\).
         \item The points on the unit circle \(S = \set{z \in \CC}{\abs{z} = 1}\) are accumulation points for \(D = \set{z \in \CC}{\abs{z} < 1}\). Also, all the points in \(D\) are also accumulation points for \(D\). \autoref{fig:accumulation-point-c} demonstrates this example.
-        \item If we look at \(\set{z \in \CC}{\abs{z} \leq 1}\), then all the points are accumulation points. 
+        \item If we look at \(\set{z \in \CC}{\abs{z} \leq 1}\), then all the points in this set are accumulation points. 
     \end{itemize}
 \end{example}
 
@@ -76,7 +76,7 @@ We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). T
     \]
     and we denote this as \(f\para{z} \to y\) as \(z \to a\), or \(\lim_{z \to a} f\para{z} \to y\).
 
-    Similarly, we say \(f\) diverges to \(\infty\) as \(z \to a\), if \(\frac{f\para{z}}{\abs{f\para{z}}} \to l\) for some \(l \in \CC\) (the argument converges), and
+    Similarly, we say \(f\) diverges to \(\infty\) as \(z \to a\), if
     \[
         \forall L > 0, \exists \delta = \delta\para{L} > 0, \forall 0 < \abs{z - a} < \delta, z \in X: \abs{f\para{z}} > L.
     \]
@@ -120,7 +120,7 @@ We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). T
     for \(x > 0\), and since this function is even, the same behaviour holds for \(x < 0\), which finishes our proof.
 \end{example}
 
-\begin{lemma}[Sequential Limits]
+\begin{lemma}[Sequential Limits / Heine's Theorem]
     \label{lem:fn-sequential-limits}%
     Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\), and let \(a \in \CC\) be an accumulation point of \(X\). Then
     \[
@@ -222,7 +222,7 @@ We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). T
 \end{definition}
 
 \begin{remark}
-    If \(a \in X\) is an isolated point, \(f\) is then trivially continuous at \(a\), because \(\abs{z - a} < \delta\) implies \(z = a\), so \(f\para{z} = f\para{a}\).
+    If \(a \in X\) is an isolated point, \(f\) is then trivially continuous at \(a\), because for sufficiently small \(\delta\), \(\abs{z - a} < \delta\) implies \(z = a\), so \(f\para{z} = f\para{a}\).
 
     On the other hand, if \(a \in X\) is an accumulation point, this is equivalent to saying
     \[
@@ -256,17 +256,6 @@ To show the second example, it would be helpful to have another definition of co
     \label{prop:fn-seq-cont-iff-cont}%
     Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\) and \(a \in X\). \(f\) is continuous at \(a\) if and only if \(f\) is sequentially continuous at \(a\).
 \end{proposition}
-
-Using \autoref{prop:fn-seq-cont-iff-cont} (Sequential Continuity), we may show indeed that the second example of \autoref{ex:fn-continuity} is not continuous at \(0\). Let \(\para{x_n}\) on \(\RR\) with \(x_n \to 0\), given by
-\[
-    x_n = \frac{1}{\para{2n + \frac{1}{2}} \pi}
-\]
-and hence
-\[
-    f\para{x_n} = \sin\para{\para{2n + \frac{1}{2}} \pi} = 1
-\]
-and in particular, \(f\para{x_n} \to 1 \neq 0\).
-
 We now prove the proposition.
 
 \begin{proof}[of \autoref{prop:fn-seq-cont-iff-cont} (Sequential Continuity), by Definition]
@@ -307,6 +296,16 @@ We now prove the proposition.
 
     Now assume \(f\) is continuous. For any sequence \(\para{z_n}\) on \(X\) with \(z_n \to a\), removing terms where \(z_n = a\) would not affect \(z_n \to a\). After removing these terms, we get a sequence \(\para{z'_n}\), and by considering the sequential limit (using continuity), we have \(f\para{z'_n} \to f\para{a}\). But now, adding those terms where \(z_n = a\) back to the sequence does not affect \(f\para{z'_n} \to f\para{a}\). This indeed shows sequential continuity.
 \end{proof}
+
+Using \autoref{prop:fn-seq-cont-iff-cont} (Sequential Continuity), we may show indeed that the second example of \autoref{ex:fn-continuity} is not continuous at \(0\). Let \(\para{x_n}\) on \(\RR\) with \(x_n \to 0\), given by
+\[
+    x_n = \frac{1}{\para{2n + \frac{1}{2}} \pi}
+\]
+and hence
+\[
+    f\para{x_n} = \sin\para{\para{2n + \frac{1}{2}} \pi} = 1
+\]
+and in particular, \(f\para{x_n} \to 1 \neq 0\).
 
 \begin{examples}[Continuity, Continued]
     \label{ex:continuity-continued}%
