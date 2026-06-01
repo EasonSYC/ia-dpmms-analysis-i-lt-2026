@@ -1537,7 +1537,7 @@ Now we introduce the tests.
     so the improper integral converges, as desired.
 \end{example}
 
-\begin{proposition}[Ratio / Limit Comparison Test for Integrals]
+\begin{proposition}[Limit Comparison (Ratio) Test for Integrals]
     \label{prop:int-test-ratio}%
     Let \(\functiondomain{f, g}{\cointv{a}{\plusinfty}}{\RR}\) be integrable over any finite interval \(\ccintv{a}{R}\) for \(R \geq a\), satisfying \(f\para{x}, g\para{x} \geq 0\) for all \(x \in \cointv{a}{\plusinfty}\), and
     \[
@@ -1551,7 +1551,20 @@ Now we introduce the tests.
 \end{proposition}
 
 \begin{proof}
-    \textbf{\textcolor{red}{To-Do.}} % TODO!!!
+    By definition of the limit, we have for sufficiently large \(a\), say \(a > R\), then
+    \[
+        \frac{L}{2} \leq \frac{f\para{x}}{g\para{x}} \leq \frac{3L}{2},
+    \]
+    and hence
+    \[
+        0 \leq g\para{x} \leq \frac{2}{L} f\para{x}
+    \]
+    and
+    \[
+        0 \leq f\para{x} \leq \frac{3L}{2} g\para{x}
+    \]
+
+    The result follows from \autoref{prop:int-test-comparison} (Comparison Test).
 \end{proof}
 
 \begin{remark}
