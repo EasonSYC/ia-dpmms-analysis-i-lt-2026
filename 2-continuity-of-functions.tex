@@ -61,6 +61,26 @@ In other words, \(0\) is an \emph{accumulation point} for \(\RR \setminus \brce{
     Let \(X \subseteq \CC\) and \(a \in \CC\). Then \(a\) is an accumulation point for \(X\) if and only if there exists \(\para{x_n}\) in \(X \setminus \brce{a}\), such that \(\lim_{n \to \infty} x_n = a\).
 \end{lemma}
 
+\begin{proof}
+    If there is some \(\para{x_n} \subseteq X \setminus \brce{a}\) with \(x_n \to a\), then by definition,
+    \[
+        \forall \epsilon > 0, \exists N = N\para{\epsilon} \in \NN, \forall n \geq N: \abs{x_n - a} < \delta.
+    \]
+
+    Now, let \(\delta > 0\) be arbitrary, then take \(N = N\para{\delta}\), therefore we have \(x_N \in X \setminus \brce{a}\) with \(\abs{x_N - a} < \delta\), showing that \(a\) is indeed an accumulation point.
+
+    Conversely, given \(a\) is an accumulation point of \(X\), this means
+    \[
+        \forall \delta > 0, \exists z = z\para{\delta} \in X \setminus \brce{a}: \abs{z - a} < \delta.
+    \]
+
+    Now, let \(x_n = z\para{\frac{1}{n}}\) for \(n \in \NN\), then \(x_n\) is indeed a sequence of \(X \setminus \brce{a}\). Therefore,
+    \[
+        0 < \abs{x_n - a} = \abs{z\para{\frac{1}{n}} - a} \leq \frac{1}{n}
+    \]
+    and by the sandwich theorem, \(\abs{x_n - a} \to 0\), so \(x_n \to a\), as desired.
+\end{proof}
+
 Now we return to the definition of a limit. From the point we just saw, we want \(a\) to be an accumulation point of \(X\), since otherwise the behaviour of \(f\) as \(z\) `approaches' \(a\) itself does not make sense -- we need a path for \(z\) to approach the point, via its domain! 
 
 We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). The idea is, no matter how small the threshold \(\epsilon > 0\), we may let the function be arbitrarily close to \(y\), as long as \(z\) is sufficiently close to \(a\). Formally, we want to define this as follows.
