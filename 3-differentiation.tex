@@ -477,7 +477,7 @@ We introduce \autoref{thm:rolle} (which is a special case of \autoref{thm:mean-v
 \begin{remark}
     A corollary of \autoref{thm:mean-value-thm} (Mean Value Theorem) is as follows: given \(h\) such that \(a + h \in \ccintv{a}{b}\), we have some \(\theta = \theta\para{h} \in \oointv{0}{1}\), such that
     \[
-        f\para{a + h} + f\para{a} + h f'\para{a + \theta\para{h}}.
+        f\para{a + h} + f\para{a} + h f'\para{a + h \theta \para{h}}.
     \]
 
     Notice the similarity of \autoref{lem:linear-approximation-differentiability} -- but here we have no error term, but the derivative is taken at some other point.
@@ -609,7 +609,7 @@ We now look back at \autoref{thm:rolle} (Rolle's Theorem).
             \function{f}{\ccintv{0}{R}}{\RR}{x}{x^N.}
         \]
 
-        Then \(f\) is continuous on \(\ccintv{0}{R}\) and differentiable on \(\oointv{0}{R}\), with \(f'\para{x} = N x^{N - 1} > 0\) for \(x \in \oointv{o}{R}\), by \autoref{ex:aplication-of-differentiation-rules}.
+        Then \(f\) is continuous on \(\ccintv{0}{R}\) and differentiable on \(\oointv{0}{R}\), with \(f'\para{x} = N x^{N - 1} > 0\) for \(x \in \oointv{0}{R}\), by \autoref{ex:aplication-of-differentiation-rules}.
 
         Then, by \autoref{thm:inverse-fn-thm-differentiable}, \(\functiondomain{f}{\ccintv{0}{R}}{\ccintv{0}{R^N}}\) is a bijection, and \(f\inverse\para{y} = y^{\frac{1}{N}}\) is differentiable, with
         \[
