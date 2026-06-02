@@ -490,14 +490,14 @@ A corollary of \autoref{thm:continuity-compactness} on \(\RR\) is \autoref{thm:e
     \[
         M \leq \lim_{n \to \infty} f\para{x_n} \leq M,
     \]
-    and hence using the fact that \(f\) is continuous,
+    and hence using the fact that \(f\) is continuous, using \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass Theorem) to give a subsequence of the bounded sequence \(\para{x_n}\), say \(\para{x_{n_k}} \to x\),
     \[
-        \lim_{n \to \infty} y_n = \lim_{n \to \infty} f\para{x_n} = M.
+        M = \lim_{n \to \infty} y_n = \lim_{k \to \infty} y_{n_k} = \lim_{k \to \infty} f\para{x_{n_k}} = f\para{\lim_{k \to \infty} x_{n_k}} = f\para{x}.
     \]
 
-    Since \(f\para{X}\) is compact, it is closed, and hence
+    Since \(f\para{X}\) is compact, it is closed, so \(x \in X\), and hence
     \[
-        M = \lim_{n \to \infty} y_n \in f\para{X},
+        M = f\para{x} \in f\para{X},
     \]
     which finishes our proof.
 \end{proof}
