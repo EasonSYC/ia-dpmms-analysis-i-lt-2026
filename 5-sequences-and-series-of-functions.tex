@@ -2,21 +2,21 @@
 
 \begin{definition}[Sequence of Functions]
     \label{def:seq-of-fn}%
-    We say \(\para{f_n}_{n \in \NN} = \para{f_1, f_2, \ldots}\) is a \emph{sequence of \(\CC\)-valued functions on \(X \subseteq \CC\)}, if we have \(\functiondomain{f_n}{X}{\CC}\) for each \(n \in \NN\).
+    We say \(\pqty{f_n}_{n \in \NN} = \pqty{f_1, f_2, \ldots}\) is a \emph{sequence of \(\CC\)-valued functions on \(X \subseteq \CC\)}, if we have \(\functiondomain{f_n}{X}{\CC}\) for each \(n \in \NN\).
 \end{definition}
 
 \begin{definition}[Pointwise Convergence]
     \label{def:pointwise-convergence}%
-    If, for any \(x \in Y \subseteq X \subseteq \CC\), the numerical sequence \(\para{f_n \para{x}}_{n}\) converges, then we say the sequence \emph{pointwise converges} on \(Y\) to the function
+    If, for any \(x \in Y \subseteq X \subseteq \CC\), the numerical sequence \(\pqty{f_n \pqty{x}}_{n}\) converges, then we say the sequence \emph{pointwise converges} on \(Y\) to the function
     \[
-        \function{f}{Y}{\CC}{x}{\lim_{n \to \infty} f_n \para{x},}
+        \function{f}{Y}{\CC}{x}{\lim_{n \to \infty} f_n \pqty{x},}
     \]
     and we say \(f_n \to f\) pointwise on \(Y\).
 \end{definition}
 
 \begin{definition}[Series of Functions]
     \label{def:series-of-functions}%
-    Let \(\para{f_n}_{n}\) be a sequence of functions. We call the infinite sum
+    Let \(\pqty{f_n}_{n}\) be a sequence of functions. We call the infinite sum
     \[
         \sum_{n = 1}^{\infty} f_n = f_1 + f_2 + \cdots
     \]
@@ -24,7 +24,7 @@
 
     If the infinite sum converges for all \(x \in Y \subseteq X\), then we define the function
     \[
-        \function{f}{Y}{\CC}{x}{\sum_{n = 1}^{\infty} f_n \para{x}}
+        \function{f}{Y}{\CC}{x}{\sum_{n = 1}^{\infty} f_n \pqty{x}}
     \]
     as the series.
 \end{definition}
@@ -33,7 +33,7 @@ If we know the integrability, continuity, or differentiability of \(f_n\), can w
 
 As an example, if we want to show that \(f\) is continuous at some \(a\), then we want to show
 \[
-    \lim_{x \to a} \lim_{n \to \infty} f_n \para{x} = \lim_{n \to \infty} \lim_{x \to a} f_n \para{x}.
+    \lim_{x \to a} \lim_{n \to \infty} f_n \pqty{x} = \lim_{n \to \infty} \lim_{x \to a} f_n \pqty{x}.
 \]
 
 But a counterexample may be constructed. For example, reducing our perspective to sequences, we define
@@ -52,7 +52,7 @@ while swapping limits gives
 
 We will focus on an easier case where our functions \(f_n\) are always given in the form
 \[
-    f_n \para{x} = c_n \para{x - a}^n
+    f_n \pqty{x} = c_n \pqty{x - a}^n
 \]
 where \(a\) is the \emph{centre}, and \(c_n\) as the \emph{coefficients}.
 
@@ -62,18 +62,18 @@ where \(a\) is the \emph{centre}, and \(c_n\) as the \emph{coefficients}.
 
 \begin{definition}[Power Series]
     \label{def:power-series}%
-    Let \(a \in \CC\) and \(\para{c_n}_{n \in \NN}\) be a numerical sequence in \(\CC\). We call
+    Let \(a \in \CC\) and \(\pqty{c_n}_{n \in \NN}\) be a numerical sequence in \(\CC\). We call
     \[
-        \sum_{n = 0}^{\infty} c_n \para{x - a}^n
+        \sum_{n = 0}^{\infty} c_n \pqty{x - a}^n
     \]
-    a \emph{power series} \emph{centred at \(a\)}, and with \emph{coefficients} \(\para{c_n}_n\).
+    a \emph{power series} \emph{centred at \(a\)}, and with \emph{coefficients} \(\pqty{c_n}_n\).
 \end{definition}
 
 \begin{example}[Taylor Series is Power Series]
     \label{ex:taylor-series}%
     If \(f\) is smooth at \(a\), then its Taylor series at \(a\) is a power series with coefficients
     \[
-        c_n = \frac{f^{\para{n}} \para{a}}{n!}.
+        c_n = \frac{f^{\pqty{n}} \pqty{a}}{n!}.
     \]
 \end{example}
 
@@ -81,18 +81,18 @@ Every power series trivially converges at its centre where \(x = a\).
 
 We first study the convergence of power series, i.e., the set
 \[
-    Y = \set{x \in \CC}{\sum_{n = 0}^{\infty} c_n \para{x - a}^{n} \text{ converges at }x}.
+    Y = \set{x \in \CC}{\sum_{n = 0}^{\infty} c_n \pqty{x - a}^{n} \text{ converges at }x}.
 \]
 
 \begin{lemma}[Convergence at one Point implies Absolute Convergence in Smaller Radius]
     \label{lem:convergence-one-point-implies-convergence-smaller-radius}%
     If the power series
     \[
-        \sum_{n = 0}^{\infty} c_n \para{x - a}^{n}
+        \sum_{n = 0}^{\infty} c_n \pqty{x - a}^{n}
     \]
     converges for some \(x\), and we have \(\abs{y - a} < \abs{x - a}\), then the series
     \[
-        \sum_{n = 0}^{\infty} c_n \para{y - a}^{n}
+        \sum_{n = 0}^{\infty} c_n \pqty{y - a}^{n}
     \]
     converges absolutely.
 \end{lemma}
@@ -105,33 +105,33 @@ We first study the convergence of power series, i.e., the set
 
     Then the power series about \(y\) satisfies
     \[
-        \abs{c_n \para{y - a}^{n}} \leq \abs{c_n \para{x - a}^{n}} \cdot \abs{\frac{y - a}{x - a}}^n = \abs{c_n \para{x - a}^{n}} \cdot r^n
+        \abs{c_n \pqty{y - a}^{n}} \leq \abs{c_n \pqty{x - a}^{n}} \cdot \abs{\frac{y - a}{x - a}}^n = \abs{c_n \pqty{x - a}^{n}} \cdot r^n
     \]
     for \(r < 1\).
 
     Now, since the series converges at \(x\), we have
     \[
-        \lim_{n \to \infty} c_n \para{x - a}^{n} = 0,
+        \lim_{n \to \infty} c_n \pqty{x - a}^{n} = 0,
     \]
     and in particular this sequence is bounded., so there is some \(M > 0\), such that
     \[
-        \abs{c_n \para{x - a}^{n}} \leq M.
+        \abs{c_n \pqty{x - a}^{n}} \leq M.
     \]
 
     Hence,
     \[
-        \abs{c_n \para{y - a}^n} \leq M r^n
+        \abs{c_n \pqty{y - a}^n} \leq M r^n
     \]
     for \(r < 1\), and comparing to the geometric series, we see that the series
     \[
-        \sum_{n = 0}^{\infty} \abs{c_n \para{y - a}^{n}}
+        \sum_{n = 0}^{\infty} \abs{c_n \pqty{y - a}^{n}}
     \]
     converges, and hence the desired series is absolutely convergent.
 \end{proof}
 
 \begin{proposition}[Existence of Radius of Convergence]
     \label{prop:existence-radius-convergence}%
-    Let \(\sum_{n = 0}^{\infty} c_n \para{x - a}^{n}\) be a power series. Then there is some \(R \in \ccintv{0}{\plusinfty}\), which is known as the \emph{radius of convergence} of the power series, such that
+    Let \(\sum_{n = 0}^{\infty} c_n \pqty{x - a}^{n}\) be a power series. Then there is some \(R \in \ccintv{0}{\plusinfty}\), which is known as the \emph{radius of convergence} of the power series, such that
     \begin{itemize}
         \item the series converges absolutely for \(\abs{x - a} < R\); and
         \item the series diverges for \(\abs{x - a} > R\).
@@ -166,7 +166,7 @@ To compute the radius of convergence of power series, we may use the usual tests
 
 \begin{proposition}[Root Test for Power Series]
     \label{prop:power-series-test-root}%
-    Let \(\para{c_n}_n\) be a sequence in \(\CC\), such that
+    Let \(\pqty{c_n}_n\) be a sequence in \(\CC\), such that
     \[
         L = \lim_{n \to \infty} \sqrt[n]{\abs{c_n}}
     \]
@@ -178,7 +178,7 @@ To compute the radius of convergence of power series, we may use the usual tests
 
 \begin{proposition}[Ratio Test for Power Series]
     \label{prop:power-series-test-ratio}%
-    Let \(\para{c_n}_n\) be a sequence in \(\CC\), such that
+    Let \(\pqty{c_n}_n\) be a sequence in \(\CC\), such that
     \[
         L = \lim_{n \to \infty} \abs{\frac{c_{n + 1}}{c_n}}
     \]
@@ -201,7 +201,7 @@ To compute the radius of convergence of power series, we may use the usual tests
         \]
         converges absolutely on all of \(\CC\), i.e., \(R = \plusinfty\). Indeed, the coefficients are given by \(c_n = \frac{1}{n!}\), and \autoref{prop:power-series-test-ratio} gives
         \[
-            L = \lim_{n \to \infty} \frac{1 / \para{n + 1}!}{1 / n!} = \lim_{n \to \infty} \frac{1}{n + 1} = 0.
+            L = \lim_{n \to \infty} \frac{\flatfrac{1}{\pqty{n + 1}!}}{\flatfrac{1}{n!}} = \lim_{n \to \infty} \frac{1}{n + 1} = 0.
         \]
         
         \item The series
@@ -217,7 +217,7 @@ To compute the radius of convergence of power series, we may use the usual tests
 
         The ratio test gives
         \[
-            \lim_{n \to \infty} \abs{\frac{\frac{1}{\para{n + 1}^2}}{\frac{1}{n^2}}} = 1
+            \lim_{n \to \infty} \abs{\frac{\frac{1}{\pqty{n + 1}^2}}{\frac{1}{n^2}}} = 1
         \]
         which gives \(R = 1\). Therefore, the power series converges absolutely with \(\abs{x} < 1\), and diverges with \(\abs{x} > 1\).
 
@@ -243,7 +243,7 @@ To compute the radius of convergence of power series, we may use the usual tests
 \begin{remark}
     The set of convergence points
     \[
-        Y = \set{x \in \CC}{\sum_{n = 0}^{\infty} c_n \para{x - a}^n \text{ converges}}
+        Y = \set{x \in \CC}{\sum_{n = 0}^{\infty} c_n \pqty{x - a}^n \text{ converges}}
     \]
     and hence gives a possible domain for the function of the power series. It must contain the set
     \[
@@ -264,15 +264,15 @@ To compute the radius of convergence of power series, we may use the usual tests
 
 Given that the terms of the sums are polynomials, this means they are continuous, integrable, and differentiable. We would like to study these properties of the infinite sum as well. Formally, if we have the function
 \[
-    \function{f}{Y}{\CC}{x}{\sum_{n = 0}^{\infty} c_n \para{x - a}^n,}
+    \function{f}{Y}{\CC}{x}{\sum_{n = 0}^{\infty} c_n \pqty{x - a}^n,}
 \]
 then for example, can we conclude that
 \[
-    \DiffOp{x} f\para{x} = \sum_{n = 0}^{\infty} c_n \DiffOp{x} \para{x - a}^n,
+    \dv{x} f\pqty{x} = \sum_{n = 0}^{\infty} c_n \dv{x} \pqty{x - a}^n,
 \]
 and can we conclude that
 \[
-    \int f\para{x} \Diff x = \sum_{n = 0}^{\infty} c_n \int \para{x - a}^{n} \Diff x?
+    \int f\pqty{x} \dd{x} = \sum_{n = 0}^{\infty} c_n \int \pqty{x - a}^{n} \dd{x}?
 \]
 
 \begin{example}[Differentiating Power Series Term-by-Term]
@@ -280,13 +280,13 @@ and can we conclude that
     \begin{itemize}
         \item The power series \(\sum_{n = 0}^{\infty} \frac{x^n}{n!}\) converges on all of \(\CC\). Then we have
         \[
-            \sum_{n = 0}^{\infty} \frac{1}{n!} \DiffOp{x} \para{x^n} = \sum_{n = 1}^{\infty} \frac{x^{n - 1}}{\para{n - 1}!} = \sum_{n = 0}^{\infty} \frac{x^n}{n!}
+            \sum_{n = 0}^{\infty} \frac{1}{n!} \dv{x} \pqty{x^n} = \sum_{n = 1}^{\infty} \frac{x^{n - 1}}{\pqty{n - 1}!} = \sum_{n = 0}^{\infty} \frac{x^n}{n!}
         \]
         convergences on \(\CC\).
 
         \item The power series \(\sum_{n = 1}^{\infty} \frac{x^n}{n^2}\) converges on the unit closed disk. Differentiating term-by-term, we have
         \[
-            \sum_{n = 1}^{\infty} \frac{1}{n^2} \DiffOp{x} \para{x^n} = \sum_{n = 1}^{\infty} \frac{x^{n - 1}}{n}.
+            \sum_{n = 1}^{\infty} \frac{1}{n^2} \dv{x} \pqty{x^n} = \sum_{n = 1}^{\infty} \frac{x^{n - 1}}{n}.
         \]
 
         Although this has the same radius of convergence (which is \(1\)), it does not converge on the whole of the \emph{closed} unit disk -- but it does converge on the open unit disk.
@@ -299,11 +299,11 @@ Clearly, we need to be careful: term-by-term operations might not hold on the \e
     \label{def:open-ball-closed-disk}%
     Let \(a \in \CC\) be the \emph{centre} and \(R > 0\) be the \emph{radius}. Then the \emph{open ball} with centre \(a \in \CC\) and radius \(R > 0\) is defined as
     \[
-        B_R \para{a} = \set{x \in \CC}{\abs{x - a} < R}
+        B_R \pqty{a} = \set{x \in \CC}{\abs{x - a} < R}
     \]
     and the \emph{closed disk} as
     \[
-        D_R \para{a} = \set{x \in \CC}{\abs{x - a} \leq R}.
+        D_R \pqty{a} = \set{x \in \CC}{\abs{x - a} \leq R}.
     \]
 \end{definition}
 
@@ -311,41 +311,41 @@ Clearly, we need to be careful: term-by-term operations might not hold on the \e
     \label{prop:continuity-of-power-series}%
     Let
     \[
-        \sum_{n = 0}^{\infty} c_n \para{x - a}^{n}
+        \sum_{n = 0}^{\infty} c_n \pqty{x - a}^{n}
     \]
     be a power series with a non-zero radius of convergence \(R > 0\). Then the function
     \[
-        \function{f}{B_R \para{a}}{\CC}{x}{\sum_{n = 0}^{\infty} c_n \para{x - a}^n}
+        \function{f}{B_R \pqty{a}}{\CC}{x}{\sum_{n = 0}^{\infty} c_n \pqty{x - a}^n}
     \]
-    is continuous inside \(D_r\para{a}\) for every \(r < R\). In particular, it is continuous on the whole of the open unit ball.
+    is continuous inside \(D_r\pqty{a}\) for every \(r < R\). In particular, it is continuous on the whole of the open unit ball.
 \end{proposition}
 
 \begin{proof}[(Non-Examinable)]
     We introduce the notation
     \[
-        S_N\para{x} = \sum_{n \leq N} c_n \para{x - a}^n, \quad T_N\para{x} = \sum_{n > N} c_n \para{x - a}^n
+        S_N\pqty{x} = \sum_{n \leq N} c_n \pqty{x - a}^n, \quad T_N\pqty{x} = \sum_{n > N} c_n \pqty{x - a}^n
     \]
     and notice the tail may be bounded above by
     \[
-        \abs{T_N\para{a}} \leq \sum_{n > N} \abs{c_n} \abs{x - a}^n \leq \sum_{n > N} \abs{c_n} r^n
+        \abs{T_N\pqty{a}} \leq \sum_{n > N} \abs{c_n} \abs{x - a}^n \leq \sum_{n > N} \abs{c_n} r^n
     \]
-    for all \(x \in D_r\para{a}\) with \(r < R\). By the definition of radius of convergence, for all \(\epsilon > 0\), there is some \(N = N \para{\epsilon} \in \NN\), such that
+    for all \(x \in D_r\pqty{a}\) with \(r < R\). By the definition of radius of convergence, for all \(\epsilon > 0\), there is some \(N = N \pqty{\epsilon} \in \NN\), such that
     \[
         \sum_{n > N} \abs{c_n} r^n < \epsilon,
     \]
     and hence
     \[
-        \forall x \in D_r\para{a}: \abs{T_N\para{x}} < \epsilon
+        \forall x \in D_r\pqty{a}: \abs{T_N\pqty{x}} < \epsilon
     \]
 
-    Take \(x_0 \in D_r\para{a}\). We want to show that \(f\) is continuous at \(x_0\). By the triangular inequality, we have
+    Take \(x_0 \in D_r\pqty{a}\). We want to show that \(f\) is continuous at \(x_0\). By the triangular inequality, we have
     \begin{align*}
-        \abs{f\para{x} - f\para{x_0}} &\leq \abs{S_N\para{x} - S_N\para{x_0}} + \abs{T_N\para{x}} + \abs{T_N \para{x_0}} \\
-        &\leq \abs{S_N\para{x} - S_N\para{x_0}} + 2 \epsilon
+        \abs{f\pqty{x} - f\pqty{x_0}} &\leq \abs{S_N\pqty{x} - S_N\pqty{x_0}} + \abs{T_N\pqty{x}} + \abs{T_N \pqty{x_0}} \\
+        &\leq \abs{S_N\pqty{x} - S_N\pqty{x_0}} + 2 \epsilon
     \end{align*}
-    for all \(x \in D_r\para{a}\). To conclude the proof, we use the fact that polynomials are continuous, and choose some \(\delta = \delta\para{\epsilon}\) such that
+    for all \(x \in D_r\pqty{a}\). To conclude the proof, we use the fact that polynomials are continuous, and choose some \(\delta = \delta\pqty{\epsilon}\) such that
     \[
-        \abs{S_N\para{x} - S_N\para{x_0}} < \epsilon.
+        \abs{S_N\pqty{x} - S_N\pqty{x_0}} < \epsilon.
     \]
 
     This finishes the proof.
@@ -355,15 +355,15 @@ Clearly, we need to be careful: term-by-term operations might not hold on the \e
     \label{prop:integrability-of-power-series-term-by-term}%
     Let
     \[
-        \sum_{n = 0}^{\infty} c_n \para{x - a}^n
+        \sum_{n = 0}^{\infty} c_n \pqty{x - a}^n
     \]
     be a real power series, with radius of convergence \(R > 0\). Then the function
     \[
-        \function{f}{\oointv{a - R}{a + R}}{\RR}{x}{\sum_{n = 0}^{\infty} c_n \para{x - a}^n}  
+        \function{f}{\oointv{a - R}{a + R}}{\RR}{x}{\sum_{n = 0}^{\infty} c_n \pqty{x - a}^n}  
     \]
     is integrable on every \(\ccintv{a - r}{a + r}\) for every \(r < R\), and
     \[
-        \int_{a}^{x} f\para{t} \Diff t = \sum_{n = 0}^{\infty} c_n \frac{\para{x - a}^{n + 1}}{n + 1}
+        \int_{a}^{x} f\pqty{t} \dd{t} = \sum_{n = 0}^{\infty} c_n \frac{\pqty{x - a}^{n + 1}}{n + 1}
     \]
     for any \(a - R < x < a + R\).
 \end{proposition}
@@ -371,15 +371,15 @@ Clearly, we need to be careful: term-by-term operations might not hold on the \e
 \begin{proof}[(Non-Examinable)]
     Continuity implies integrability, so it remains to show the formula for integration. We use the same idea, by splitting up the power series into a polynomial and a tail. We have
     \begin{align*}
-        \abs{\int_{a}^{x} f\para{t} \Diff t - \sum_{n \leq N} \frac{c_n \para{x - a}^{n + 1}}{n + 1}} &= \abs{\int_{a}^{x} f\para{t} \Diff t - \int_{a}^{x} S_N\para{t} \Diff t} \\
-        &= \abs{\int_{a}^{x} T_N\para{t} \Diff t} \\
-        &\leq \sup_{\abs{t - a} < r} \abs{T_N \para{t}} \abs{\int_{a}^{x} \Diff t} \\
-        &\leq r \sup_{\abs{t - a} < r} \abs{T_N \para{t}} \\
+        \abs{\int_{a}^{x} f\pqty{t} \dd{t} - \sum_{n \leq N} \frac{c_n \pqty{x - a}^{n + 1}}{n + 1}} &= \abs{\int_{a}^{x} f\pqty{t} \dd{t} - \int_{a}^{x} S_N\pqty{t} \dd{t}} \\
+        &= \abs{\int_{a}^{x} T_N\pqty{t} \dd{t}} \\
+        &\leq \sup_{\abs{t - a} < r} \abs{T_N \pqty{t}} \abs{\int_{a}^{x} \dd{t}} \\
+        &\leq r \sup_{\abs{t - a} < r} \abs{T_N \pqty{t}} \\
         &\leq r \epsilon
     \end{align*}
-    for some sufficiently large \(N = N\para{\epsilon}\). Hence,
+    for some sufficiently large \(N = N\pqty{\epsilon}\). Hence,
     \[
-        \int_{a}^{x} f\para{t} \Diff t = \lim_{n \to \infty} \sum_{n = 0}^{N} \frac{c_n \para{x - a}^{n + 1}}{n + 1} = \sum_{n = 0}^{\infty} \frac{c_n \para{x - a}^{n + 1}}{n + 1}.
+        \int_{a}^{x} f\pqty{t} \dd{t} = \lim_{n \to \infty} \sum_{n = 0}^{N} \frac{c_n \pqty{x - a}^{n + 1}}{n + 1} = \sum_{n = 0}^{\infty} \frac{c_n \pqty{x - a}^{n + 1}}{n + 1}.
     \]
 \end{proof}
 
@@ -387,63 +387,63 @@ Clearly, we need to be careful: term-by-term operations might not hold on the \e
     \label{prop:differentiability-of-power-series-term-by-term}%
     Let
     \[
-        \sum_{n = 0}^{\infty} c_n \para{x - a}^{n}
+        \sum_{n = 0}^{\infty} c_n \pqty{x - a}^{n}
     \]
     be a power series, with a non-zero radius of convergence \(R > 0\). Then the function
     \[
-        \function{f}{B_R \para{a}}{\CC}{x}{\sum_{n = 0}^{\infty} c_n \para{x - a}^n}
+        \function{f}{B_R \pqty{a}}{\CC}{x}{\sum_{n = 0}^{\infty} c_n \pqty{x - a}^n}
     \]
     is differentiable on the whole of its domain, and we have
     \[
-        f'\para{x} = \sum_{n = 1}^{\infty} n c_n \para{x - a}^{n - 1}.
+        f'\pqty{x} = \sum_{n = 1}^{\infty} n c_n \pqty{x - a}^{n - 1}.
     \]
 \end{proposition}
 
 \begin{proof}[(Non-Examinable, Using Integrability, Real Power Series)]
     We let \(g\) be the series we claim to be the derivative. If \(g\) has radius of convergence at least \(R\), then \(g\) is continuous on \(\ccintv{a - r}{a + r}\) for all \(r < R\) by \autoref{prop:continuity-of-power-series} (Continuity of Power Series), and using \autoref{prop:integrability-of-power-series-term-by-term} (Integrability of Power Series), we have
     \[
-        \int_{a}^{x} g\para{t} \Diff t = \sum_{n = 1}^{\infty} n c_n \frac{\para{x - a}^{n}}{n} = f\para{x} - c_0.
+        \int_{a}^{x} g\pqty{t} \dd{t} = \sum_{n = 1}^{\infty} n c_n \frac{\pqty{x - a}^{n}}{n} = f\pqty{x} - c_0.
     \]
 
     Hence, \autoref{thm:ftc-1} (Fundamental Theorem of Calculus), we have
     \[
-        f'\para{x} = g\para{x}
+        f'\pqty{x} = g\pqty{x}
     \]
     for all \(x \in \ccintv{a - r}{a + r}\) for all \(r < R\), and hence
     \[
-        f'\para{x} = g\para{x}
+        f'\pqty{x} = g\pqty{x}
     \]
     for all \(x \in \oointv{a - R}{a + R}\).
 
     Now, it remains to show that the new series has radius of convergence at least \(R\). Take \(r < R\), and let \(s \in \oointv{r}{R}\). We have
     \begin{align*}
-        \abs{n c_n \para{x - a}^{n - 1}} &= \abs{c_n} s^n \frac{n}{s} \para{\frac{\abs{x - a}}{s}}^{n - 1} \\
-        &\leq \abs{c_n} s^n \frac{n}{s} \para{\frac{r}{s}}^{n - 1}
+        \abs{n c_n \pqty{x - a}^{n - 1}} &= \abs{c_n} s^n \frac{n}{s} \pqty{\frac{\abs{x - a}}{s}}^{n - 1} \\
+        &\leq \abs{c_n} s^n \frac{n}{s} \pqty{\frac{r}{s}}^{n - 1}
     \end{align*}
     for all \(\abs{x - a} < r\). Since \(s < R\), \(\abs{c_n} s^n \to \infty\), and in particular, \(\abs{c_n} s^n\) is bounded. Hence,
     \[
-        \sum_{n = 0}^{\infty} M \frac{n}{s} \para{\frac{r}{s}}^{n - 1}
+        \sum_{n = 0}^{\infty} M \frac{n}{s} \pqty{\frac{r}{s}}^{n - 1}
     \]
     converges based on the assumption \(\frac{r}{s} < 1\). Hence, the series
     \[
-        \sum_{n = 1}^{\infty} n c_n \para{x - a}^{n - 1}
+        \sum_{n = 1}^{\infty} n c_n \pqty{x - a}^{n - 1}
     \]
     converges also in \(\abs{x - a} < r\), for all \(r < R\).
 \end{proof}
 
 \begin{proof}[(Non-Examinable, Direct, Complex Power Series)]
-    Consider \(x_0 \in B_R\para{a}\). Let \(\abs{x_0 - a} < r < R\) and \(\abs{x - a} < r\).
+    Consider \(x_0 \in B_R\pqty{a}\). Let \(\abs{x_0 - a} < r < R\) and \(\abs{x - a} < r\).
 
     Recall the identity
     \[
-        \frac{\para{x - a}^n - \para{x_0 - a}^n}{x - x_0} = \sum_{k = 0}^{n - 1} \para{x - a}^k \para{x_0 - a}^{n - 1 - k}.
+        \frac{\pqty{x - a}^n - \pqty{x_0 - a}^n}{x - x_0} = \sum_{k = 0}^{n - 1} \pqty{x - a}^k \pqty{x_0 - a}^{n - 1 - k}.
     \]
 
-    Subtracting the target derivative term \(n \para{x - a}^{n - 1}\), we have
+    Subtracting the target derivative term \(n \pqty{x - a}^{n - 1}\), we have
     \begin{align*}
-        \frac{\para{x - a}^n - \para{x_0 - a}^n}{x - x_0} - n \para{x_0 - a}^{n - 1} &= \sum_{k = 0}^{n - 1} \para{\para{x - a}^k \para{x_0 - a}^{n - 1 - k} - \para{x_0 - a}^{n - 1}} \\
-        &= \sum_{k = 0}^{n - 1} \para{x_0 - a}^{n - 1 - k} \para{\para{x - a}^k - \para{x_0 - a}^k} \\
-        &= \para{x - x_0} \sum_{k = 0}^{n - 1} \para{x_0 - a}^{n - 1 - k} \sum_{j = 0}^{k - 1} \para{x - a}^{j} \para{x_0 - a}^{k - 1 - j}.
+        \frac{\pqty{x - a}^n - \pqty{x_0 - a}^n}{x - x_0} - n \pqty{x_0 - a}^{n - 1} &= \sum_{k = 0}^{n - 1} \pqty{\pqty{x - a}^k \pqty{x_0 - a}^{n - 1 - k} - \pqty{x_0 - a}^{n - 1}} \\
+        &= \sum_{k = 0}^{n - 1} \pqty{x_0 - a}^{n - 1 - k} \pqty{\pqty{x - a}^k - \pqty{x_0 - a}^k} \\
+        &= \pqty{x - x_0} \sum_{k = 0}^{n - 1} \pqty{x_0 - a}^{n - 1 - k} \sum_{j = 0}^{k - 1} \pqty{x - a}^{j} \pqty{x_0 - a}^{k - 1 - j}.
     \end{align*}
 
     We have
@@ -452,7 +452,7 @@ Clearly, we need to be careful: term-by-term operations might not hold on the \e
     \]
     and hence
     \[
-        \abs{\frac{\para{x - a}^n - \para{x_0 - a}^n}{x - x_0} - n \para{x - a}^{n - 1}} \leq \abs{x - x_0} \binom{n}{2} r^{n - 2}.
+        \abs{\frac{\pqty{x - a}^n - \pqty{x_0 - a}^n}{x - x_0} - n \pqty{x - a}^{n - 1}} \leq \abs{x - x_0} \binom{n}{2} r^{n - 2}.
     \]
 
     We may check that
@@ -463,11 +463,11 @@ Clearly, we need to be careful: term-by-term operations might not hold on the \e
     
     Now we investigate the difference of the power series. Since both series converge, we may subtract them term-by-term, giving
     \[
-        \frac{f\para{x} - f\para{x_0}}{x - x_0} - \sum_{n = 1}^{\infty} n c_n \para{x_0 - a}^{n - 1} = \sum_{n = 2}^{\infty} c_n \para{\frac{\para{x - a}^n - \para{x_0 - a}^n}{x - x_0} - n \para{x_0 - a}^{n - 1}},
+        \frac{f\pqty{x} - f\pqty{x_0}}{x - x_0} - \sum_{n = 1}^{\infty} n c_n \pqty{x_0 - a}^{n - 1} = \sum_{n = 2}^{\infty} c_n \pqty{\frac{\pqty{x - a}^n - \pqty{x_0 - a}^n}{x - x_0} - n \pqty{x_0 - a}^{n - 1}},
     \]
     and hence
     \[
-        \abs{\frac{f\para{x} - f\para{x_0}}{x - x_0} - \sum_{n = 1}^{\infty} n c_n \para{x_0 - a}^{n - 1}} \leq \abs{x - x_0} \sum_{n = 2}^{\infty} \abs{c_n} \binom{n}{2} r^{n - 2} = M \abs{x - x_0}.
+        \abs{\frac{f\pqty{x} - f\pqty{x_0}}{x - x_0} - \sum_{n = 1}^{\infty} n c_n \pqty{x_0 - a}^{n - 1}} \leq \abs{x - x_0} \sum_{n = 2}^{\infty} \abs{c_n} \binom{n}{2} r^{n - 2} = M \abs{x - x_0}.
     \]
 
     Taking \(x \to x_0\) gives us the desired result.
@@ -478,19 +478,19 @@ Clearly, we need to be careful: term-by-term operations might not hold on the \e
     \begin{itemize}
         \item Consider \(\sum_{n = 0}^{\infty} \frac{x^n}{n!}\) which converges on all of \(\CC\). Term-by-term differentiation and integration gives us
         \[
-            \DiffOp{x} \sum_{n = 0}^{\infty} \frac{x^n}{n!} = \sum_{n = 0}^{\infty} \DiffOp{x} \para{x^n} \frac{1}{n!} = \sum_{n = 1}^{\infty} \frac{x^{n - 1}}{\para{n - 1}!} = \sum_{n = 0}^{\infty} \frac{x^n}{n!}
+            \dv{x} \sum_{n = 0}^{\infty} \frac{x^n}{n!} = \sum_{n = 0}^{\infty} \dv{x} \pqty{x^n} \frac{1}{n!} = \sum_{n = 1}^{\infty} \frac{x^{n - 1}}{\pqty{n - 1}!} = \sum_{n = 0}^{\infty} \frac{x^n}{n!}
         \]
         and
         \[
-            \int_{0}^{x} \sum_{n = 0}^{\infty} \frac{t^n}{n!} \Diff t = \sum_{n = 0}^{x} \int_{0}^{x} \frac{t^n}{n!} \Diff t = \sum_{n = 0}^{\infty} \frac{x^{n + 1}}{\para{n + 1}!} = \sum_{n = 0}^{\infty} \frac{x^n}{n!} - 1.
+            \int_{0}^{x} \sum_{n = 0}^{\infty} \frac{t^n}{n!} \dd{t} = \sum_{n = 0}^{x} \int_{0}^{x} \frac{t^n}{n!} \dd{t} = \sum_{n = 0}^{\infty} \frac{x^{n + 1}}{\pqty{n + 1}!} = \sum_{n = 0}^{\infty} \frac{x^n}{n!} - 1.
         \]
         \item Consider \(\sum_{n = 1}^{\infty} \frac{x^n}{n^2}\) has radius of convergence \(1\). For all \(\abs{x} < 1\), we have
         \[
-            \DiffOp{x} \sum_{n = 1}^{\infty} \frac{x^n}{n^2} = \sum_{n = 1}^{\infty} \frac{x^{n - 1}}{n}
+            \dv{x} \sum_{n = 1}^{\infty} \frac{x^n}{n^2} = \sum_{n = 1}^{\infty} \frac{x^{n - 1}}{n}
         \]
         and
         \[
-            \int_{0}^{x} \sum_{n = 1}^{\infty} \frac{t^n}{n^2} \Diff t = \sum_{n = 1}^{\infty} \frac{x^{n + 1}}{n^2 \para{n + 1}}.
+            \int_{0}^{x} \sum_{n = 1}^{\infty} \frac{t^n}{n^2} \dd{t} = \sum_{n = 1}^{\infty} \frac{x^{n + 1}}{n^2 \pqty{n + 1}}.
         \]
     \end{itemize}
 \end{examples}
@@ -516,11 +516,11 @@ Clearly, we need to be careful: term-by-term operations might not hold on the \e
 
         \item Using \autoref{thm:taylor-thm-langrange-remainder} (Taylor's Theorem) with Lagrange's Remainder, we may evaluate the remainder term as
         \[
-            R_{n, 0} \para{x} = \frac{e^c x^n}{n!}
+            R_{n, 0} \pqty{x} = \frac{e^c x^n}{n!}
         \]
         for some \(c \in \ccintv{0}{x}\). Hence,
         \[
-            \abs{R_{n, 0} \para{x}} = \abs{e^c} \frac{\abs{x}^n}{n!} \to 0
+            \abs{R_{n, 0} \pqty{x}} = \abs{e^c} \frac{\abs{x}^n}{n!} \to 0
         \]
         as \(n \to \infty\). Hence,
         \[
@@ -534,9 +534,9 @@ Clearly, we need to be careful: term-by-term operations might not hold on the \e
     \label{lem:properties-exp}%
     We have
     \begin{itemize}
-        \item \(\exp\) is smooth, with \(\exp'\para{z} = \exp\para{z}\);
-        \item \(\exp\para{0} = 1\); and
-        \item \(\exp\para{a + b} = \exp\para{a} \cdot \exp\para{b}\).
+        \item \(\exp\) is smooth, with \(\exp'\pqty{z} = \exp\pqty{z}\);
+        \item \(\exp\pqty{0} = 1\); and
+        \item \(\exp\pqty{a + b} = \exp\pqty{a} \cdot \exp\pqty{b}\).
     \end{itemize}
 \end{lemma}
 
@@ -545,18 +545,18 @@ Clearly, we need to be careful: term-by-term operations might not hold on the \e
 
     For the third property, we set
     \[
-        f_{a, b} \para{z} = \exp\para{a + b - z} \cdot \exp\para{z}.
+        f_{a, b} \pqty{z} = \exp\pqty{a + b - z} \cdot \exp\pqty{z}.
     \]
 
     Then we have
     \begin{align*}
-        f'\para{z} &= - \exp'\para{a + b - z} \exp\para{z} + \exp\para{a + b - z} \exp'\para{z} \\
-        &= - f\para{z} + f\para{z} \\
+        f'\pqty{z} &= - \exp'\pqty{a + b - z} \exp\pqty{z} + \exp\pqty{a + b - z} \exp'\pqty{z} \\
+        &= - f\pqty{z} + f\pqty{z} \\
         &= 0
     \end{align*}
     and hence \(f\) is constant on \(\CC\). Therefore,
     \[
-        \exp\para{a} \exp\para{b} = f\para{b} = f\para{0} = \exp\para{a + b}.
+        \exp\pqty{a} \exp\pqty{b} = f\pqty{b} = f\pqty{0} = \exp\pqty{a + b}.
     \]
 \end{proof}
 
@@ -569,10 +569,10 @@ Clearly, we need to be careful: term-by-term operations might not hold on the \e
 
     Then
     \begin{itemize}
-        \item \(\exp\) is smooth, with \(\exp'\para{x} = \exp\para{x}\);
-        \item \(\exp\para{x + y} = \exp\para{x} \cdot \exp\para{y}\);
-        \item \(\exp\para{x} > 0\) for all \(x \in \RR\);
-        \item \(\exp \para{x} \to \plusinfty\) as \(x \to \plusinfty\), and \(\exp \para{x} \to \minusinfty\) as \(x \to \minusinfty\);
+        \item \(\exp\) is smooth, with \(\exp'\pqty{x} = \exp\pqty{x}\);
+        \item \(\exp\pqty{x + y} = \exp\pqty{x} \cdot \exp\pqty{y}\);
+        \item \(\exp\pqty{x} > 0\) for all \(x \in \RR\);
+        \item \(\exp \pqty{x} \to \plusinfty\) as \(x \to \plusinfty\), and \(\exp \pqty{x} \to \minusinfty\) as \(x \to \minusinfty\);
         \item \(\exp\) is strictly increasing;
         \item \(\functiondomain{\exp}{\RR}{\oointv{0}{\plusinfty}}\) is a bijection.
     \end{itemize}
@@ -583,25 +583,25 @@ Clearly, we need to be careful: term-by-term operations might not hold on the \e
 
     For \(x > 0\), note that every term in the infinite series is positive, and in particular,
     \[
-        \exp\para{x} \geq 1 + x > 0
+        \exp\pqty{x} \geq 1 + x > 0
     \]
-    for all \(x > 0\), with \(\exp\para{x} \to \plusinfty\) as \(x \to \plusinfty\).
+    for all \(x > 0\), with \(\exp\pqty{x} \to \plusinfty\) as \(x \to \plusinfty\).
 
     On the other hand, for \(x < 0\), note we have
     \[
-        \exp\para{-x} \cdot \exp\para{x} = \exp\para{0} = 1,
+        \exp\pqty{-x} \cdot \exp\pqty{x} = \exp\pqty{0} = 1,
     \]
-    so since \(\exp\para{-x} > 0\), we must have \(\exp\para{x} > 0\). Furthermore,
+    so since \(\exp\pqty{-x} > 0\), we must have \(\exp\pqty{x} > 0\). Furthermore,
     \[
-        \exp\para{x} = \frac{1}{\exp\para{-x}} \to 0
+        \exp\pqty{x} = \frac{1}{\exp\pqty{-x}} \to 0
     \]
-    as \(x \to \minusinfty\), since \(\exp\para{-x} \to \plusinfty\).
+    as \(x \to \minusinfty\), since \(\exp\pqty{-x} \to \plusinfty\).
 
-    Since \(\exp'\para{x} = \exp\para{x} > 0\), it is strictly increasing, and hence injective into \(\oointv{0}{\plusinfty}\). Now given any
+    Since \(\exp'\pqty{x} = \exp\pqty{x} > 0\), it is strictly increasing, and hence injective into \(\oointv{0}{\plusinfty}\). Now given any
     \[
-        y \in \oointv{0}{\plusinfty} = \oointv{\lim_{x \to \minusinfty} \exp\para{x}}{\lim_{x \to \plusinfty} \exp\para{x}},
+        y \in \oointv{0}{\plusinfty} = \oointv{\lim_{x \to \minusinfty} \exp\pqty{x}}{\lim_{x \to \plusinfty} \exp\pqty{x}},
     \]
-    we have some \(a, b \in \RR\), with \(\exp a < y < \exp b\), so by \autoref{thm:intermediate-value} (Intermediate Value Theorem), there is some \(x \in \ccintv{a}{b}\) such that \(\exp\para{x} = y\). This shows that it is surjective, hence finishing the proof.
+    we have some \(a, b \in \RR\), with \(\exp a < y < \exp b\), so by \autoref{thm:intermediate-value} (Intermediate Value Theorem), there is some \(x \in \ccintv{a}{b}\) such that \(\exp\pqty{x} = y\). This shows that it is surjective, hence finishing the proof.
 \end{proof}
 
 Since \(\exp\) is a bijection, it must have some inverse function.
@@ -620,9 +620,9 @@ Since \(\exp\) is a bijection, it must have some inverse function.
     We have
     \begin{itemize}
         \item \(\log\) is bijective with \(\log \exp x = x\) for all \(x \in \RR\), and \(\exp \log x = x\) for all \(x \in \oointv{0}{\plusinfty}\);
-        \item \(\log\para{yz} = \log y + \log z\);
-        \item \(\log\) is smooth and strictly increasing, with \(\log' \para{x} = \frac{1}{x}\);
-        \item \(\log\para{1} = 0\), and \(\log y = \int_1^x \frac{1}{t} \Diff t\);
+        \item \(\log\pqty{yz} = \log y + \log z\);
+        \item \(\log\) is smooth and strictly increasing, with \(\log' \pqty{x} = \frac{1}{x}\);
+        \item \(\log\pqty{1} = 0\), and \(\log y = \int_1^x \frac{1}{t} \dd{t}\);
         \item \(\log y \to \plusinfty\) as \(y \to \plusinfty\), and \(\log y \to \minusinfty\) as \(y \to 0^+\).
     \end{itemize}
 \end{lemma}
@@ -632,18 +632,18 @@ Since \(\exp\) is a bijection, it must have some inverse function.
 
     For any \(y = \exp u \in \oointv{0}{\plusinfty}\) and \(z = \exp v \in \oointv{0}{\plusinfty}\), we have
     \[
-        \log \para{yz} = \log \para{\exp u \cdot \exp v} = \log \para{\exp \para{u + v}} = u + v = \log y + \log z
+        \log \pqty{yz} = \log \pqty{\exp u \cdot \exp v} = \log \pqty{\exp \pqty{u + v}} = u + v = \log y + \log z
     \]
     as desired.
 
     For the third property, we may apply \autoref{thm:inverse-fn-thm-differentiable} (Inverse Function Theorem) to get
     \[
-        \log'\para{y} = \frac{1}{\exp'\para{\log y}} = \frac{1}{y}.
+        \log'\pqty{y} = \frac{1}{\exp'\pqty{\log y}} = \frac{1}{y}.
     \]
 
     For the fourth property, the first point comes from \(\exp 0 = 1\), and hence by \autoref{thm:ftc-1} (Fundamental Theorem of Calculus), we have
     \[
-        \log y = \int_1^y \log' t \Diff t = \int_1^y \frac{1}{t} \Diff t.
+        \log y = \int_1^y \log' t \dd{t} = \int_1^y \frac{1}{t} \dd{t}.
     \]
 
     The final part inherits from the limit properties of the exponential function.
@@ -652,23 +652,23 @@ Since \(\exp\) is a bijection, it must have some inverse function.
 \begin{remark}
     We have, for \(y \in \oointv{-1}{1}\), that
     \begin{align*}
-        \log\para{1 + y} &= \int_0^y \frac{\Diff t}{1 + t} \\
-        &= \int_0^y \frac{\Diff t}{1 - \para{-t}} \\
-        &= \int_0^y \sum_{n = 0}^{\infty} \para{-1}^n t^n \Diff t \\
-        &= \sum_{n = 0}^{\infty} \int_0^y \para{-1}^n t^n \Diff t \\
-        &= \sum_{n = 0}^{\infty} \frac{\para{-1}^{n} y^{n + 1}}{n + 1}.
+        \log\pqty{1 + y} &= \int_0^y \frac{\dd{t}}{1 + t} \\
+        &= \int_0^y \frac{\dd{t}}{1 - \pqty{-t}} \\
+        &= \int_0^y \sum_{n = 0}^{\infty} \pqty{-1}^n t^n \dd{t} \\
+        &= \sum_{n = 0}^{\infty} \int_0^y \pqty{-1}^n t^n \dd{t} \\
+        &= \sum_{n = 0}^{\infty} \frac{\pqty{-1}^{n} y^{n + 1}}{n + 1}.
     \end{align*}
 
     In particular, using Analysis II techniques (Abel's Theorem), or quite some tedious integral comparison, we may show that in the case for \(y = 1\), that
     \[
-        \log 2 = \sum_{n = 1}^{\infty} \frac{\para{-1}^{n - 1}}{n}.
+        \log 2 = \sum_{n = 1}^{\infty} \frac{\pqty{-1}^{n - 1}}{n}.
     \]
 
     We have
     \begin{align*}
-        \abs{\log 2 - \sum_{n = 0}^{N} \int_{0}^{1} \para{-1}^n t^n \Diff t} &= \abs{\int_{0}^{§} \frac{\Diff t}{1 + t} - \int_{0}^{1} \frac{1 - \para{-t}^{N + 1}}{1 + t} \Diff t} \\
-        &\leq \int_{0}^{1} \abs{\frac{1}{1 + t} - \frac{1 - \para{-t}^{N + 1}}{1 + t}} \Diff t \\
-        &\leq \int_{0}^{1} t^{N + 1} \Diff t \\
+        \abs{\log 2 - \sum_{n = 0}^{N} \int_{0}^{1} \pqty{-1}^n t^n \dd{t}} &= \abs{\int_{0}^{§} \frac{\dd{t}}{1 + t} - \int_{0}^{1} \frac{1 - \pqty{-t}^{N + 1}}{1 + t} \dd{t}} \\
+        &\leq \int_{0}^{1} \abs{\frac{1}{1 + t} - \frac{1 - \pqty{-t}^{N + 1}}{1 + t}} \dd{t} \\
+        &\leq \int_{0}^{1} t^{N + 1} \dd{t} \\
         &= \frac{1}{N + 2} \\
         &\to 0
     \end{align*}
@@ -681,7 +681,7 @@ Now, we are ready to define more general powers.
     \label{def:general-powers}%
     We define for \(x > 0\), the \emph{base}, and \(\alpha \in \RR\), the \emph{exponent}, that
     \[
-        \Gamma_{\alpha} \para{x} = \exp \para{\alpha \log x}.
+        \Gamma_{\alpha} \pqty{x} = \exp \pqty{\alpha \log x}.
     \]
 \end{definition}
 
@@ -693,10 +693,10 @@ Now, we are ready to define more general powers.
     \label{lem:properties-power}%
     For any \(x, y > 0, \alpha, \beta \in \RR\), we have
     \begin{itemize}
-        \item \(\Gamma_\alpha \para{xy} = \Gamma_\alpha \para{x} \Gamma_\alpha \para{y}\);
-        \item \(\Gamma_{\alpha + \beta} \para{x} = \Gamma_\alpha \para{x} \Gamma_\beta \para{x}\);
-        \item \(\Gamma_\alpha \para{\Gamma_\beta \para{x}} = \Gamma_{\alpha \beta} \para{x}\);
-        \item \(\Gamma_1\para{x} = x\) and \(\Gamma_0 \para{x} = 1\).
+        \item \(\Gamma_\alpha \pqty{xy} = \Gamma_\alpha \pqty{x} \Gamma_\alpha \pqty{y}\);
+        \item \(\Gamma_{\alpha + \beta} \pqty{x} = \Gamma_\alpha \pqty{x} \Gamma_\beta \pqty{x}\);
+        \item \(\Gamma_\alpha \pqty{\Gamma_\beta \pqty{x}} = \Gamma_{\alpha \beta} \pqty{x}\);
+        \item \(\Gamma_1\pqty{x} = x\) and \(\Gamma_0 \pqty{x} = 1\).
     \end{itemize}
 \end{lemma}
 
@@ -705,44 +705,44 @@ Now, we are ready to define more general powers.
 
     For the third property, we have
     \begin{align*}
-        \Gamma_\alpha \para{\Gamma_\beta \para{x}} &= \exp\para{\alpha \log\para{\exp \para{\beta \log x}}} \\
-        &= \exp\para{\alpha \beta \log x} \\
-        &= \Gamma_{\alpha \beta} \para{x}
+        \Gamma_\alpha \pqty{\Gamma_\beta \pqty{x}} &= \exp\pqty{\alpha \log\pqty{\exp \pqty{\beta \log x}}} \\
+        &= \exp\pqty{\alpha \beta \log x} \\
+        &= \Gamma_{\alpha \beta} \pqty{x}
     \end{align*}
     as desired.
 \end{proof}
 
 As a corollary, we see that for natural numbers \(p, q \in \NN\) and \(x > 0\), we have
 \[
-    \Gamma_p \para{x} = \underbrace{\Gamma_1 \para{x} \cdots \Gamma_1 \para{x}}_{p \text{ terms}} = x^p,
+    \Gamma_p \pqty{x} = \underbrace{\Gamma_1 \pqty{x} \cdots \Gamma_1 \pqty{x}}_{p \text{ terms}} = x^p,
 \]
 and
 \[
-    \Gamma_{-p} \para{x} = \underbrace{\Gamma_{-1} \para{x} \cdots \Gamma_{-1} \para{x}}_{p \text{ terms}} = x^{-p}.
+    \Gamma_{-p} \pqty{x} = \underbrace{\Gamma_{-1} \pqty{x} \cdots \Gamma_{-1} \pqty{x}}_{p \text{ terms}} = x^{-p}.
 \]
 
 Furthermore, we have
 \[
-    \para{\Gamma_{1 / p} \para{x}}^{p} = \underbrace{\Gamma_{1 / p} \para{x} \cdots \Gamma_{1 / p} \para{x}}_{p \text{ terms}} = \Gamma_{1 / p + \cdots + 1 / p} \para{x} = \Gamma_1 \para{x} = x,
+    \pqty{\Gamma_{\flatfrac{1}{p}} \pqty{x}}^{p} = \underbrace{\Gamma_{\flatfrac{1}{p}} \pqty{x} \cdots \Gamma_{\flatfrac{1}{p}} \pqty{x}}_{p \text{ terms}} = \Gamma_{\flatfrac{1}{p} + \cdots + \flatfrac{1}{p}} \pqty{x} = \Gamma_1 \pqty{x} = x,
 \]
 and hence
 \[
-    \Gamma_{1 / p} \para{x} = x^{1 / p}.
+    \Gamma_{\flatfrac{1}{p}} \pqty{x} = x^{\flatfrac{1}{p}}.
 \]
 
 Hence,
 \[
-    x^{p / q} = \Gamma_{p / q} \para{x},
+    x^{\flatfrac{p}{q}} = \Gamma_{\flatfrac{p}{q}} \pqty{x},
 \]
 and we have
 \[
-    \Gamma_{\alpha} \para{x} = x^\alpha
+    \Gamma_{\alpha} \pqty{x} = x^\alpha
 \]
 for all \(\alpha \in \QQ\).
 
 As for the agreement with the exponential function, we have
 \[
-    \exp\para{x} = \exp\para{x \log e} = \Gamma_x \para{e} = e^x.
+    \exp\pqty{x} = \exp\pqty{x \log e} = \Gamma_x \pqty{e} = e^x.
 \]
 
 We now study some limit properties on monomials, exponentials and logarithms.
@@ -751,7 +751,7 @@ We now study some limit properties on monomials, exponentials and logarithms.
     \label{prop:lim-prop-monomial-exponential-logarithm}%
     We have the following properties.
     \begin{enumerate}
-        \item \emph{Exponentials dominate Monomials.} For all \(r \in \RR\), we have \(x^r \exp\para{-x} \to 0\) as \(x \to \plusinfty\).
+        \item \emph{Exponentials dominate Monomials.} For all \(r \in \RR\), we have \(x^r \exp\pqty{-x} \to 0\) as \(x \to \plusinfty\).
         \item \emph{Monomials dominate Logarithms.} For all \(r > 0\), we have \(x^{-r} \log x \to 0\) as \(x \to \plusinfty\), and \(x^r \log x \to 0\) as \(x \to 0^+\).
     \end{enumerate}
 \end{proposition}
@@ -772,14 +772,14 @@ We now study some limit properties on monomials, exponentials and logarithms.
 
     For the second limit, we have \(t^{-1} \leq t^{\epsilon - 1}\) for all \(t \geq 1\) and \(\epsilon > 0\). Pick \(\epsilon\) such that \(r > \epsilon\), then
     \[
-        0 \leq x^{-r} \log x = x^{-r} \int_{1}^{x} \frac{\Diff t}{t} \leq x^{-r} \int_{1}^{x} t^{\epsilon - 1} \Diff t = \frac{x^{\epsilon - r}}{\epsilon}
+        0 \leq x^{-r} \log x = x^{-r} \int_{1}^{x} \frac{\dd{t}}{t} \leq x^{-r} \int_{1}^{x} t^{\epsilon - 1} \dd{t} = \frac{x^{\epsilon - r}}{\epsilon}
     \]
     and take \(x \to \plusinfty\) with the sandwich theorem gives the result as desired.
 
     For the limit where \(x \to 0^+\), we note
     \begin{align*}
-        \lim_{x \to 0^+} \para{x^r \log x} &= - \lim_{t \to \plusinfty} \para{t \exp \para{- rt}} && x = e^{-t} \\
-        &= - \lim_{y \to \plusinfty} \para{\frac{y e^{-y}}{r}} && y = rt \\
+        \lim_{x \to 0^+} \pqty{x^r \log x} &= - \lim_{t \to \plusinfty} \pqty{t \exp \pqty{- rt}} && x = e^{-t} \\
+        &= - \lim_{y \to \plusinfty} \pqty{\frac{y e^{-y}}{r}} && y = rt \\
         &= 0
     \end{align*}
     by the first limit.
@@ -788,38 +788,38 @@ We now study some limit properties on monomials, exponentials and logarithms.
 \begin{proposition}[Important Limit involving \(e\)]
     We have
     \[
-        \para{1 + \frac{a}{n}}^n \to \exp \para{a}
+        \pqty{1 + \frac{a}{n}}^n \to \exp \pqty{a}
     \]
     as \(n \to \infty\), for all \(a \in \RR\).
 \end{proposition}
 
 \begin{proof}
-    We consider \(\log\para{1 + x}\) on \(\ccintv{0}{a / n}\), where \(n > \abs{a}\). By \autoref{thm:mean-value-thm} (Mean Value Theorem), there is some \(c \in \oointv{0}{a / n}\) (or the other way round for the interval if \(a < 0\)), such that
+    We consider \(\log\pqty{1 + x}\) on \(\ccintv{0}{\flatfrac{a}{n}}\), where \(n > \abs{a}\). By \autoref{thm:mean-value-thm} (Mean Value Theorem), there is some \(c \in \oointv{0}{\flatfrac{a}{n}}\) (or the other way round for the interval if \(a < 0\)), such that
     \[
-        \rightbar{\DiffOp{x}}_{x = c} \log \para{1 + x} = \frac{\log\para{1 + a / n} - \log\para{1 + 0}}{a / n - 0},
+        \rightbar{\dv{x}}_{x = c} \log \pqty{1 + x} = \frac{\log\pqty{1 + \flatfrac{a}{n}} - \log\pqty{1 + 0}}{\flatfrac{a}{n} - 0},
     \]
     which means
     \[
-        \frac{1}{1 + c} = \frac{\log \para{1 + a / n}}{a / n},
+        \frac{1}{1 + c} = \frac{\log \pqty{1 + \flatfrac{a}{n}}}{\flatfrac{a}{n}},
     \]
     so
     \[
-        n \log \para{1 + \frac{a}{n}} = \frac{a}{1 + c}
+        n \log \pqty{1 + \frac{a}{n}} = \frac{a}{1 + c}
     \]
-    for some \(c \in \ccintv{0}{a / n}\).
+    for some \(c \in \ccintv{0}{\flatfrac{a}{n}}\).
 
     We want to show that
     \[
-        \para{1 + \frac{a}{n}}^n \to \exp\para{a},
+        \pqty{1 + \frac{a}{n}}^n \to \exp\pqty{a},
     \]
     and it is equivalent to show that
     \[
-        n \log\para{1 + \frac{a}{n}} \to a.
+        n \log\pqty{1 + \frac{a}{n}} \to a.
     \]
 
-    As \(n \to \infty, c \in \oointv{0}{a / n}\) so \(c \to 0\), and hence
+    As \(n \to \infty, c \in \oointv{0}{\flatfrac{a}{n}}\) so \(c \to 0\), and hence
     \[
-        n \log\para{1 + \frac{a}{n}} = \frac{a}{1 + c} \to a
+        n \log\pqty{1 + \frac{a}{n}} = \frac{a}{1 + c} \to a
     \]
     and this shows the result as desired.
 \end{proof}
@@ -830,11 +830,11 @@ We now study some limit properties on monomials, exponentials and logarithms.
     \label{def:trigonometric-functions}%
     We define the \emph{cosine function} as
     \[
-        \function{\cos}{\CC}{\CC}{z}{\frac{1}{2} \brac{\exp \para{iz} + \exp \para{- iz}} = \sum_{k = 0}^{\infty} \frac{\para{-1}^k z^{2k}}{\para{2k}!},}
+        \function{\cos}{\CC}{\CC}{z}{\frac{1}{2} \bqty{\exp \pqty{iz} + \exp \pqty{- iz}} = \sum_{k = 0}^{\infty} \frac{\pqty{-1}^k z^{2k}}{\pqty{2k}!},}
     \]
     and the \emph{sine function} as
     \[
-        \function{\sin}{\CC}{\CC}{z}{\frac{1}{2i} \brac{\exp \para{iz} - \exp \para{- iz}} = \sum_{k = 0}^{\infty} \frac{\para{-1}^k z^{2k + 1}}{\para{2k + 1}!}}
+        \function{\sin}{\CC}{\CC}{z}{\frac{1}{2i} \bqty{\exp \pqty{iz} - \exp \pqty{- iz}} = \sum_{k = 0}^{\infty} \frac{\pqty{-1}^k z^{2k + 1}}{\pqty{2k + 1}!}}
     \]
 \end{definition}
 
@@ -844,8 +844,8 @@ We now study some limit properties on monomials, exponentials and logarithms.
     \begin{itemize}
         \item \(\cos 0 = 1, \sin 0 = 0\);
         \item \(\cos' z = - \sin z\), \(\sin' z = \cos z\);
-        \item \(\sin \para{z + w} = \sin z \cos w + \cos z \sin w\);
-        \item \(\cos \para{z + w} = \cos z \cos w - \sin z \sin w\);
+        \item \(\sin \pqty{z + w} = \sin z \cos w + \cos z \sin w\);
+        \item \(\cos \pqty{z + w} = \cos z \cos w - \sin z \sin w\);
         \item \(\sin^2 z + \cos^2 z = 1\).
     \end{itemize}
 \end{lemma}
@@ -866,13 +866,13 @@ We now study some limit properties on monomials, exponentials and logarithms.
     \label{prop:periodicity-trigonometric-functions}%
     There is some smallest positive real number \(\pi\), such that
     \[
-        \cos \para{\frac{\pi}{2}} = 0, \quad \sin \para{\frac{\pi}{2}} = 1,
+        \cos \pqty{\frac{\pi}{2}} = 0, \quad \sin \pqty{\frac{\pi}{2}} = 1,
     \]
     and that for all \(x \in \RR\), we have
     \begin{itemize}
         \item \(\functiondomain{\sin}{\RR}{\RR}\) and \(\functiondomain{\cos}{\RR}{\RR}\) are periodic with period \(2 \pi\);
-        \item \(\sin \para{x + \pi} = - \sin x\), and \(\cos \para{x + \pi} = - \cos x\);
-        \item \(\sin \para{x + \frac{\pi}{2}} = \cos x\), and \(\cos \para{x + \frac{\pi}{2}} = - \sin x\).
+        \item \(\sin \pqty{x + \pi} = - \sin x\), and \(\cos \pqty{x + \pi} = - \cos x\);
+        \item \(\sin \pqty{x + \frac{\pi}{2}} = \cos x\), and \(\cos \pqty{x + \frac{\pi}{2}} = - \sin x\).
     \end{itemize}
 \end{proposition}
 
@@ -881,30 +881,30 @@ We now study some limit properties on monomials, exponentials and logarithms.
 
     We look at \(x \in \oointv{0}{2}\), since by differentiating, we have
     \[
-        \cos' x = - \sin x = - \brac{\para{x - \frac{x^3}{3!}} + \para{\frac{x^5}{5!} - \frac{x^7}{7!}} + \cdots} < 0,
+        \cos' x = - \sin x = - \bqty{\pqty{x - \frac{x^3}{3!}} + \pqty{\frac{x^5}{5!} - \frac{x^7}{7!}} + \cdots} < 0,
     \]
     since all the terms in the brackets are positive, using that the series is absolutely convergent, and hence bracketing of terms is allowed. Thus, \(\cos\) has at most one root \(\oointv{0}{2}\). To see that the existence of the root, we have
     \[
-        \cos \para{\sqrt{2}} = \para{1 - \frac{\para{\sqrt{2}}^2}{2!}} + \para{\frac{\para{\sqrt{2}}^4}{4!} - \frac{\para{\sqrt{2}}^6}{6!}} + \cdots > 0
+        \cos \pqty{\sqrt{2}} = \pqty{1 - \frac{\pqty{\sqrt{2}}^2}{2!}} + \pqty{\frac{\pqty{\sqrt{2}}^4}{4!} - \frac{\pqty{\sqrt{2}}^6}{6!}} + \cdots > 0
     \]
     and
     \[
-        \cos \para{\sqrt{3}} = \para{1 - \frac{\para{\sqrt{3}}^2}{2!} + \frac{\para{\sqrt{3}}^4}{4!}} - \para{\frac{\para{\sqrt{3}}^6}{6!} - \frac{\para{\sqrt{3}}^8}{8!}} - \cdots < 0.
+        \cos \pqty{\sqrt{3}} = \pqty{1 - \frac{\pqty{\sqrt{3}}^2}{2!} + \frac{\pqty{\sqrt{3}}^4}{4!}} - \pqty{\frac{\pqty{\sqrt{3}}^6}{6!} - \frac{\pqty{\sqrt{3}}^8}{8!}} - \cdots < 0.
     \]
     
-    By intermediate value theorem, \(\cos\) has a root \(\pi / 2 \in \oointv{\sqrt{2}}{\sqrt{3}} \subset \oointv{0}{2}\). Now, we have
+    By intermediate value theorem, \(\cos\) has a root \(\flatfrac{\pi}{2} \in \oointv{\sqrt{2}}{\sqrt{3}} \subset \oointv{0}{2}\). Now, we have
     \[
-        \sin^2\para{\frac{\pi}{2}} = 1 - \cos^2 \para{\frac{\pi}{2}} = 1
+        \sin^2\pqty{\frac{\pi}{2}} = 1 - \cos^2 \pqty{\frac{\pi}{2}} = 1
     \]
-    tells us that \(\sin \para{\pi / 2} = \pm 1\). But since \(\pi / 2 \in \oointv{0}{2}\), we have \(\sin \para{\pi / 2} > 0\), so \(\sin \para{\pi / 2} = 1\).
+    tells us that \(\sin \pqty{\flatfrac{\pi}{2}} = \pm 1\). But since \(\flatfrac{\pi}{2} \in \oointv{0}{2}\), we have \(\sin \pqty{\flatfrac{\pi}{2}} > 0\), so \(\sin \pqty{\flatfrac{\pi}{2}} = 1\).
 \end{proof}
 
 \begin{corollary}[Properties of Complex Exponentials]
     \label{cor:properties-complex-exponentials}%
     \begin{enumerate}
-        \item The function \(\exp \para{ix}\) for \(x \in \RR\) is periodic, with period \(2 \pi\);
-        \item \emph{Euler's Identity}. \(\exp \para{i \pi} = -1\);
-        \item \(\exp \para{i \pi / 2} = i\).
+        \item The function \(\exp \pqty{ix}\) for \(x \in \RR\) is periodic, with period \(2 \pi\);
+        \item \emph{Euler's Identity}. \(\exp \pqty{i \pi} = -1\);
+        \item \(\exp \pqty{i \flatfrac{\pi}{2}} = i\).
     \end{enumerate}
 \end{corollary}
 
@@ -921,14 +921,14 @@ Finally, we aim to give \(\pi\) a geometric interpretation.
 \begin{proof}
     If we can show the map
     \[
-        \function{\gamma}{\cointv{0}{2\pi}}{\mathcal{S}^1}{t}{\exp \para{it}}
+        \function{\gamma}{\cointv{0}{2\pi}}{\mathcal{S}^1}{t}{\exp \pqty{it}}
     \]
     is a bijection, then we get that
     \begin{align*}
         \text{perimeter of }\mathcal{S}^1 &= \text{length of }\gamma \\
-        &= \int_{0}^{2 \pi} \abs{\gamma' \para{t}} \Diff t \\
-        &= \int_{0}^{2 \pi} \abs{i \exp \para{it}} \Diff t \\
-        &= \int_{0}^{2 \pi} \Diff t \\
+        &= \int_{0}^{2 \pi} \abs{\gamma' \pqty{t}} \dd{t} \\
+        &= \int_{0}^{2 \pi} \abs{i \exp \pqty{it}} \dd{t} \\
+        &= \int_{0}^{2 \pi} \dd{t} \\
         &= 2 \pi.
     \end{align*}
 
@@ -946,12 +946,12 @@ Finally, we aim to give \(\pi\) a geometric interpretation.
     
     \begin{itemize}
         \item If \(b = \sqrt{1 - a^2}\), we get \(\sin t = b\).
-        \item If \(b = - \sqrt{1 - a^2}\), we have \(b = - \sin t\), which is to say \(b = \sin \para{2 \pi - t}\). But \(\cos t = \cos \para{-t} = \cos \para{2\pi - t}\).
+        \item If \(b = - \sqrt{1 - a^2}\), we have \(b = - \sin t\), which is to say \(b = \sin \pqty{2 \pi - t}\). But \(\cos t = \cos \pqty{-t} = \cos \pqty{2\pi - t}\).
     \end{itemize}
 
-    Hence, there is some \(t \in \cointv{0}{2\pi}\), such that \(z = \exp \para{it}\).
+    Hence, there is some \(t \in \cointv{0}{2\pi}\), such that \(z = \exp \pqty{it}\).
 
-    \textbf{Injectivity.} This is true since \autoref{cor:properties-complex-exponentials} tells us that \(\exp\para{it}\) has a least positive period of \(2 \pi\), and so it is injective when restricted to \(\cointv{0}{2\pi}\).
+    \textbf{Injectivity.} This is true since \autoref{cor:properties-complex-exponentials} tells us that \(\exp\pqty{it}\) has a least positive period of \(2 \pi\), and so it is injective when restricted to \(\cointv{0}{2\pi}\).
 \end{proof}
 
 This allows us now to define the usual trigonometric functions \(\tan, \arccos\) \dots
@@ -961,11 +961,11 @@ This allows us now to define the usual trigonometric functions \(\tan, \arccos\)
 \begin{definition}[Hyperbolic Trigonometric Functions]
     We define the \emph{hyperbolic cosine} as
     \[
-        \function{\cosh}{\CC}{\CC}{z}{\frac{1}{2} \brac{\exp \para{z} + \exp \para{-z}} = \cos \para{iz},}
+        \function{\cosh}{\CC}{\CC}{z}{\frac{1}{2} \bqty{\exp \pqty{z} + \exp \pqty{-z}} = \cos \pqty{iz},}
     \]
     and the \emph{hyperbolic sine} as 
     \[
-        \function{\sinh}{\CC}{\CC}{z}{\frac{1}{2} \brac{\exp \para{z} - \exp \para{-z}} = - i \sin \para{iz}.}
+        \function{\sinh}{\CC}{\CC}{z}{\frac{1}{2} \bqty{\exp \pqty{z} - \exp \pqty{-z}} = - i \sin \pqty{iz}.}
     \]
 \end{definition}
 

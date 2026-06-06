@@ -6,7 +6,7 @@
 
 We have learnt before that the integral
 \[
-    \int_{a}^{b} f\para{x} \Diff x
+    \int_{a}^{b} f\pqty{x} \dd{x}
 \]
 gives the signed area under the graph of \(f\), for \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\). We now aim to quantify it rigorously.
 
@@ -14,13 +14,13 @@ We may attempt to approximate the function using rectangles -- specifically usin
 
 \begin{definition}[Upper and Lower Riemann Sums]
     \label{def:upper-lower-riemann-sum}%
-    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be bounded. Let a \emph{partition/dissection} \(\partition = \brce{x_0, x_1, \ldots, x_n}\) with \(a = x_0 < x_1 < \cdots x_n = b\) be given. Then we let
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be bounded. Let a \emph{partition/dissection} \(\partition = \Bqty{x_0, x_1, \ldots, x_n}\) with \(a = x_0 < x_1 < \cdots x_n = b\) be given. Then we let
     \[
-        \upperSum \para{f, \partition} = \sum_{j = 1}^{n} \para{\sup_{x \in \ccintv{x_{j - 1}}{x_{j}}} f\para{x}} \cdot \para{x_j - x_{j - 1}}
+        \upperSum \pqty{f, \partition} = \sum_{j = 1}^{n} \pqty{\sup_{x \in \ccintv{x_{j - 1}}{x_{j}}} f\pqty{x}} \cdot \pqty{x_j - x_{j - 1}}
     \]
     as the \emph{Upper Riemann Sum}, and similarly,
     \[
-        \lowerSum \para{f, \partition} = \sum_{j = 1}^{n} \para{\inf_{x \in \ccintv{x_{j - 1}}{x_{j}}} f\para{x}} \cdot \para{x_j - x_{j - 1}}
+        \lowerSum \pqty{f, \partition} = \sum_{j = 1}^{n} \pqty{\inf_{x \in \ccintv{x_{j - 1}}{x_{j}}} f\pqty{x}} \cdot \pqty{x_j - x_{j - 1}}
     \]
     as the \emph{Lower Riemann Sum}, of the function \(f\) associated to the partition \(\partition\).
 \end{definition}
@@ -29,35 +29,35 @@ We may attempt to approximate the function using rectangles -- specifically usin
     \label{ex:riemann-sums}%
     Consider the function
     \[
-        f\para{x} = \begin{cases}
+        f\pqty{x} = \begin{cases}
             1, & x \in \QQ, \\
             0, & x \in \RR \setminus \QQ
         \end{cases}
     \]
     on \(\ccintv{0}{1}\). For any \(\partition\) we take, we will have both rationals and irrationals in \(I_j = \ccintv{x_{j - 1}}{x_j}\), and hence we always have
     \[
-        \upperSum \para{f, \partition} = 1, \quad \lowerSum \para{f, \partition} = 0.
+        \upperSum \pqty{f, \partition} = 1, \quad \lowerSum \pqty{f, \partition} = 0.
     \]
 \end{example}
 
 We assumed that \(f\) is bounded, and say \(\sup_{x \in \ccintv{a}{b}} \abs{f} = k\), then
 \begin{align*}
-    \upperSum\para{f, \partition} &= \sum_{j = 1}^{n} \para{\sup_{\ccintv{a}{b}} f} \para{x_j - x_{j - 1}} \\
-    &\leq k \sum_{j = 1}^{n} \para{x_j - x_{j - 1}} \\
-    &= k \para{b - a},
+    \upperSum\pqty{f, \partition} &= \sum_{j = 1}^{n} \pqty{\sup_{\ccintv{a}{b}} f} \pqty{x_j - x_{j - 1}} \\
+    &\leq k \sum_{j = 1}^{n} \pqty{x_j - x_{j - 1}} \\
+    &= k \pqty{b - a},
 \end{align*}
 and similarly,
 \[
-    \lowerSum\para{f, \partition} \geq -k \para{b - a}.
+    \lowerSum\pqty{f, \partition} \geq -k \pqty{b - a}.
 \]
 
-Also, we have \(\upperSum\para{f, \partition} \geq \lowerSum\para{f, \partition}\). Therefore, the sets
+Also, we have \(\upperSum\pqty{f, \partition} \geq \lowerSum\pqty{f, \partition}\). Therefore, the sets
 \[
-    \set{\upperSum\para{f, \partition}}{\partition \text{ is a partition of }\ccintv{a}{b}}
+    \set{\upperSum\pqty{f, \partition}}{\partition \text{ is a partition of }\ccintv{a}{b}}
 \]
 and
 \[
-    \set{\lowerSum\para{f, \partition}}{\partition \text{ is a partition of }\ccintv{a}{b}}
+    \set{\lowerSum\pqty{f, \partition}}{\partition \text{ is a partition of }\ccintv{a}{b}}
 \]
 are both bounded, non-empty sets.
 
@@ -65,11 +65,11 @@ are both bounded, non-empty sets.
     \label{def:upper-lower-int}%
     Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be bounded. We say
     \[
-        \upperI \para{f} = \upperInt_{a}^{b} f \para{x} \Diff x = \inf_{\partition\text{ is a partition of }\ccintv{a}{b}} \upperSum \para{f, \partition}
+        \upperI \pqty{f} = \upperInt_{a}^{b} f \pqty{x} \dd{x} = \inf_{\partition\text{ is a partition of }\ccintv{a}{b}} \upperSum \pqty{f, \partition}
     \]
     be the \emph{upper integral} of \(f\), and similarly,
     \[
-        \lowerI \para{f} = \lowerInt_{a}^{b} f \para{x} \Diff x \sup_{\partition\text{ is a partition of }\ccintv{a}{b}} \lowerSum \para{f, \partition}
+        \lowerI \pqty{f} = \lowerInt_{a}^{b} f \pqty{x} \dd{x} = \sup_{\partition\text{ is a partition of }\ccintv{a}{b}} \lowerSum \pqty{f, \partition}
     \]
     be the \emph{lower integral} of \(f\).
 \end{definition}
@@ -78,9 +78,9 @@ Note we actually didn't take a `limit' as the width tends to zero -- that is sli
 
 \begin{definition}[Riemann Integral]
     \label{def:riemann-integral}%
-    We say \(f\) is \emph{Riemann Integrable} if \(\upperI \para{f} = \lowerI \para{f}\), and we denote the \emph{Riemann Integral} as
+    We say \(f\) is \emph{Riemann Integrable} if \(\upperI \pqty{f} = \lowerI \pqty{f}\), and we denote the \emph{Riemann Integral} as
     \[
-        I\para{f} = \int_{a}^{b} f\para{x} \Diff x = \upperI\para{f} = \lowerI\para{f}.
+        I\pqty{f} = \int_{a}^{b} f\pqty{x} \dd{x} = \upperI\pqty{f} = \lowerI\pqty{f}.
     \]
 \end{definition}
 
@@ -93,49 +93,49 @@ Note we actually didn't take a `limit' as the width tends to zero -- that is sli
 
 \begin{example}[Non-Riemann Integrable Function]
     \label{ex:non-riemann-integrable-fn}%
-    Continuing from \autoref{ex:riemann-sums}, we note that \(\upperI\para{f} = 1\) while \(\lowerI\para{f} = 0\). Hence, this function is not Riemann integrable.
+    Continuing from \autoref{ex:riemann-sums}, we note that \(\upperI\pqty{f} = 1\) while \(\lowerI\pqty{f} = 0\). Hence, this function is not Riemann integrable.
     
     Just as a remark, it is Lebesgue integrable using the Lebesgue measure, and the result is \(0\) -- intuitively, there are `way too few' rational numbers (and this is saying \(\QQ\) has zero Lebesgue measure, since it is countable).
 \end{example}
 
-The coarsest possible partition for \(\ccintv{a}{b}\) is the partition \(\brce{a, b}\). Our intuition is that a finer partition leads to a better estimate for the area.
+The coarsest possible partition for \(\ccintv{a}{b}\) is the partition \(\Bqty{a, b}\). Our intuition is that a finer partition leads to a better estimate for the area.
 
 \begin{lemma}[Refinements provide Better Estimates]
     \label{lem:refinement-better-estimate}%
     Let \(\partition, \partition'\) be two partitions of \(\ccintv{a}{b}\), with \(\partition' \supseteq \partition\) (i.e., \(\partition'\) is a \emph{refinement} of \(\partition\)). Then we have
     \[
-        \lowerSum\para{f, \partition} \leq \lowerSum\para{f, \partition'} \leq \upperSum\para{f, \partition'} \leq \upperSum\para{f, \partition}.
+        \lowerSum\pqty{f, \partition} \leq \lowerSum\pqty{f, \partition'} \leq \upperSum\pqty{f, \partition'} \leq \upperSum\pqty{f, \partition}.
     \]
 \end{lemma}
 
 \begin{proof}
     We show this by induction on refining the partition point-by-point.
     
-    Take \(\partition = \brce{x_0, x_1, \ldots, x_n}\) where \(0 = x_0 < x_1 < \cdots < x_n = b\). Pick \(y \in \oointv{x_{k - 1}}{x_k}\) for some \(k\).
+    Take \(\partition = \Bqty{x_0, x_1, \ldots, x_n}\) where \(0 = x_0 < x_1 < \cdots < x_n = b\). Pick \(y \in \oointv{x_{k - 1}}{x_k}\) for some \(k\).
 
     Set
     \[
-        \partition' = \partition \cup \brce{y} = \brce{x_0, \ldots, x_{k - 1}, y, x_k, \ldots, x_n}.
+        \partition' = \partition \cup \Bqty{y} = \Bqty{x_0, \ldots, x_{k - 1}, y, x_k, \ldots, x_n}.
     \]
 
     Then, the only change in the sum is the supremum
     \[
-        \sup_{x \in \ccintv{x_{n - 1}}{y}} f\para{x}, \sup_{x \in \ccintv{y}{x_n}} f\para{x} \leq \sup_{x \in \ccintv{x_{n - 1}}{x_n}} f\para{x}.
+        \sup_{x \in \ccintv{x_{n - 1}}{y}} f\pqty{x}, \sup_{x \in \ccintv{y}{x_n}} f\pqty{x} \leq \sup_{x \in \ccintv{x_{n - 1}}{x_n}} f\pqty{x}.
     \]
 
     Multiplying by the widths, we can see that
     \[
-        \para{y - x_{k - 1}} \sup_{x \in \ccintv{x_{k - 1}}{y}} f\para{x} + \para{x_k - y} \sup_{x \in \ccintv{y}{x_k}} f\para{x} \leq \para{x_k - x_{k - 1}} \sup_{x \in \ccintv{x_{k - 1}}{x_k}} f\para{x}.
+        \pqty{y - x_{k - 1}} \sup_{x \in \ccintv{x_{k - 1}}{y}} f\pqty{x} + \pqty{x_k - y} \sup_{x \in \ccintv{y}{x_k}} f\pqty{x} \leq \pqty{x_k - x_{k - 1}} \sup_{x \in \ccintv{x_{k - 1}}{x_k}} f\pqty{x}.
     \]
 
     Hence, we have
     \[
-        \upperSum\para{f, \partition'} \leq \upperSum \para{f, \partition}.
+        \upperSum\pqty{f, \partition'} \leq \upperSum \pqty{f, \partition}.
     \]
 
     Similarly, we may show (replacing with infimums and the opposite inequalities), that
     \(
-        \lowerSum\para{f, \partition'} \geq \lowerSum \para{f, \partition}.
+        \lowerSum\pqty{f, \partition'} \geq \lowerSum \pqty{f, \partition}.
     \)
 
     If \(\partition'\) differs by \(n\) points, we repeat this argument \(n\) times (since partitions are defined to be finite).
@@ -145,18 +145,18 @@ The coarsest possible partition for \(\ccintv{a}{b}\) is the partition \(\brce{a
     \label{lem:upper-greater-lower-sum}%
     Let \(\partition\) and \(\partition'\) be partitioned \(\ccintv{a}{b}\) (but not necessarily one being the refinement of the other). Then we have
     \[
-        \lowerSum\para{f, \partition} \leq \upperSum\para{f, \partition'}
+        \lowerSum\pqty{f, \partition} \leq \upperSum\pqty{f, \partition'}
     \]
     and similarly
     \[
-        \lowerSum\para{f, \partition'} \leq \upperSum\para{f, \partition}.
+        \lowerSum\pqty{f, \partition'} \leq \upperSum\pqty{f, \partition}.
     \]
 \end{lemma}
 
 \begin{proof}
     We take the common refinement \(\partition \cup \partition'\). Therefore, by \autoref{lem:refinement-better-estimate},
     \[
-        \lowerSum\para{f, \partition} \leq \upperSum\para{f, \partition \cup \partition'} \leq \upperSum\para{f, \partition \cup \partition'} \leq \upperSum\para{f, \partition'}.
+        \lowerSum\pqty{f, \partition} \leq \upperSum\pqty{f, \partition \cup \partition'} \leq \upperSum\pqty{f, \partition \cup \partition'} \leq \upperSum\pqty{f, \partition'}.
     \]
 \end{proof}
 
@@ -164,19 +164,19 @@ The coarsest possible partition for \(\ccintv{a}{b}\) is the partition \(\brce{a
     \label{cor:upper-greater-lower-int}%
     We have for any bounded \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\), that
     \[
-        \lowerI\para{f} = \lowerInt_{a}^{b} f\para{x} \Diff x \leq \upperInt_{a}^{b} f\para{x} \Diff x = \upperI \para{f}.
+        \lowerI\pqty{f} = \lowerInt_{a}^{b} f\pqty{x} \dd{x} \leq \upperInt_{a}^{b} f\pqty{x} \dd{x} = \upperI \pqty{f}.
     \]
 \end{corollary}
 
 \begin{proof}
-    We have \(\lowerSum\para{f, \partition} \leq \upperSum\para{f, \partition'}\) from \autoref{lem:upper-greater-lower-sum}. Taking the infimum over all \(\partition'\) gives
+    We have \(\lowerSum\pqty{f, \partition} \leq \upperSum\pqty{f, \partition'}\) from \autoref{lem:upper-greater-lower-sum}. Taking the infimum over all \(\partition'\) gives
     \[
-        \lowerSum\para{f, \partition} \leq \inf_{\partition'} \upperSum\para{f, \partition'} = \upperI.
+        \lowerSum\pqty{f, \partition} \leq \inf_{\partition'} \upperSum\pqty{f, \partition'} = \upperI.
     \]
 
     Taking the supremum over all \(\partition\) gives
     \[
-        \lowerI = \sup_{\partition} \lowerSum\para{f, \partition} \leq \upperI
+        \lowerI = \sup_{\partition} \lowerSum\pqty{f, \partition} \leq \upperI
     \]
     as desired.
 \end{proof}
@@ -187,7 +187,7 @@ Another way of viewing integrability is as follows: we can always find a partiti
     \label{prop:riemann-integrability-criteria}%
     Let \(\functiondomain{f}{\ccintv{a}{b}}\) be bounded. Then \(f\) is Riemann integrable, if and only if
     \[
-        \forall \epsilon > 0, \exists \partition: \upperSum\para{f, \partition} - \lowerSum\para{f, \partition} < \epsilon,
+        \forall \epsilon > 0, \exists \partition: \upperSum\pqty{f, \partition} - \lowerSum\pqty{f, \partition} < \epsilon,
     \]
     where \(\partition\) is a partition.
 \end{proposition}
@@ -195,27 +195,27 @@ Another way of viewing integrability is as follows: we can always find a partiti
 \begin{proof}
     Suppose that the criteria is true. We have
     \[
-        0 \leq \upperI\para{f} - \lowerI\para{f} \leq \upperSum\para{f, \partition} - \lowerSum\para{f, \partition} < \epsilon,
+        0 \leq \upperI\pqty{f} - \lowerI\pqty{f} \leq \upperSum\pqty{f, \partition} - \lowerSum\pqty{f, \partition} < \epsilon,
     \]
-    for any \(\epsilon > 0\), and so we must have \(\upperI\para{f} - \lowerI\para{f} = 0\).
+    for any \(\epsilon > 0\), and so we must have \(\upperI\pqty{f} - \lowerI\pqty{f} = 0\).
 
     Now, suppose that \(f\) is Riemann integrable. By the definition of the supremum and infimum, we can always find partitions \(\partition, \partition'\) such that
     \[
-        \upperSum\para{f, \partition} \leq \upperI\para{f} + \frac{\epsilon}{2}
+        \upperSum\pqty{f, \partition} \leq \upperI\pqty{f} + \frac{\epsilon}{2}
     \]
     and
     \[
-        \lowerSum\para{f, \partition'} \geq \lowerI\para{f} + \frac{\epsilon}{2}.
+        \lowerSum\pqty{f, \partition'} \geq \lowerI\pqty{f} + \frac{\epsilon}{2}.
     \]
 
     Therefore,
     \[
-        \upperSum\para{f, \partition} - \lowerSum\para{f, \partition'} \leq \epsilon.
+        \upperSum\pqty{f, \partition} - \lowerSum\pqty{f, \partition'} \leq \epsilon.
     \]
 
     To conclude, we take a common refinement \(\partition \cup \partition'\), and then we have
     \[
-        \upperSum\para{f, \partition \cup \partition'} - \lowerSum\para{f, \partition \cup \partition'} \leq \upperSum\para{f, \partition} - \lowerSum\para{f, \partition'} \leq \epsilon,
+        \upperSum\pqty{f, \partition \cup \partition'} - \lowerSum\pqty{f, \partition \cup \partition'} \leq \upperSum\pqty{f, \partition} - \lowerSum\pqty{f, \partition'} \leq \epsilon,
     \]
     so we are done.
 \end{proof}
@@ -224,9 +224,9 @@ Note that this is equivalent to the following sequential version.
 
 \begin{proposition}[Sequential Riemann Integrability Criteria]
     \label{prop:sequential-riemann-integrability-criteria}%
-    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be bounded. Then \(f\) is Riemann integrable, if and only if there is a sequence of partitions \(\para{\partition_n}_{n \in \NN}\), such that
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be bounded. Then \(f\) is Riemann integrable, if and only if there is a sequence of partitions \(\pqty{\partition_n}_{n \in \NN}\), such that
     \[
-        \upperSum\para{f, \partition_n} - \lowerSum\para{f, \partition_n} \to 0
+        \upperSum\pqty{f, \partition_n} - \lowerSum\pqty{f, \partition_n} \to 0
     \]
     as \(n \to \infty\).
 \end{proposition}
@@ -234,55 +234,55 @@ Note that this is equivalent to the following sequential version.
 \begin{examples}[Integrals of Functions]
     \label{ex:integral-fn}%
     \begin{enumerate}
-        \item Let \(f\para{x} = x\) be defined on \(\ccintv{0}{1}\). Let the partition be
+        \item Let \(f\pqty{x} = x\) be defined on \(\ccintv{0}{1}\). Let the partition be
         \[
-            \partition_n = \brce{0, \frac{1}{n}, \ldots, \frac{n - 1}{n}, 1}.
+            \partition_n = \Bqty{0, \frac{1}{n}, \ldots, \frac{n - 1}{n}, 1}.
         \]
 
         Then, we have
         \begin{align*}
-            \upperSum\para{f, \partition_n} &= \sum_{j = 1}^{n} \frac{1}{n} \sup_{x \in \ccintv{\frac{j - 1}{n}}{\frac{j}{n}}} x \\
+            \upperSum\pqty{f, \partition_n} &= \sum_{j = 1}^{n} \frac{1}{n} \sup_{x \in \ccintv{\frac{j - 1}{n}}{\frac{j}{n}}} x \\
             &= \frac{1}{n^2} \cdot \sum_{j = 1}^{n} \sup_{x \in \ccintv{j - 1}{j}} x \\
             &= \frac{1}{n^2} \sum_{j = 1}^{n} j \\
-            &= \frac{1}{n^2} \cdot \frac{n \para{n + 1}}{2} \\
-            &= \frac{1}{2} \para{1 + \frac{1}{n}}.
+            &= \frac{1}{n^2} \cdot \frac{n \pqty{n + 1}}{2} \\
+            &= \frac{1}{2} \pqty{1 + \frac{1}{n}}.
         \end{align*}
 
         Similarly, we compute the lower sum as
         \begin{align*}
-            \lowerSum\para{f, \partition_n} &= \sum_{j = 1}^{n} \frac{1}{n}\inf_{x \in \ccintv{\frac{j - 1}{n}}{\frac{j}{n}}} x \\
-            &= \frac{1}{n^2} \cdot \frac{n \para{n - 1}}{2} \\
-            &= \frac{1}{2} \para{1 - \frac{1}{n}}.
+            \lowerSum\pqty{f, \partition_n} &= \sum_{j = 1}^{n} \frac{1}{n}\inf_{x \in \ccintv{\frac{j - 1}{n}}{\frac{j}{n}}} x \\
+            &= \frac{1}{n^2} \cdot \frac{n \pqty{n - 1}}{2} \\
+            &= \frac{1}{2} \pqty{1 - \frac{1}{n}}.
         \end{align*}
 
         With the original definition in \autoref{def:riemann-integral}, we notice
         \[
-            \lowerI\para{f} = \sup_{\partition} \lowerSum\para{f, \partition} \geq \sup_{n \in \NN} \lowerSum\para{f, \partition_n} = \frac{1}{2},
+            \lowerI\pqty{f} = \sup_{\partition} \lowerSum\pqty{f, \partition} \geq \sup_{n \in \NN} \lowerSum\pqty{f, \partition_n} = \frac{1}{2},
         \]
         and similarly,
         \[
-            \upperI\para{f} = \inf_{\partition} \upperSum\para{f, \partition} \leq \inf_{n \in \NN} \upperSum\para{f, \partition_n} = \frac{1}{2},
+            \upperI\pqty{f} = \inf_{\partition} \upperSum\pqty{f, \partition} \leq \inf_{n \in \NN} \upperSum\pqty{f, \partition_n} = \frac{1}{2},
         \]
 
         But by \autoref{cor:upper-greater-lower-int}, we have
         \[
-            \frac{1}{2} \leq \lowerI\para{f} \leq \upperI\para{f} \leq \frac{1}{2}
+            \frac{1}{2} \leq \lowerI\pqty{f} \leq \upperI\pqty{f} \leq \frac{1}{2}
         \]
         and hence
         \[
-            \lowerI\para{f} = \upperI\para{f} = \frac{1}{2}
+            \lowerI\pqty{f} = \upperI\pqty{f} = \frac{1}{2}
         \]
-        so \(\int_{0}^{1} f\para{x} \Diff x = \frac{1}{2}\).
+        so \(\int_{0}^{1} f\pqty{x} \dd{x} = \frac{1}{2}\).
 
         With \autoref{prop:sequential-riemann-integrability-criteria} (Sequential Riemann Integrability Criteria), we note
         \[
-            \upperSum\para{f, \partition_{n}} - \lowerSum\para{f, \partition_{n}} = \frac{1}{n} \to 0
+            \upperSum\pqty{f, \partition_{n}} - \lowerSum\pqty{f, \partition_{n}} = \frac{1}{n} \to 0
         \]
         as \(n \to \infty\). So this function is integrable.
 
         \item Consider the piecewise-defined function
         \[
-            f\para{x} = \begin{cases}
+            f\pqty{x} = \begin{cases}
                 0, & x \leq \frac{1}{2}, \\
                 1, & x > \frac{1}{2}
             \end{cases}
@@ -291,7 +291,7 @@ Note that this is equivalent to the following sequential version.
 
         Similarly, we take the same partitions \(\partition_n\). Then
         \[
-            \sup_{x \in \ccintv{x_{k - 1}}{x_k}} f\para{x} - \inf_{x \in \ccintv{x_{k - 1}}{x_k}} f\para{x} = \begin{cases}
+            \sup_{x \in \ccintv{x_{k - 1}}{x_k}} f\pqty{x} - \inf_{x \in \ccintv{x_{k - 1}}{x_k}} f\pqty{x} = \begin{cases}
                 1, & x_{k - 1} \leq \frac{1}{2} < x_k,\\
                 0, & \text{otherwise}.
             \end{cases}
@@ -299,7 +299,7 @@ Note that this is equivalent to the following sequential version.
 
         There is always precisely one interval satisfying this difference being \(1\), so
         \[
-            \upperSum\para{f, \partition_n} - \lowerSum\para{f, \partition_n} = \frac{1}{n} \to 0
+            \upperSum\pqty{f, \partition_n} - \lowerSum\pqty{f, \partition_n} = \frac{1}{n} \to 0
         \]
         as \(n \to \infty\). So the function is integrable.
     \end{enumerate}
@@ -315,35 +315,35 @@ We want to find some more sufficient conditions on integrability.
 \end{proposition}
 
 \begin{proof}
-    First, \(f\) is bounded by \(\max\brce{\abs{f\para{a}}, \abs{f\para{b}}}\) so is indeed bounded.
+    First, \(f\) is bounded by \(\max\Bqty{\abs{f\pqty{a}}, \abs{f\pqty{b}}}\) so is indeed bounded.
 
     Note that for any partition \(\partition\), we have
     \[
-        \upperSum\para{f, \partition} - \lowerSum\para{f, \partition} = \sum_{j = 1}^{n} \para{\sup_{I_j} f - \inf_{I_j} f} \abs{I_j},
+        \upperSum\pqty{f, \partition} - \lowerSum\pqty{f, \partition} = \sum_{j = 1}^{n} \pqty{\sup_{I_j} f - \inf_{I_j} f} \abs{I_j},
     \]
     for \(I_j = \ccintv{x_{j - 1}}{x_j}\), and \(\abs{I_j} = x_j - x_{j - 1}\).
 
     But since \(f\) is monotone, the supremum and the infimums are obtained at the endpoints of the intervals. Without loss of generality, suppose \(f\) is increasing, and
     \[
-        \sup_{x \in I_j} f\para{x} = f\para{x_j}, \quad \text{and} \quad \inf_{x \in I_j} f\para{x} = f\para{x_{j - 1}}.
+        \sup_{x \in I_j} f\pqty{x} = f\pqty{x_j}, \qand \inf_{x \in I_j} f\pqty{x} = f\pqty{x_{j - 1}}.
     \]
 
     Hence, we have
     \[
-        \upperSum\para{f, \partition} - \lowerSum\para{f, \partition} = \sum_{j = 1}^{n} \brac{f\para{x_j} - f\para{x_{j - 1}}} \abs{I_j}.
+        \upperSum\pqty{f, \partition} - \lowerSum\pqty{f, \partition} = \sum_{j = 1}^{n} \bqty{f\pqty{x_j} - f\pqty{x_{j - 1}}} \abs{I_j}.
     \]
 
     We set a particular partition
     \[
-        \partition_n = \brce{a, a + \frac{b - a}{n}, a + \frac{2\para{b - a}}{n}, \ldots, a + \frac{\para{n - 1} \para{b - a}}{n}, b},
+        \partition_n = \Bqty{a, a + \frac{b - a}{n}, a + \frac{2\pqty{b - a}}{n}, \ldots, a + \frac{\pqty{n - 1} \pqty{b - a}}{n}, b},
     \]
     and so \(\abs{I_j} = \frac{b - a}{n}\). Hence,
     \[
-        \upperSum\para{f, \partition_n} - \lowerSum\para{f, \partition_n} = \frac{b - a}{n} \cdot \sum_{j = 1}^{n} \brac{f\para{a + \frac{j \para{b - a}}{n}} - f\para{a + \frac{\para{j - 1} \para{b - a}}{n}}}
+        \upperSum\pqty{f, \partition_n} - \lowerSum\pqty{f, \partition_n} = \frac{b - a}{n} \cdot \sum_{j = 1}^{n} \bqty{f\pqty{a + \frac{j \pqty{b - a}}{n}} - f\pqty{a + \frac{\pqty{j - 1} \pqty{b - a}}{n}}}
     \]
     and by telescoping, we have
     \[
-        \upperSum\para{f, \partition_n} - \lowerSum\para{f, \partition_n} = \frac{b - a}{n} \brac{f\para{b} - f\para{a}} \to 0
+        \upperSum\pqty{f, \partition_n} - \lowerSum\pqty{f, \partition_n} = \frac{b - a}{n} \bqty{f\pqty{b} - f\pqty{a}} \to 0
     \]
     as \(n \to \infty\). Using \autoref{prop:sequential-riemann-integrability-criteria} (Sequential Version of Riemann Integrability Criteria), \(f\) is integrable, as desired.
 \end{proof}
@@ -360,12 +360,12 @@ We want to find some more sufficient conditions on integrability.
 
     If \(f\) is not integrable, by \autoref{prop:riemann-integrability-criteria} (Riemann Integrability Criteria), there is some \(\epsilon > 0\), such that
     \[
-        \forall \partition: \upperSum\para{f, \partition} - \lowerSum\para{f, \partition} > \epsilon.
+        \forall \partition: \upperSum\pqty{f, \partition} - \lowerSum\pqty{f, \partition} > \epsilon.
     \]
 
     Therefore, we have
     \[
-        \para{b - a} \cdot \max_{1 \leq j \leq n} \osc_{I_j} f \geq \sum_{k = 1}^{n} \abs{I_k} \cdot \para{\sup_{I_k} f - \inf_{I_k} f} = \upperSum\para{f, \partition} - \lowerSum\para{f, \partition} > \epsilon,
+        \pqty{b - a} \cdot \max_{1 \leq j \leq n} \osc_{I_j} f \geq \sum_{k = 1}^{n} \abs{I_k} \cdot \pqty{\sup_{I_k} f - \inf_{I_k} f} = \upperSum\pqty{f, \partition} - \lowerSum\pqty{f, \partition} > \epsilon,
     \]
     where we define
     \[
@@ -375,24 +375,24 @@ We want to find some more sufficient conditions on integrability.
 
     Therefore, there is some \(j\) in any partition \(\partition\), such that
     \[
-        \osc_{x \in I_j} f\para{x} = \sup_{x_1 \in I_j} f\para{x_1} - \inf_{x_2 \in I_j} f\para{x_2} > \frac{\epsilon}{b - a}.
+        \osc_{x \in I_j} f\pqty{x} = \sup_{x_1 \in I_j} f\pqty{x_1} - \inf_{x_2 \in I_j} f\pqty{x_2} > \frac{\epsilon}{b - a}.
     \]
 
     Therefore, by \autoref{thm:extreme-value} (Extreme Value Theorem), there is some \(y, z \in \ccintv{x_{j - 1}}{x_j}\), such that
     \[
-        f\para{y} - f\para{z} > \frac{\epsilon}{b - a}.
+        f\pqty{y} - f\pqty{z} > \frac{\epsilon}{b - a}.
     \]
 
     Since this is true for all partitions, it should also be true for the \(\partition_n\)s given in the previous proof (by splitting up equally). So for each \(n\), we have some \(y_n, z_n\) such that
     \[
-        \abs{y_n - z_n} < \frac{b - a}{n} \quad \text{and} \quad \abs{f\para{y_n} - f\para{z_n}} > \frac{\epsilon}{b - a}.
+        \abs{y_n - z_n} < \frac{b - a}{n} \qand \abs{f\pqty{y_n} - f\pqty{z_n}} > \frac{\epsilon}{b - a}.
     \]
 
-    By \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass Theorem), \(\para{y_n}, \para{z_n}\) have convergent subsequences. So for the subsequence index \(\para{n_k}\), we have \(\para{y_{n_k}} \to y\) for some \(y \in \ccintv{a}{b}\), and hence
+    By \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass Theorem), \(\pqty{y_n}, \pqty{z_n}\) have convergent subsequences. So for the subsequence index \(\pqty{n_k}\), we have \(\pqty{y_{n_k}} \to y\) for some \(y \in \ccintv{a}{b}\), and hence
     \[
         \abs{z_{n_k} - y_{n_k}} < \frac{b - a}{n_k} \to 0
     \]
-    as \(n \to \infty\), so \(z_{n_k} \to y\) as well. Imposing sequential continuity, but \(\para{f\para{y_{n_k}}}\) and \(\para{f\para{z_{n_k}}}\) do not have the same limit. This gives a contradiction with the continuity of \(f\).
+    as \(n \to \infty\), so \(z_{n_k} \to y\) as well. Imposing sequential continuity, but \(\pqty{f\pqty{y_{n_k}}}\) and \(\pqty{f\pqty{z_{n_k}}}\) do not have the same limit. This gives a contradiction with the continuity of \(f\).
 \end{proof}
 
 \begin{definition}[Piecewise Continuous]
@@ -408,14 +408,14 @@ We want to find some more sufficient conditions on integrability.
     \label{prop:piecewise-continuous-integrable}%
     Any piecewise continuous function \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) is integrable, and
     \[
-        \int_{a}^{b} f\para{x} \Diff x = \sum_{j = 1}^{k} \int_{x_{j - 1}}^{x_j} \overline{f_j} \para{x} \Diff x,
+        \int_{a}^{b} f\pqty{x} \dd{x} = \sum_{j = 1}^{k} \int_{x_{j - 1}}^{x_j} \overline{f_j} \pqty{x} \dd{x},
     \]
     where \(\overline{f_j}\)s are defined to be
     \[
-        \overline{f_j} \para{x} = \begin{cases}
-            f\para{x}, & x_{j - 1} < x < x_j, \\
-            f\para{x_j^{-}} = \lim_{x \to x_j^{-}} f\para{x}, & x = x_j, \\
-            f\para{x_{j - 1}^{+}} = \lim_{x \to x_{j - 1}^{+}} f\para{x}, & x = x_{j - 1}.
+        \overline{f_j} \pqty{x} = \begin{cases}
+            f\pqty{x}, & x_{j - 1} < x < x_j, \\
+            f\pqty{x_j^{-}} = \lim_{x \to x_j^{-}} f\pqty{x}, & x = x_j, \\
+            f\pqty{x_{j - 1}^{+}} = \lim_{x \to x_{j - 1}^{+}} f\pqty{x}, & x = x_{j - 1}.
         \end{cases}
     \]
 \end{proposition}
@@ -426,18 +426,18 @@ This is a very strong result. It not only guarantees integrability, but also tel
     \label{lem:individual-points-retains-integrable}%
     Suppose \(\functiondomain{f, g}{\ccintv{a}{b}}{\RR}\) is bounded. Suppose \(g\) is integrable, and the set of difference points
     \[
-        \set{x \in \ccintv{a}{b}}{f\para{x} \neq g\para{x}} = \brce{z_1, \ldots, z_N}
+        \set{x \in \ccintv{a}{b}}{f\pqty{x} \neq g\pqty{x}} = \Bqty{z_1, \ldots, z_N}
     \]
     for some finite \(N\). Then \(f\) is integrable, and
     \[
-        \int_{a}^{b} f\para{x} \Diff x = \int_{a}^{b} g\para{x} \Diff x.
+        \int_{a}^{b} f\pqty{x} \dd{x} = \int_{a}^{b} g\pqty{x} \dd{x}.
     \]
 \end{lemma}
 
 \begin{proof}
-    Set \(M = \sup_{x \in \ccintv{a}{b}} \abs{f\para{x}}\). Fix \(\epsilon > 0\), then by \autoref{prop:riemann-integrability-criteria} (Riemann Integrability Criteria), there is some \(\partition\) of \(\ccintv{a}{b}\) such that
+    Set \(M = \sup_{x \in \ccintv{a}{b}} \abs{f\pqty{x}}\). Fix \(\epsilon > 0\), then by \autoref{prop:riemann-integrability-criteria} (Riemann Integrability Criteria), there is some \(\partition\) of \(\ccintv{a}{b}\) such that
     \[
-        \upperSum\para{g, \partition} - \lowerSum\para{g, \partition} < \epsilon.
+        \upperSum\pqty{g, \partition} - \lowerSum\pqty{g, \partition} < \epsilon.
     \]
 
     We choose the intervals \(J_k = \ccintv{z_k - r_k}{z_k + r_k}\) with
@@ -448,7 +448,7 @@ This is a very strong result. It not only guarantees integrability, but also tel
 
     Consider the new partition
     \[
-        \partition' = \partition \cup \brce{z_1 \pm r_1, z_2 \pm r_2, \ldots, z_N \pm r_N}.
+        \partition' = \partition \cup \Bqty{z_1 \pm r_1, z_2 \pm r_2, \ldots, z_N \pm r_N}.
     \]
 
     Let
@@ -458,34 +458,34 @@ This is a very strong result. It not only guarantees integrability, but also tel
 
     Note that
     \[
-        \upperSum\para{g, \partition'} - \lowerSum\para{g, \partition'} \leq \upperSum\para{g, \partition} - \lowerSum\para{g, \partition} < \epsilon.
+        \upperSum\pqty{g, \partition'} - \lowerSum\pqty{g, \partition'} \leq \upperSum\pqty{g, \partition} - \lowerSum\pqty{g, \partition} < \epsilon.
     \]
 
     We now bound the upper and lower sums of \(f\). We have
     \begin{align*}
-        \upperSum\para{f, \partition'} - \lowerSum\para{f, \partition'} &= \sum_{j = 1}^{n} \abs{I_j} \para{\sup_{I_j} - \inf_{I_j} f} \\
-        &= \sum_{j = 1, I_j \subset J}^{n} \abs{I_j} \para{\sup_{I_j} - \inf_{I_j} f} + \sum_{j = 1, I_j \nsubset J}^{n} \abs{I_j} \para{\sup_{I_j} - \inf_{I_j} f}.
+        \upperSum\pqty{f, \partition'} - \lowerSum\pqty{f, \partition'} &= \sum_{j = 1}^{n} \abs{I_j} \pqty{\sup_{I_j} - \inf_{I_j} f} \\
+        &= \sum_{j = 1, I_j \subset J}^{n} \abs{I_j} \pqty{\sup_{I_j} - \inf_{I_j} f} + \sum_{j = 1, I_j \nsubset J}^{n} \abs{I_j} \pqty{\sup_{I_j} - \inf_{I_j} f}.
     \end{align*}
 
     Note that \(I_j \nsubset J\), then \(f = g\), and hence
     \begin{align*}
-        \sum_{j = 1, I_j \nsubset J}^{n} \abs{I_j} \para{\sup_{I_j} - \inf_{I_j} f} &\leq \sum_{j = 1}^{n} \abs{I_j} \para{\sup_{i_j} g - \inf_{I_j} g} \\
-        &= \upperSum\para{g, \partition'} - \lowerSum\para{g, \partition'} \\
+        \sum_{j = 1, I_j \nsubset J}^{n} \abs{I_j} \pqty{\sup_{I_j} - \inf_{I_j} f} &\leq \sum_{j = 1}^{n} \abs{I_j} \pqty{\sup_{i_j} g - \inf_{I_j} g} \\
+        &= \upperSum\pqty{g, \partition'} - \lowerSum\pqty{g, \partition'} \\
         &< \epsilon.
     \end{align*}
 
     For \(I_j \subset J\), then we have
     \[
-        \para{\sup_{I_j} f - \inf_{I_j} f} \leq 2M,
+        \pqty{\sup_{I_j} f - \inf_{I_j} f} \leq 2M,
     \]
     and hence
     \[
-        \sum_{j = 1, I_j \subset J}^{n} \abs{I_j} \para{\sup_{I_j} f - \inf_{I_j} f} \leq 2M \sum_{j = 1, I_j \subset J}^{n} \abs{I_j} \leq 2M \cdot \sum_{k = 1}^{N} \abs{J_k} < 2M \epsilon.
+        \sum_{j = 1, I_j \subset J}^{n} \abs{I_j} \pqty{\sup_{I_j} f - \inf_{I_j} f} \leq 2M \sum_{j = 1, I_j \subset J}^{n} \abs{I_j} \leq 2M \cdot \sum_{k = 1}^{N} \abs{J_k} < 2M \epsilon.
     \]
 
     Hence,
     \[
-        \upperSum\para{f, \partition'} - \lowerSum\para{f, \partition'} < \para{2M + 1} \epsilon.
+        \upperSum\pqty{f, \partition'} - \lowerSum\pqty{f, \partition'} < \pqty{2M + 1} \epsilon.
     \]
 \end{proof}
 
@@ -494,19 +494,19 @@ Now we prove \autoref{prop:piecewise-continuous-integrable} (Piecewise Continuou
 \begin{proof}[of \autoref{prop:piecewise-continuous-integrable} (Piecewise Continuous Functions are Integrable)]
     By \autoref{lem:individual-points-retains-integrable}, we have that the restrictions \(\rightbar{f}_{\ccintv{x_{j - 1}}{x_j}}\) is integrable, and
     \[
-        \int_{x_{j - 1}}^{x_j} f\para{x} \Diff x = \int_{x_{j - 1}}^{x_j} \overline{f_j} \para{x} \Diff x.
+        \int_{x_{j - 1}}^{x_j} f\pqty{x} \dd{x} = \int_{x_{j - 1}}^{x_j} \overline{f_j} \pqty{x} \dd{x}.
     \]
 
     To conclude, we use \autoref{prop:additivity-integral} (Additivity of the Integral).
 
     To calculate the integrals, we have
     \[
-        \lowerSum\para{f, \partition'} \leq \int_{a}^{b} f\para{x} \Diff x \leq \upperSum\para{f, \partition'} \text{ and } \lowerSum\para{f, \partition'} \leq \int_{a}^{b} g\para{x} \Diff x \leq \upperSum\para{g, \partition'}.
+        \lowerSum\pqty{f, \partition'} \leq \int_{a}^{b} f\pqty{x} \dd{x} \leq \upperSum\pqty{f, \partition'} \text{ and } \lowerSum\pqty{f, \partition'} \leq \int_{a}^{b} g\pqty{x} \dd{x} \leq \upperSum\pqty{g, \partition'}.
     \]
 
     Hence,
     \begin{align*}
-        \int_{a}^{b} f\para{x} \Diff x - \int_{a}^{b} g\para{x} \Diff x &\leq \upperSum\para{f, \partition'} - \upperSum\para{g, \partition'} + \upperSum\para{g, \partition'} - \lowerSum\para{g, \partition'} \\
+        \int_{a}^{b} f\pqty{x} \dd{x} - \int_{a}^{b} g\pqty{x} \dd{x} &\leq \upperSum\pqty{f, \partition'} - \upperSum\pqty{g, \partition'} + \upperSum\pqty{g, \partition'} - \lowerSum\pqty{g, \partition'} \\
         &< \epsilon + \epsilon.
     \end{align*}
 \end{proof}
@@ -515,7 +515,7 @@ Now we prove \autoref{prop:piecewise-continuous-integrable} (Piecewise Continuou
     \label{prop:additivity-integral}%
     Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) and \(c \in \oointv{a}{b}\). Then \(f\) is integrable, if and only if the restrictions \(\rightbar{f}_{\ccintv{a}{c}}\) and \(\rightbar{f}_{\ccintv{c}{b}}\) are integrable, and furthermore
     \[
-        \int_{a}^{b} f\para{x} \Diff x = \int_{a}^{c} \rightbar{f}_{\ccintv{a}{c}} \para{x} \Diff x + \int_{c}^{b} \rightbar{f}_{\ccintv{c}{b}} \para{x} \Diff x.
+        \int_{a}^{b} f\pqty{x} \dd{x} = \int_{a}^{c} \rightbar{f}_{\ccintv{a}{c}} \pqty{x} \dd{x} + \int_{c}^{b} \rightbar{f}_{\ccintv{c}{b}} \pqty{x} \dd{x}.
     \]
 \end{proposition}
 
@@ -527,59 +527,59 @@ Now we prove \autoref{prop:piecewise-continuous-integrable} (Piecewise Continuou
 
     If \(f\) is integrable, then there is some partition \(\partition\) of \(\ccintv{a}{b}\), such that
     \[
-        \upperSum\para{f, \partition} - \lowerSum\para{f, \partition} < \epsilon.
+        \upperSum\pqty{f, \partition} - \lowerSum\pqty{f, \partition} < \epsilon.
     \]
 
-    We add the point \(c\) into the partition (and it will only decrease the difference, so does not change the inequality), and let \(c = x_l\) for some \(l \in \brce{0, \ldots, n}\). Then, the partition can be split up into two parts
+    We add the point \(c\) into the partition (and it will only decrease the difference, so does not change the inequality), and let \(c = x_l\) for some \(l \in \Bqty{0, \ldots, n}\). Then, the partition can be split up into two parts
     \[
         \partition = \partition_L \cup \partition_R,
     \]
     where
     \[
-        \partition_L = \brce{a = x_0, x_1, \ldots, x_{l - 1}, x_l = c}, \quad \partition_R = \brce{c = x_l, x_{l + 1}, \ldots, x_{n - 1}, x_n = b},
+        \partition_L = \Bqty{a = x_0, x_1, \ldots, x_{l - 1}, x_l = c}, \quad \partition_R = \Bqty{c = x_l, x_{l + 1}, \ldots, x_{n - 1}, x_n = b},
     \]
     which are partitions of \(I_L = \ccintv{a}{c}\) and \(I_R = \ccintv{c}{b}\) respectively.
     
     Furthermore,
     \[
-        \upperSum\para{f, \partition} = \upperSum\para{f_L, \partition_L} + \upperSum\para{f_R, \partition_R}
+        \upperSum\pqty{f, \partition} = \upperSum\pqty{f_L, \partition_L} + \upperSum\pqty{f_R, \partition_R}
     \]
     and similarly,
     \[
-        \lowerSum\para{f, \partition} = \lowerSum\para{f_L, \partition_L} + \lowerSum\para{f_R, \partition_R}.
+        \lowerSum\pqty{f, \partition} = \lowerSum\pqty{f_L, \partition_L} + \lowerSum\pqty{f_R, \partition_R}.
     \]
 
     Summing these two, we have
     \[
-        \para{\upperSum\para{f_L, \partition_L} - \lowerSum\para{f_L, \partition_L}} + \para{\upperSum\para{f_R, \partition_R} - \lowerSum\para{f_R, \partition_R}} < \epsilon,
+        \pqty{\upperSum\pqty{f_L, \partition_L} - \lowerSum\pqty{f_L, \partition_L}} + \pqty{\upperSum\pqty{f_R, \partition_R} - \lowerSum\pqty{f_R, \partition_R}} < \epsilon,
     \]
     and hence both differences are \(< \epsilon\) since they are non-negative. This tells us \(f_L\) and \(f_R\) are both integrable.
 
     Suppose now that \(f_L\) and \(f_R\) are integrable. Now, suppose \(\partition_L\) and \(\partition_R\) are partitions of \(I_L\) and \(I_R\) respectively, such that
     \[
-        \upperSum\para{f_L, \partition_L} - \lowerSum\para{f_L, \partition_L} < \epsilon, \quad \upperSum\para{f_R, \partition_R} - \lowerSum\para{f_R, \partition_R} < \epsilon.
+        \upperSum\pqty{f_L, \partition_L} - \lowerSum\pqty{f_L, \partition_L} < \epsilon, \quad \upperSum\pqty{f_R, \partition_R} - \lowerSum\pqty{f_R, \partition_R} < \epsilon.
     \]
 
     The union of the two partitions \(\partition = \partition_L \cup \partition_R\) is a partition of the whole interval \(\ccintv{a}{b}\).
 
     Therefore,
     \[
-        \upperSum\para{f, \partition} - \lowerSum\para{f, \partition} < \epsilon,
+        \upperSum\pqty{f, \partition} - \lowerSum\pqty{f, \partition} < \epsilon,
     \]
     and hence we may conclude \(f\) is integrable in \(\ccintv{a}{b}\).
 
     To show the equality of the integrals holds, we have for any \(\epsilon > 0\), that there are partitions \(\partition_L\) and \(\partition_R\), respectively, that
     \[
-        \int_{a}^{b} f\para{x} \Diff x \geq \lowerSum\para{f_L, \partition_L} + \lowerSum\para{f_R, \partition_R} \geq \int_{a}^{c} f_L\para{x} \Diff x + \int_{c}^{b} f_R\para{x} \Diff x - 2\epsilon,
+        \int_{a}^{b} f\pqty{x} \dd{x} \geq \lowerSum\pqty{f_L, \partition_L} + \lowerSum\pqty{f_R, \partition_R} \geq \int_{a}^{c} f_L\pqty{x} \dd{x} + \int_{c}^{b} f_R\pqty{x} \dd{x} - 2\epsilon,
     \]
     and similarly,
     \[
-        \int_{a}^{b} f\para{x} \Diff x \leq \upperSum\para{f_L, \partition_L} + \upperSum\para{f_R, \partition_R} \leq \int_{a}^{c} f_L\para{x} \Diff x + \int_{c}^{b} f_R\para{x} \Diff x + 2\epsilon.
+        \int_{a}^{b} f\pqty{x} \dd{x} \leq \upperSum\pqty{f_L, \partition_L} + \upperSum\pqty{f_R, \partition_R} \leq \int_{a}^{c} f_L\pqty{x} \dd{x} + \int_{c}^{b} f_R\pqty{x} \dd{x} + 2\epsilon.
     \]
 
     Therefore,
     \[
-        \abs{\int_{a}^{b} f\para{x} \Diff x - \para{\int_{a}^{c} f_L\para{x} \Diff x + \int_{c}^{b} f_R\para{x} \Diff x}} < 2 \epsilon.
+        \abs{\int_{a}^{b} f\pqty{x} \dd{x} - \pqty{\int_{a}^{c} f_L\pqty{x} \dd{x} + \int_{c}^{b} f_R\pqty{x} \dd{x}}} < 2 \epsilon.
     \]
 
     Therefore, the integrals are equal, as desired.
@@ -592,22 +592,22 @@ Now we prove \autoref{prop:piecewise-continuous-integrable} (Piecewise Continuou
     Thomae's Function is defined as
     \[
         \function{f}{\ccintv{0}{1}}{\RR}{x}{\begin{cases}
-            \frac{1}{q}, & x \in \QQ, x = \frac{p}{q}, \gcd\brce{p, q} = 1, \\
+            \frac{1}{q}, & x \in \QQ, x = \frac{p}{q}, \gcd\Bqty{p, q} = 1, \\
             0, & x \notin \QQ.
         \end{cases}}
     \]
 
     Since \(\RR \setminus \QQ\) is dense in \(\RR\), we have
     \[
-        \lowerSum\para{f, \partition} = 0
+        \lowerSum\pqty{f, \partition} = 0
     \]
-    for any partition \(\partition\) of \(\ccintv{0}{1}\), and hence \(\lowerI\para{f} = 0\).
+    for any partition \(\partition\) of \(\ccintv{0}{1}\), and hence \(\lowerI\pqty{f} = 0\).
 
-    We claim \(f\) is integrable, so we want to show that for any \(\epsilon > 0\), there is some partition \(\partition\) such that \(\upperSum\para{f, \partition} < \epsilon\).
+    We claim \(f\) is integrable, so we want to show that for any \(\epsilon > 0\), there is some partition \(\partition\) such that \(\upperSum\pqty{f, \partition} < \epsilon\).
 
     We pick \(N \in \NN\), such that \(\frac{1}{N} < \epsilon\). Consider the set of points
     \[
-        X_N = \set{x \in \ccintv{0}{1}}{f\para{x} \geq \frac{1}{N}}.
+        X_N = \set{x \in \ccintv{0}{1}}{f\pqty{x} \geq \frac{1}{N}}.
     \]
 
     Note that this set is finite, since
@@ -617,7 +617,7 @@ Now we prove \autoref{prop:piecewise-continuous-integrable} (Piecewise Continuou
 
     Therefore, we let
     \[
-        X_N = \brce{y_1, \ldots, y_M}
+        X_N = \Bqty{y_1, \ldots, y_M}
     \]
     for some finite \(M \in \NN\). Now, define a partition \(\partition\), such that:
     \begin{enumerate}
@@ -627,8 +627,8 @@ Now we prove \autoref{prop:piecewise-continuous-integrable} (Piecewise Continuou
 
     Computing the upper Riemann sum, we have
     \begin{align*}
-        \upperSum\para{f, \partition} &= \sum_{I \in \partition} \abs{I} \cdot \sup_{x \in I} f\para{x} \\
-        &= \sum_{I \in \partition, I \cap X_N \neq \emptyset} \abs{I} \cdot \sup_{x \in I} f\para{x} + \sum_{I \in \partition, I \cap X_N \neq \emptyset} \abs{I} \cdot \sup_{x \in I} f\para{x} \\
+        \upperSum\pqty{f, \partition} &= \sum_{I \in \partition} \abs{I} \cdot \sup_{x \in I} f\pqty{x} \\
+        &= \sum_{I \in \partition, I \cap X_N \neq \emptyset} \abs{I} \cdot \sup_{x \in I} f\pqty{x} + \sum_{I \in \partition, I \cap X_N \neq \emptyset} \abs{I} \cdot \sup_{x \in I} f\pqty{x} \\
         &\leq \sum_{I \in \partition, I \cap X_N \neq \emptyset} \abs{I} + \frac{1}{N} \cdot \sum_{I \in \partition, I \cap X_N = \emptyset} \abs{I} \\
         &\leq M \cdot \frac{\epsilon}{M} + \frac{1}{N} \cdot 1 \\
         &< 2 \epsilon.
@@ -650,31 +650,31 @@ Now we prove \autoref{prop:piecewise-continuous-integrable} (Piecewise Continuou
 \end{proposition}
 
 \begin{proof}[of Finite Case]
-    Without loss of generality, let the set of discontinuities be \(D = \brce{d_1 < \cdots < d_k}\). We consider the restrictions
+    Without loss of generality, let the set of discontinuities be \(D = \Bqty{d_1 < \cdots < d_k}\). We consider the restrictions
     \[
         \rightbar{f}_{\ccintv{a}{d_1}}, \rightbar{f}_{\ccintv{d_1}{d_2}}, \ldots, \rightbar{f}_{\ccintv{d_{k - 1}}{d_k}}, \rightbar{f}_{\ccintv{d_k}{b}}.
     \]
 
     It suffices to show that all these functions are integrable, since if so, we would have
     \begin{align*}
-        &\phantom{=} \int_{a}^{d_1} \rightbar{f}_{\ccintv{a}{d_1}} \para{x} \Diff x + \int_{d_1}^{d_2} \rightbar{f}_{\ccintv{d_1}{d_2}} \para{x} \Diff x + \cdots + \int_{d_{k - 1}}^{d_k} \rightbar{f}_{\ccintv{d_{k - 1}}{d_k}} \para{x} \Diff x + \int_{d_k}^{b} \rightbar{f}_{\ccintv{d_k}{b}} \para{x} \Diff x \\
-        &= \int_{a}^{d_1} f\para{x} \Diff x + \int_{d_1}^{d_2} f\para{x} \Diff x + \cdots + \int_{d_{k - 1}}^{d_k} f\para{x} \Diff x + \int_{d_k}^{b} f\para{x} \Diff x \\
-        &= \int_{a}^{b} f\para{x} \Diff x.
+        &\phantom{=} \int_{a}^{d_1} \rightbar{f}_{\ccintv{a}{d_1}} \pqty{x} \dd{x} + \int_{d_1}^{d_2} \rightbar{f}_{\ccintv{d_1}{d_2}} \pqty{x} \dd{x} + \cdots + \int_{d_{k - 1}}^{d_k} \rightbar{f}_{\ccintv{d_{k - 1}}{d_k}} \pqty{x} \dd{x} + \int_{d_k}^{b} \rightbar{f}_{\ccintv{d_k}{b}} \pqty{x} \dd{x} \\
+        &= \int_{a}^{d_1} f\pqty{x} \dd{x} + \int_{d_1}^{d_2} f\pqty{x} \dd{x} + \cdots + \int_{d_{k - 1}}^{d_k} f\pqty{x} \dd{x} + \int_{d_k}^{b} f\pqty{x} \dd{x} \\
+        &= \int_{a}^{b} f\pqty{x} \dd{x}.
     \end{align*}
 
-    Let \(\functiondomain{g}{\ccintv{c}{d}}{\RR}\) be one of the restrictions above, which may only be discontinuous at \(c\) or \(d\). Since \(f\) is bounded, we have \(g\) is bounded, so let \(M = \sup_{x \in \ccintv{c}{d}} \abs{g\para{x}}\). Then for any subset \(S \subseteq \ccintv{c}{d}\), we have
+    Let \(\functiondomain{g}{\ccintv{c}{d}}{\RR}\) be one of the restrictions above, which may only be discontinuous at \(c\) or \(d\). Since \(f\) is bounded, we have \(g\) is bounded, so let \(M = \sup_{x \in \ccintv{c}{d}} \abs{g\pqty{x}}\). Then for any subset \(S \subseteq \ccintv{c}{d}\), we have
     \[
-        \osc_{x \in S} f\para{x} \leq 2M.
+        \osc_{x \in S} f\pqty{x} \leq 2M.
     \]
 
-    Let \(\epsilon > 0\) be arbitrary. Take \(\delta < \min\brce{\frac{d - c}{2}, \frac{\epsilon}{6M}}\), and the restriction of \(g\) on \(\ccintv{c + \delta}{d - \delta}\). \(g\) is continuous on this interval, and hence integrable. Let \(\partition'\) be a partition on \(\ccintv{c + \delta}{d - \delta}\), such that
+    Let \(\epsilon > 0\) be arbitrary. Take \(\delta < \min\Bqty{\frac{d - c}{2}, \frac{\epsilon}{6M}}\), and the restriction of \(g\) on \(\ccintv{c + \delta}{d - \delta}\). \(g\) is continuous on this interval, and hence integrable. Let \(\partition'\) be a partition on \(\ccintv{c + \delta}{d - \delta}\), such that
     \[
-        \upperSum\para{g, \partition'} - \lowerSum\para{g, \partition'} < \frac{\epsilon}{3}.
+        \upperSum\pqty{g, \partition'} - \lowerSum\pqty{g, \partition'} < \frac{\epsilon}{3}.
     \]
 
-    Now, we consider the partition \(\partition = \brce{c, d} \cup \partition'\). Then, we have
+    Now, we consider the partition \(\partition = \Bqty{c, d} \cup \partition'\). Then, we have
     \begin{align*}
-        \upperSum\para{g, \partition} - \lowerSum\para{g, \partition} &= \delta \cdot \osc_{x \in \ccintv{c}{c + \delta}} f\para{x} + \delta \cdot \osc_{x \in \ccintv{d - \delta}{d}} f\para{x} + \para{\upperSum\para{g, \partition'} - \lowerSum\para{g, \partition'}} \\
+        \upperSum\pqty{g, \partition} - \lowerSum\pqty{g, \partition} &= \delta \cdot \osc_{x \in \ccintv{c}{c + \delta}} f\pqty{x} + \delta \cdot \osc_{x \in \ccintv{d - \delta}{d}} f\pqty{x} + \pqty{\upperSum\pqty{g, \partition'} - \lowerSum\pqty{g, \partition'}} \\
         &< \frac{\epsilon}{6M} \cdot 2M + \frac{\epsilon}{6M} \cdot 2M + \frac{\epsilon}{3} \\
         &= \epsilon.
     \end{align*}
@@ -695,41 +695,41 @@ We finally prove several fundamental properties of integrals. However, before th
     Let \(I\) be a closed and bounded interval, and \(\functiondomain{f, g}{I}{\RR}\) be bounded.
 
     \begin{enumerate}
-        \item \textit{Supremums and Infimums preserve Weak Inequalities.} If \(f\para{x} \leq g\para{x}\) for all \(x\), then
+        \item \textit{Supremums and Infimums preserve Weak Inequalities.} If \(f\pqty{x} \leq g\pqty{x}\) for all \(x\), then
         \[
-            \sup_{x \in I} f\para{x} \leq \sup_{x \in I} g\para{x}
-            \quad \text{and} \quad
-            \inf_{x \in I} f\para{x} \leq \inf_{x \in I} g\para{x}.
+            \sup_{x \in I} f\pqty{x} \leq \sup_{x \in I} g\pqty{x}
+            \qand
+            \inf_{x \in I} f\pqty{x} \leq \inf_{x \in I} g\pqty{x}.
         \]
         \item \textit{Supremum of the Negative is Negative the Infimum.} We have
         \[
-            \sup_{x \in I} \para{-f\para{x}} = -\inf_{x \in I} f\para{x}
-            \quad \text{and} \quad
-            \inf_{x \in I} \para{-f\para{x}} = -\sup_{x \in I} f\para{x}.
+            \sup_{x \in I} \pqty{-f\pqty{x}} = -\inf_{x \in I} f\pqty{x}
+            \qand
+            \inf_{x \in I} \pqty{-f\pqty{x}} = -\sup_{x \in I} f\pqty{x}.
         \]
 
         \item \textit{Supremums and Infimums preserve Scalar Multiples.} For any \(\lambda > 0\), we have
         \[
-            \sup_{x \in I} \para{\lambda f\para{x}} = \lambda \sup_{x \in I} f\para{x}
-            \quad \text{and} \quad
-            \inf_{x \in I} \para{\lambda f\para{x}} = \lambda \inf_{x \in I} f\para{x}
+            \sup_{x \in I} \pqty{\lambda f\pqty{x}} = \lambda \sup_{x \in I} f\pqty{x}
+            \qand
+            \inf_{x \in I} \pqty{\lambda f\pqty{x}} = \lambda \inf_{x \in I} f\pqty{x}
         \]
 
         \item \textit{Triangular Inequalities.} We have
         \[
-            \sup_{x \in I} \para{f\para{x} + g\para{x}} \leq \sup_{x \in I} f\para{x} + \sup_{x \in I} g\para{x}
-            \quad \text{and} \quad
-            \inf_{x \in I} \para{f\para{x} + g\para{x}} \geq \inf_{x \in I} f\para{x} + \inf_{x \in I} g\para{x}.
+            \sup_{x \in I} \pqty{f\pqty{x} + g\pqty{x}} \leq \sup_{x \in I} f\pqty{x} + \sup_{x \in I} g\pqty{x}
+            \qand
+            \inf_{x \in I} \pqty{f\pqty{x} + g\pqty{x}} \geq \inf_{x \in I} f\pqty{x} + \inf_{x \in I} g\pqty{x}.
         \]
         
         \item \textit{Absolute Values.} We have
         \[
-            \sup_{x \in I} \abs{f\para{x}} - \inf_{x \in I} \abs{f\para{x}} \leq \sup_{x \in I} f\para{x} - \inf_{x \in I} f\para{x}.
+            \sup_{x \in I} \abs{f\pqty{x}} - \inf_{x \in I} \abs{f\pqty{x}} \leq \sup_{x \in I} f\pqty{x} - \inf_{x \in I} f\pqty{x}.
         \]
 
         \item \textit{Squares.} We have
         \[
-            \sup_{x \in I} \para{f\para{x}^2} - \inf_{x \in I} \para{f\para{x}^2} \leq 2 \sup_{x \in I} \abs{f\para{x}} \para{\sup_{x \in I} f\para{x} - \inf_{x \in I} f\para{x}}.
+            \sup_{x \in I} \pqty{f\pqty{x}^2} - \inf_{x \in I} \pqty{f\pqty{x}^2} \leq 2 \sup_{x \in I} \abs{f\pqty{x}} \pqty{\sup_{x \in I} f\pqty{x} - \inf_{x \in I} f\pqty{x}}.
         \]
     \end{enumerate}
 \end{lemma}
@@ -738,78 +738,78 @@ We finally prove several fundamental properties of integrals. However, before th
     \begin{enumerate}
         \item We prove for the supremum. We have for any \(x \in I\), that
         \[
-            \sup_{x \in I} g\para{x} \geq g\para{x} \geq f\para{x},
+            \sup_{x \in I} g\pqty{x} \geq g\pqty{x} \geq f\pqty{x},
         \]
         and hence
         \[
-            \sup_{x \in I} f\para{x} \leq \sup_{x \in I} g\para{x}.
+            \sup_{x \in I} f\pqty{x} \leq \sup_{x \in I} g\pqty{x}.
         \]
 
         \item We prove for the supremum. On one hand, we have
         \begin{align*}
-            &\phantom{\implies} \forall x \in I: \inf_{x \in I} f\para{x} \leq f\para{x} \\
-            &\implies \forall x \in I: - \inf_{x \in I} f\para{x} \geq -f\para{x} \\
-            &\implies - \inf_{x \in I} f\para{x} \geq \sup_{x \in I} \para{- f\para{x}}.
+            &\phantom{\implies} \forall x \in I: \inf_{x \in I} f\pqty{x} \leq f\pqty{x} \\
+            &\implies \forall x \in I: - \inf_{x \in I} f\pqty{x} \geq -f\pqty{x} \\
+            &\implies - \inf_{x \in I} f\pqty{x} \geq \sup_{x \in I} \pqty{- f\pqty{x}}.
         \end{align*}
 
         On the other hand, we have
         \begin{align*}
-            &\phantom{\implies} \forall x \in I: \sup_{x \in I} \para{- f\para{x}} \geq -f\para{x} \\
-            &\implies \forall x \in I: f\para{x} \geq -\sup_{x \in I} \para{- f\para{x}}  \\
-            &\implies \inf f\para{x} \geq - \sup_{x \in I} \para{- f\para{x}} \\
-            &\implies - \inf f\para{x} \leq \sup_{x \in I} \para{- f\para{x}}.
+            &\phantom{\implies} \forall x \in I: \sup_{x \in I} \pqty{- f\pqty{x}} \geq -f\pqty{x} \\
+            &\implies \forall x \in I: f\pqty{x} \geq -\sup_{x \in I} \pqty{- f\pqty{x}}  \\
+            &\implies \inf f\pqty{x} \geq - \sup_{x \in I} \pqty{- f\pqty{x}} \\
+            &\implies - \inf f\pqty{x} \leq \sup_{x \in I} \pqty{- f\pqty{x}}.
         \end{align*}
 
         \item We prove for the supremum. On one hand, we have
         \begin{align*}
-            &\phantom{\implies} \forall x \in I: \sup_{x \in I} \para{\lambda f\para{x}} \geq \lambda f\para{x} \\
-            &\implies \forall x \in I: \frac{1}{\lambda} \cdot \sup_{x \in I} \para{\lambda f\para{x}} \geq f\para{x} \\
-            &\implies \frac{1}{\lambda} \cdot \sup_{x \in I} \para{\lambda f\para{x}} \geq \sup_{x \in I} f\para{x} \\
-            &\implies \sup_{x \in I} \para{\lambda f\para{x}} \geq \lambda \sup_{x \in I} f\para{x}.
+            &\phantom{\implies} \forall x \in I: \sup_{x \in I} \pqty{\lambda f\pqty{x}} \geq \lambda f\pqty{x} \\
+            &\implies \forall x \in I: \frac{1}{\lambda} \cdot \sup_{x \in I} \pqty{\lambda f\pqty{x}} \geq f\pqty{x} \\
+            &\implies \frac{1}{\lambda} \cdot \sup_{x \in I} \pqty{\lambda f\pqty{x}} \geq \sup_{x \in I} f\pqty{x} \\
+            &\implies \sup_{x \in I} \pqty{\lambda f\pqty{x}} \geq \lambda \sup_{x \in I} f\pqty{x}.
         \end{align*}
 
         On the other hand, we have
         \begin{align*}
-            &\phantom{\implies} \forall x \in I: \sup_{x \in I} \para{f\para{x}} \geq f\para{x} \\
-            &\implies \forall x \in I: \lambda \sup_{x \in I} \para{f\para{x}} \geq \lambda f\para{x} \\
-            &\implies \lambda \sup_{x \in I} \para{f\para{x}} \geq \sup_{x \in I} \para{\lambda f\para{x}}.
+            &\phantom{\implies} \forall x \in I: \sup_{x \in I} \pqty{f\pqty{x}} \geq f\pqty{x} \\
+            &\implies \forall x \in I: \lambda \sup_{x \in I} \pqty{f\pqty{x}} \geq \lambda f\pqty{x} \\
+            &\implies \lambda \sup_{x \in I} \pqty{f\pqty{x}} \geq \sup_{x \in I} \pqty{\lambda f\pqty{x}}.
         \end{align*}
 
         \item We prove for the supremum. We have for any \(x \in I\), that
         \[
-            \sup_{x \in I} f\para{x} \geq f\para{x}
-            \quad \text{and} \quad
-            \sup_{x \in I} g\para{x} \geq g\para{x}.
+            \sup_{x \in I} f\pqty{x} \geq f\pqty{x}
+            \qand
+            \sup_{x \in I} g\pqty{x} \geq g\pqty{x}.
         \]
 
         Summing them, we have
         \[
-            \sup_{x \in I} f\para{x} + \sup_{x \in I} g\para{x} \geq f\para{x} + g\para{x},
+            \sup_{x \in I} f\pqty{x} + \sup_{x \in I} g\pqty{x} \geq f\pqty{x} + g\pqty{x},
         \]
         and hence
         \[
-             \sup_{x \in I} f\para{x} + \sup_{x \in I} g\para{x} \geq \sup_{x \in I} \para{f\para{x} + g\para{x}}.
+             \sup_{x \in I} f\pqty{x} + \sup_{x \in I} g\pqty{x} \geq \sup_{x \in I} \pqty{f\pqty{x} + g\pqty{x}}.
         \]
 
         \item If \(f \geq 0\) on all of \(I\), or \(f \leq 0\) on all of \(I\), this is an immediate consequence of (2).
         
-        If \(\inf_{x \in I} f\para{x} \leq 0 \leq \sup_{x \in I} f\para{x}\), then
+        If \(\inf_{x \in I} f\pqty{x} \leq 0 \leq \sup_{x \in I} f\pqty{x}\), then
         \begin{align*}
-            \sup_{x \in I} \abs{f\para{x}} - \inf_{x \in I} \abs{f\para{x}} &\leq \sup_{x \in I} \abs{f \para{x}} \\
-            &\leq \max \brce{\sup_{x \in I} f\para{x}, \sup_{x \in I} \para{-f\para{x}}} \\
-            &\leq \sup_{x \in I} f\para{x} + \sup_{x \in I} \para{-f\para{x}} \\
-            &= \sup_{x \in I} f\para{x} - \inf_{x \in I} f\para{x}.
+            \sup_{x \in I} \abs{f\pqty{x}} - \inf_{x \in I} \abs{f\pqty{x}} &\leq \sup_{x \in I} \abs{f \pqty{x}} \\
+            &\leq \max \Bqty{\sup_{x \in I} f\pqty{x}, \sup_{x \in I} \pqty{-f\pqty{x}}} \\
+            &\leq \sup_{x \in I} f\pqty{x} + \sup_{x \in I} \pqty{-f\pqty{x}} \\
+            &= \sup_{x \in I} f\pqty{x} - \inf_{x \in I} f\pqty{x}.
         \end{align*}
 
         \item We have
         \[
-            f\para{x}^2 - f\para{y}^2 = \para{f\para{x} - f\para{y}} \para{f\para{x} + f\para{y}}
+            f\pqty{x}^2 - f\pqty{y}^2 = \pqty{f\pqty{x} - f\pqty{y}} \pqty{f\pqty{x} + f\pqty{y}}
         \]
         for all \(x, y \in I\). Therefore,
         \begin{align*}
-            \sup_{x \in I} f\para{x}^2 - \inf_{y \in I} f\para{y}^2 &\leq \sup_{x \in I} \inf_{y \in I} \para{\brac{f\para{x} - f\para{y}} \brac{f\para{x} + f\para{y}}} \\
-            &\leq 2 \sup_{x \in I} \abs{f\para{x}} \sup_{x \in I} \inf_{y \in I} \brac{f\para{x} - f\para{y}} \\
-            &= 2 \sup_{x \in I} \abs{f\para{x}} \para{\sup_{x \in I} f\para{x} - \inf_{x \in I} f\para{x}}.
+            \sup_{x \in I} f\pqty{x}^2 - \inf_{y \in I} f\pqty{y}^2 &\leq \sup_{x \in I} \inf_{y \in I} \pqty{\bqty{f\pqty{x} - f\pqty{y}} \bqty{f\pqty{x} + f\pqty{y}}} \\
+            &\leq 2 \sup_{x \in I} \abs{f\pqty{x}} \sup_{x \in I} \inf_{y \in I} \bqty{f\pqty{x} - f\pqty{y}} \\
+            &= 2 \sup_{x \in I} \abs{f\pqty{x}} \pqty{\sup_{x \in I} f\pqty{x} - \inf_{x \in I} f\pqty{x}}.
         \end{align*}
     \end{enumerate}
 \end{proof}
@@ -819,42 +819,42 @@ We finally prove several fundamental properties of integrals. However, before th
     Let \(\functiondomain{f, g}{I}{\RR}\) be bounded, and let \(\partition\) be a partition of \(\ccintv{a}{b}\).
 
     \begin{enumerate}
-        \item \textit{Upper and Lower Sums preserve Weak Inequalities.} If \(f\para{x} \leq g\para{x}\) for all \(x\), then
+        \item \textit{Upper and Lower Sums preserve Weak Inequalities.} If \(f\pqty{x} \leq g\pqty{x}\) for all \(x\), then
         \[
-            \upperSum\para{f, \partition} \leq \upperSum\para{g, \partition}
-            \quad \text{and} \quad
-            \lowerSum\para{f, \partition} \leq \lowerSum\para{g, \partition}.
+            \upperSum\pqty{f, \partition} \leq \upperSum\pqty{g, \partition}
+            \qand
+            \lowerSum\pqty{f, \partition} \leq \lowerSum\pqty{g, \partition}.
         \]
 
         \item \textit{Upper Sum of the Negative is Negative the Lower Sum.} We have
         \[
-            \upperSum\para{-f, \partition} = -\lowerSum\para{f, \partition}
-            \quad \text{and} \quad
-            \lowerSum\para{-f, \partition} = -\upperSum\para{f, \partition}.
+            \upperSum\pqty{-f, \partition} = -\lowerSum\pqty{f, \partition}
+            \qand
+            \lowerSum\pqty{-f, \partition} = -\upperSum\pqty{f, \partition}.
         \]
 
         \item \textit{Upper and Lower Sums preserve Scalar Multiples}. For any \(\lambda > 0\), we have
         \[
-            \upperSum\para{\lambda f, \partition} = \lambda \upperSum\para{f, \partition}
-            \quad \text{and} \quad
-            \lowerSum\para{\lambda f, \partition} = \lambda \lowerSum\para{f, \partition}.
+            \upperSum\pqty{\lambda f, \partition} = \lambda \upperSum\pqty{f, \partition}
+            \qand
+            \lowerSum\pqty{\lambda f, \partition} = \lambda \lowerSum\pqty{f, \partition}.
         \]
 
         \item \textit{Triangular Inequalities.} We have
         \[
-            \upperSum\para{f + g, \partition} \leq \upperSum\para{f, \partition} + \upperSum\para{g, \partition}
-            \quad \text{and} \quad
-            \lowerSum\para{f + g, \partition} \geq \lowerSum\para{f, \partition} + \lowerSum\para{g, \partition}.
+            \upperSum\pqty{f + g, \partition} \leq \upperSum\pqty{f, \partition} + \upperSum\pqty{g, \partition}
+            \qand
+            \lowerSum\pqty{f + g, \partition} \geq \lowerSum\pqty{f, \partition} + \lowerSum\pqty{g, \partition}.
         \]
 
         \item \textit{Absolute Values.} We have
         \[
-            \upperSum\para{\abs{f}, \partition} - \lowerSum\para{\abs{f}, \partition} \leq \upperSum\para{f, \partition} - \lowerSum\para{f, \partition}.
+            \upperSum\pqty{\abs{f}, \partition} - \lowerSum\pqty{\abs{f}, \partition} \leq \upperSum\pqty{f, \partition} - \lowerSum\pqty{f, \partition}.
         \]
 
         \item \textit{Squares.} We have
         \[
-            \upperSum\para{f^2, \partition} - \lowerSum\para{f^2, \partition} \leq 2 \sup_{x \in I} \abs{f\para{x}} \para{\upperSum\para{f, \partition} - \lowerSum\para{f, \partition}}.
+            \upperSum\pqty{f^2, \partition} - \lowerSum\pqty{f^2, \partition} \leq 2 \sup_{x \in I} \abs{f\pqty{x}} \pqty{\upperSum\pqty{f, \partition} - \lowerSum\pqty{f, \partition}}.
         \]
     \end{enumerate}
 \end{lemma}
@@ -867,23 +867,23 @@ We finally prove several fundamental properties of integrals. However, before th
     \label{lem:integral-preserve-weak-inequalities}%
     Let \(\functiondomain{f, g}{\ccintv{a}{b}}{\RR}\) be integrable. If \(f \leq g\), then
     \[
-        \int_{a}^{b} f\para{x} \Diff x \leq \int_{a}^{b} g\para{x} \Diff x.
+        \int_{a}^{b} f\pqty{x} \dd{x} \leq \int_{a}^{b} g\pqty{x} \dd{x}.
     \]
 \end{lemma}
 
 \begin{proof}
-    From \autoref{lem:properties-upper-lower-sum}, we have \(\upperSum\para{f, \partition} \leq \upperSum\para{g, \partition}\), so taking infimum over all partitions gives us the result as desired.
+    From \autoref{lem:properties-upper-lower-sum}, we have \(\upperSum\pqty{f, \partition} \leq \upperSum\pqty{g, \partition}\), so taking infimum over all partitions gives us the result as desired.
 \end{proof}
 
 \begin{lemma}[Integration is Linear]
     \label{lem:integral-linear}%
     Let \(\functiondomain{f, g}{\ccintv{a}{b}}{\RR}\) be integrable. For any \(\lambda \in \RR\), we have
     \[
-        \int_{a}^{b} \lambda f\para{x} \Diff x = \lambda \int_{a}^{b} f\para{x} \Diff x,
+        \int_{a}^{b} \lambda f\pqty{x} \dd{x} = \lambda \int_{a}^{b} f\pqty{x} \dd{x},
     \]
     and
     \[
-        \int_{a}^{b} \brac{f\para{x} + g\para{x}} \Diff x = \int_{a}^{b} f\para{x} \Diff x + \int_{a}^{b} g\para{x} \Diff x.
+        \int_{a}^{b} \bqty{f\pqty{x} + g\pqty{x}} \dd{x} = \int_{a}^{b} f\pqty{x} \dd{x} + \int_{a}^{b} g\pqty{x} \dd{x}.
     \]
 \end{lemma}
 
@@ -892,12 +892,12 @@ We finally prove several fundamental properties of integrals. However, before th
     
     For the sum, we have from property 4 of \autoref{lem:properties-upper-lower-sum}, that
     \[
-        \lowerSum\para{f, \partition} + \lowerSum\para{g, \partition} \leq \lowerSum\para{f + g, \partition} \leq \upperSum\para{f + g, \partition} \leq \upperSum\para{f, \partition} + \upperSum\para{g, \partition}.
+        \lowerSum\pqty{f, \partition} + \lowerSum\pqty{g, \partition} \leq \lowerSum\pqty{f + g, \partition} \leq \upperSum\pqty{f + g, \partition} \leq \upperSum\pqty{f, \partition} + \upperSum\pqty{g, \partition}.
     \]
 
     Therefore,
     \[
-        \lowerI\para{f} + \lowerI\para{g} \leq \lowerI\para{f + g} \leq \upperI\para{f + g} \leq \upperI\para{f} + \upperI\para{g},
+        \lowerI\pqty{f} + \lowerI\pqty{g} \leq \lowerI\pqty{f + g} \leq \upperI\pqty{f + g} \leq \upperI\pqty{f} + \upperI\pqty{g},
     \]
     and we have the result as desired.
 \end{proof}
@@ -906,55 +906,55 @@ We finally prove several fundamental properties of integrals. However, before th
     \label{lem:integral-absolute-value-triangular-inequality}%
     Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be integrable. Then \(\abs{f}\) is integrable, and
     \[
-        \abs{\int_{a}^{b} f\para{x} \Diff x} \leq \int_{a}^{b} \abs{f\para{x}} \Diff x.
+        \abs{\int_{a}^{b} f\pqty{x} \dd{x}} \leq \int_{a}^{b} \abs{f\pqty{x}} \dd{x}.
     \]
 \end{lemma}
 
 \begin{proof}
     For any partition \(\partition\) of \(\ccintv{a}{b}\), from \autoref{lem:properties-upper-lower-sum}, Property 5, we have
     \[
-        \upperSum\para{\abs{f}, \partition} - \lowerSum\para{\abs{f}, \partition} \leq \upperSum\para{f, \partition} - \lowerSum\para{f, \partition},
+        \upperSum\pqty{\abs{f}, \partition} - \lowerSum\pqty{\abs{f}, \partition} \leq \upperSum\pqty{f, \partition} - \lowerSum\pqty{f, \partition},
     \]
-    so if \(f \para{x}\) is integrable, we have \(\abs{f \para{x}}\) is integrable.
+    so if \(f \pqty{x}\) is integrable, we have \(\abs{f \pqty{x}}\) is integrable.
 
     Since we have
     \[
-        - \abs{f \para{x}} \leq f\para{x} \leq \abs{f\para{x}},
+        - \abs{f \pqty{x}} \leq f\pqty{x} \leq \abs{f\pqty{x}},
     \]
     by \autoref{lem:integral-preserve-weak-inequalities}, we have
     \[
-        -\int_{a}^{b} \abs{f\para{x}} \Diff x \leq \int_{a}^{b} f\para{x} \Diff x \leq \int_{a}^{b} \abs{f\para{x}} \Diff x,
+        -\int_{a}^{b} \abs{f\pqty{x}} \dd{x} \leq \int_{a}^{b} f\pqty{x} \dd{x} \leq \int_{a}^{b} \abs{f\pqty{x}} \dd{x},
     \]
     and hence
     \[
-        \abs{\int_{a}^{b} f\para{x}} \Diff x \leq \int_{a}^{b} \abs{f\para{x}} \Diff x.
+        \abs{\int_{a}^{b} f\pqty{x}} \dd{x} \leq \int_{a}^{b} \abs{f\pqty{x}} \dd{x}.
     \]
 \end{proof}
 
 \begin{lemma}[Product of Integrable Functions is Integrable]
     \label{lem:integral-product}%
-    Let \(\functiondomain{f, g}{\ccintv{a}{b}}{\RR}\) be integrable. Then the product \(f\para{x} \cdot g\para{x}\) is integrable.
+    Let \(\functiondomain{f, g}{\ccintv{a}{b}}{\RR}\) be integrable. Then the product \(f\pqty{x} \cdot g\pqty{x}\) is integrable.
 \end{lemma}
 
 \begin{proof}
     Note that
     \[
-        f\para{x} g\para{x} = \frac{1}{4} \brac{\para{f\para{x} + g\para{x}}^2 - \para{f\para{x} - g\para{x}}^2},
+        f\pqty{x} g\pqty{x} = \frac{1}{4} \bqty{\pqty{f\pqty{x} + g\pqty{x}}^2 - \pqty{f\pqty{x} - g\pqty{x}}^2},
     \]
-    so it suffices to show that \(f\para{x}\) is integrable implies \(f\para{x}^2\) is integrable.
+    so it suffices to show that \(f\pqty{x}\) is integrable implies \(f\pqty{x}^2\) is integrable.
 
     For any partition \(\partition\) of \(\ccintv{a}{b}\), we have by \autoref{lem:properties-upper-lower-sum},
     \[
-        \upperSum\para{f^2, \partition} - \lowerSum\para{f^2, \partition} \leq 2 \sup_{x \in I} \abs{f\para{x}} \para{\upperSum\para{f, \partition} - \lowerSum\para{f, \partition}}.
+        \upperSum\pqty{f^2, \partition} - \lowerSum\pqty{f^2, \partition} \leq 2 \sup_{x \in I} \abs{f\pqty{x}} \pqty{\upperSum\pqty{f, \partition} - \lowerSum\pqty{f, \partition}}.
     \]
 
-    But note \(2 \sup_{x \in I} \abs{f\para{x}}\) is a constant.
+    But note \(2 \sup_{x \in I} \abs{f\pqty{x}}\) is a constant.
 \end{proof}
 
 \begin{remark}
     We do not have a formula for this case, and it is generally the case that
     \[
-        \int_{a}^{b} f\para{x} g\para{x} \Diff x \neq \int_{a}^{b} f\para{x} \Diff x \cdot \int_{a}^{b} g\para{x} \Diff x.
+        \int_{a}^{b} f\pqty{x} g\pqty{x} \dd{x} \neq \int_{a}^{b} f\pqty{x} \dd{x} \cdot \int_{a}^{b} g\pqty{x} \dd{x}.
     \]
 \end{remark}
 
@@ -962,7 +962,7 @@ We finally prove several fundamental properties of integrals. However, before th
 
 We will think about the `integral of \(f\)' in this section as a function \(F\), known as the \emph{indefinite integral}, or the \emph{antiderivative} (the name will make sense later), which is the value of the integral of \(f\) over a varying upper bound
 \[
-    \function{F}{\ccintv{a}{b}}{\RR}{x}{\int_{a}^{x} f\para{t} \Diff t.}
+    \function{F}{\ccintv{a}{b}}{\RR}{x}{\int_{a}^{x} f\pqty{t} \dd{t}.}
 \]
 
 If we want \(F\) to be differentiable, it must be continuous.
@@ -975,39 +975,39 @@ If we want \(F\) to be differentiable, it must be continuous.
 \begin{proof}
     We have
     \begin{align*}
-        \abs{F\para{x + h} - F\para{x}} &= \abs{\int_{a}^{x + h} f\para{t} \Diff t - \int_{a}^{x} f\para{t} \Diff t} \\
-        &= \abs{\int_{x}^{x + h} f\para{t} \Diff t} \\
-        &\leq \int_{x}^{x + h} \abs{f\para{t}} \Diff t \\
+        \abs{F\pqty{x + h} - F\pqty{x}} &= \abs{\int_{a}^{x + h} f\pqty{t} \dd{t} - \int_{a}^{x} f\pqty{t} \dd{t}} \\
+        &= \abs{\int_{x}^{x + h} f\pqty{t} \dd{t}} \\
+        &\leq \int_{x}^{x + h} \abs{f\pqty{t}} \dd{t} \\
         &\leq \sup_{x \in \ccintv{a}{b}} \abs{f} \cdot \abs{h}.
     \end{align*}
 
-    Hence, as \(h \to 0\), \(\abs{F\para{x + h} - F\para{x}} \to 0\), showing \(F\) is continuous.
+    Hence, as \(h \to 0\), \(\abs{F\pqty{x + h} - F\pqty{x}} \to 0\), showing \(F\) is continuous.
 \end{proof}
 
 \begin{theorem}[Fundamental Theorem of Calculus, Part I]
     \label{thm:ftc-1}%
     If \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) is Riemann Integrable, and \(f\) is continuous at \(x_0\), then the \(F\) defined above is differentiable at \(x_0\), and
     \[
-        F'\para{x_0} = \rightbar{\DiffOp{x}}_{x = x_0} \int_{a}^{x} f\para{t} \Diff t = f\para{x_0}.
+        F'\pqty{x_0} = \rightbar{\dv{x}}_{x = x_0} \int_{a}^{x} f\pqty{t} \dd{t} = f\pqty{x_0}.
     \]
 \end{theorem}
 
 \begin{proof}
     We use \autoref{lem:linear-approximation-differentiability}, i.e., we study the function
     \[
-        \epsilon\para{h} = \frac{F\para{x_0 + h} - F\para{x_0} - h f\para{x_0}}{\abs{h}},
+        \epsilon\pqty{h} = \frac{F\pqty{x_0 + h} - F\pqty{x_0} - h f\pqty{x_0}}{\abs{h}},
     \]
     and we want to show that \(\epsilon \to 0\) as \(h \to 0\). We have
     \begin{align*}
-        \abs{F\para{x_0 + h} - F\para{x_0} - h f\para{x_0}} &= \abs{\int_{x_0}^{x_0 + h} f\para{t} \Diff t - h \cdot f\para{x_0}} \\
-        &= \abs{\int_{x_0}^{x_0 + h} \para{f\para{t} - f\para{x_0}} \Diff t} \\
-        &\leq \int_{x_0}^{x_0 + h} \abs{f\para{t} - f\para{x_0}} \Diff t \\
-        &\leq \sup_{t \in \ccintv{0}{h}} \abs{f\para{x_0 + t} - f\para{x_0}} \cdot \abs{h}.
+        \abs{F\pqty{x_0 + h} - F\pqty{x_0} - h f\pqty{x_0}} &= \abs{\int_{x_0}^{x_0 + h} f\pqty{t} \dd{t} - h \cdot f\pqty{x_0}} \\
+        &= \abs{\int_{x_0}^{x_0 + h} \pqty{f\pqty{t} - f\pqty{x_0}} \dd{t}} \\
+        &\leq \int_{x_0}^{x_0 + h} \abs{f\pqty{t} - f\pqty{x_0}} \dd{t} \\
+        &\leq \sup_{t \in \ccintv{0}{h}} \abs{f\pqty{x_0 + t} - f\pqty{x_0}} \cdot \abs{h}.
     \end{align*}
 
     Hence,
     \[
-        \abs{\epsilon\para{h}} \leq \sup_{t \in \ccintv{0}{h}} \abs{f\para{x_0 + t} - f\para{x_0}} \to 0,
+        \abs{\epsilon\pqty{h}} \leq \sup_{t \in \ccintv{0}{h}} \abs{f\pqty{x_0 + t} - f\pqty{x_0}} \to 0,
     \]
     as \(t \to 0\) due to continuity, as desired.
 \end{proof}
@@ -1016,7 +1016,7 @@ If we want \(F\) to be differentiable, it must be continuous.
     \label{ex:non-differentiable-indefinite-integral}%
     Take \(\ccintv{a}{b} = \ccintv{-1}{1}\), with
     \[
-        f\para{x} = \begin{cases}
+        f\pqty{x} = \begin{cases}
             -1, & x \leq 0, \\
             1, & x > 0.
         \end{cases}
@@ -1024,7 +1024,7 @@ If we want \(F\) to be differentiable, it must be continuous.
 
     \(f\) is piecewise continuous, and \(F\) defined above is given by
     \[
-        F\para{x} = \int_{-1}^{x} f\para{x} \Diff x = \begin{cases}
+        F\pqty{x} = \int_{-1}^{x} f\pqty{x} \dd{x} = \begin{cases}
             -x - 1, & x \leq 0 \\
             x - 1, & x \geq 0
         \end{cases}
@@ -1052,8 +1052,8 @@ If we want \(F\) to be differentiable, it must be continuous.
             \addplot[no marks, dashed] coordinates {(-1, -1) (0, -1)};
             \addplot[no marks, dashed] coordinates {(0, 1) (1, 1)};
 
-            \node[right] at (axis cs:1, 1) {\(f\para{x}\)};
-            \node[below right] at (axis cs:1, 0) {\(F\para{x}\)};
+            \node[right] at (axis cs:1, 1) {\(f\pqty{x}\)};
+            \node[below right] at (axis cs:1, 0) {\(F\pqty{x}\)};
 
             \addplot[no marks, thick] coordinates {(-1, 0) (0, -1)};
             \addplot[no marks, thick] coordinates {(0, -1) (1, 0)};
@@ -1068,9 +1068,9 @@ If we want \(F\) to be differentiable, it must be continuous.
 
 \begin{corollary}[Integral of Continuous Derivative]
     \label{cor:integral-continuous-derivative}%
-    If \(f\para{x} = g'\para{x}\) is continuous on \(\ccintv{a}{b}\), then
+    If \(f\pqty{x} = g'\pqty{x}\) is continuous on \(\ccintv{a}{b}\), then
     \[
-        F\para{x} = \int_{a}^{x} f\para{t} \Diff t = g\para{x} - g\para{a}
+        F\pqty{x} = \int_{a}^{x} f\pqty{t} \dd{t} = g\pqty{x} - g\pqty{a}
     \]
     for all \(x \in \ccintv{a}{b}\).
 \end{corollary}
@@ -1078,16 +1078,16 @@ If we want \(F\) to be differentiable, it must be continuous.
 \begin{proof}
     By \autoref{thm:ftc-1} (Fundamental Theorem of Calculus), we have
     \[
-        \para{F\para{x} - g\para{x}}' = 0
+        \pqty{F\pqty{x} - g\pqty{x}}' = 0
     \]
-    on \(\ccintv{a}{b}\), and hence \(F\para{x} - g\para{x}\) is a constant, and in other words,
+    on \(\ccintv{a}{b}\), and hence \(F\pqty{x} - g\pqty{x}\) is a constant, and in other words,
     \[
-        F\para{x} - g\para{x} = F\para{a} - g\para{a}.
+        F\pqty{x} - g\pqty{x} = F\pqty{a} - g\pqty{a}.
     \]
 
-    Hence, since \(F\para{a} = 0\), we have
+    Hence, since \(F\pqty{a} = 0\), we have
     \[
-        F\para{x} = g\para{x} - g\para{a}
+        F\pqty{x} = g\pqty{x} - g\pqty{a}
     \]
     for all \(x \in \ccintv{a}{b}\).
 \end{proof}
@@ -1096,36 +1096,36 @@ The continuity condition is very strong -- but we can generalise the condition t
 
 \begin{theorem}[Fundamental Theorem of Calculus, Part II]
     \label{thm:ftc-2}%
-    If \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) is Riemann integrable, and \(f\para{x} = F'\para{x}\) for some differentiable \(\functiondomain{F}{\ccintv{a}{b}}{\RR}\), then we have
+    If \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) is Riemann integrable, and \(f\pqty{x} = F'\pqty{x}\) for some differentiable \(\functiondomain{F}{\ccintv{a}{b}}{\RR}\), then we have
     \[
-        \int_{a}^{b} f\para{t} \Diff t = \int_{a}^{b} F'\para{t} \Diff t = F\para{b} - F\para{a}.
+        \int_{a}^{b} f\pqty{t} \dd{t} = \int_{a}^{b} F'\pqty{t} \dd{t} = F\pqty{b} - F\pqty{a}.
     \]
 \end{theorem}
 
 \begin{proof}
     Let \(\partition\) be any partition. Applying \autoref{thm:mean-value-thm} (Mean Value Theorem) to \(F\) on intervals of this partition gives
     \[
-        F\para{x_j} - F\para{x_{j - 1}} = f\para{t_j} \cdot \para{x_j - x_{j - 1}}
+        F\pqty{x_j} - F\pqty{x_{j - 1}} = f\pqty{t_j} \cdot \pqty{x_j - x_{j - 1}}
     \]
     for some \(t_j \in \oointv{x_j}{x_{j - 1}}\).
 
     Summing over all \(j\)s, we have
     \[
-        F\para{b} - F\para{a} = \sum_{j = 1}^{n} f\para{t_j} \para{x_j - x_{j - 1}}.
+        F\pqty{b} - F\pqty{a} = \sum_{j = 1}^{n} f\pqty{t_j} \pqty{x_j - x_{j - 1}}.
     \]
 
-    Since we have \(\inf_{x \in \ccintv{x_{j - 1}}{x_j}} f\para{x} \leq f\para{t_j} \leq \sup_{x \in \ccintv{x_{j - 1}}{x_j}} f\para{x}\), this means
+    Since we have \(\inf_{x \in \ccintv{x_{j - 1}}{x_j}} f\pqty{x} \leq f\pqty{t_j} \leq \sup_{x \in \ccintv{x_{j - 1}}{x_j}} f\pqty{x}\), this means
     \[
-        \lowerSum\para{f, \partition} \leq F\para{b} - F\para{a} \leq \upperSum\para{f, \partition}.
+        \lowerSum\pqty{f, \partition} \leq F\pqty{b} - F\pqty{a} \leq \upperSum\pqty{f, \partition}.
     \]
 
     Hence, we must have
     \[
-        \lowerI\para{f} \leq F\para{b} - F\para{a} \leq \upperI\para{f},
+        \lowerI\pqty{f} \leq F\pqty{b} - F\pqty{a} \leq \upperI\pqty{f},
     \]
     and since \(f\) is integrable, we have
     \[
-        I\para{f} = F\para{b} - F\para{a},
+        I\pqty{f} = F\pqty{b} - F\pqty{a},
     \]
     as desired.
 \end{proof}
@@ -1134,16 +1134,16 @@ Now, we may use this, with our known differentiation rules, to derive some (alre
 
 \begin{proposition}[Integration by Parts]
     \label{prop:integration-by-parts}%
-    Let \(f, g \in \contClass{1} \para{\ccintv{a}{b}}\) be continuously differentiable. Then
+    Let \(f, g \in \contClass{1} \pqty{\ccintv{a}{b}}\) be continuously differentiable. Then
     \[
-        \int_{a}^{b} f'\para{x} g\para{x} \Diff x = f\para{b} g\para{b} - f\para{a} g\para{a} - \int_{a}^{b} f\para{x} g'\para{x} \Diff x.
+        \int_{a}^{b} f'\pqty{x} g\pqty{x} \dd{x} = f\pqty{b} g\pqty{b} - f\pqty{a} g\pqty{a} - \int_{a}^{b} f\pqty{x} g'\pqty{x} \dd{x}.
     \]
 \end{proposition}
 
 \begin{proof}
     This follows from \autoref{thm:ftc-2} (Fundamental Theorem of Calculus) and by product rule. We have
     \[
-        f'\para{x} g\para{x} = \para{f\para{x} g\para{x}}' - f\para{x} g'\para{x}.
+        f'\pqty{x} g\pqty{x} = \pqty{f\pqty{x} g\pqty{x}}' - f\pqty{x} g'\pqty{x}.
     \]
 
     Integrate over \(\ccintv{a}{b}\), and using \autoref{thm:ftc-2} gives the result as desired.
@@ -1151,30 +1151,30 @@ Now, we may use this, with our known differentiation rules, to derive some (alre
 
 \begin{proposition}[Integration by Substitution]
     \label{prop:integration-by-substitution}%
-    Let \(f \in \contClass{0} \para{\ccintv{a}{b}}\) be continuous, and \(\functiondomain{g}{\ccintv{\alpha}{\beta}}{\ccintv{a}{b}}\) be continuously differentiable, with \(g\para{\alpha} = a\), and \(g\para{\beta} = b\). Then
+    Let \(f \in \contClass{0} \pqty{\ccintv{a}{b}}\) be continuous, and \(\functiondomain{g}{\ccintv{\alpha}{\beta}}{\ccintv{a}{b}}\) be continuously differentiable, with \(g\pqty{\alpha} = a\), and \(g\pqty{\beta} = b\). Then
     \[
-        \int_{a}^{b} f\para{x} \Diff x = \int_{\alpha}^{\beta} f\para{g\para{t}} g'\para{t} \Diff t.
+        \int_{a}^{b} f\pqty{x} \dd{x} = \int_{\alpha}^{\beta} f\pqty{g\pqty{t}} g'\pqty{t} \dd{t}.
     \]
 \end{proposition}
 
 \begin{proof}
     Set
     \[
-        F\para{x} = \int_{a}^{x} f\para{t} \Diff t.
+        F\pqty{x} = \int_{a}^{x} f\pqty{t} \dd{t}.
     \]
     
     Then \(F\) is well-defined and differentiable, by \autoref{thm:ftc-1} (Fundamental Theorem of Calculus). Set \(\functiondomain{h = F \circ g}{\ccintv{\alpha}{\beta}}{\RR}\). Then \(h\) is differentiable, and by \autoref{prop:chain-rule} (Chain Rule), we have
     \[
-        h'\para{t} = F'\para{g\para{t}} g'\para{t}.
+        h'\pqty{t} = F'\pqty{g\pqty{t}} g'\pqty{t}.
     \]
 
     Hence, by applying \autoref{thm:ftc-2} twice, we have
     \begin{align*}
-        \int_{a}^{b} f\para{x} \Diff x &= F\para{b} - F\para{a} \\
-        &= F\para{g\para{\beta}} - F\para{g\para{\alpha}} \\
-        &= h\para{\beta} - h\para{\alpha} \\
-        &= \int_{\alpha}^{\beta} h'\para{t} \Diff t \\
-        &= \int_{\alpha}^{\beta} f\para{g\para{t}} g'\para{t} \Diff t.
+        \int_{a}^{b} f\pqty{x} \dd{x} &= F\pqty{b} - F\pqty{a} \\
+        &= F\pqty{g\pqty{\beta}} - F\pqty{g\pqty{\alpha}} \\
+        &= h\pqty{\beta} - h\pqty{\alpha} \\
+        &= \int_{\alpha}^{\beta} h'\pqty{t} \dd{t} \\
+        &= \int_{\alpha}^{\beta} f\pqty{g\pqty{t}} g'\pqty{t} \dd{t}.
     \end{align*}
 \end{proof}
 
@@ -1184,20 +1184,20 @@ A very important application of this is providing another remainder for Taylor's
     \label{thm:taylor-thm-integral-remainder}%
     Let \(\functiondomain{f}{\ccintv{a}{a + h}}{\RR}\) be \(n\) times continuously differentiable on \(\oointv{a}{a + h}\). Then the \emph{Integral Form of the Remainder} gives the Taylor remainder in the form
     \begin{align*}
-        R_{n, f, a} \para{h} &= \frac{h^{n}}{\para{n - 1}!} \cdot \int_{0}^{1} \para{1 - t}^{n - 1} f^{\para{n}} \para{a + th} \Diff t \\
-        &= \frac{1}{\para{n - 1}!} \cdot \int_{0}^{h} \para{h - u}^{n - 1} f^{\para{n}} \para{a + u} \Diff u.
+        R_{n, f, a} \pqty{h} &= \frac{h^{n}}{\pqty{n - 1}!} \cdot \int_{0}^{1} \pqty{1 - t}^{n - 1} f^{\pqty{n}} \pqty{a + th} \dd{t} \\
+        &= \frac{1}{\pqty{n - 1}!} \cdot \int_{0}^{h} \pqty{h - u}^{n - 1} f^{\pqty{n}} \pqty{a + u} \dd{u}.
     \end{align*}
 \end{theorem}
 
 \begin{remark}
-    By \autoref{thm:extreme-value} (Extreme Value Theorem), there is some \(M_n = \sup_{x \in \ccintv{0}{h}} \abs{f^{\para{n}} \para{a + x}}\), since \(f^{\para{n}}\) is continuous. Then, we have
+    By \autoref{thm:extreme-value} (Extreme Value Theorem), there is some \(M_n = \sup_{x \in \ccintv{0}{h}} \abs{f^{\pqty{n}} \pqty{a + x}}\), since \(f^{\pqty{n}}\) is continuous. Then, we have
     \[
-        \abs{R_{n, f, a} \para{h}} \leq \abs{\frac{h^n}{\para{n - 1}!} \cdot M_n \cdot \int_{0}^{1} \para{1 - t}^{n - 1} \Diff t} = \frac{\abs{h^n}}{n!} \cdot M_n
+        \abs{R_{n, f, a} \pqty{h}} \leq \abs{\frac{h^n}{\pqty{n - 1}!} \cdot M_n \cdot \int_{0}^{1} \pqty{1 - t}^{n - 1} \dd{t}} = \frac{\abs{h^n}}{n!} \cdot M_n
     \]
 
     If we knew \(\sup_{n \geq 0} M_n = M < \plusinfty\), we have
     \[
-        \abs{R_{n, f, a} \para{h}} \leq \frac{M \abs{h^n}}{n!} \to 0
+        \abs{R_{n, f, a} \pqty{h}} \leq \frac{M \abs{h^n}}{n!} \to 0
     \]
     as \(n \to \infty\), for all \(\abs{h} < 1\). Therefore, \(f\) is analytic around \(a\).
 \end{remark}
@@ -1210,11 +1210,11 @@ A very important application of this is providing another remainder for Taylor's
 \begin{proof}
     Using \autoref{prop:integration-by-parts} (Integration by Parts), we have
     \begin{align*}
-        &\phantom{=} \frac{1}{\para{n - 1}!} \cdot \int_{0}^{h} \para{h - u}^{n - 1} f^{\para{n}} \para{a + u} \Diff u \\
-        &= - h^{n - 1} \cdot \frac{f^{\para{n - 1}} \para{a}}{\para{n - 1}!} + \frac{1}{\para{n - 2}!} \int_{0}^{h} \para{h - u}^{n - 2} f^{\para{n - 1}} \para{a + u} \Diff u \\
+        &\phantom{=} \frac{1}{\pqty{n - 1}!} \cdot \int_{0}^{h} \pqty{h - u}^{n - 1} f^{\pqty{n}} \pqty{a + u} \dd{u} \\
+        &= - h^{n - 1} \cdot \frac{f^{\pqty{n - 1}} \pqty{a}}{\pqty{n - 1}!} + \frac{1}{\pqty{n - 2}!} \int_{0}^{h} \pqty{h - u}^{n - 2} f^{\pqty{n - 1}} \pqty{a + u} \dd{u} \\
         &= \cdots \\
-        &= - \sum_{k = 1}^{n - 1} \frac{f^{\para{k}} \para{a}}{k!} \cdot h^k + \int_{0}^{h} f'\para{a + u} \Diff u \\
-        &= - \sum_{k = 0}^{n - 1} \frac{f^{\para{k}} \para{a}}{k!} \cdot h^k + f\para{a + h},
+        &= - \sum_{k = 1}^{n - 1} \frac{f^{\pqty{k}} \pqty{a}}{k!} \cdot h^k + \int_{0}^{h} f'\pqty{a + u} \dd{u} \\
+        &= - \sum_{k = 0}^{n - 1} \frac{f^{\pqty{k}} \pqty{a}}{k!} \cdot h^k + f\pqty{a + h},
     \end{align*}
     as desired.
 \end{proof}
@@ -1225,18 +1225,18 @@ We may start from this point and give alternative proofs of the mean-value form 
     \label{thm:mvt-integrals}%
     Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be continuous. Then there is some \(c \in \oointv{a}{b}\), such that
     \[
-        \int_{a}^{b} f\para{x} \Diff x = f\para{c} \cdot \para{b - a}.
+        \int_{a}^{b} f\pqty{x} \dd{x} = f\pqty{c} \cdot \pqty{b - a}.
     \]
 \end{theorem}
 
 \begin{proof}
     Applying \autoref{thm:mean-value-thm} (Mean Value Theorem) to the function
     \[
-        F\para{x} = \int_{a}^{x} f\para{t} \Diff t,
+        F\pqty{x} = \int_{a}^{x} f\pqty{t} \dd{t},
     \]
     there is some \(c \in \oointv{a}{b}\), giving
     \[
-        \frac{F\para{b} - F\para{a}}{b - a} = F'\para{c}.
+        \frac{F\pqty{b} - F\pqty{a}}{b - a} = F'\pqty{c}.
     \]
 
     Using \autoref{thm:ftc-1} (Fundamental Theorem of Calculus), we may get the result as desired.
@@ -1246,20 +1246,20 @@ There is a more general version of this theorem, just like how Cauchy's Mean Val
 
 \begin{theorem}[Cauchy Mean Value Theorem for Integrals]
     \label{thm:cauchy-mvt-integrals}%
-    Let \(\functiondomain{f, g}{\ccintv{a}{b}}{\RR}\) be continuous, and \(g\para{x} \neq 0\) for all \(x \in \ccintv{a}{b}\). Then there is some \(c \in \oointv{a}{b}\), such that
+    Let \(\functiondomain{f, g}{\ccintv{a}{b}}{\RR}\) be continuous, and \(g\pqty{x} \neq 0\) for all \(x \in \ccintv{a}{b}\). Then there is some \(c \in \oointv{a}{b}\), such that
     \[
-        \int_{a}^{b} f\para{x} g\para{x} \Diff x = f\para{c} \cdot \int_{a}^{b} g\para{x} \Diff x.
+        \int_{a}^{b} f\pqty{x} g\pqty{x} \dd{x} = f\pqty{c} \cdot \int_{a}^{b} g\pqty{x} \dd{x}.
     \]
 \end{theorem}
 
 \begin{proof}
     Applying \autoref{thm:cauchy-mvt} (Cauchy Mean Value Theorem) to the functions
     \[
-        F\para{x} = \int_{a}^{x} f\para{t} g\para{t} \Diff t \quad \text{and} \quad G\para{x} = \int_{a}^{x} g\para{t} \Diff t,
+        F\pqty{x} = \int_{a}^{x} f\pqty{t} g\pqty{t} \dd{t} \qand G\pqty{x} = \int_{a}^{x} g\pqty{t} \dd{t},
     \]
     there is some \(c \in \oointv{a}{b}\), giving
     \[
-        \para{F\para{b} - F\para{a}} G'\para{c} = F'\para{c} \para{G\para{b} - G\para{a}}.
+        \pqty{F\pqty{b} - F\pqty{a}} G'\pqty{c} = F'\pqty{c} \pqty{G\pqty{b} - G\pqty{a}}.
     \]
 
     Hence, using \autoref{thm:ftc-1} (Fundamental Theorem of Calculus), we may simplify this result, as desired.
@@ -1267,29 +1267,29 @@ There is a more general version of this theorem, just like how Cauchy's Mean Val
 
 We prove the two forms of the Lagrange remainder, but with slightly stronger conditions.
 
-\begin{proof}[of \autoref{thm:taylor-thm-langrange-remainder} (Lagrange Form of the Remainder), assuming continuity of \(f^{\para{n}}\)]
-    Let \(g\para{t} = \para{1 - t}^{n - 1}\). Then using \autoref{thm:taylor-thm-integral-remainder} (Integral Form of the Remainder) and \autoref{thm:cauchy-mvt-integrals} (Cauchy Mean Value Theorem for Integrals), there is some \(\theta \in \oointv{0}{1}\), such that
+\begin{proof}[of \autoref{thm:taylor-thm-langrange-remainder} (Lagrange Form of the Remainder), assuming continuity of \(f^{\pqty{n}}\)]
+    Let \(g\pqty{t} = \pqty{1 - t}^{n - 1}\). Then using \autoref{thm:taylor-thm-integral-remainder} (Integral Form of the Remainder) and \autoref{thm:cauchy-mvt-integrals} (Cauchy Mean Value Theorem for Integrals), there is some \(\theta \in \oointv{0}{1}\), such that
     \begin{align*}
-        R_{n, f, a} \para{h} &= \frac{h^n}{\para{h - 1}!} f^{\para{n}} \para{a + \theta h} \int_{0}^{1} \para{1 - t}^n \Diff t \\
-        &= \frac{h^n}{n!} \cdot f^{\para{n}} \para{a + \theta h}.
+        R_{n, f, a} \pqty{h} &= \frac{h^n}{\pqty{h - 1}!} f^{\pqty{n}} \pqty{a + \theta h} \int_{0}^{1} \pqty{1 - t}^n \dd{t} \\
+        &= \frac{h^n}{n!} \cdot f^{\pqty{n}} \pqty{a + \theta h}.
     \end{align*}
 \end{proof}
 
-\begin{proof}[of \autoref{thm:taylor-thm-cauchy-remainder} (Cauchy Form of the Remainder), assuming continuity of \(f^{\para{n}}\)]
-    Let \(g\para{t} = 1\) be constant. Then using \autoref{thm:taylor-thm-integral-remainder} (Integral Form of the Remainder) and \autoref{thm:mvt-integrals} (Mean Value Theorem for Integrals), there is some \(\theta \in \oointv{0}{1}\), such that
+\begin{proof}[of \autoref{thm:taylor-thm-cauchy-remainder} (Cauchy Form of the Remainder), assuming continuity of \(f^{\pqty{n}}\)]
+    Let \(g\pqty{t} = 1\) be constant. Then using \autoref{thm:taylor-thm-integral-remainder} (Integral Form of the Remainder) and \autoref{thm:mvt-integrals} (Mean Value Theorem for Integrals), there is some \(\theta \in \oointv{0}{1}\), such that
     \begin{align*}
-        R_{n, f, a} \para{h} &= \frac{h^n}{\para{h - 1}!} \para{1 - \theta}^{h} f^{\para{n}} \para{a + \theta h} \int_{0}^{1} \Diff t \\
-        &= \frac{h^n}{\para{n - 1}!} \cdot \para{1 - \theta}^{n - 1} \cdot f^{\para{n}} \para{a + \theta h}.
+        R_{n, f, a} \pqty{h} &= \frac{h^n}{\pqty{h - 1}!} \pqty{1 - \theta}^{h} f^{\pqty{n}} \pqty{a + \theta h} \int_{0}^{1} \dd{t} \\
+        &= \frac{h^n}{\pqty{n - 1}!} \cdot \pqty{1 - \theta}^{n - 1} \cdot f^{\pqty{n}} \pqty{a + \theta h}.
     \end{align*}
 \end{proof}
 
-\begin{proof}[of \autoref{thm:taylor-thm-schlomilch-remainder} (Schl\"{o}milch Form of the Remainder), asusming continuitiy of \(f^{\para{n}}\)]
-    Let \(g\para{t} = \para{1 - t}^{p - 1}\). Then using \autoref{thm:taylor-thm-integral-remainder} (Integral Form of the Remainder), and \autoref{thm:cauchy-mvt-integrals} (Cauchy Mean Value Theorem for Integrals), there is some \(\theta \in \oointv{0}{1}\), such that
+\begin{proof}[of \autoref{thm:taylor-thm-schlomilch-remainder} (Schl\"{o}milch Form of the Remainder), asusming continuitiy of \(f^{\pqty{n}}\)]
+    Let \(g\pqty{t} = \pqty{1 - t}^{p - 1}\). Then using \autoref{thm:taylor-thm-integral-remainder} (Integral Form of the Remainder), and \autoref{thm:cauchy-mvt-integrals} (Cauchy Mean Value Theorem for Integrals), there is some \(\theta \in \oointv{0}{1}\), such that
     \begin{align*}
-        R_{n, f, a} \para{h} &= \frac{h^n}{\para{n - 1}!} \cdot \int_{0}^{1} \para{1 - t}^{n - 1} f^{\para{n}} \para{a + th} \Diff t \\
-        &= \frac{h^n}{\para{n - 1}!} \cdot \int_{0}^{1} \brac{f^{\para{n}} \para{a + th} \cdot \para{1 - t}^{n - p}} \cdot \para{1 - t}^{p - 1} \Diff t \\
-        &= \frac{h^n}{\para{n - 1}!} \cdot f^{\para{n}} \para{a + \theta h} \cdot \para{1 - \theta}^{n - p} \cdot \int_{0}^{1} \para{1 - t}^{p - 1} \Diff t \\
-        &= \frac{h^n}{p \para{n - 1}!} \cdot \para{1 - \theta}^{n - p} f^{\para{n}} \para{a + \theta h}.
+        R_{n, f, a} \pqty{h} &= \frac{h^n}{\pqty{n - 1}!} \cdot \int_{0}^{1} \pqty{1 - t}^{n - 1} f^{\pqty{n}} \pqty{a + th} \dd{t} \\
+        &= \frac{h^n}{\pqty{n - 1}!} \cdot \int_{0}^{1} \bqty{f^{\pqty{n}} \pqty{a + th} \cdot \pqty{1 - t}^{n - p}} \cdot \pqty{1 - t}^{p - 1} \dd{t} \\
+        &= \frac{h^n}{\pqty{n - 1}!} \cdot f^{\pqty{n}} \pqty{a + \theta h} \cdot \pqty{1 - \theta}^{n - p} \cdot \int_{0}^{1} \pqty{1 - t}^{p - 1} \dd{t} \\
+        &= \frac{h^n}{p \pqty{n - 1}!} \cdot \pqty{1 - \theta}^{n - p} f^{\pqty{n}} \pqty{a + \theta h}.
     \end{align*}
 \end{proof}
 
@@ -1300,34 +1300,34 @@ We prove the two forms of the Lagrange remainder, but with slightly stronger con
 \begin{definition}[Improper Integrals over an Unbounded Domain]
     Suppose \(\functiondomain{f}{\cointv{a}{\plusinfty}}{\RR}\) is integrable on \(\ccintv{a}{R}\), for all \(R \in \cointv{a}{\plusinfty}\). We let
     \[
-        \function{F}{\cointv{a}{\plusinfty}}{\RR}{R}{\int_{a}^{R} f\para{x} \Diff x}.
+        \function{F}{\cointv{a}{\plusinfty}}{\RR}{R}{\int_{a}^{R} f\pqty{x} \dd{x}}.
     \]
 
     Then we say the \emph{improper integral}
     \[
-        \int_{a}^{\plusinfty} f\para{x} \Diff x
+        \int_{a}^{\plusinfty} f\pqty{x} \dd{x}
     \]
-    exists/converges, if \(L = \lim_{R \to \plusinfty} F\para{x}\) exists and is finite, and we set
+    exists/converges, if \(L = \lim_{R \to \plusinfty} F\pqty{x}\) exists and is finite, and we set
     \[
-        \int_{a}^{\plusinfty} f\para{x} \Diff x = L.
+        \int_{a}^{\plusinfty} f\pqty{x} \dd{x} = L.
     \]
 
-    Similarly, we may define \(\int_{\minusinfty}^{b} g\para{x} \Diff x\).
+    Similarly, we may define \(\int_{\minusinfty}^{b} g\pqty{x} \dd{x}\).
 
-    If \(\functiondomain{f}{\RR}{\RR}\) is such that \(\int_{a}^{\plusinfty} f\para{x} \Diff x = L_1\) and \(\int_{\minusinfty}^{a} f\para{x} \Diff x = L_2\), for some \(a \in \RR\), then we say the improper integral
+    If \(\functiondomain{f}{\RR}{\RR}\) is such that \(\int_{a}^{\plusinfty} f\pqty{x} \dd{x} = L_1\) and \(\int_{\minusinfty}^{a} f\pqty{x} \dd{x} = L_2\), for some \(a \in \RR\), then we say the improper integral
     \[
-        \int_{\minusinfty}^{\plusinfty} f\para{x} \Diff x
+        \int_{\minusinfty}^{\plusinfty} f\pqty{x} \dd{x}
     \]
     exists, and we set
     \[
-        \int_{\minusinfty}^{\plusinfty} f\para{x} \Diff x = \int_{\minusinfty}^{a} f\para{x} \Diff x + \int_{a}^{\plusinfty} f\para{x} \Diff x = \lim_{R_1 \to \plusinfty} \int_{a}^{R_1} f\para{x} \Diff x + \lim_{R_2 \to \minusinfty} \int_{R_2}^{a} f\para{x} \Diff x.
+        \int_{\minusinfty}^{\plusinfty} f\pqty{x} \dd{x} = \int_{\minusinfty}^{a} f\pqty{x} \dd{x} + \int_{a}^{\plusinfty} f\pqty{x} \dd{x} = \lim_{R_1 \to \plusinfty} \int_{a}^{R_1} f\pqty{x} \dd{x} + \lim_{R_2 \to \minusinfty} \int_{R_2}^{a} f\pqty{x} \dd{x}.
     \]
 \end{definition}
 
 \begin{remark}
     This is different from taking the limit
     \[
-        \lim_{R \to \plusinfty} \brac{\int_{-R}^{R} f\para{x} \Diff x}.
+        \lim_{R \to \plusinfty} \bqty{\int_{-R}^{R} f\pqty{x} \dd{x}}.
     \]
 
     If the above improper integral exists, then this new limit (the Cauchy Principle Value) exists and is equal -- but not necessarily otherwise.
@@ -1338,18 +1338,18 @@ We prove the two forms of the Lagrange remainder, but with slightly stronger con
     \begin{itemize}
         \item The integral
         \[
-            \int_{1}^{\plusinfty} \frac{1}{x^p} \Diff x = \lim_{R \to \plusinfty} \int_{1}^{R} \frac{1}{x^p} \Diff x
+            \int_{1}^{\plusinfty} \frac{1}{x^p} \dd{x} = \lim_{R \to \plusinfty} \int_{1}^{R} \frac{1}{x^p} \dd{x}
         \]
         exists, if and only if \(p > 1\).
 
         \item We have
         \[
-            \int_{2}^{\plusinfty} \frac{1}{x \para{\log x}^2} \Diff x = \lim_{R \to \plusinfty} \int_{2}^{R} \frac{\Diff x}{x \para{\log x}^2} = \frac{1}{\log 2}.
+            \int_{2}^{\plusinfty} \frac{1}{x \pqty{\log x}^2} \dd{x} = \lim_{R \to \plusinfty} \int_{2}^{R} \frac{\dd{x}}{x \pqty{\log x}^2} = \frac{1}{\log 2}.
         \]
 
         \item The \emph{Gaussian Integral} is given by
         \[
-            \int_{\minusinfty}^{\plusinfty} e^{- x^2} \Diff x.
+            \int_{\minusinfty}^{\plusinfty} e^{- x^2} \dd{x}.
         \]
 
         However, its antiderivative is difficult to calculate (and is in fact non-elementary). We can use alternative methods to show this converges.
@@ -1363,7 +1363,7 @@ We introduce some tests for improper integrals. However, the most obvious test f
 \begin{remark}
     Recall the \(n\)th term test for series, introduced in \autoref{prop:ser-test-nth-term}. However, this does not necessarily work for improper integrals, even if the function is continuous. Formally,
     \[
-        \int_{a}^{\plusinfty} f\para{x} \Diff x \text{ exists} \notimplies \lim_{x \to \plusinfty} f\para{x} = 0.
+        \int_{a}^{\plusinfty} f\pqty{x} \dd{x} \text{ exists} \notimplies \lim_{x \to \plusinfty} f\pqty{x} = 0.
     \]
 
     Indeed, if the limit exists, then it must be zero, but the limit does not necessarily exist.
@@ -1378,11 +1378,11 @@ We first investigate the convergence of improper integrals of non-negative funct
     \begin{itemize}
         \item If \(f\) is bounded above, then we have
         \[
-            \lim_{x \to \plusinfty} f\para{x} \Diff x = \sup_{x \geq a} f\para{x}.
+            \lim_{x \to \plusinfty} f\pqty{x} \dd{x} = \sup_{x \geq a} f\pqty{x}.
         \]
         \item If \(f\) is not bounded above, then we have
         \[
-            \lim_{x \to \plusinfty} f\para{x} \Diff x = \plusinfty.
+            \lim_{x \to \plusinfty} f\pqty{x} \dd{x} = \plusinfty.
         \]
     \end{itemize}
 
@@ -1391,11 +1391,11 @@ We first investigate the convergence of improper integrals of non-negative funct
     \begin{itemize}
         \item If \(g\) is bounded below, then we have
         \[
-            \lim_{x \to \plusinfty} g\para{x} \Diff x = \inf_{x \geq a} g\para{x}.
+            \lim_{x \to \plusinfty} g\pqty{x} \dd{x} = \inf_{x \geq a} g\pqty{x}.
         \]
         \item If \(g\) is not bounded below, then we have
         \[
-            \lim_{x \to \plusinfty} g\para{x} \Diff x = \minusinfty.
+            \lim_{x \to \plusinfty} g\pqty{x} \dd{x} = \minusinfty.
         \]
     \end{itemize}
 \end{proposition}
@@ -1403,29 +1403,29 @@ We first investigate the convergence of improper integrals of non-negative funct
 \begin{proof}
     We prove this for increasing functions, and the decreasing case is similar.
 
-    Let \(\epsilon > 0\). If \(f\para{x}\) is bounded above, by the definition of the supremum, there is some \(R \in \cointv{a}{\plusinfty}\), such that
+    Let \(\epsilon > 0\). If \(f\pqty{x}\) is bounded above, by the definition of the supremum, there is some \(R \in \cointv{a}{\plusinfty}\), such that
     \[
-        \sup_{x \geq a} f\para{x} - \epsilon < f\para{R} \leq \sup_{x \geq a} f\para{x}.
+        \sup_{x \geq a} f\pqty{x} - \epsilon < f\pqty{R} \leq \sup_{x \geq a} f\pqty{x}.
     \]
 
     This means that for all \(x > R\), we have
     \[
-        \sup_{x \geq a} f\para{x} - \epsilon < f\para{R} \leq f\para{x} \leq \sup_{x \geq a} f\para{x},
+        \sup_{x \geq a} f\pqty{x} - \epsilon < f\pqty{R} \leq f\pqty{x} \leq \sup_{x \geq a} f\pqty{x},
     \]
     so in particular,
     \[
-        \abs{f\para{x} - \sup_{x \geq a} f\para{x}} < \epsilon,
+        \abs{f\pqty{x} - \sup_{x \geq a} f\pqty{x}} < \epsilon,
     \]
     showing the limit as desired.
 
-    However, if \(f\para{x}\) is not bounded above, for any threshold \(M > 0\), there is some \(R \in \cointv{a}{\plusinfty}\), such that
+    However, if \(f\pqty{x}\) is not bounded above, for any threshold \(M > 0\), there is some \(R \in \cointv{a}{\plusinfty}\), such that
     \[
-        f\para{R} > M.
+        f\pqty{R} > M.
     \]
 
     Hence, for all \(x > R\), we have
     \[
-        f\para{x} \geq f\para{R} > M,
+        f\pqty{x} \geq f\pqty{R} > M,
     \]
     which shows divergence to \(\plusinfty\) as desired.
 \end{proof}
@@ -1434,40 +1434,40 @@ Similar to the Cauchy characterisation (\autoref{thm:completeness-of-r-and-c}) o
 
 \begin{proposition}[Cauchy Criteria for Function Limit at Infinity]
     \label{prop:cauchy-criteria-funciton-limit-infinity}%
-    Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\) be such that \(\infty\) is an accumulation point of \(X\). Then \(f\para{x}\) converges to some finite limit as \(x \to \infty\), if and only if
+    Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\) be such that \(\infty\) is an accumulation point of \(X\). Then \(f\pqty{x}\) converges to some finite limit as \(x \to \infty\), if and only if
     \[
-        \forall \epsilon > 0, \exists R > 0, \forall x_1, x_2 \in X, \abs{x_1}, \abs{x_2} > R: \abs{f\para{x_1} - f\para{x_2}} < \epsilon.
+        \forall \epsilon > 0, \exists R > 0, \forall x_1, x_2 \in X, \abs{x_1}, \abs{x_2} > R: \abs{f\pqty{x_1} - f\pqty{x_2}} < \epsilon.
     \]
 \end{proposition}
 
 \begin{proof}
-    Suppose that \(f\para{x} \to L \in \CC\) as \(x \to \infty\), and let \(\epsilon > 0\) be arbitrary. By the definition of a limit, for some \(R > 0\), we have
+    Suppose that \(f\pqty{x} \to L \in \CC\) as \(x \to \infty\), and let \(\epsilon > 0\) be arbitrary. By the definition of a limit, for some \(R > 0\), we have
     \[
-        \forall x \in X, \abs{x} > R: \abs{f\para{x} - L} < \frac{\epsilon}{2}.
+        \forall x \in X, \abs{x} > R: \abs{f\pqty{x} - L} < \frac{\epsilon}{2}.
     \]
 
     Hence, for all \(x_1, x_2 \in X, \abs{x_1}, \abs{x_2} > R\), we have
     \begin{align*}
-        \abs{f\para{x_1} - f\para{x_2}} &\leq \abs{f\para{x_1} - L} + \abs{f\para{x_2} - L} \\
+        \abs{f\pqty{x_1} - f\pqty{x_2}} &\leq \abs{f\pqty{x_1} - L} + \abs{f\pqty{x_2} - L} \\
         &< \frac{\epsilon}{2} + \frac{\epsilon}{2} \\
         &= \epsilon
     \end{align*}
     as desired.
 
-    On the other hand, suppose that the Cauchy criteria holds. Let \(\para{z_n}_{n \in \NN}\) be a sequence on \(X\) with limit \(\infty\). Then, the sequence \(\para{f\para{z_n}}_{n \in \NN}\) is Cauchy, and hence tends to some limit \(L \in \CC\).
+    On the other hand, suppose that the Cauchy criteria holds. Let \(\pqty{z_n}_{n \in \NN}\) be a sequence on \(X\) with limit \(\infty\). Then, the sequence \(\pqty{f\pqty{z_n}}_{n \in \NN}\) is Cauchy, and hence tends to some limit \(L \in \CC\).
 
     Now, let \(\epsilon > 0\) be arbitrary, and let \(R > 0\) be such that
     \[
-        \forall x_1, x_2 \in X, \abs{x_1}, \abs{x_2} > R: \abs{f\para{x_1} - f\para{x_2}} < \frac{\epsilon}{2},
+        \forall x_1, x_2 \in X, \abs{x_1}, \abs{x_2} > R: \abs{f\pqty{x_1} - f\pqty{x_2}} < \frac{\epsilon}{2},
     \]
     and let \(n > 0\) be sufficiently large, such that
     \[
-        \abs{z_n} > R \quad \text{and} \quad \abs{f\para{z_n} - L} < \frac{\epsilon}{2}
+        \abs{z_n} > R \qand \abs{f\pqty{z_n} - L} < \frac{\epsilon}{2}
     \]  
 
     For any \(x \in X, \abs{x} > R\), we have
     \begin{align*}
-        \abs{f\para{x} - L} &\leq \abs{f\para{x} - f\para{z_n}} + \abs{f\para{z_n} - L} \\
+        \abs{f\pqty{x} - L} &\leq \abs{f\pqty{x} - f\pqty{z_n}} + \abs{f\pqty{z_n} - L} \\
         &< \frac{\epsilon}{2} + \frac{\epsilon}{2} \\
         &= \epsilon
     \end{align*}
@@ -1478,12 +1478,12 @@ Now we introduce the tests.
 
 \begin{proposition}[Comparison Test for Integrals]
     \label{prop:int-test-comparison}%
-    Let \(\functiondomain{f, g}{\cointv{a}{\plusinfty}}{\RR}\) be integrable over any finite interval \(\ccintv{a}{R}\) for \(R \geq a\), and satisfies that \(0 \leq f\para{x} \leq g\para{x}\) for all \(x \in \cointv{a}{\plusinfty}\). Then the following holds.
+    Let \(\functiondomain{f, g}{\cointv{a}{\plusinfty}}{\RR}\) be integrable over any finite interval \(\ccintv{a}{R}\) for \(R \geq a\), and satisfies that \(0 \leq f\pqty{x} \leq g\pqty{x}\) for all \(x \in \cointv{a}{\plusinfty}\). Then the following holds.
 
     \begin{enumerate}
         \item If the improper integral of \(g\) to infinity exists, then so does the improper integral of \(f\), and we have
         \[
-            \int_{a}^{\plusinfty} f\para{x} \Diff x \leq \int_{a}^{\plusinfty} g\para{x} \Diff x.
+            \int_{a}^{\plusinfty} f\pqty{x} \dd{x} \leq \int_{a}^{\plusinfty} g\pqty{x} \dd{x}.
         \]
 
         \item If the improper integral of \(f\) to infinity diverges (to infinity), then so does the improper integral of \(g\).
@@ -1493,30 +1493,30 @@ Now we introduce the tests.
 \begin{proof}
     Let
     \[
-        F\para{R} = \int_{a}^{R} f\para{x} \Diff x \quad \text{and} \quad G\para{R} = \int_{a}^{R} g\para{x} \Diff x.
+        F\pqty{R} = \int_{a}^{R} f\pqty{x} \dd{x} \qand G\pqty{R} = \int_{a}^{R} g\pqty{x} \dd{x}.
     \]
 
     Note that \(F\) and \(G\) are both increasing, with
     \[
-        0 \leq F\para{R} \leq G\para{R}.
+        0 \leq F\pqty{R} \leq G\pqty{R}.
     \]
 
     \begin{enumerate}
         \item Since \(G\) converges, it is bounded above, and therefore so is \(F\). Hence, \(F\) converges, and since limit preserve weak inequalities, we have
         \[
-            \lim_{R \to \plusinfty} F\para{R} = \int_{a}^{\plusinfty} f\para{x} \Diff x \leq \int_{a}^{\plusinfty} g\para{x} \Diff x = \lim_{R \to \plusinfty} G\para{R}.
+            \lim_{R \to \plusinfty} F\pqty{R} = \int_{a}^{\plusinfty} f\pqty{x} \dd{x} \leq \int_{a}^{\plusinfty} g\pqty{x} \dd{x} = \lim_{R \to \plusinfty} G\pqty{R}.
         \]
         
 
         \item Since \(f \geq 0\), from \autoref{prop:fn-monotone-convergence-theorem}, we have
         \[
-            \lim_{R \to \plusinfty} F\para{R} = \plusinfty
+            \lim_{R \to \plusinfty} F\pqty{R} = \plusinfty
         \]
         necessarily, and in particular, \(F\) is not bounded above.
 
-        But we have \(G\para{R} \geq F\para{R}\), so \(G\) is not bounded above either, and hence
+        But we have \(G\pqty{R} \geq F\pqty{R}\), so \(G\) is not bounded above either, and hence
         \[
-            \lim_{R \to \plusinfty} G\para{R} = \int_{a}^{\plusinfty} g\para{x} \Diff x = \plusinfty.
+            \lim_{R \to \plusinfty} G\pqty{R} = \int_{a}^{\plusinfty} g\pqty{x} \dd{x} = \plusinfty.
         \]
     \end{enumerate}
 \end{proof}
@@ -1527,56 +1527,56 @@ Now we introduce the tests.
 
     Therefore, we have
     \[
-        \int_{1}^{\plusinfty} e^{-x^2} \Diff x \leq \int_{1}^{\plusinfty} e^{-x} \Diff x = \brac{- \frac{1}{e^x}}^{\plusinfty}_{1} = \frac{1}{e}.
+        \int_{1}^{\plusinfty} e^{-x^2} \dd{x} \leq \int_{1}^{\plusinfty} e^{-x} \dd{x} = \bqty{- \frac{1}{e^x}}^{\plusinfty}_{1} = \frac{1}{e}.
     \]
 
     Hence,
     \[
-        \int_{\minusinfty}^{\plusinfty} e^{-x^2} \Diff x = 2 \int_{0}^{\plusinfty} e^{-x^2} \Diff x = 2 \int_{1}^{\plusinfty} e^{-x^2} \Diff x + 2 \int_{0}^{1} e^{-x^2} \Diff x
+        \int_{\minusinfty}^{\plusinfty} e^{-x^2} \dd{x} = 2 \int_{0}^{\plusinfty} e^{-x^2} \dd{x} = 2 \int_{1}^{\plusinfty} e^{-x^2} \dd{x} + 2 \int_{0}^{1} e^{-x^2} \dd{x}
     \]
     so the improper integral converges, as desired.
 \end{example}
 
 \begin{proposition}[Limit Comparison (Ratio) Test for Integrals]
     \label{prop:int-test-ratio}%
-    Let \(\functiondomain{f, g}{\cointv{a}{\plusinfty}}{\RR}\) be integrable over any finite interval \(\ccintv{a}{R}\) for \(R \geq a\), satisfying \(f\para{x}, g\para{x} \geq 0\) for all \(x \in \cointv{a}{\plusinfty}\), and
+    Let \(\functiondomain{f, g}{\cointv{a}{\plusinfty}}{\RR}\) be integrable over any finite interval \(\ccintv{a}{R}\) for \(R \geq a\), satisfying \(f\pqty{x}, g\pqty{x} \geq 0\) for all \(x \in \cointv{a}{\plusinfty}\), and
     \[
-        \lim_{x \to \plusinfty} \frac{f\para{x}}{g\para{x}} = L \in \oointv{0}{\plusinfty}.
+        \lim_{x \to \plusinfty} \frac{f\pqty{x}}{g\pqty{x}} = L \in \oointv{0}{\plusinfty}.
     \]
 
     Then,
     \[
-        \int_{a}^{\plusinfty} f\para{x} \Diff x \text{ exists} \iff \int_{a}^{\plusinfty} g\para{x} \Diff x \text{ exists}.
+        \int_{a}^{\plusinfty} f\pqty{x} \dd{x} \text{ exists} \iff \int_{a}^{\plusinfty} g\pqty{x} \dd{x} \text{ exists}.
     \]
 \end{proposition}
 
 \begin{proof}
     By definition of the limit, we have for sufficiently large \(a\), say \(a > R\), that
     \[
-        \frac{L}{2} \leq \frac{f\para{x}}{g\para{x}} \leq \frac{3L}{2},
+        \frac{L}{2} \leq \frac{f\pqty{x}}{g\pqty{x}} \leq \frac{3L}{2},
     \]
     by taking \(\epsilon = \frac{L}{2}\) in the definition. Hence,
     \[
-        0 \leq g\para{x} \leq \frac{2}{L} f\para{x}
+        0 \leq g\pqty{x} \leq \frac{2}{L} f\pqty{x}
     \]
     and
     \[
-        0 \leq f\para{x} \leq \frac{3L}{2} g\para{x}
+        0 \leq f\pqty{x} \leq \frac{3L}{2} g\pqty{x}
     \]
 
     The result follows from \autoref{prop:int-test-comparison} (Comparison Test).
 \end{proof}
 
 \begin{remark}
-    If \(\lim_{x \to \plusinfty} \frac{f\para{x}}{g\para{x}} = 0\), then \(f\para{x} \leq g\para{x}\) for sufficiently large \(x\), and hence by comparison test,
+    If \(\lim_{x \to \plusinfty} \frac{f\pqty{x}}{g\pqty{x}} = 0\), then \(f\pqty{x} \leq g\pqty{x}\) for sufficiently large \(x\), and hence by comparison test,
     \[
-        \int_{a}^{\plusinfty} g\para{x} \Diff x \text{ exists} \implies \int_{a}^{\plusinfty} f\para{x} \Diff x \text{ exists},
+        \int_{a}^{\plusinfty} g\pqty{x} \dd{x} \text{ exists} \implies \int_{a}^{\plusinfty} f\pqty{x} \dd{x} \text{ exists},
     \]
     but not necessarily the other direction.
 
-    Similarly, if \(\lim_{x \to \plusinfty} \frac{f\para{x}}{g\para{x}} = \plusinfty\), then \(f\para{x} \geq g\para{x}\) for sufficiently large \(x\), and hence by comparison test,
+    Similarly, if \(\lim_{x \to \plusinfty} \frac{f\pqty{x}}{g\pqty{x}} = \plusinfty\), then \(f\pqty{x} \geq g\pqty{x}\) for sufficiently large \(x\), and hence by comparison test,
     \[
-        \int_{a}^{\plusinfty} f\para{x} \Diff x \text{ exists} \implies \int_{a}^{\plusinfty} g\para{x} \Diff x \text{ exists},
+        \int_{a}^{\plusinfty} f\pqty{x} \dd{x} \text{ exists} \implies \int_{a}^{\plusinfty} g\pqty{x} \dd{x} \text{ exists},
     \]
     but not necessarily the other direction either.
 \end{remark}
@@ -1590,7 +1590,7 @@ Now we introduce the tests.
         \]
         and we have
         \[
-            \int_{0}^{\plusinfty} e^{-x} \Diff x = 1 < \plusinfty.
+            \int_{0}^{\plusinfty} e^{-x} \dd{x} = 1 < \plusinfty.
         \]
 
         Therefore, the improper integral of \(e^{-x^2}\) converges.
@@ -1608,11 +1608,11 @@ Now we introduce the tests.
     \label{prop:int-test-root}%
     Let \(\functiondomain{f}{\cointv{a}{\plusinfty}}{\RR}\) be non-negative and integrable on \(\ccintv{a}{R}\) for any \(R \geq a\), and suppose the limit
     \[
-        L = \lim_{x \to \plusinfty} f\para{x}^{\frac{1}{x}}
+        L = \lim_{x \to \plusinfty} f\pqty{x}^{\frac{1}{x}}
     \]
     exists. Considering the improper integral
     \[
-        \int_{a}^{\plusinfty} f\para{x} \Diff x,
+        \int_{a}^{\plusinfty} f\pqty{x} \dd{x},
     \]
     \begin{itemize}
         \item if \(L < 1\), the improper integral converges; 
@@ -1626,36 +1626,36 @@ Now we introduce the tests.
     \begin{itemize}
         \item Suppose \(0 \leq L < 1\). Let \(0 \leq L < r < 1\). For some \(R \geq a\), we have
         \[
-            \forall x > R: f\para{x}^{1 / x} < r,
+            \forall x > R: f\pqty{x}^{\flatfrac{1}{x}} < r,
         \]
         and hence
         \[
-            \forall x > R: 0 \leq f\para{x} < r^x.
+            \forall x > R: 0 \leq f\pqty{x} < r^x.
         \]
 
-        Since \(0 < r < 1\), the improper integral of \(r^x\) to infinity converges by direct integration. Therefore, by the direct comparison test, the improper integral of \(f\para{x}\) converges.
+        Since \(0 < r < 1\), the improper integral of \(r^x\) to infinity converges by direct integration. Therefore, by the direct comparison test, the improper integral of \(f\pqty{x}\) converges.
 
         \item Now, suppose \(L > 1\). Let \(L > r > 1\). For some \(R \geq a\), we have
         \[
-            \forall x > R: f\para{x}^{1 / x} > r > 0,
+            \forall x > R: f\pqty{x}^{\flatfrac{1}{x}} > r > 0,
         \]
         and hence
         \[
-            \forall x > R: f\para{x} > r^x > 0.
+            \forall x > R: f\pqty{x} > r^x > 0.
         \]
 
-        Since \(r > 1\), the improper integral of \(r^x\) to infinity diverges by direct integration. Hence, by the direct comparison test, the improper integral of \(f\para{x}\) diverges.
+        Since \(r > 1\), the improper integral of \(r^x\) to infinity diverges by direct integration. Hence, by the direct comparison test, the improper integral of \(f\pqty{x}\) diverges.
     \end{itemize}
 \end{proof}
 
 \begin{remark}
-    When \(L = 1\), this test is inconclusive. A divergent case may be given by \(f\para{x} = 1\). A convergent case may be given by \(f\para{x} = \frac{1}{x^2}\) (its convergence can be shown by direct integration). As for the limit, we have
+    When \(L = 1\), this test is inconclusive. A divergent case may be given by \(f\pqty{x} = 1\). A convergent case may be given by \(f\pqty{x} = \frac{1}{x^2}\) (its convergence can be shown by direct integration). As for the limit, we have
     \begin{align*}
-        \lim_{x \to \plusinfty} \para{\frac{1}{x^2}}^{1 / x} &= \lim_{x \to \plusinfty} x^{- 2 / x} \\
-        &= \lim_{x \to \plusinfty} \exp\para{- 2 \cdot \frac{\log x}{x}} \\
-        &= \exp\para{-2 \lim_{x \to \plusinfty} \frac{\log x}{x}} \\
-        &= \exp\para{-2 \lim_{x \to \plusinfty} \frac{1 / x}{1}} \\
-        &= \exp\para{-2 \cdot 0} \\
+        \lim_{x \to \plusinfty} \pqty{\frac{1}{x^2}}^{\flatfrac{1}{x}} &= \lim_{x \to \plusinfty} x^{- \flatfrac{2}{x}} \\
+        &= \lim_{x \to \plusinfty} \exp\pqty{- 2 \cdot \frac{\log x}{x}} \\
+        &= \exp\pqty{-2 \lim_{x \to \plusinfty} \frac{\log x}{x}} \\
+        &= \exp\pqty{-2 \lim_{x \to \plusinfty} \frac{\flatfrac{1}{x}}{1}} \\
+        &= \exp\pqty{-2 \cdot 0} \\
         &= 1
     \end{align*}
     by applying l'H\^{o}pital's rule.
@@ -1667,11 +1667,11 @@ There is a similar notion of Cauchy sequences in improper integrals.
     \label{prop:int-cauchy}%
     Let \(\functiondomain{f}{\cointv{a}{\plusinfty}}{\RR}\) be integrable on \(\ccintv{a}{R}\) for any \(R \geq a\). Then the improper integral
     \[
-        \int_{a}^{\plusinfty} f\para{x} \Diff x
+        \int_{a}^{\plusinfty} f\pqty{x} \dd{x}
     \]
     converges, if and only if for any \(\epsilon > 0\), there is some \(R \geq a\), such that for all \(R \leq x_1 \leq x_2\), we have
     \[
-        \abs{\int_{x_1}^{x_2} f\para{x} \Diff x} < \epsilon.
+        \abs{\int_{x_1}^{x_2} f\pqty{x} \dd{x}} < \epsilon.
     \]
 \end{proposition}
 
@@ -1685,18 +1685,18 @@ Similar to when we did series, there is a notion of `absolute convergence' for i
     \label{prop:int-absolute-convergence}%
     Let \(\functiondomain{f}{\cointv{a}{\plusinfty}}{\RR}\) be integrable on \(\ccintv{a}{R}\) for any \(R \geq a\). Then if the improper integral of its absolute value
     \[
-        \int_{a}^{\plusinfty} \abs{f\para{x}} \Diff x
+        \int_{a}^{\plusinfty} \abs{f\pqty{x}} \dd{x}
     \]
     converges, then so does the improper integral
     \[
-        \int_{a}^{\plusinfty} f\para{x} \Diff x.
+        \int_{a}^{\plusinfty} f\pqty{x} \dd{x}.
     \]
 \end{proposition}
 
 \begin{proof}[using \autoref{prop:int-test-comparison} (Comparison Test)]
     We note that we have
     \[
-        0 \leq f\para{x} + \abs{f\para{x}} \leq 2 \abs{f\para{x}},
+        0 \leq f\pqty{x} + \abs{f\pqty{x}} \leq 2 \abs{f\pqty{x}},
     \]
     so the result follow from \autoref{prop:int-test-comparison} (Comparison Test for Improper Integrals).
 \end{proof}
@@ -1704,14 +1704,14 @@ Similar to when we did series, there is a notion of `absolute convergence' for i
 \begin{proof}[using \autoref{prop:int-cauchy} (Cauchy is equivalent to Convergence)]
     Let
     \[
-        F\para{x} = \int_{a}^{x} f\para{t} \Diff t, \quad G\para{x} = \int_{a}^{x} \abs{f\para{t}} \Diff t.
+        F\pqty{x} = \int_{a}^{x} f\pqty{t} \dd{t}, \quad G\pqty{x} = \int_{a}^{x} \abs{f\pqty{t}} \dd{t}.
     \]
 
     Hence, we have for \(x_1, x_2 \geq a\).
     \begin{align*}
-        \abs{F\para{x_2} - F\para{x_1}} &= \abs{\int_{x_1}^{x_2} f\para{t} \Diff t} \\
-        &\leq \int_{x_1}^{x_2} \abs{f\para{t}} \Diff t \\
-        &= G\para{x_2} - G\para{x_1}.
+        \abs{F\pqty{x_2} - F\pqty{x_1}} &= \abs{\int_{x_1}^{x_2} f\pqty{t} \dd{t}} \\
+        &\leq \int_{x_1}^{x_2} \abs{f\pqty{t}} \dd{t} \\
+        &= G\pqty{x_2} - G\pqty{x_1}.
     \end{align*}
 
     This shows that if \(G\) Cauchy, then \(F\) is as well. But by \autoref{prop:int-cauchy}, this means if \(G\) converges, then \(F\) converges as well, finishing the proof.
@@ -1721,19 +1721,19 @@ The final test is the Dirichlet test, which investigates the integral of the pro
 
 \begin{proposition}[Dirichlet Test for Improper Integrals]
     \label{prop:int-test-dirichlet}%
-    Let \(f \in \contClass{0} \para{\cointv{a}{\plusinfty}}\) be continuous, and suppose it has a bounded antiderivative
+    Let \(f \in \contClass{0} \pqty{\cointv{a}{\plusinfty}}\) be continuous, and suppose it has a bounded antiderivative
     \[
-        F\para{x} = \int_{a}^{x} f\para{t} \Diff t.
+        F\pqty{x} = \int_{a}^{x} f\pqty{t} \dd{t}.
     \]
 
-    Let \(g \in \contClass{1} \para{\cointv{a}{\plusinfty}}\) be continuously differentiable, monotone, and satisfies
+    Let \(g \in \contClass{1} \pqty{\cointv{a}{\plusinfty}}\) be continuously differentiable, monotone, and satisfies
     \[
-        \lim_{x \to \plusinfty} g\para{x} = 0.
+        \lim_{x \to \plusinfty} g\pqty{x} = 0.
     \]
 
     Then the improper integral
     \[
-        \int_{a}^{\plusinfty} f\para{x} g\para{x} \Diff x
+        \int_{a}^{\plusinfty} f\pqty{x} g\pqty{x} \dd{x}
     \]
     converges.
 \end{proposition}
@@ -1743,48 +1743,48 @@ Similar to the proofs of \autoref{prop:ser-test-dirichlet} (Dirichlet Test for I
 \begin{proof}[using \autoref{prop:int-absolute-convergence} (Absolute Convergence)]
     We let
     \[
-        F\para{x} = \int_{a}^{x} f\para{t} \Diff t, \quad H\para{x} = \int_{a}^{x} f\para{t} g\para{t} \Diff t.
+        F\pqty{x} = \int_{a}^{x} f\pqty{t} \dd{t}, \quad H\pqty{x} = \int_{a}^{x} f\pqty{t} g\pqty{t} \dd{t}.
     \]
 
     Both \(F\) and \(G\) are continuously differentiable. Hence, using  integration by parts, we have
     \begin{align*}
-        H\para{x} &= \int_{a}^{x} F'\para{t} g\para{t} \Diff t \\
-        &= F\para{x} g\para{x} - F\para{a} g\para{a} - \int_{a}^{x} F\para{t} g'\para{t} \Diff t
+        H\pqty{x} &= \int_{a}^{x} F'\pqty{t} g\pqty{t} \dd{t} \\
+        &= F\pqty{x} g\pqty{x} - F\pqty{a} g\pqty{a} - \int_{a}^{x} F\pqty{t} g'\pqty{t} \dd{t}
     \end{align*}
 
-    Let \(M = \sup_{x \geq a} \abs{F\para{x}}\). For the final term, we have the integral of the absolute value is
+    Let \(M = \sup_{x \geq a} \abs{F\pqty{x}}\). For the final term, we have the integral of the absolute value is
     \begin{align*}
-        \int_{a}^{x} \abs{F\para{t} g'\para{t}} \Diff t &\leq \sup_{x \geq a} \abs{F\para{t}} \cdot \int_{a}^{x} \abs{g'\para{t}} \Diff t \\
-        &= M \cdot \int_{a}^{x} \pm g'\para{t} \Diff t \\
-        &= M \cdot \abs{g\para{a} - g\para{x}}.
+        \int_{a}^{x} \abs{F\pqty{t} g'\pqty{t}} \dd{t} &\leq \sup_{x \geq a} \abs{F\pqty{t}} \cdot \int_{a}^{x} \abs{g'\pqty{t}} \dd{t} \\
+        &= M \cdot \int_{a}^{x} \pm g'\pqty{t} \dd{t} \\
+        &= M \cdot \abs{g\pqty{a} - g\pqty{x}}.
     \end{align*}
 
     Hence, as \(x \to \plusinfty\), we have
     \[
-        \int_{a}^{\plusinfty} \abs{F\para{t} g'\para{t}} \Diff t \leq M \cdot \abs{g\para{a}},
+        \int_{a}^{\plusinfty} \abs{F\pqty{t} g'\pqty{t}} \dd{t} \leq M \cdot \abs{g\pqty{a}},
     \]
-    so the improper integral of  \(\abs{F\para{t} g'\para{t}}\) converges, and hence the improper integral of \(F\para{t} g'\para{t}\) converges, by \autoref{prop:int-absolute-convergence} (Absolute Convergence of Improper Integral).
+    so the improper integral of  \(\abs{F\pqty{t} g'\pqty{t}}\) converges, and hence the improper integral of \(F\pqty{t} g'\pqty{t}\) converges, by \autoref{prop:int-absolute-convergence} (Absolute Convergence of Improper Integral).
 
-    Hence, as \(x \to \infty\), \(F\para{x}\) is bounded while \(g\para{x} \to 0\), so \(F\para{x} g\para{x} \to 0\), and the final improper integral converges. So \(H\) converges, as desired.
+    Hence, as \(x \to \infty\), \(F\pqty{x}\) is bounded while \(g\pqty{x} \to 0\), so \(F\pqty{x} g\pqty{x} \to 0\), and the final improper integral converges. So \(H\) converges, as desired.
 \end{proof}
 
 \begin{proof}[using \autoref{prop:int-cauchy} (Cauchy)]
     We define the indefinite integrals similarly as above, and using integration by parts (identically), we have
     \begin{align*}
-        H\para{x} &= \int_{m}^{n} F'\para{t} g\para{t} \Diff t \\
-        &= F\para{n} g\para{n} - F\para{m} g\para{m} - \int_{m}^{n} F\para{t} g'\para{t} \Diff t
+        H\pqty{x} &= \int_{m}^{n} F'\pqty{t} g\pqty{t} \dd{t} \\
+        &= F\pqty{n} g\pqty{n} - F\pqty{m} g\pqty{m} - \int_{m}^{n} F\pqty{t} g'\pqty{t} \dd{t}
     \end{align*}
-    for all \(a \leq m \leq n\). Let \(M = \sup_{x \geq a} \abs{F\para{x}}\). We suppose \(g\) is positive and decreasing (the increasing case can be dealt with similarly). Taking absolute values, we have
+    for all \(a \leq m \leq n\). Let \(M = \sup_{x \geq a} \abs{F\pqty{x}}\). We suppose \(g\) is positive and decreasing (the increasing case can be dealt with similarly). Taking absolute values, we have
     \begin{align*}
-        \abs{\int_{m}^{n} F'\para{t} g\para{t} \Diff t} &\leq M g\para{n} + M g\para{m} + \int_{m}^{n} M \cdot \para{- g'\para{t}} \Diff t \\
-        &= M \brac{g\para{n} + g\para{m} + \int_{m}^{n} \para{- g'\para{t}} \Diff t} \\
-        &= M \brac{g\para{n} + g\para{m} + \para{g\para{m} - g\para{n}}} \\
-        &= 2 M g\para{m}.
+        \abs{\int_{m}^{n} F'\pqty{t} g\pqty{t} \dd{t}} &\leq M g\pqty{n} + M g\pqty{m} + \int_{m}^{n} M \cdot \pqty{- g'\pqty{t}} \dd{t} \\
+        &= M \bqty{g\pqty{n} + g\pqty{m} + \int_{m}^{n} \pqty{- g'\pqty{t}} \dd{t}} \\
+        &= M \bqty{g\pqty{n} + g\pqty{m} + \pqty{g\pqty{m} - g\pqty{n}}} \\
+        &= 2 M g\pqty{m}.
     \end{align*}
 
-    Let \(\epsilon > 0\) be arbitrary. Since \(g\para{n} \to 0\), we have some \(R \in \NN\) such that \(\abs{g\para{n}} < \frac{\epsilon}{2M}\) for all \(n \geq R\). Then, for all \(R \leq m \leq n\), we have
+    Let \(\epsilon > 0\) be arbitrary. Since \(g\pqty{n} \to 0\), we have some \(R \in \NN\) such that \(\abs{g\pqty{n}} < \frac{\epsilon}{2M}\) for all \(n \geq R\). Then, for all \(R \leq m \leq n\), we have
     \[
-        \abs{\int_{m}^{n} F'\para{t} g\para{t} \Diff t} \leq 2M g\para{m} < \epsilon,
+        \abs{\int_{m}^{n} F'\pqty{t} g\pqty{t} \dd{t}} \leq 2M g\pqty{m} < \epsilon,
     \]
     and this shows that the integrals over bounded domains are Cauchy, hence convergent.
 \end{proof}
@@ -1797,35 +1797,35 @@ We now investigate another type of improper integrals.
     \label{def:improper-integral-isolated-singularity}%
     Let \(\functiondomain{f}{\ocintv{a}{b}}{\RR}\), and suppose that \(f\) is integrable over all \(\ccintv{a + \delta}{b}\) for all \(0 < \delta \leq b - a\). Then, let
     \[
-        \function{F}{\ocintv{0}{b - a}}{\RR}{\delta}{\int_{a + \delta}^{b} f\para{x} \Diff x}.
+        \function{F}{\ocintv{0}{b - a}}{\RR}{\delta}{\int_{a + \delta}^{b} f\pqty{x} \dd{x}}.
     \]
 
-    We say the \emph{improper integral} \(\int_{a}^{b} f\para{x} \Diff x\) exists/converges, if the limit
+    We say the \emph{improper integral} \(\int_{a}^{b} f\pqty{x} \dd{x}\) exists/converges, if the limit
     \[
-        \lim_{\delta \to 0^+} F\para{\delta}
+        \lim_{\delta \to 0^+} F\pqty{\delta}
     \]
     exists, and we denote this value as
     \[
-        \int_{a}^{b} f\para{x} \Diff x = \lim_{\delta \to 0^+} F\para{\delta},
+        \int_{a}^{b} f\pqty{x} \dd{x} = \lim_{\delta \to 0^+} F\pqty{\delta},
     \]
     and we say it does not exist/diverges otherwise.
 
     We may similarly define this for \(\functiondomain{f}{\cointv{a}{b}}{\RR}\).
 
-    Let \(\functiondomain{f}{\ccintv{B}{b} \setminus \brce{a}}{\RR}\) is such that
+    Let \(\functiondomain{f}{\ccintv{B}{b} \setminus \Bqty{a}}{\RR}\) is such that
     \[
-        \int_{B}^{a} f\para{x} \Diff x = l_1 \quad \text{and} \quad \int_{a}^{b} f\para{x} \Diff x = l_2
+        \int_{B}^{a} f\pqty{x} \dd{x} = l_1 \qand \int_{a}^{b} f\pqty{x} \dd{x} = l_2
     \]
-    both converges, then we say the improper integral \(\int_{B}^{b} f\para{x} \Diff x\) exists, and we denote this value as
+    both converges, then we say the improper integral \(\int_{B}^{b} f\pqty{x} \dd{x}\) exists, and we denote this value as
     \[
-        \int_{B}^{b} f\para{x} \Diff x = l_1 + l_2.
+        \int_{B}^{b} f\pqty{x} \dd{x} = l_1 + l_2.
     \]
 \end{definition}
 
 \begin{remark}
     Similar to the improper integral from \(\minusinfty\) to \(\plusinfty\) case, we are in fact taking two separate limits
     \[
-        \int_{B}^{b} f\para{x} \Diff x = \lim_{\delta_1 \to 0^+} \int_{B}^{a - \delta} f\para{x} \Diff x + \lim_{\delta_2 \to 0^+} \int_{a + \delta}^{b} f\para{x} \Diff x.
+        \int_{B}^{b} f\pqty{x} \dd{x} = \lim_{\delta_1 \to 0^+} \int_{B}^{a - \delta} f\pqty{x} \dd{x} + \lim_{\delta_2 \to 0^+} \int_{a + \delta}^{b} f\pqty{x} \dd{x}.
     \]
 
     (The limit where we take both limits simultaneously is called the Cauchy Principle Value.)
@@ -1834,9 +1834,9 @@ We now investigate another type of improper integrals.
 \begin{examples}[Improper Integrals over Isolated Singularity]
     \label{ex:improper-integral-isolated-singularity}%
     \begin{itemize}
-        \item We investigate the convergence of the improper integral \(\int_{0}^{1} \frac{1}{x^p} \Diff x\) for \(p > 0\). Note that
+        \item We investigate the convergence of the improper integral \(\int_{0}^{1} \frac{1}{x^p} \dd{x}\) for \(p > 0\). Note that
         \[
-            \int_{\delta}^{1} \frac{1}{x^p} \Diff x = \begin{cases}
+            \int_{\delta}^{1} \frac{1}{x^p} \dd{x} = \begin{cases}
                 \log 1 - \log \delta, & p = 1, \\
                 \frac{\delta^{1 - p} - 1}{1 - p}, & p \neq 1.
             \end{cases}
@@ -1844,9 +1844,9 @@ We now investigate another type of improper integrals.
 
         So this integral converges if and only if \(p < 1\).
 
-        \item We have, using the substitution \(u = \log\para{1 / x}\), that
+        \item We have, using the substitution \(u = \log\pqty{\flatfrac{1}{x}}\), that
         \[
-            \int_{0}^{\frac{1}{2}} \frac{\Diff x}{x \log\para{1 / x}^p} = \int_{\plusinfty}^{\log 2} \para{- \frac{1}{u^p}} \Diff u = \int_{\log 2}^{\plusinfty} \frac{1}{u^p} \Diff u
+            \int_{0}^{\frac{1}{2}} \frac{\dd{x}}{x \log\pqty{\flatfrac{1}{x}}^p} = \int_{\plusinfty}^{\log 2} \pqty{- \frac{1}{u^p}} \dd{u} = \int_{\log 2}^{\plusinfty} \frac{1}{u^p} \dd{u}
         \]
         converges if and only if \(p > 1\).
     \end{itemize}
@@ -1860,9 +1860,9 @@ From the examples, we see that we may use some substitution to change the improp
     \[
         \functiondomain{\phi}{\cointv{c}{\plusinfty}}{\ocintv{a}{b}}
     \]
-    which is strictly decreasing with \(\phi\para{c} = b\) and \(\lim_{t \to \plusinfty} \phi\para{t} = a\). Then
+    which is strictly decreasing with \(\phi\pqty{c} = b\) and \(\lim_{t \to \plusinfty} \phi\pqty{t} = a\). Then
     \[
-        \int_{a}^{b} f\para{x} \Diff x = \int_{c}^{\plusinfty} f\para{\phi\para{t}} \para{- \phi'\para{t}} \Diff t,
+        \int_{a}^{b} f\pqty{x} \dd{x} = \int_{c}^{\plusinfty} f\pqty{\phi\pqty{t}} \pqty{- \phi'\pqty{t}} \dd{t},
     \]
     in the sense that they either both converge (to the same value) or both diverge.
 \end{lemma}

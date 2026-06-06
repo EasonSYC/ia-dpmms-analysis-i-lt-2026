@@ -3,12 +3,12 @@
 
 \begin{definition}[Sequence]
     \label{def:sequence}%
-    A \emph{sequence} \(\para{x_n}_{n \in \NN}\) on.a set \(X\) is an enumerated list where each element is in \(X\).
+    A \emph{sequence} \(\pqty{x_n}_{n \in \NN}\) on.a set \(X\) is an enumerated list where each element is in \(X\).
 \end{definition}
 
 In this chapter, \(X \subseteq \RR\) or \(X \subseteq \CC\). An important example is \(X = \RR\), the real sequences. (We will see that the fact that we have an order on \(\RR\) is significant.)
 
-What does it mean for \(\para{x_n}\) to converge to some \(x \in X\), or to diverge to infinity?
+What does it mean for \(\pqty{x_n}\) to converge to some \(x \in X\), or to diverge to infinity?
 
 On convergence,
 \begin{itemize}
@@ -24,9 +24,9 @@ On diverging to infinity,
 
 \begin{definition}[Convergence of a Sequence]
     \label{def:seq-convergence}%
-    A sequence \(\para{x_n}\) \emph{converges} to some \(x\), finite, if
+    A sequence \(\pqty{x_n}\) \emph{converges} to some \(x\), finite, if
     \[
-        \forall \epsilon > 0, \exists N = N \para{\epsilon} \in \NN, \forall n \geq N: \abs{x_n - x} < \epsilon.
+        \forall \epsilon > 0, \exists N = N \pqty{\epsilon} \in \NN, \forall n \geq N: \abs{x_n - x} < \epsilon.
     \]
     
     This is denoted by \(x_n \to x\).
@@ -36,9 +36,9 @@ There are two definitions of divergence to infinity, one allows the behaviour to
 
 \begin{definition}[Divergence to Infinity for a Sequence]
     \label{def:seq-divergence-to-infinity}%
-    A sequence \(\para{x_n}\) \emph{diverges to infinity} if its modulus satisfies
+    A sequence \(\pqty{x_n}\) \emph{diverges to infinity} if its modulus satisfies
     \[
-        \forall L > 0, \exists N = N \para{L} \in \NN, \forall n \geq N: \abs{x_n} > L.
+        \forall L > 0, \exists N = N \pqty{L} \in \NN, \forall n \geq N: \abs{x_n} > L.
     \]
 \end{definition}
 
@@ -52,7 +52,7 @@ There are two definitions of divergence to infinity, one allows the behaviour to
     \begin{enumerate}
         \item This definition of divergence to infinity effectively states that it diverges to infinity along some particular direction eventually.
         
-        For example, the real sequence \(x_n = \para{-1}^{n - 1} n\) (i.e., \(1, -2, 3, -4, \ldots\)) does \emph{not} diverge to infinity. Similarly, the complex sequence \(x_n = \exp\para{in} \cdot n\) does \emph{not} diverge to infinity either.
+        For example, the real sequence \(x_n = \pqty{-1}^{n - 1} n\) (i.e., \(1, -2, 3, -4, \ldots\)) does \emph{not} diverge to infinity. Similarly, the complex sequence \(x_n = \exp\pqty{in} \cdot n\) does \emph{not} diverge to infinity either.
         
         \item This gives examples of sequences with \(x_n \to 0\) with \(x_n \neq 0\) for all \(n\), but \(\frac{1}{x_n} \notto \infty\). We may only conclude that \(\abs{\frac{1}{x_n}} \to \infty\).
     \end{enumerate}
@@ -66,7 +66,7 @@ There are two definitions of divergence to infinity, one allows the behaviour to
             \abs{x_n - 0} = \frac{1}{n} < \epsilon.
         \]
 
-        \item Let \(x_n = \frac{1}{2^n}\), then \(x_n \to 0\), because similarly, for any given \(\epsilon > 0\), if we choose \(N = \max\brce{1 + \log_2 \para{\frac{1}{\epsilon}}, 1}\), then for all \(n \geq N\),
+        \item Let \(x_n = \frac{1}{2^n}\), then \(x_n \to 0\), because similarly, for any given \(\epsilon > 0\), if we choose \(N = \max\Bqty{1 + \log_2 \pqty{\frac{1}{\epsilon}}, 1}\), then for all \(n \geq N\),
         \[
             \abs{x_n - 0} = \frac{1}{2^n} < \epsilon.
         \]
@@ -76,31 +76,31 @@ There are two definitions of divergence to infinity, one allows the behaviour to
             \abs{x_n} = \frac{x_n}{i} = n > L.
         \]
 
-        \item Let \(x_n = \para{-1}^n\), then \(x_n\) doesn't diverge to \(\infty\) (\(\abs{x_n} \leq 1\)) but also does not converge.
+        \item Let \(x_n = \pqty{-1}^n\), then \(x_n\) doesn't diverge to \(\infty\) (\(\abs{x_n} \leq 1\)) but also does not converge.
     \end{itemize}
 \end{examples}
 
 \begin{lemma}[Limits of Sequences are Unique]
     \label{lem:seq-limit-unique}%
-    For a sequence \(\para{x_n}\), if \(x_n \to a\) and \(x_n \to b\), then \(a = b\).
+    For a sequence \(\pqty{x_n}\), if \(x_n \to a\) and \(x_n \to b\), then \(a = b\).
 \end{lemma}
 
 \begin{proof}
-    Let \(x_n \to a\) and \(x_n \to b\). Let \(\epsilon > 0\) be arbitrary. We have some \(N_1 \para{\epsilon}\) and \(N_2 \para{\epsilon}\), such that
+    Let \(x_n \to a\) and \(x_n \to b\). Let \(\epsilon > 0\) be arbitrary. We have some \(N_1 \pqty{\epsilon}\) and \(N_2 \pqty{\epsilon}\), such that
     \[
-        \forall n \geq N_1\para{\epsilon}: \abs{x_n - a} < \epsilon
+        \forall n \geq N_1\pqty{\epsilon}: \abs{x_n - a} < \epsilon
     \]
     and
     \[
-        \forall n \geq N_2\para{\epsilon}: \abs{x_n - b} < \epsilon.
+        \forall n \geq N_2\pqty{\epsilon}: \abs{x_n - b} < \epsilon.
     \]
 
-    In particular, we look at \(N\para{\epsilon} = \max\brce{N_1, N_2}\). It must still be the case that for all \(n \geq N\),
+    In particular, we look at \(N\pqty{\epsilon} = \max\Bqty{N_1, N_2}\). It must still be the case that for all \(n \geq N\),
     \[
         \abs{x_n - a}, \abs{x_n - b} < \epsilon.
     \]
 
-    Hence, for all \(n \geq N\para{\epsilon}\), by the triangular inequality,
+    Hence, for all \(n \geq N\pqty{\epsilon}\), by the triangular inequality,
     \begin{align*}
         \abs{a - b} &= \abs{a - x_n + x_n - b} \\
         &\leq \abs{x_n - a} + \abs{x_n - b} && \text{Triangular Inequality} \\
@@ -112,7 +112,7 @@ There are two definitions of divergence to infinity, one allows the behaviour to
 
 \begin{proposition}[Sandwich Theorem for Sequences]
     \label{prop:seq-sandwich-theorem}%
-    Let \(\para{x_n}, \para{y_n}\) and \(\para{z_n}\) be real sequences. Then,
+    Let \(\pqty{x_n}, \pqty{y_n}\) and \(\pqty{z_n}\) be real sequences. Then,
     \begin{itemize}
         \item \emph{Limits preserve weak order.} If \(x_n \leq y\) for all \(n \in \NN\), and \(x_n \to x\), then \(x \leq y\);
         \item \emph{Sandwich theorem.} If \(x_n \to x\) and \(z_n \to x\), and \(x_n \leq y_n \leq z_n\) for all \(n \in \NN\), then \(y_n \to x\).
@@ -157,50 +157,50 @@ Having proved this, this allows us to show that the sequences have a unique limi
 
 \begin{lemma}[Convergence in \(\CC\) is the same as Convergence in \(\RR\) for Sequences]
     \label{lem:seq-convergence-in-c}%
-    Let \(\para{x_n}\) be a complex sequence. Then \(x_n \to x\) if and only if \(\re\para{x_n} \to \re\para{x}\), and \(\im \para{x_n} \to \im\para{x}\).
+    Let \(\pqty{x_n}\) be a complex sequence. Then \(x_n \to x\) if and only if \(\Re\pqty{x_n} \to \Re\pqty{x}\), and \(\Im \pqty{x_n} \to \Im\pqty{x}\).
 \end{lemma}
 
 \begin{proof}
     Recall that for some \(z \in \CC\), we have that
     \[
-        \abs{z} = \sqrt{\para{\re z}^2 + \para{\im z}^2}.
+        \abs{z} = \sqrt{\pqty{\Re z}^2 + \pqty{\Im z}^2}.
     \]
     
     \(\implies\). We use inequalities
     \[
-        \abs{\re z}, \abs{\im z} \leq \abs{z}.
+        \abs{\Re z}, \abs{\Im z} \leq \abs{z}.
     \]
 
-    Now, since \(x_n \to x\), for all \(\epsilon > 0\), there is some \(N = N\para{\epsilon} \in \NN\), such that for all \(n \geq N\),
+    Now, since \(x_n \to x\), for all \(\epsilon > 0\), there is some \(N = N\pqty{\epsilon} \in \NN\), such that for all \(n \geq N\),
     \[
         \abs{x_n - x} < \epsilon.
     \]
 
     Now, note that
     \[
-        \abs{\re\para{x_n} - \re\para{x}}, \abs{\im\para{x_n} - \im\para{x}} \leq \abs{x_n - x} < \epsilon,
+        \abs{\Re\pqty{x_n} - \Re\pqty{x}}, \abs{\Im\pqty{x_n} - \Im\pqty{x}} \leq \abs{x_n - x} < \epsilon,
     \]
-    and so \(\re\para{x_n} \to \re\para{X}\), and \(\im\para{x_n} \to \im\para{x}\).
+    and so \(\Re\pqty{x_n} \to \Re\pqty{X}\), and \(\Im\pqty{x_n} \to \Im\pqty{x}\).
 
     \(\impliedby\). Note the inequality
     \[
-        \abs{z} \leq \abs{\re z} + \abs{\im z}.
+        \abs{z} \leq \abs{\Re z} + \abs{\Im z}.
     \]
 
-    Let \(\epsilon > 0\) be arbitrary. Then, there is some \(N_1 = N_1 \para{\epsilon}\) and \(N_2 = N_2 \para{\epsilon}\), such that
+    Let \(\epsilon > 0\) be arbitrary. Then, there is some \(N_1 = N_1 \pqty{\epsilon}\) and \(N_2 = N_2 \pqty{\epsilon}\), such that
     \[
-        \forall n \geq N_1, \abs{\re\para{x_n} - \re\para{x}} < \epsilon
+        \forall n \geq N_1, \abs{\Re\pqty{x_n} - \Re\pqty{x}} < \epsilon
     \]
     and
     \[
-        \forall n \geq N_2, \abs{\im\para{x_n} - \im\para{x}} < \epsilon.
+        \forall n \geq N_2, \abs{\Im\pqty{x_n} - \Im\pqty{x}} < \epsilon.
     \]
 
-    Hence, for all \(n \geq \max\brce{N_1, N_2}\),
+    Hence, for all \(n \geq \max\Bqty{N_1, N_2}\),
     \begin{align*}
-        \abs{x_n - x} &= \abs{\para{\re \para{x_n} - \re \para{x}} + i \para{\im \para{x_n} - \im \para{x}}} \\
-        &\leq \abs{\re\para{x_n} - \re\para{x}} + \abs{i\para{\im\para{x_n} - \im\para{x}}} && \text{triangular inequality} \\
-        &= \abs{\re\para{x_n} - \re\para{x}} + \abs{\im\para{x_n} - \im\para{x}} \\
+        \abs{x_n - x} &= \abs{\pqty{\Re \pqty{x_n} - \Re \pqty{x}} + i \pqty{\Im \pqty{x_n} - \Im \pqty{x}}} \\
+        &\leq \abs{\Re\pqty{x_n} - \Re\pqty{x}} + \abs{i\pqty{\Im\pqty{x_n} - \Im\pqty{x}}} && \text{triangular inequality} \\
+        &= \abs{\Re\pqty{x_n} - \Re\pqty{x}} + \abs{\Im\pqty{x_n} - \Im\pqty{x}} \\
         &< 2\epsilon
     \end{align*}
     showing as desired.
@@ -208,7 +208,7 @@ Having proved this, this allows us to show that the sequences have a unique limi
 
 \begin{definition}[Bounded Sequence]
     \label{def:seq-bounded}%
-    We say \(\para{x_n}\) is \emph{bounded}, if there is some \(M > 0\), such that for all \(n \in \NN\), that
+    We say \(\pqty{x_n}\) is \emph{bounded}, if there is some \(M > 0\), such that for all \(n \in \NN\), that
     \[
         \abs{x_n} \leq M.
     \]
@@ -221,7 +221,7 @@ Having proved this, this allows us to show that the sequences have a unique limi
 
 \begin{lemma}[Convergent Sequences are Bounded]
     \label{lem:seq-convergence-bounded}%
-    If \(x_n \to x\), then \(\para{x_n}\) must be bounded.
+    If \(x_n \to x\), then \(\pqty{x_n}\) must be bounded.
 \end{lemma}
 
 \begin{proof}
@@ -241,7 +241,7 @@ Having proved this, this allows us to show that the sequences have a unique limi
 
     This gives an overall bound of
     \[
-        \abs{x_n} \leq \max\brce{\max_{1 \leq n \leq N} \abs{x_n}, \abs{x} + 1}.
+        \abs{x_n} \leq \max\Bqty{\max_{1 \leq n \leq N} \abs{x_n}, \abs{x} + 1}.
     \]
 \end{proof}
 
@@ -251,9 +251,9 @@ Having proved this, this allows us to show that the sequences have a unique limi
 \end{lemma}
 
 \begin{proof}[for the Sum]
-    We note that if \(x_n \to x\) and \(y_n \to y\), let the \(N \in \NN\) for \(\epsilon > 0\) be \(N_1\para{\epsilon}\) and \(N_2\para{\epsilon}\). Therefore, for all \(n \geq \max\brce{N_1, N_2}\),
+    We note that if \(x_n \to x\) and \(y_n \to y\), let the \(N \in \NN\) for \(\epsilon > 0\) be \(N_1\pqty{\epsilon}\) and \(N_2\pqty{\epsilon}\). Therefore, for all \(n \geq \max\Bqty{N_1, N_2}\),
     \[
-        \abs{\para{x_n + y_n} - \para{x + y}} = \abs{x_n - x} + \abs{y_n - y} < \epsilon
+        \abs{\pqty{x_n + y_n} - \pqty{x + y}} = \abs{x_n - x} + \abs{y_n - y} < \epsilon
     \]
     and this finishes the proof for the sum.
 \end{proof}
@@ -265,15 +265,15 @@ Having proved this, this allows us to show that the sequences have a unique limi
         &\leq \abs{x} \abs{y_n - y} + \abs{y_n} \abs{x - x_n}. && \text{Triangular Inequality}
     \end{align*}
 
-    For any \(\epsilon > 0\), there exists \(N_1 = N_1 \para{\epsilon}\) and \(N_2 = N_2 \para{\epsilon}\), such that
+    For any \(\epsilon > 0\), there exists \(N_1 = N_1 \pqty{\epsilon}\) and \(N_2 = N_2 \pqty{\epsilon}\), such that
     \begin{itemize}
         \item \(\abs{x_n - x} < \epsilon\) for all \(n \geq N_1\); and
         \item \(\abs{y_n - y} < \epsilon\) for all \(n \geq N_2\).
     \end{itemize}
 
-    Hence, for any \(n \geq \max\brce{N_1, N_2}\), we have
+    Hence, for any \(n \geq \max\Bqty{N_1, N_2}\), we have
     \[
-        \abs{x_n y_n - xy} < \epsilon \para{\abs{x} + \abs{y_n}}.
+        \abs{x_n y_n - xy} < \epsilon \pqty{\abs{x} + \abs{y_n}}.
     \]
 
     Hence, by \autoref{lem:seq-convergence-bounded}, we may replace \(\abs{y_n}\) with some bound on it, and so we are done.
@@ -291,7 +291,7 @@ Having proved this, this allows us to show that the sequences have a unique limi
         \abs{x_n - x} < \frac{1}{2} \abs{x}^2.
     \]
 
-    Hence, for \(n \geq \max\brce{N_1, N_2}\)
+    Hence, for \(n \geq \max\Bqty{N_1, N_2}\)
     \begin{align*}
         \abs{\frac{1}{x_n} - \frac{1}{x}} = \abs{\frac{x - x_n}{x x_n}} < \frac{2}{\abs{x}^2} \abs{x - x_n} < \delta
     \end{align*}
@@ -302,7 +302,7 @@ Note that most of the \(n \in \NN\) above can be replaced with \(n\) sufficientl
 
 \begin{definition}[Monotone Sequence]
     \label{def:seq-monotone}%
-    We say a real sequence \(\para{x_n}\) is \emph{monotone}, if either
+    We say a real sequence \(\pqty{x_n}\) is \emph{monotone}, if either
     \begin{itemize}
         \item it is \emph{increasing}: \(x_n \leq x_{n + 1}\) for all \(n \in \NN\); or
         \item it is \emph{decreasing}: \(x_n \geq x_{n + 1}\) for all \(n \in \NN\).
@@ -324,7 +324,7 @@ Similarly, if we attempt to conclude some limiting behaviour of a sequence that 
 
 \subsection{Bolzano--Weierstrass Theorem}
 
-We cannot say this about sequences that are bounded but not (eventually) monotonic. Indeed, from previously, the sequence \(\para{x_n} = \para{-1}^n\) is bounded with \(\abs{x_n} \leq 1\), but it does not converge. However,
+We cannot say this about sequences that are bounded but not (eventually) monotonic. Indeed, from previously, the sequence \(\pqty{x_n} = \pqty{-1}^n\) is bounded with \(\abs{x_n} \leq 1\), but it does not converge. However,
 \begin{itemize}
     \item if we delete the even terms: \(x_{2k + 1} = -1\) converge to \(-1\); and
     \item if we delete the odd terms: \(x_{2k} = 1\) converge to \(1\).
@@ -334,29 +334,29 @@ The constant subsequences converge. But is it necessary that some subsequence co
 
 \begin{definition}[Subsequence]
     \label{def:seq-subsequence}%
-    Given a sequence \(\para{x_n}\), a \emph{subsequence} of \(x_n\) is a sequence \(\para{x_{n_k}}_{k \in \NN}\), where \(\para{n_k}_{k \in \NN}\) is a strictly increasing natural number sequence.
+    Given a sequence \(\pqty{x_n}\), a \emph{subsequence} of \(x_n\) is a sequence \(\pqty{x_{n_k}}_{k \in \NN}\), where \(\pqty{n_k}_{k \in \NN}\) is a strictly increasing natural number sequence.
 \end{definition}
 
 Now we are ready to give the main result of this section.
 
 \begin{theorem}[Bolzano--Weierstrass Theorem]
     \label{thm:bolzano-weierstrass}%
-    If \(\para{x_n}\) is a real, bounded sequence, then it has at least one convergent subsequence.
+    If \(\pqty{x_n}\) is a real, bounded sequence, then it has at least one convergent subsequence.
 \end{theorem}
 
-The example above with \(\para{-1}^n\) shows that there could be more subsequence, and the limits could be different.
+The example above with \(\pqty{-1}^n\) shows that there could be more subsequence, and the limits could be different.
 
 To prove this result, we first give the following lemmas which are useful.
 
 \begin{lemma}[Subsequences Converge to the Same Limit]
     \label{lem:seq-subsequence-same-limit}%
-    If \(x_n \to x\), then any subsequence \(\para{x_{n_k}}\) of \(\para{x_n}\) must converge to the same limit.
+    If \(x_n \to x\), then any subsequence \(\pqty{x_{n_k}}\) of \(\pqty{x_n}\) must converge to the same limit.
 \end{lemma}
 
 \begin{proof}
     Since \(n_k < n_{k + 1}\), this shows that \(n_{k + 1} \geq n_k + 1\). By induction, we can show that \(n_k \geq k\).
 
-    Take \(\epsilon > 0\) to be positive. Since \(x_n \to x\), let \(N = N\para{\epsilon}\) be such that
+    Take \(\epsilon > 0\) to be positive. Since \(x_n \to x\), let \(N = N\pqty{\epsilon}\) be such that
     \[
         \forall n \geq N: \abs{x_n - x} < \epsilon.
     \]
@@ -370,7 +370,7 @@ To prove this result, we first give the following lemmas which are useful.
 
 \begin{theorem}[Nested Interval Theorem]
     \label{thm:nested-interval-thm}%
-    Let \(\para{I_n}_{n \in \NN}\) be a sequence of nested closed intervals in \(\RR\), i.e. \(I_n \supseteq I_{n + 1}\) for all \(n \in \NN\). Let \(I_n = \ccintv{a_n}{b_n}\). If \(b_n - a_n = \abs{I_n} \to 0\) as \(n \to \infty\), then the intersection
+    Let \(\pqty{I_n}_{n \in \NN}\) be a sequence of nested closed intervals in \(\RR\), i.e. \(I_n \supseteq I_{n + 1}\) for all \(n \in \NN\). Let \(I_n = \ccintv{a_n}{b_n}\). If \(b_n - a_n = \abs{I_n} \to 0\) as \(n \to \infty\), then the intersection
     \[
         \bigcap_{n \in \NN} I_n
     \]
@@ -388,7 +388,7 @@ To prove this result, we first give the following lemmas which are useful.
         a_1 \leq a_n \leq b_n \leq b_1.
     \]
 
-    This gives that \(\para{a_n}\) is increasing, and bounded above by \(b_1\); and that \(\para{b_n}\) is decreasing, and bounded below by \(a_1\).
+    This gives that \(\pqty{a_n}\) is increasing, and bounded above by \(b_1\); and that \(\pqty{b_n}\) is decreasing, and bounded below by \(a_1\).
 
     Hence, by \autoref{thm:monotone-convergence} (Monotone Convergence Theorem), there exists \(a, b \in \RR\), such that \(a_n \to a\) and \(b_n \to b\).
     
@@ -409,19 +409,19 @@ To prove this result, we first give the following lemmas which are useful.
 Now, we prove \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass). We find an algorithm that works for \emph{any} sequence that extracts a convergent subsequence.
 
 \begin{proof}[of \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass), using Nested Interval Theorem]
-    We are given \(\para{x_n}\) and its bound, say \(M > 0\), such that \(\abs{x_n} \leq M\) for all \(n \in \NN\). We want to construct a sequence of nested intervals, from which we can sample our subsequence, since that would ensure our subsequence would converge, to the unique intersection point of the nested intervals.
+    We are given \(\pqty{x_n}\) and its bound, say \(M > 0\), such that \(\abs{x_n} \leq M\) for all \(n \in \NN\). We want to construct a sequence of nested intervals, from which we can sample our subsequence, since that would ensure our subsequence would converge, to the unique intersection point of the nested intervals.
 
     Let \(a_1 = -M, b_1 = +M\), so \(I_1 = \ccintv{-M}{M} \supseteq \set{x_n}{n \in \NN}\).
 
     Now, take \(c = \frac{a_1 + b_1}{2}\). Then, at least one of the halves \(\ccintv{a_1}{c}\) and \(\ccintv{c}{b_2}\) will have infinitely many elements of the sequence. Take \(I_2\) to be a half to have infinitely many elements.
 
-    We continue this inductively, and we will get a sequence \(\para{I_n}_{n \in \NN}\). By construction, this is clearly a sequence of nested intervals, and they have infinitely many elements of the sequence each. The length of the interval halves each time, so the limit of the width of the intervals is zero.
+    We continue this inductively, and we will get a sequence \(\pqty{I_n}_{n \in \NN}\). By construction, this is clearly a sequence of nested intervals, and they have infinitely many elements of the sequence each. The length of the interval halves each time, so the limit of the width of the intervals is zero.
 
-    Therefore, by \autoref{thm:nested-interval-thm} (Nested Interval Theorem), we see that there is a unique \(x \in \RR\) such that \(\bigcap_{n \in \NN} I_n = \brce{x}\).
+    Therefore, by \autoref{thm:nested-interval-thm} (Nested Interval Theorem), we see that there is a unique \(x \in \RR\) such that \(\bigcap_{n \in \NN} I_n = \Bqty{x}\).
 
-    We choose \(\para{x_{n_k}}\) as follows. Pick \(n_1 \in \NN\) such that \(x_{n_1} \in I_1\). Then, \(I_2\) has an infinite intersection with \(\set{x_n}{n > n_1}\).
+    We choose \(\pqty{x_{n_k}}\) as follows. Pick \(n_1 \in \NN\) such that \(x_{n_1} \in I_1\). Then, \(I_2\) has an infinite intersection with \(\set{x_n}{n > n_1}\).
 
-    Now, we pick \(n_2 > n_1\) such that \(x_{n_2} \in I_2\). We may continue this inductively to get \(\para{x_{n_k}}_{k \in \NN}\).
+    Now, we pick \(n_2 > n_1\) such that \(x_{n_2} \in I_2\). We may continue this inductively to get \(\pqty{x_{n_k}}_{k \in \NN}\).
 
     We have \(a_k \leq x_{n_k} \leq b_k\), so taking the limit as \(k \to \infty\), by \autoref{prop:seq-sandwich-theorem} (Sandwich Theorem), gives that \(x \leq \lim_{k \to \infty} x_{n_k} \leq x\), and hence \(\lim_{k \to \infty} x_{n_k} = x\), as desired.
 \end{proof}
@@ -440,21 +440,21 @@ Now, we prove \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass). We find 
         P = \set{n \in \NN}{\forall m \geq n: x_m \geq x_n}.
     \]
 
-    If such set is infinite, say \(P = \brce{n_1, n_2, \ldots} \subseteq \NN\) for \(n_1 < n_2 < n_3 < \cdots\), then the subsequence \(\para{x_{n_t}}_{t \in \NN}\) is an increasing sequence.
+    If such set is infinite, say \(P = \Bqty{n_1, n_2, \ldots} \subseteq \NN\) for \(n_1 < n_2 < n_3 < \cdots\), then the subsequence \(\pqty{x_{n_t}}_{t \in \NN}\) is an increasing sequence.
 
     Now we assume such set is finite, and let \(N = \max P\). For all \(n > N\), we have \(n \notin P\), and hence
     \[
-        \exists m = m\para{n} \geq n: x_m < x_n.
+        \exists m = m\pqty{n} \geq n: x_m < x_n.
     \]
 
-    We construct a subsequence recursively as follows. Let \(n_1 = n + 1\), and let \(n_2 = m\para{n_1} \geq n_1 > B\), \(n_3 = m\para{n_2} \geq n_2 > N\), etc. This creates a (strictly) decreasing subsequence \(\para{x_{n_t}}_{t \in \NN}\).
+    We construct a subsequence recursively as follows. Let \(n_1 = n + 1\), and let \(n_2 = m\pqty{n_1} \geq n_1 > B\), \(n_3 = m\pqty{n_2} \geq n_2 > N\), etc. This creates a (strictly) decreasing subsequence \(\pqty{x_{n_t}}_{t \in \NN}\).
 
     Applying \autoref{thm:monotone-convergence} (Monotone Convergence Theorem) and using the bounded assumption gives us a convergent subsequence as desired.
 \end{proof}
 
 The Bolzano--Weierstrass theorem for Complex Sequences hold as well. We can use
 \[
-    x_n = \re x_n + i \im x_n
+    x_n = \Re x_n + i \Im x_n
 \]
 and apply the real version of the Bolzano--Weierstrass to the real and complex parts, one after another. (Alternatively, a similar mechanism may also be applied to the real and complex parts simultaneously.)
 
@@ -462,26 +462,26 @@ An interesting application of Bolzano--Weierstrass Theorem is the following prop
 
 \begin{proposition}[Convergence via Subsequences]
     \label{prop:convergence-via-subsequences}%
-    Let \(\para{x_n}\) be bounded. If all convergent subsequences converge to the same limit, then \(x_n\) converges to the same limit.
+    Let \(\pqty{x_n}\) be bounded. If all convergent subsequences converge to the same limit, then \(x_n\) converges to the same limit.
 
     In other words, if \(x_n\) does not converge, then there are two convergent subsequences that converge to different limits.
 \end{proposition}
 
 \begin{proof}
-    We proof the contrapositive. By Bolzano--Weierstrass theorem, since the sequence \(\para{x_n}\) is bounded, there is some subsequence of \(\para{x_n}_{n \in \NN}\), say \(\para{x_{n_k}}_{k \in \NN}\), that converges to some limit \(L\).
+    We proof the contrapositive. By Bolzano--Weierstrass theorem, since the sequence \(\pqty{x_n}\) is bounded, there is some subsequence of \(\pqty{x_n}_{n \in \NN}\), say \(\pqty{x_{n_k}}_{k \in \NN}\), that converges to some limit \(L\).
 
-    We aim to construct another subsequence that does not converge to \(L\). Since \(\para{x_n}\) diverges, in particular, \(x_n \notto L\), and hence for some \(\epsilon > 0\), we have
+    We aim to construct another subsequence that does not converge to \(L\). Since \(\pqty{x_n}\) diverges, in particular, \(x_n \notto L\), and hence for some \(\epsilon > 0\), we have
     \[
-        \forall N \in \NN, \exists n = n\para{N} > N: \abs{x_n - L} > \epsilon.
+        \forall N \in \NN, \exists n = n\pqty{N} > N: \abs{x_n - L} > \epsilon.
     \]
 
-    We recursively define a new subsequence \(\para{x_{m_k}}_{k \in \NN}\) as follows.
+    We recursively define a new subsequence \(\pqty{x_{m_k}}_{k \in \NN}\) as follows.
 
-    For \(k = 1\), let \(N_1 = 1\), and let \(m_1 = n\para{N_1} > N_1\).
+    For \(k = 1\), let \(N_1 = 1\), and let \(m_1 = n\pqty{N_1} > N_1\).
     
-    For \(k = 2\), let \(N_2 = m_1\), and let \(m_2 = n\para{N_2} > N_2\). And this continues on.
+    For \(k = 2\), let \(N_2 = m_1\), and let \(m_2 = n\pqty{N_2} > N_2\). And this continues on.
 
-    Note that \(\para{m_k}_{k \in \NN}\) is indeed strictly increasing, and \(\para{x_{m_k}}_{k \in \NN}\) must be bounded. Applying Bolzano--Weierstrass on this subsequence gives some convergent \(\para{x_{m_{k_t}}}_{t \in \NN}\), say \(x_{m_{k_t}} \to L'\) as \(t \to \infty\).
+    Note that \(\pqty{m_k}_{k \in \NN}\) is indeed strictly increasing, and \(\pqty{x_{m_k}}_{k \in \NN}\) must be bounded. Applying Bolzano--Weierstrass on this subsequence gives some convergent \(\pqty{x_{m_{k_t}}}_{t \in \NN}\), say \(x_{m_{k_t}} \to L'\) as \(t \to \infty\).
     
     But since for the previous \(\epsilon\), we have \(\abs{x_{m_k} - L} > \epsilon\) for all \(k \in \NN\), and in particular, \(\abs{x_{m_{k_t}} - L} > \epsilon\) for all \(t \in \NN\), so it is impossible for \(L' = L\).
 \end{proof}
@@ -490,9 +490,9 @@ An interesting application of Bolzano--Weierstrass Theorem is the following prop
 
 \begin{definition}[Cauchy Sequence]
     \label{def:seq-cauchy}%
-    A sequence \(\para{x_n}\) is \emph{Cauchy} if
+    A sequence \(\pqty{x_n}\) is \emph{Cauchy} if
     \[
-        \forall \epsilon > 0, \exists N = N \para{\epsilon} \in \NN, \forall m, n \geq N: \abs{x_m - x_n} < \epsilon.
+        \forall \epsilon > 0, \exists N = N \pqty{\epsilon} \in \NN, \forall m, n \geq N: \abs{x_m - x_n} < \epsilon.
     \]
 
     Intuitively, a sequence is Cauchy if any two terms can be arbitrarily close in the tail.
@@ -506,27 +506,27 @@ An interesting application of Bolzano--Weierstrass Theorem is the following prop
             \abs{x_m - x_n} = \abs{\frac{1}{m} - \frac{1}{n}} = \frac{1}{n} - \frac{1}{m} = \frac{m - n}{mn} \leq \frac{1}{n} < \epsilon.
         \]
 
-        Therefore, let \(N\para{\epsilon} = \ceil{\frac{1}{\epsilon}} + 1\), then this desired inequality holds. So this sequence is Cauchy.
+        Therefore, let \(N\pqty{\epsilon} = \ceil{\frac{1}{\epsilon}} + 1\), then this desired inequality holds. So this sequence is Cauchy.
 
-        \item Consider \(x_n = \para{-1}^{n}\) is \emph{not} Cauchy. Indeed, take \(n = 2k\) and \(m = 2k + 1\) for any \(k \in \NN\), then
+        \item Consider \(x_n = \pqty{-1}^{n}\) is \emph{not} Cauchy. Indeed, take \(n = 2k\) and \(m = 2k + 1\) for any \(k \in \NN\), then
         \[
             \abs{x_n - x_m} = 2.
         \]
 
         Therefore, for example, for \(\epsilon = 1\), the definition must fail.
 
-        \item Consider a sequence \(\para{x_n}\) on \(\QQ\) which is given by the truncation of the decimal expansion of \(\sqrt{2}\): so
+        \item Consider a sequence \(\pqty{x_n}\) on \(\QQ\) which is given by the truncation of the decimal expansion of \(\sqrt{2}\): so
         \[
             x_1 = 1, x_2 = 1.4, x_3 = 1.41, x_4 = 1.414, \ldots
         \]
 
         We claim this is Cauchy. Without loss of generality, let \(m > n\), then
         \[
-            \abs{x_m - x_n} < 10^{-\para{n - 1}} < \epsilon
+            \abs{x_m - x_n} < 10^{-\pqty{n - 1}} < \epsilon
         \]
         for sufficiently large \(m, n\). Alternatively, note
         \[
-            10^{-\para{n - 1}} \to 0
+            10^{-\pqty{n - 1}} \to 0
         \]
         which shows it is Cauchy as well.
 
@@ -534,11 +534,11 @@ An interesting application of Bolzano--Weierstrass Theorem is the following prop
     \end{itemize}
 \end{examples}
 
-However, if \(\para{x_n}\) only satisfies that
+However, if \(\pqty{x_n}\) only satisfies that
 \[
-\forall \epsilon > 0, \exists N = N\para{\epsilon} \in \NN, \forall n \geq N: \abs{x_n - x_{n + 1}} < \epsilon,
+\forall \epsilon > 0, \exists N = N\pqty{\epsilon} \in \NN, \forall n \geq N: \abs{x_n - x_{n + 1}} < \epsilon,
 \]
-must it be the case that \(\para{x_n}\) is Cauchy? Note that this definition is equivalent to 
+must it be the case that \(\pqty{x_n}\) is Cauchy? Note that this definition is equivalent to 
 \[
     x_n - x_{n + 1} \to 0,
 \]
@@ -546,7 +546,7 @@ so it is not hard to see that there will be some counterexample to this.
 
 \begin{lemma}[Cauchy Sequences are Bounded]
     \label{lem:seq-cauchy-sequences-are-bounded}%
-    If \(\para{x_n}\) is Cauchy, then it is bounded.
+    If \(\pqty{x_n}\) is Cauchy, then it is bounded.
 \end{lemma}
 
 \begin{proof}
@@ -569,7 +569,7 @@ so it is not hard to see that there will be some counterexample to this.
 
 \begin{lemma}[Complex Cauchy Sequences]
     \label{lem:seq-cauchy-complex-real}%
-    A complex sequence \(\para{x_n}\) is Cauchy, if and only if the real sequences \(\re x_n\) and \(\im x_n\) are Cauchy.
+    A complex sequence \(\pqty{x_n}\) is Cauchy, if and only if the real sequences \(\Re x_n\) and \(\Im x_n\) are Cauchy.
 \end{lemma}
 
 \begin{lemma}[Convergent Sequences are Cauchy]
@@ -583,12 +583,12 @@ so it is not hard to see that there will be some counterexample to this.
         \abs{x_n - x_m} = \abs{x_n - x + x - x_m} \leq \abs{x_n - x} + \abs{x_m - x}.
     \]
 
-    Since \(x_n \to x\), for all \(\epsilon > 0\), we have \(N = N\para{\epsilon} \in \NN\), such that for all \(n \geq N\),
+    Since \(x_n \to x\), for all \(\epsilon > 0\), we have \(N = N\pqty{\epsilon} \in \NN\), such that for all \(n \geq N\),
     \[
         \abs{x_n - x} < \epsilon.
     \]
 
-    Let \(\epsilon > 0\) be arbitrary, and let \(m, n \geq N\para{\epsilon}\). We have
+    Let \(\epsilon > 0\) be arbitrary, and let \(m, n \geq N\pqty{\epsilon}\). We have
     \[
         \abs{x_n - x_m} \leq \abs{x_n - x} + \abs{x_m - x} \leq 2 \epsilon
     \]
@@ -609,9 +609,9 @@ Is the converse necessarily true? Note the above example on \(\sqrt{2}\) gives a
 \begin{proof}[of \autoref{thm:completeness-of-r-and-c} (Cauchy Sequences are Convergent on \(\RR\) or \(\CC\))]
     It is sufficient to show that this is true for real sequences, by \autoref{lem:seq-convergence-in-c} and \autoref{lem:seq-cauchy-complex-real}. (The proof itself, however, does not rely on the sequence being real.)
 
-    We have seen that \(\para{x_n}\) is Cauchy implies \(\para{x_n}\) is bounded, from \autoref{lem:seq-cauchy-sequences-are-bounded}.
+    We have seen that \(\pqty{x_n}\) is Cauchy implies \(\pqty{x_n}\) is bounded, from \autoref{lem:seq-cauchy-sequences-are-bounded}.
     
-    By \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass Theorem), there is some subsequence \(\para{x_{n_k}}\) that converges to some \(x\).
+    By \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass Theorem), there is some subsequence \(\pqty{x_{n_k}}\) that converges to some \(x\).
 
     By the triangular inequality, we have
     \[
@@ -620,7 +620,7 @@ Is the converse necessarily true? Note the above example on \(\sqrt{2}\) gives a
 
     The first absolute value could then be dealt with the fact that the sequence is Cauchy, and the second by that the subsequence converges.
 
-    More precisely, let \(\epsilon > 0\) be arbitrary. Since \(\para{x_n}\) is Cauchy, we have some \(N_1 = N_1 \para{\epsilon}\), such that for all \(m, n \geq N_1\),
+    More precisely, let \(\epsilon > 0\) be arbitrary. Since \(\pqty{x_n}\) is Cauchy, we have some \(N_1 = N_1 \pqty{\epsilon}\), such that for all \(m, n \geq N_1\),
     \[
         \abs{x_n} - \abs{x_m} < \epsilon.
     \]
@@ -631,7 +631,7 @@ Is the converse necessarily true? Note the above example on \(\sqrt{2}\) gives a
     \]
     for all \(n, n_k \geq N_1\).
 
-    On the other hand, since \(x_{n_k} \to x\), there is some \(N_2 = N_2 \para{\epsilon}\), such that for all \(k \geq N_2\), we have
+    On the other hand, since \(x_{n_k} \to x\), there is some \(N_2 = N_2 \pqty{\epsilon}\), such that for all \(k \geq N_2\), we have
     \[
         \abs{x_{n_k} - x} \leq \epsilon.
     \]
@@ -650,11 +650,11 @@ Is the converse necessarily true? Note the above example on \(\sqrt{2}\) gives a
 \subsection{Series and Convergence Tests}
 
 \begin{definition}[Series]
-    Let \(\para{a_n}_{n \in \NN}\) be a sequence over \(\RR\) or \(\CC\). We say that
+    Let \(\pqty{a_n}_{n \in \NN}\) be a sequence over \(\RR\) or \(\CC\). We say that
     \[
         \sum_{n = 1}^{\infty} a_n
     \]
-    is a \emph{series}, and we say it \emph{converges} if the sequence of partial sums \(\para{S_k}_{k \in \NN}\), given by
+    is a \emph{series}, and we say it \emph{converges} if the sequence of partial sums \(\pqty{S_k}_{k \in \NN}\), given by
     \[
         S_k = \sum_{n = 1}^{k} a_n
     \]
@@ -675,7 +675,7 @@ Is the converse necessarily true? Note the above example on \(\sqrt{2}\) gives a
         \]
         does not converge: the partial sums
         \[
-            S_k = \sum_{n = 1}^{k} n = \frac{1}{2} k \para{k + 1}
+            S_k = \sum_{n = 1}^{k} n = \frac{1}{2} k \pqty{k + 1}
         \]
         which diverges to infinity as \(k \to \infty\). In particular, it does not converge, under this definition,  to \(- \frac{1}{12}\).
 
@@ -698,11 +698,11 @@ Is the converse necessarily true? Note the above example on \(\sqrt{2}\) gives a
 
         \item We want to sum the series
         \[
-            \sum_{n = 1}^{\infty} \frac{1}{n \para{n + 1}}
+            \sum_{n = 1}^{\infty} \frac{1}{n \pqty{n + 1}}
         \]
         converges to \(1\). Indeed, the partial sums
         \[
-            S_k = \sum_{n = 1}^{k} \frac{1}{n \para{n + 1}} = \sum_{n = 1}^{k} \para{\frac{1}{n} - \frac{1}{n + 1}} = 1 - \frac{1}{2} + \frac{1}{2} - \frac{1}{3} + \cdots + \frac{1}{k} - \frac{1}{k + 1} = 1 - \frac{1}{k + 1}.
+            S_k = \sum_{n = 1}^{k} \frac{1}{n \pqty{n + 1}} = \sum_{n = 1}^{k} \pqty{\frac{1}{n} - \frac{1}{n + 1}} = 1 - \frac{1}{2} + \frac{1}{2} - \frac{1}{3} + \cdots + \frac{1}{k} - \frac{1}{k + 1} = 1 - \frac{1}{k + 1}.
         \]
 
         We see indeed \(S_k \to 1\).
@@ -715,13 +715,13 @@ But what if we do not have a good closed form for the series? We may conduct \em
     \label{lem:seq-linear-combination-series}%
     Fix \(\lambda \in \CC\). If \(\sum_{n = 1}^{\infty} a_n\) and \(\sum_{n = 1}^{\infty} b_n\) converge, then the series
     \[
-        \sum_{n = 1}^{\infty} \para{\lambda a_n + b_n}
+        \sum_{n = 1}^{\infty} \pqty{\lambda a_n + b_n}
     \]
     converges as well.
 \end{lemma}
 
 \begin{remark}
-    If \(\sum_{n = 1}^{\infty} a_n\) and \(\sum_{n = 1}^{\infty} b_n\) converges, the series \(\sum_{n = 1}^{\infty} \para{a_n b_n}\) \emph{need not} converge. (But it must converge if both of the previous two series \textit{absolutely} converges.)
+    If \(\sum_{n = 1}^{\infty} a_n\) and \(\sum_{n = 1}^{\infty} b_n\) converges, the series \(\sum_{n = 1}^{\infty} \pqty{a_n b_n}\) \emph{need not} converge. (But it must converge if both of the previous two series \textit{absolutely} converges.)
 \end{remark}
 
 As usual, only the tail behaviour of the series matters.
@@ -738,12 +738,12 @@ As usual, only the tail behaviour of the series matters.
     \]
     But we have
     \[
-        r_k = \sum_{n = 1}^{N} b_n + \sum_{n = N + 1}^{k} b_n = s_{k} + \sum_{n = 1}^{N} \para{b_n - a_n}.
+        r_k = \sum_{n = 1}^{N} b_n + \sum_{n = N + 1}^{k} b_n = s_{k} + \sum_{n = 1}^{N} \pqty{b_n - a_n}.
     \]
 
     Now, the sum
     \[
-        \sum_{n = 1}^{N} \para{b_n - a_n}
+        \sum_{n = 1}^{N} \pqty{b_n - a_n}
     \]
     is a finite sum, so it is just some real number, say \(\alpha\). Taking \(k \to \infty\) gives
     \[
@@ -765,7 +765,7 @@ As usual, only the tail behaviour of the series matters.
 
 \begin{example}[Harmonic Series]
     \label{ex:seq-harmonic-series}%
-    The harmonic series \(\para{\frac{1}{n}}_{n \in \NN}\) has terms tending to \(0\), but the infinite series
+    The harmonic series \(\pqty{\frac{1}{n}}_{n \in \NN}\) has terms tending to \(0\), but the infinite series
     \[
         \sum_{n = 1}^{\infty} \frac{1}{n}
     \]
@@ -780,7 +780,7 @@ As usual, only the tail behaviour of the series matters.
         s_{2k} = s_k + \frac{1}{n + 1} + \frac{1}{n + 2} + \cdots + \frac{1}{n + n} \geq s_k + n \cdot \frac{1}{n \times n} \geq s_k + \frac{1}{2}.
     \]
 
-    Clearly, \(\para{s_k}\) must not be Cauchy. So it cannot be convergent.
+    Clearly, \(\pqty{s_k}\) must not be Cauchy. So it cannot be convergent.
 \end{example}
 
 \begin{proof}[of \autoref{prop:ser-test-nth-term}]
@@ -788,7 +788,7 @@ As usual, only the tail behaviour of the series matters.
     \[
         s_k = \sum_{n = 1}^{k} \to s
     \]
-    as \(k \to \infty\) for some \(s\) with \(\abs{s} < \infty\). Hence, \(\para{s_k}\) is Cauchy, so in particular,
+    as \(k \to \infty\) for some \(s\) with \(\abs{s} < \infty\). Hence, \(\pqty{s_k}\) is Cauchy, so in particular,
     \[
         s_{k + 1} - s_k \to 0
     \]
@@ -799,7 +799,7 @@ We first focus on tests for convergence of series \(\sum_{n = 1}^{\infty} a_n\) 
 
 \begin{proposition}[Comparison Test]
     \label{prop:ser-test-comparison}%
-    For two real sequences \(\para{a_n}\) and \(\para{b_n}\), if we have \(0 \leq b_n \leq a_n\) for all \(n \in \NN\), then if
+    For two real sequences \(\pqty{a_n}\) and \(\pqty{b_n}\), if we have \(0 \leq b_n \leq a_n\) for all \(n \in \NN\), then if
     \[
         \sum_{n = 1}^{\infty} a_n
     \]
@@ -811,7 +811,7 @@ We first focus on tests for convergence of series \(\sum_{n = 1}^{\infty} a_n\) 
 \end{proposition}
 
 \begin{proof}
-    Set \(\para{s_k}, \para{r_k}\) to be partial sums of \(\para{a_n}\), \(\para{b_n}\), respectively, up to \(n = k\). Since \(a_n, b_n \geq 0\), the partial sums \(\para{s_k}\) and \(\para{r_k}\) are increasing.
+    Set \(\pqty{s_k}, \pqty{r_k}\) to be partial sums of \(\pqty{a_n}\), \(\pqty{b_n}\), respectively, up to \(n = k\). Since \(a_n, b_n \geq 0\), the partial sums \(\pqty{s_k}\) and \(\pqty{r_k}\) are increasing.
 
     We also know that \(s_k \to s\) for some \(s\), finite, so \(s_k \leq s\).
 
@@ -819,7 +819,7 @@ We first focus on tests for convergence of series \(\sum_{n = 1}^{\infty} a_n\) 
     \[
         r_k \leq s_k \leq s
     \]
-    for all \(k \in \NN\). This tells us \(\para{r_k}\) is monotone and bounded, and by \autoref{thm:monotone-convergence} (Monotone Convergence Theorem), this converges.
+    for all \(k \in \NN\). This tells us \(\pqty{r_k}\) is monotone and bounded, and by \autoref{thm:monotone-convergence} (Monotone Convergence Theorem), this converges.
 \end{proof}
 
 \begin{example}[Comparison Test]
@@ -828,16 +828,16 @@ We first focus on tests for convergence of series \(\sum_{n = 1}^{\infty} a_n\) 
 
     We observe that
     \[
-        \sum_{n = 1}^{\infty} \frac{1}{n^2} = 1 + \sum_{n = 2}^{\infty} \frac{1}{n^2} = 1 + \sum_{n = 1}^{\infty} \frac{1}{\para{n + 1}^2}.
+        \sum_{n = 1}^{\infty} \frac{1}{n^2} = 1 + \sum_{n = 2}^{\infty} \frac{1}{n^2} = 1 + \sum_{n = 1}^{\infty} \frac{1}{\pqty{n + 1}^2}.
     \]
 
     Now, we have for all \(n \in \NN\), that
     \[
-        0 \leq \frac{1}{\para{n + 1}^2} \leq \frac{1}{n \para{n + 1}},
+        0 \leq \frac{1}{\pqty{n + 1}^2} \leq \frac{1}{n \pqty{n + 1}},
     \]
     and from the previous part, we have
     \[
-        \sum_{n = 1}^{\infty} \frac{1}{n\para{n + 1}} = 1
+        \sum_{n = 1}^{\infty} \frac{1}{n\pqty{n + 1}} = 1
     \]
     is finite. By \autoref{prop:ser-test-comparison} (Comparison Test), we see that this series indeed converges.
 \end{example}
@@ -880,9 +880,9 @@ The next two tests are about `asymptotic comparison' to a very important series 
 
 \begin{example}[Root Test and Geometric Series]
     \label{ex:ser-test-root-geo}%
-    Let \(\para{a_n} = \frac{1}{2^n}\), then \(\sqrt[n]{a_n} = \frac{1}{2}\) is indeed the ratio of the geometric series.
+    Let \(\pqty{a_n} = \frac{1}{2^n}\), then \(\sqrt[n]{a_n} = \frac{1}{2}\) is indeed the ratio of the geometric series.
 
-    Let \(\para{b_n} = 4^n\), then \(\sqrt[n]{b_n} = 4\) is indeed the ratio of the geometric series.
+    Let \(\pqty{b_n} = 4^n\), then \(\sqrt[n]{b_n} = 4\) is indeed the ratio of the geometric series.
 
     Although circular, \autoref{prop:ser-test-root} (Root Test) implies the convergence/divergence of the geometric series, apart from the case where \(r = 1\).
 \end{example}
@@ -903,9 +903,9 @@ The next two tests are about `asymptotic comparison' to a very important series 
 
 \begin{example}[Ratio Test and Geometric Series]
     \label{ex:ser-test-ratio-geo}%
-    Let \(\para{a_n} = \frac{1}{2^n}\), then \(\frac{a_{n + 1}}{a_n} = \frac{1}{2}\) is indeed the ratio of the geometric series.
+    Let \(\pqty{a_n} = \frac{1}{2^n}\), then \(\frac{a_{n + 1}}{a_n} = \frac{1}{2}\) is indeed the ratio of the geometric series.
 
-    Let \(\para{b_n} = 4^n\), then \(\frac{b_{n + 1}}{b_n} = 4\) is indeed the ratio of the geometric series.
+    Let \(\pqty{b_n} = 4^n\), then \(\frac{b_{n + 1}}{b_n} = 4\) is indeed the ratio of the geometric series.
 
     Although circular, \autoref{prop:ser-test-ratio} (Ratio Test) implies the convergence/divergence of the geometric series, apart from the case where \(r = 1\).
 \end{example}
@@ -924,11 +924,11 @@ The next two tests are about `asymptotic comparison' to a very important series 
 
         Conducting \autoref{prop:ser-test-root} (Root Test), we have
         \[
-            \para{\frac{n}{2^n}}^{\frac{1}{n}} = \frac{n^{\frac{1}{n}}}{2} \to \frac{1}{2} < 1
+            \pqty{\frac{n}{2^n}}^{\frac{1}{n}} = \frac{n^{\frac{1}{n}}}{2} \to \frac{1}{2} < 1
         \]
         so the sum converges. Note that
         \[
-            n^{\frac{1}{n}} = e^{\log\para{n^{\frac{1}{n}}}} = e^{\frac{1}{n} \log n} \to e^0 = 1,
+            n^{\frac{1}{n}} = e^{\log\pqty{n^{\frac{1}{n}}}} = e^{\frac{1}{n} \log n} \to e^0 = 1,
         \]
         by the definition of logarithms and L'H\^{o}pital's Rule (that we will see later).
     \end{itemize}
@@ -939,7 +939,7 @@ The next two tests are about `asymptotic comparison' to a very important series 
     \[
         a_n = \begin{cases}
             2^{-n}, & n\text{ is even}, \\
-            2^{-\para{n + 1}}, & n\text{ is odd}.
+            2^{-\pqty{n + 1}}, & n\text{ is odd}.
         \end{cases}
     \]
 \end{remark}
@@ -979,14 +979,14 @@ We now use some future result to give another very useful test.
     \label{prop:ser-test-integral}%
     Suppose \(\functiondomain{f}{\cointv{0}{\plusinfty}}{\cointv{0}{\plusinfty}}\) is a continuous decreasing function. We will know that this means \(f\) is integrable in \(\ccintv{1}{N}\) for all \(N \in \NN\).
 
-    Then, if \(a_n = f\para{n}\), we have
+    Then, if \(a_n = f\pqty{n}\), we have
     \[
-        \sum_{n = 1}^{\infty} a_n \text{ converges} \iff \lim_{N \to \infty} \int_{1}^{N} f\para{x} \Diff x \text{ exists}.
+        \sum_{n = 1}^{\infty} a_n \text{ converges} \iff \lim_{N \to \infty} \int_{1}^{N} f\pqty{x} \dd{x} \text{ exists}.
     \]
 
     Furthermore, as \(k \to \infty\), we have
     \[
-        \sum_{n = 1}^{k} a_n - \int_{1}^{k} f\para{x} \Diff x \to l \in \ccintv{0}{f\para{1} = a_1}.
+        \sum_{n = 1}^{k} a_n - \int_{1}^{k} f\pqty{x} \dd{x} \to l \in \ccintv{0}{f\pqty{1} = a_1}.
     \]
 \end{proposition}
 
@@ -1007,49 +1007,49 @@ We now use some future result to give another very useful test.
 \begin{proof}
     We refer to \autoref{fig:series-integral-test}. We first observe that
     \[
-        s_k - a_1 = \sum_{n = 2}^{k} a_n = \textcolor{Green}{\sum A_{\text{green}}} \leq \int_{1}^{k} f\para{t} \Diff t
+        s_k - a_1 = \sum_{n = 2}^{k} a_n = \textcolor{Green}{\sum A_{\text{green}}} \leq \int_{1}^{k} f\pqty{t} \dd{t}
     \]
     and
     \[
-        s_{k - 1} = \sum_{n = 1}^{k - 1} a_n = \textcolor{Red}{\sum A_{\text{red}}} \geq \int_{1}^{k} f\para{t} \Diff t.
+        s_{k - 1} = \sum_{n = 1}^{k - 1} a_n = \textcolor{Red}{\sum A_{\text{red}}} \geq \int_{1}^{k} f\pqty{t} \dd{t}.
     \]
 
     We observe that \(a_n \geq 0\) shows that \(s_k\) has to be increasing.
 
     \(\implies\). With the \textcolor{Red}{red inequality}, we have
     \[
-        \int_{1}^{k} f\para{t} \Diff t \leq s_{k - 1} \leq s.
+        \int_{1}^{k} f\pqty{t} \dd{t} \leq s_{k - 1} \leq s.
     \]
 
-    \(\para{s_k}\) is increasing and converges by assumption, which means the integral sequence
+    \(\pqty{s_k}\) is increasing and converges by assumption, which means the integral sequence
     \[
-        \para{\int_{1}^{x} f\para{t} \Diff t}_x
+        \pqty{\int_{1}^{x} f\pqty{t} \dd{t}}_x
     \]
     is also increasing and bounded, which means it has a limit.
 
     \(\impliedby\). If the limit of the integral exists, then the integral sequence
     \[
-        \para{\int_{1}^{x} f\para{t} \Diff t}_x
+        \pqty{\int_{1}^{x} f\pqty{t} \dd{t}}_x
     \]
     is bounded. Using the \textcolor{Green}{green inequality}, we have
     \[
-        s_k \leq \int_{1}^{k} f\para{t} \Diff t + a_1
+        s_k \leq \int_{1}^{k} f\pqty{t} \dd{t} + a_1
     \]
-    is also bounded. This shows that \(\para{s_k}\) converges, so the infinite series converges.
+    is also bounded. This shows that \(\pqty{s_k}\) converges, so the infinite series converges.
 
     For the final part, set
     \[
-        b_k = \sum_{n = 1}^{k} a_n - \int_{1}^{k} f\para{x} \Diff x = s_k - \int_{1}^{k} f\para{x} \Diff x,
+        b_k = \sum_{n = 1}^{k} a_n - \int_{1}^{k} f\pqty{x} \dd{x} = s_k - \int_{1}^{k} f\pqty{x} \dd{x},
     \]
     and hence we have
     \[
-        b_k - b_{k - 1} = a_k - \int_{k - 1}^{k} f\para{t} \Diff t = f\para{k} \cdot 1 - \int_{k - 1}^{k} f\para{t} \Diff t \leq 0,
+        b_k - b_{k - 1} = a_k - \int_{k - 1}^{k} f\pqty{t} \dd{t} = f\pqty{k} \cdot 1 - \int_{k - 1}^{k} f\pqty{t} \dd{t} \leq 0,
     \]
-    which shows that this is a decreasing sequence. But also, from the \textcolor{Green}{green inequality}, we have \(b_k \geq a_k = f\para{k} \geq 0\), so \(\para{b_k}\) is bounded below. This means it has a limit \(l\).
+    which shows that this is a decreasing sequence. But also, from the \textcolor{Green}{green inequality}, we have \(b_k \geq a_k = f\pqty{k} \geq 0\), so \(\pqty{b_k}\) is bounded below. This means it has a limit \(l\).
 
     We know that \(l \in \ccintv{0}{a_1}\), because (re-using the \textcolor{Green}{green inequality})
     \[
-        0 \leq f\para{k} \leq b_k \leq a_1 = f\para{1}
+        0 \leq f\pqty{k} \leq b_k \leq a_1 = f\pqty{1}
     \]
     and non-strict inequalities are preserved in the limit.
 \end{proof}
@@ -1057,11 +1057,11 @@ We now use some future result to give another very useful test.
 \begin{examples}[Integral Test]
     \label{ex:integral-test}%
     \begin{itemize}
-        \item \(\sum \frac{1}{n^p}\) converges if and only if \(p > 1\). First, \(f\para{t} = t^p\) is decreasing and continuous on \(\cointv{1}{\plusinfty}\). We have
+        \item \(\sum \frac{1}{n^p}\) converges if and only if \(p > 1\). First, \(f\pqty{t} = t^p\) is decreasing and continuous on \(\cointv{1}{\plusinfty}\). We have
         \begin{align*}
-            \lim_{n \to \infty} \int_{1}^{n} \frac{1}{t^p} \Diff t &= \lim_{n \to \infty} \begin{cases}
-                \brac{\log t}_{1}^{n}, & p = 1, \\
-                \brac{\frac{1}{-p + 1} \cdot t^{-p + 1}}_{1}^{n}, & p \neq 1, \\
+            \lim_{n \to \infty} \int_{1}^{n} \frac{1}{t^p} \dd{t} &= \lim_{n \to \infty} \begin{cases}
+                \bqty{\log t}_{1}^{n}, & p = 1, \\
+                \bqty{\frac{1}{-p + 1} \cdot t^{-p + 1}}_{1}^{n}, & p \neq 1, \\
             \end{cases} \\
             &= \begin{cases}
                 \plusinfty, & p = 1, \\
@@ -1073,14 +1073,14 @@ We now use some future result to give another very useful test.
 
         \item We investigate \(\sum_{n = 2}^{\infty} \frac{1}{n \log n}\). Evaluating the integral gives
         \begin{align*}
-            \int_{2}^{n} \frac{\Diff t}{t \log t} &= \int_{\log 2}^{\log n} \frac{\Diff u}{u} \\
-            &= \brac{\log u}_{\log 2}^{\log n} \\
+            \int_{2}^{n} \frac{\dd{t}}{t \log t} &= \int_{\log 2}^{\log n} \frac{\dd{u}}{u} \\
+            &= \bqty{\log u}_{\log 2}^{\log n} \\
             &= \log \log n - \log \log 2 \\
             &\to \plusinfty
         \end{align*}
         as \(n \to \infty\). By \autoref{prop:ser-test-integral} (Integral Test), this series diverges.
 
-        \item The series \(\sum_{n = 2}^{\infty} \frac{1}{n \para{\log n}^2}\) converges by evaluating a similar integral.
+        \item The series \(\sum_{n = 2}^{\infty} \frac{1}{n \pqty{\log n}^2}\) converges by evaluating a similar integral.
     \end{itemize}
 \end{examples}
 
@@ -1088,7 +1088,7 @@ Another useful result is the following, but the proof is non-examinable.
 
 \begin{proposition}[Cauchy Condensation Test]
     \label{prop:ser-test-cauchy-condensation}%
-    Let \(a_n \geq 0\) for all \(n \in \NN\), and let \(\para{a_n}\) be decreasing. Then \(\sum_{n = 1}^{\infty} a_n\) converges, if and only if the condensed series
+    Let \(a_n \geq 0\) for all \(n \in \NN\), and let \(\pqty{a_n}\) be decreasing. Then \(\sum_{n = 1}^{\infty} a_n\) converges, if and only if the condensed series
     \[
         \sum_{n = 0}^{\infty} 2^n a_{2^n}
     \]
@@ -1096,37 +1096,37 @@ Another useful result is the following, but the proof is non-examinable.
 \end{proposition}
 
 \begin{proof}[using \autoref{prop:ser-test-integral} (Integral Test) (Non-Examinable)]
-    Let \(a_n = f\para{n}\), and since \(a_n\) is positive and decreasing, we may choose \(f\) to be positive, decreasing and continuous. Note that
+    Let \(a_n = f\pqty{n}\), and since \(a_n\) is positive and decreasing, we may choose \(f\) to be positive, decreasing and continuous. Note that
     \[
-        \int_{1}^{2^x} f\para{t} \Diff t = \log 2 \int_{0}^{x} 2^u f\para{2^u} \Diff u,
+        \int_{1}^{2^x} f\pqty{t} \dd{t} = \log 2 \int_{0}^{x} 2^u f\pqty{2^u} \dd{u},
     \]
     by a change of variables \(t = 2^u\). Hence, applying \autoref{prop:ser-test-integral} (Integral test), we have
     \begin{align*}
         \sum_{n = 1}^{\infty} a_n \text{ converges} &\iff \lim_{x \to \infty} \sum_{n = 1}^{2^x} a_n \text{ exists} && \text{Partial Sums are Monotone}\\
-        &\iff \lim_{x \to \infty} \int_{1}^{2^x} f\para{t} \Diff t \text{ exists} \\
-        &\iff \lim_{x \to \infty} \int_{0}^{x} 2^u f\para{2^u} \Diff u \text{ exists.} && \text{Constant does not affect Convergence}
+        &\iff \lim_{x \to \infty} \int_{1}^{2^x} f\pqty{t} \dd{t} \text{ exists} \\
+        &\iff \lim_{x \to \infty} \int_{0}^{x} 2^u f\pqty{2^u} \dd{u} \text{ exists.} && \text{Constant does not affect Convergence}
     \end{align*}
 
-    Now, since \(f\) is decreasing, let \(g\para{t} = 2^t f\para{2^t}\), we have
+    Now, since \(f\) is decreasing, let \(g\pqty{t} = 2^t f\pqty{2^t}\), we have
     \[
-        \forall t \in \ccintv{2^n}{2^{n + 1}}: f\para{2^n} \geq f\para{t} \geq f\para{2^{n + 1}},
+        \forall t \in \ccintv{2^n}{2^{n + 1}}: f\pqty{2^n} \geq f\pqty{t} \geq f\pqty{2^{n + 1}},
     \]
     and hence
     \[
-        \forall t \in \ccintv{n}{n + 1}: 2^{n + 1} f\para{2^n} \geq g\para{t} = 2^t f\para{2^t} \geq 2^n f\para{2^{n + 1}}.
+        \forall t \in \ccintv{n}{n + 1}: 2^{n + 1} f\pqty{2^n} \geq g\pqty{t} = 2^t f\pqty{2^t} \geq 2^n f\pqty{2^{n + 1}}.
     \]
 
     Integrating this in \(\ccintv{n}{n + 1}\) gives
     \[
-        2^{n + 1} f\para{2^n} \geq \int_{n}^{n + 1} g\para{t} \Diff t \geq 2^n f\para{2^{n + 1}},
+        2^{n + 1} f\pqty{2^n} \geq \int_{n}^{n + 1} g\pqty{t} \dd{t} \geq 2^n f\pqty{2^{n + 1}},
     \]
     and hence summing this from \(n = 1\) to \(k\), we have
     \[
-        2 \cdot \sum_{n = 1}^{k} 2^n f\para{2^n} \geq \int_{1}^{k + 1} g\para{t} \Diff t \geq \frac{1}{2} \sum_{n = 1}^{k} 2^{n + 1} f\para{2^{n + 1}},
+        2 \cdot \sum_{n = 1}^{k} 2^n f\pqty{2^n} \geq \int_{1}^{k + 1} g\pqty{t} \dd{t} \geq \frac{1}{2} \sum_{n = 1}^{k} 2^{n + 1} f\pqty{2^{n + 1}},
     \]
     and putting back \(a\)s gives us
     \[
-        2 \cdot \sum_{n = 1}^{k} 2^n a_{2^n} \geq \int_{1}^{k + 1} g\para{t} \Diff t \geq \frac{1}{2} \sum_{n = 1}^{k} 2^{n + 1} a_{2^{n + 1}},
+        2 \cdot \sum_{n = 1}^{k} 2^n a_{2^n} \geq \int_{1}^{k + 1} g\pqty{t} \dd{t} \geq \frac{1}{2} \sum_{n = 1}^{k} 2^{n + 1} a_{2^{n + 1}},
     \]
     which means the sequence of the integrals and the series enforces bounds on  each other, giving equivalent convergence properties, and hence finishing our proof.
 \end{proof}
@@ -1134,10 +1134,10 @@ Another useful result is the following, but the proof is non-examinable.
 \begin{proof}[considering Partial Sums (Non-Examinable)]
     Let the partial sums be
         \[
-            A_m = \sum_{n = 1}^{m} a_n \quad\text{and}\quad B_k = \sum_{t = 0}^{k} 2^t \cdot a_{2^t}.
+            A_m = \sum_{n = 1}^{m} a_n \qand B_k = \sum_{t = 0}^{k} 2^t \cdot a_{2^t}.
         \]
 
-        Both \(\para{A_m}\) and \(\para{B_k}\) are increasing since \(\para{a_n}\) is non-negative. Therefore, convergence of \(\para{A_m}\) and \(\para{B_k}\) is equivalent to the convergence of some subsequence of them.
+        Both \(\pqty{A_m}\) and \(\pqty{B_k}\) are increasing since \(\pqty{a_n}\) is non-negative. Therefore, convergence of \(\pqty{A_m}\) and \(\pqty{B_k}\) is equivalent to the convergence of some subsequence of them.
 
         We first show that for all \(k \geq 0\), that
         \[
@@ -1146,17 +1146,17 @@ Another useful result is the following, but the proof is non-examinable.
 
         For the left-hand side inequality, we have
         \begin{align*}
-            B_k &= a_1 + \para{a_2 + a_2} + \para{a_4 + a_4 + a_4 + a_4} + \cdots + \para{a_{2^k} + \cdots + a_{2^k}} \\
-            &\geq a_1 + \para{a_2 + a_3} + \para{a_4 + a_5 + a_6 + a_7} + \cdots + \para{a_{2^k} + \cdots + a_{2^{k + 1} - 1}} \\
+            B_k &= a_1 + \pqty{a_2 + a_2} + \pqty{a_4 + a_4 + a_4 + a_4} + \cdots + \pqty{a_{2^k} + \cdots + a_{2^k}} \\
+            &\geq a_1 + \pqty{a_2 + a_3} + \pqty{a_4 + a_5 + a_6 + a_7} + \cdots + \pqty{a_{2^k} + \cdots + a_{2^{k + 1} - 1}} \\
             &= A_{2^{k + 1} - 1}.
         \end{align*}
 
         For the right-hand side inequality, we have
         \begin{align*}
-            B_k &= a_1 + \para{a_2 + a_2} + \para{a_4 + a_4 + a_4 + a_4} + \cdots + \para{a_{2^k} + \cdots + a_{2^k}} \\
-            &\leq a_1 + \para{a_1 + a_2} + \para{a_2 + a_3 + a_3 + a_4} + \cdots \\
-            &\phantom{=} + \para{a_{2^{k - 1}} + a_{2^{k - 1} + 1} + a_{2^{k - 1} + 1} + \cdots  + a_{2^k - 1} + a_{2^k - 1} + a_{2^k}} \\
-            &= \para{a_1 + a_1} + \para{a_2 + a_2} + \para{a_3 + a_3} + \cdots + \para{a_{2^k - 1} + a_{2^k - 1}} + a_{2^k} \\
+            B_k &= a_1 + \pqty{a_2 + a_2} + \pqty{a_4 + a_4 + a_4 + a_4} + \cdots + \pqty{a_{2^k} + \cdots + a_{2^k}} \\
+            &\leq a_1 + \pqty{a_1 + a_2} + \pqty{a_2 + a_3 + a_3 + a_4} + \cdots \\
+            &\phantom{=} + \pqty{a_{2^{k - 1}} + a_{2^{k - 1} + 1} + a_{2^{k - 1} + 1} + \cdots  + a_{2^k - 1} + a_{2^k - 1} + a_{2^k}} \\
+            &= \pqty{a_1 + a_1} + \pqty{a_2 + a_2} + \pqty{a_3 + a_3} + \cdots + \pqty{a_{2^k - 1} + a_{2^k - 1}} + a_{2^k} \\
             &= A_{2^k - 1} + A_{2^k}.
         \end{align*}
 
@@ -1167,9 +1167,9 @@ Next, we look at sequences with infinitely many terms that are negative.
 
 \begin{proposition}[Alternating Series Test]
     \label{prop:ser-test-alternating}%
-    Let \(\para{a_n}\) be a decreasing sequence with \(a_n \geq 0\), and \(a_n \to 0\). Then the sum
+    Let \(\pqty{a_n}\) be a decreasing sequence with \(a_n \geq 0\), and \(a_n \to 0\). Then the sum
     \[
-        \sum_{n = 1}^{\infty} \para{-1}^{n + 1} a_n
+        \sum_{n = 1}^{\infty} \pqty{-1}^{n + 1} a_n
     \]  
     converges.
 \end{proposition}
@@ -1187,7 +1187,7 @@ Next, we look at sequences with infinitely many terms that are negative.
     \label{ex:alternating-harmonic}%
     \autoref{prop:ser-test-alternating} (Alternating Series Test) tells us that
     \[
-        \sum_{n = 1}^{\infty} \frac{\para{-1}^{n + 1}}{n}
+        \sum_{n = 1}^{\infty} \frac{\pqty{-1}^{n + 1}}{n}
     \]
     converges (to \(\log 2\)), while the harmonic series \(\sum_{n = 1}^{\infty} \frac{1}{n}\) diverges.
 \end{example}
@@ -1195,49 +1195,49 @@ Next, we look at sequences with infinitely many terms that are negative.
 \begin{proof}[of \autoref{prop:ser-test-alternating} (Alternating Series Test)]
     We look at the sequence of partial sums
     \[
-        s_k = \sum_{n = 1}^{k} \para{-1}^{n + 1} a_n.
+        s_k = \sum_{n = 1}^{k} \pqty{-1}^{n + 1} a_n.
     \]
     
     Then we have
     \[
-        s_{2k} = \para{a_1 - a_2} + \para{a_3 - a_4} + \cdots + \para{a_{2k - 1} + a_{2k}},
+        s_{2k} = \pqty{a_1 - a_2} + \pqty{a_3 - a_4} + \cdots + \pqty{a_{2k - 1} + a_{2k}},
     \]
     and since everything in the brackets are non-negative, we have
     \[
         s_2 \leq s_4 \leq s_6 \leq \cdots
     \]
-    which says \(\para{s_{2k}}_{k \in \NN}\) is increasing.
+    which says \(\pqty{s_{2k}}_{k \in \NN}\) is increasing.
 
     Similarly, for the odd-indexed terms,
     \[
-        s_{2k + 1} = a_1 + \para{- a_2 + a_3} + \para{- a_4 + a_5} + \cdots + \para{- a_{2k} + a_{2k + 1}}
+        s_{2k + 1} = a_1 + \pqty{- a_2 + a_3} + \pqty{- a_4 + a_5} + \cdots + \pqty{- a_{2k} + a_{2k + 1}}
     \]
     and since everything in the brackets are non-positive, we have
     \[
         s_1 \geq s_3 \geq s_5 \geq \cdots
     \]
-    which says \(\para{s_{2k - 1}}_{k \in \NN}\) is decreasing.
+    which says \(\pqty{s_{2k - 1}}_{k \in \NN}\) is decreasing.
 
     Also, we notice that \(s_{2k + 1} - s_{2k} = a_{2k + 1} > 0\), and hence,
     \[
         a_1 - a_2 = s_2 \leq s_{2k} \leq s_{2k + 1} \leq s_1 = a_1,
     \]
-    i.e., \(s_1\) imposes an upper bound on \(\para{s_{2k}}_{k \in \NN}\), and \(s_2\) imposes a lower bound on \(\para{s_{2k - 1}}_{k \in \NN}\).
+    i.e., \(s_1\) imposes an upper bound on \(\pqty{s_{2k}}_{k \in \NN}\), and \(s_2\) imposes a lower bound on \(\pqty{s_{2k - 1}}_{k \in \NN}\).
     
     Applying \autoref{thm:monotone-convergence} (Monotone Convergence Theorem) to the two subsequences gives that
     \[
-        s_{2k} \to s \quad \text{and} \quad s_{2k - 1} \to s'
+        s_{2k} \to s \qand s_{2k - 1} \to s'
     \]
     for \(s, s' \in \RR\). We would like to show \(s = s'\).
 
-    But note that \(s_{2k + 1} - s_{2k} = a_{2k + 1} \to 0\), and \(s_{2k + 1} - s_{2k} \to s - s'\), so \(s = s'\). This means the odd and even indexed subsequence of \(\para{s_k}_{k \in \NN}\) converges to the same limit.
+    But note that \(s_{2k + 1} - s_{2k} = a_{2k + 1} \to 0\), and \(s_{2k + 1} - s_{2k} \to s - s'\), so \(s = s'\). This means the odd and even indexed subsequence of \(\pqty{s_k}_{k \in \NN}\) converges to the same limit.
 
-    Finally, if the odd-indexed and even-indexed subsequence converges to the same limit, then the sequence must also converge to that limit. Indeed, if both subsequences converge to the limit, say \(s\), then there is some \(N_1\para{\epsilon}\) and \(N_2\para{\epsilon}\) for \(\epsilon > 0\), such that
+    Finally, if the odd-indexed and even-indexed subsequence converges to the same limit, then the sequence must also converge to that limit. Indeed, if both subsequences converge to the limit, say \(s\), then there is some \(N_1\pqty{\epsilon}\) and \(N_2\pqty{\epsilon}\) for \(\epsilon > 0\), such that
     \[
-        \forall n \geq N_1: \abs{s_{2k} - s} < \epsilon \quad \text{and} \quad \forall n \geq N_2: \abs{s_{2k + 1} - s} < \epsilon.
+        \forall n \geq N_1: \abs{s_{2k} - s} < \epsilon \qand \forall n \geq N_2: \abs{s_{2k + 1} - s} < \epsilon.
     \]
 
-    Therefore, let \(N\para{\epsilon} = \max\brce{2 N_1\para{\epsilon}, 2 N_2 \para{\epsilon} + 1}\), then for all \(n \geq N\), we have \(n \geq 2 N_1\) and \(n \geq 2 N_2 + 1\), so
+    Therefore, let \(N\pqty{\epsilon} = \max\Bqty{2 N_1\pqty{\epsilon}, 2 N_2 \pqty{\epsilon} + 1}\), then for all \(n \geq N\), we have \(n \geq 2 N_1\) and \(n \geq 2 N_2 + 1\), so
     \[
         \abs{s_n - s} < \epsilon
     \]
@@ -1267,7 +1267,7 @@ But why do we even bother studying absolute convergence -- what is its relation 
 \end{remark}
 
 \begin{proof}
-    Let \(s_k = \sum_{n = 1}^{k} a_n\) and \(r_k = \sum_{n = 1}^{k} \abs{a_n}\). Since \(\para{r_k}\) converges, it is Cauchy, and to show \(\para{s_k}\) converges, we want to show that it is Cauchy.
+    Let \(s_k = \sum_{n = 1}^{k} a_n\) and \(r_k = \sum_{n = 1}^{k} \abs{a_n}\). Since \(\pqty{r_k}\) converges, it is Cauchy, and to show \(\pqty{s_k}\) converges, we want to show that it is Cauchy.
 
     Note that
     \begin{align*}
@@ -1275,7 +1275,7 @@ But why do we even bother studying absolute convergence -- what is its relation 
         &\leq \sum_{n = l - 1}^{k} \abs{a_n} \\
         &= r_k - r_l
     \end{align*}
-    which shows that \(\para{r_k}\) is Cauchy implies that \(\para{s_k}\) is Cauchy. This finishes the proof.
+    which shows that \(\pqty{r_k}\) is Cauchy implies that \(\pqty{s_k}\) is Cauchy. This finishes the proof.
 \end{proof}
 
 \begin{proof}[for the Real Case]
@@ -1306,33 +1306,33 @@ Conditionally convergent sequences have a very different style to absolutely con
     We look at the alternating harmonic series.
 
     \[
-        \sum_{n = 1}^{\infty} \frac{\para{-1}^{n + 1}}{n} = 1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \frac{1}{5} - \frac{1}{6} + \cdots.
+        \sum_{n = 1}^{\infty} \frac{\pqty{-1}^{n + 1}}{n} = 1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \frac{1}{5} - \frac{1}{6} + \cdots.
     \]
 
     Rearranging terms on the right gives
     \begin{align*}
-        &\phantom{=} \para{1 - \frac{1}{2}} - \frac{1}{4} + \para{\frac{1}{3} - \frac{1}{6}} - \frac{1}{8} + \para{\frac{1}{5} - \frac{1}{10}} - \frac{1}{12} + \para{\frac{1}{7} - \frac{1}{14}} + \cdots \\
+        &\phantom{=} \pqty{1 - \frac{1}{2}} - \frac{1}{4} + \pqty{\frac{1}{3} - \frac{1}{6}} - \frac{1}{8} + \pqty{\frac{1}{5} - \frac{1}{10}} - \frac{1}{12} + \pqty{\frac{1}{7} - \frac{1}{14}} + \cdots \\
         &= \frac{1}{2} - \frac{1}{4} + \frac{1}{6} - \frac{1}{8} + \frac{1}{10} - \frac{1}{12} + \frac{1}{14} + \cdots \\
-        &= \frac{1}{2} \para{1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \frac{1}{5} - \frac{1}{6} + \cdots} \\
-        &= \frac{1}{2} \sum_{n = 1}^{\infty} \frac{\para{-1}^{n + 1}}{n}.
+        &= \frac{1}{2} \pqty{1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \frac{1}{5} - \frac{1}{6} + \cdots} \\
+        &= \frac{1}{2} \sum_{n = 1}^{\infty} \frac{\pqty{-1}^{n + 1}}{n}.
     \end{align*}
 
     We may conclude that
     \[
-        \sum_{n = 1}^{\infty} \frac{\para{-1}^{n + 1}}{n} = \frac{1}{2}  \sum_{n = 1}^{\infty} \frac{\para{-1}^{n + 1}}{n}
+        \sum_{n = 1}^{\infty} \frac{\pqty{-1}^{n + 1}}{n} = \frac{1}{2}  \sum_{n = 1}^{\infty} \frac{\pqty{-1}^{n + 1}}{n}
     \]
     which is nonsense. The non-trivial part of this manipulation is the rearrangement part -- the order of the elements in the sum matters. (This is not the case for absolutely convergent series, which are much better behaved!)
 \end{example}
 
 \begin{proposition}[Rearrangement under Absolute Convergence]
     \label{prop:ser-rearrangement-absolute-convergence}%
-    Let \(\functiondomain{\sigma}{\NN}{\NN}\) be a bijection, and let \(\para{a_n}\) be absolutely convergent. Then the rearranged series given by terms \(a_n' = a_{\sigma\para{n}}\) is absolutely convergent, and converges to the same limit.
+    Let \(\functiondomain{\sigma}{\NN}{\NN}\) be a bijection, and let \(\pqty{a_n}\) be absolutely convergent. Then the rearranged series given by terms \(a_n' = a_{\sigma\pqty{n}}\) is absolutely convergent, and converges to the same limit.
 \end{proposition}
 
 \begin{proof}
     We let \(s_k = \sum_{n = 1}^{k} a_n\), and we know that \(s_k \to s\) as \(k \to \infty\) for some \(s \in \RR\).
 
-    This means that for all \(\epsilon > 0\), there is some \(N = N\para{\epsilon}\), such that
+    This means that for all \(\epsilon > 0\), there is some \(N = N\pqty{\epsilon}\), such that
     \[
         \forall n \geq N: \abs{s_k - s} < \epsilon
     \]
@@ -1341,25 +1341,25 @@ Conditionally convergent sequences have a very different style to absolutely con
         \sum_{k = N}^{\infty} \abs{a_n} < \epsilon.
     \]
 
-    There must exist some \(N_1 \geq N\), such that \(a_1, \ldots, a_N\) are included in \(a'1, \ldots, a'_{N_1}\). (Formally, this means there is some \(N_1 \geq N\), such that for all \(1 \leq n \leq N\), we have \(\sigma\para{n} \leq N_1\).)
+    There must exist some \(N_1 \geq N\), such that \(a_1, \ldots, a_N\) are included in \(a'1, \ldots, a'_{N_1}\). (Formally, this means there is some \(N_1 \geq N\), such that for all \(1 \leq n \leq N\), we have \(\sigma\pqty{n} \leq N_1\).)
 
     Hence, for \(m \geq N_1\), we have
     \[
-        \sum_{n = 1}^{m} a_n' = \sum_{n = 1}^{N} a_n + \para{\para{m - N} \text{ terms of }\para{a_n}\text{ sequence with index}\geq N}.
+        \sum_{n = 1}^{m} a_n' = \sum_{n = 1}^{N} a_n + \pqty{\pqty{m - N} \text{ terms of }\pqty{a_n}\text{ sequence with index}\geq N}.
     \]
 
     Hence,
     \[
         \abs{\sum_{n = 1}^{m} a_n' - s} \leq \abs{s_N - s} + \sum_{k = N}^{\infty} \abs{a_n} \leq 2\epsilon
     \]
-    where the second sum above is a `huge' overestimate of the \(\para{m - N}\) terms, (but guaranteed to be small), showing that the partial sums of the rearranged series converges to the value of the sum of the original series.
+    where the second sum above is a `huge' overestimate of the \(\pqty{m - N}\) terms, (but guaranteed to be small), showing that the partial sums of the rearranged series converges to the value of the sum of the original series.
 \end{proof}
 
 Now, we introduce the final test.
 
 \begin{proposition}[Dirichlet's Test]
     \label{prop:ser-test-dirichlet}%
-    Let \(\para{a_n}\) be a sequence (real or complex) with bounded partial sums (i.e. the partial sums form a bounded sequence), and \(\para{b_n}\) be a positive, decreasing sequence of reals, and \(b_n \to 0\) as \(n \to \infty\). Then the product series
+    Let \(\pqty{a_n}\) be a sequence (real or complex) with bounded partial sums (i.e. the partial sums form a bounded sequence), and \(\pqty{b_n}\) be a positive, decreasing sequence of reals, and \(b_n \to 0\) as \(n \to \infty\). Then the product series
     \[
         \sum_{n = 1}^{\infty} a_n b_n
     \]
@@ -1370,13 +1370,13 @@ We introduce a useful lemma which is similar to integration by parts, and is ind
 
 \begin{lemma}[Summation by Parts]
     \label{lem:ser-summation-by-parts}%
-    Let \(\para{a_n}, \para{b_n}\) be two sequences, and let
+    Let \(\pqty{a_n}, \pqty{b_n}\) be two sequences, and let
     \[
         S_n = \sum_{i = 1}^{n} a_n
     \]
     be the partial sums of \(a_n\), with the convention that \(S_0 = 0\). Then we have
     \[
-        \sum_{j = m}^{n} a_j b_j = S_n b_n - S_{m - 1} b_m + \sum_{j = m}^{n - 1} S_j \para{b_j - b_{j + 1}}.
+        \sum_{j = m}^{n} a_j b_j = S_n b_n - S_{m - 1} b_m + \sum_{j = m}^{n - 1} S_j \pqty{b_j - b_{j + 1}}.
     \]
 \end{lemma}
 
@@ -1385,7 +1385,7 @@ We introduce a useful lemma which is similar to integration by parts, and is ind
     \begin{align*}
         \text{Right-Hand Side} &= \sum_{j = m}^{n} S_j b_j - \sum_{j = m - 1}^{n - 1} S_j b_{j + 1} \\
         &= \sum_{j = m}^{n} S_j b_j - \sum_{j = m}^{n} S_{j - 1} b_j \\
-        &= \sum_{j = m}^{n} \para{S_j - S_{j - 1}} b_j \\
+        &= \sum_{j = m}^{n} \pqty{S_j - S_{j - 1}} b_j \\
         &= \sum_{j = m}^{n} a_j b_j \\
         &= \text{Left-Hand Side}
     \end{align*}
@@ -1395,7 +1395,7 @@ We introduce a useful lemma which is similar to integration by parts, and is ind
 \begin{proof}[using \autoref{thm:ser-absolute-convergence-implies-convergence} (Absolute Convergence)]
     We apply the \autoref{lem:ser-summation-by-parts} for \(m = 1\), which gives
     \[
-        \sum_{j = 1}^{n} a_j b_j = S_n b_n + \sum_{j = 1}^{n - 1} S_j \para{b_j - b_{j + 1}}.
+        \sum_{j = 1}^{n} a_j b_j = S_n b_n + \sum_{j = 1}^{n - 1} S_j \pqty{b_j - b_{j + 1}}.
     \]
 
     Let \(M\) be a bound of \(S_n\), so \(\abs{S_n} \leq M\) for all \(n \in \NN\). Therefore,
@@ -1406,14 +1406,14 @@ We introduce a useful lemma which is similar to integration by parts, and is ind
 
     Furthermore,
     \begin{align*}
-        \sum_{j = 1}^{n - 1} \abs{S_j \para{b_j - b_{j + 1}}} &= \sum_{j = 1}^{n - 1} \abs{S_j} \para{b_j - b_{j + 1}} \\
-        &\leq M \sum_{j = 1}^{n - 1} \para{b_j - b_{j + 1}} \\
-        &= M \para{b_1 - b_n}.
+        \sum_{j = 1}^{n - 1} \abs{S_j \pqty{b_j - b_{j + 1}}} &= \sum_{j = 1}^{n - 1} \abs{S_j} \pqty{b_j - b_{j + 1}} \\
+        &\leq M \sum_{j = 1}^{n - 1} \pqty{b_j - b_{j + 1}} \\
+        &= M \pqty{b_1 - b_n}.
     \end{align*}
 
     As \(n \to \infty\), the right-hand side converges to \(M b_1\), imposing an upper bound on the partial absolute sums. Therefore, by \autoref{thm:ser-absolute-convergence-implies-convergence} (Absolute Convergence implies Convergence), the sum
     \[
-        \sum_{j = 1}^{\infty} S_j \para{b_j - b_{j + 1}}
+        \sum_{j = 1}^{\infty} S_j \pqty{b_j - b_{j + 1}}
     \]
     converges. Hence, \(\sum_{j = 1}^{\infty} a_j b_j\) converges.
 \end{proof}
@@ -1421,9 +1421,9 @@ We introduce a useful lemma which is similar to integration by parts, and is ind
 \begin{proof}[using \autoref{thm:completeness-of-r-and-c} (Cauchy Sequences Converge)]
     Similarly, since \(S_n\) is bounded, let \(\abs{S_n} \leq M\) for all \(n \in \NN\). Then, using \autoref{lem:ser-summation-by-parts} (Summation by Parts),
     \begin{align*}
-        \abs{\sum_{j = m}^{n} a_j b_j} &\leq M b_n + M b_m + \sum_{j = m}^{n - 1} M \para{b_j - b_{j + 1}} \\
-        &\leq M \brac{b_n + b_m + \sum_{j = m}^{n - 1} \para{b_j - b_{j + 1}}} \\
-        &= M \brac{b_n + b_m + \para{b_m - b_n}} \\
+        \abs{\sum_{j = m}^{n} a_j b_j} &\leq M b_n + M b_m + \sum_{j = m}^{n - 1} M \pqty{b_j - b_{j + 1}} \\
+        &\leq M \bqty{b_n + b_m + \sum_{j = m}^{n - 1} \pqty{b_j - b_{j + 1}}} \\
+        &= M \bqty{b_n + b_m + \pqty{b_m - b_n}} \\
         &= 2 M b_m.
     \end{align*}
 
@@ -1440,11 +1440,11 @@ Another result we have is that there is `no slowest divergent series'.
 
 \begin{lemma}[No Slowest Divergent Series]
     \label{lem:no-slowest-divergent-series}%
-    Suppose that \(\sum a_n\) diverges to infinity and \(a_n > 0\). Then there is a sequence \(\para{b_n}\) with \(\frac{b_n}{a_n} \to 0\) and \(\sum b_n\) divergent.
+    Suppose that \(\sum a_n\) diverges to infinity and \(a_n > 0\). Then there is a sequence \(\pqty{b_n}\) with \(\frac{b_n}{a_n} \to 0\) and \(\sum b_n\) divergent.
 \end{lemma}
 
 \begin{proof}
-        We let the partial sums of \(\para{a_n}\) be
+        We let the partial sums of \(\pqty{a_n}\) be
     \[
         S_n = \sum_{m = 1}^{n} a_m,
     \]
@@ -1486,7 +1486,7 @@ Another result we have is that there is `no slowest divergent series'.
         1 - \frac{S_n}{S_m} \geq \epsilon \iff \frac{S_n}{S_m} \leq 1 - \epsilon \iff S_m \geq \frac{S_n}{1 - \epsilon}.
     \]
 
-    Note that \(n = N\) is fixed, so the right-hand side is a constant. Since the sequence \(\para{S_m}\) is positive and diverges to infinity, the terms can be arbitrarily large however large \(m\) is, and in particular it can be larger than \(\frac{S_n}{1 - \epsilon}\), for some \(m > N\). This provides a diverging lower bound for \(\para{S'_n}\), finishing our proof on \(S'_n\) is divergent, and hence \(\sum b_n\) is divergent.
+    Note that \(n = N\) is fixed, so the right-hand side is a constant. Since the sequence \(\pqty{S_m}\) is positive and diverges to infinity, the terms can be arbitrarily large however large \(m\) is, and in particular it can be larger than \(\frac{S_n}{1 - \epsilon}\), for some \(m > N\). This provides a diverging lower bound for \(\pqty{S'_n}\), finishing our proof on \(S'_n\) is divergent, and hence \(\sum b_n\) is divergent.
 \end{proof}
 
 \begin{proposition}[Convergence of Product Series]
@@ -1494,7 +1494,7 @@ Another result we have is that there is `no slowest divergent series'.
 \end{proposition}
 
 \begin{remark}
-    This is not true for non-absolute convergent series, with the following counterexample. Let \(a_n = b_n = \para{-1}^{n + 1} \frac{1}{\sqrt{n}}\). By \autoref{prop:ser-test-alternating} (Alternating Series Test), since \(\frac{1}{\sqrt{n}} \to 0\) and is decreasing, \(\sum a_n\) and \(\sum b_n\) both converge.
+    This is not true for non-absolute convergent series, with the following counterexample. Let \(a_n = b_n = \pqty{-1}^{n + 1} \frac{1}{\sqrt{n}}\). By \autoref{prop:ser-test-alternating} (Alternating Series Test), since \(\frac{1}{\sqrt{n}} \to 0\) and is decreasing, \(\sum a_n\) and \(\sum b_n\) both converge.
 
     But \(a_n b_n = \frac{1}{n}\) and \(\sum a_n b_n\) is the harmonic series, which diverges.
 \end{remark}
@@ -1517,7 +1517,7 @@ Another result we have is that there is `no slowest divergent series'.
 
     Since \(\sum a_n\) and \(\sum b_n\) converge absolutely, we have \(\sum a_n^2\) and \(\sum b_n^2\) converge absolutely. Hence,
     \[
-        \para{\sum_{n = 1}^{m} \para{a_n b_n}}^2 \leq \para{\sum_{n = 1}^{m} a_n^2} \cdot \para{\sum_{n = 1}^{m} b_n^2}
+        \pqty{\sum_{n = 1}^{m} \pqty{a_n b_n}}^2 \leq \pqty{\sum_{n = 1}^{m} a_n^2} \cdot \pqty{\sum_{n = 1}^{m} b_n^2}
     \]
     and therefore the partial sums of the product series are bounded above. Since the partial sums are increasing, they converge.
 \end{proof}

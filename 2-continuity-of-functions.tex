@@ -1,7 +1,7 @@
 \section{Continuity of Functions}
 \subsection{Limits of Functions}
 
-Take \(\functiondomain{f}{X}{\CC}\) for some \(X \subseteq \CC\). We want to define what we mean by \(f\para{z} \to y\) as \(z \to a\), \emph{even if \(a \notin X\)}.
+Take \(\functiondomain{f}{X}{\CC}\) for some \(X \subseteq \CC\). We want to define what we mean by \(f\pqty{z} \to y\) as \(z \to a\), \emph{even if \(a \notin X\)}.
 
 \begin{figure}[ht!]
     \centering
@@ -18,9 +18,9 @@ Take \(\functiondomain{f}{X}{\CC}\) for some \(X \subseteq \CC\). We want to def
 \end{figure}
 
 \begin{example}[The Function \(\frac{\sin x}{x}\)]
-    The function \(f\para{x} = \frac{\sin x}{x}\) is not defined at \(x = 0\). But from \autoref{fig:graph-sin-x-x}, we are very tempted to say that this function has a limit of \(1\) as the function tends to \(0\), and if so, we may extend the domain for a new function, to include \(x = 0\) to take a value of \(1\), e.g.,
+    The function \(f\pqty{x} = \frac{\sin x}{x}\) is not defined at \(x = 0\). But from \autoref{fig:graph-sin-x-x}, we are very tempted to say that this function has a limit of \(1\) as the function tends to \(0\), and if so, we may extend the domain for a new function, to include \(x = 0\) to take a value of \(1\), e.g.,
     \[
-        f\para{x} = \begin{cases}
+        f\pqty{x} = \begin{cases}
             \frac{\sin x}{x}, & x \neq 0, \\
             \lim_{x \to 0} \frac{\sin x}{x}, & x = 0.
         \end{cases}
@@ -29,13 +29,13 @@ Take \(\functiondomain{f}{X}{\CC}\) for some \(X \subseteq \CC\). We want to def
 
 The reason why we can hope to make sense of \(\lim_{x \to 0} \frac{\sin x}{x}\) is that there are points that are in the domain that are very close \(0\), and we could jump from points ever closer to \(0\) to get a value for that `limit'.
 
-In other words, \(0\) is an \emph{accumulation point} for \(\RR \setminus \brce{0}\): for any threshold \(\delta > 0\), we can always find \(x \in \RR \setminus \brce{0}\), such that \(\abs{x - 0} < \delta\).
+In other words, \(0\) is an \emph{accumulation point} for \(\RR \setminus \Bqty{0}\): for any threshold \(\delta > 0\), we can always find \(x \in \RR \setminus \Bqty{0}\), such that \(\abs{x - 0} < \delta\).
 
 \begin{definition}[Accumulation and Isolated Point]
     \label{def:fn-accumulation-isolated-point}%
     Let \(X \subseteq \CC\) and \(a \in \CC\). We say \(a\) is an \emph{accumulation point} for \(X\), if that
     \[
-        \forall \delta > 0, \exists z \in X \setminus \brce{a}: \abs{z - a} < \delta.
+        \forall \delta > 0, \exists z \in X \setminus \Bqty{a}: \abs{z - a} < \delta.
     \]
 
     If \(a \in X\) and it is not an accumulation point, then we say \(a\) is \emph{isolated}.
@@ -44,7 +44,7 @@ In other words, \(0\) is an \emph{accumulation point} for \(\RR \setminus \brce{
 \begin{example}[Accumulation and Isolated Point]
     \label{ex:fn-accumulation-isolated-point}%
     \begin{itemize}
-        \item The set \(X = \brce{0} \cup \ccintv{1}{2}\) has \(0\) as an isolated point. On the other hand, all points in \(\ccintv{1}{2}\) are accumulation points for \(X\).
+        \item The set \(X = \Bqty{0} \cup \ccintv{1}{2}\) has \(0\) as an isolated point. On the other hand, all points in \(\ccintv{1}{2}\) are accumulation points for \(X\).
         \item The points on the unit circle \(S = \set{z \in \CC}{\abs{z} = 1}\) are accumulation points for \(D = \set{z \in \CC}{\abs{z} < 1}\). Also, all the points in \(D\) are also accumulation points for \(D\). \autoref{fig:accumulation-point-c} demonstrates this example.
         \item If we look at \(\set{z \in \CC}{\abs{z} \leq 1}\), then all the points in this set are accumulation points. 
     \end{itemize}
@@ -58,32 +58,32 @@ In other words, \(0\) is an \emph{accumulation point} for \(\RR \setminus \brce{
 \end{figure}
 
 \begin{lemma}[Accumulation Points are Limit Points]
-    Let \(X \subseteq \CC\) and \(a \in \CC\). Then \(a\) is an accumulation point for \(X\) if and only if there exists \(\para{x_n}\) in \(X \setminus \brce{a}\), such that \(\lim_{n \to \infty} x_n = a\).
+    Let \(X \subseteq \CC\) and \(a \in \CC\). Then \(a\) is an accumulation point for \(X\) if and only if there exists \(\pqty{x_n}\) in \(X \setminus \Bqty{a}\), such that \(\lim_{n \to \infty} x_n = a\).
 \end{lemma}
 
 \begin{proof}
-    If there is some \(\para{x_n} \subseteq X \setminus \brce{a}\) with \(x_n \to a\), then by definition,
+    If there is some \(\pqty{x_n} \subseteq X \setminus \Bqty{a}\) with \(x_n \to a\), then by definition,
     \[
-        \forall \epsilon > 0, \exists N = N\para{\epsilon} \in \NN, \forall n \geq N: \abs{x_n - a} < \delta.
+        \forall \epsilon > 0, \exists N = N\pqty{\epsilon} \in \NN, \forall n \geq N: \abs{x_n - a} < \delta.
     \]
 
-    Now, let \(\delta > 0\) be arbitrary, then take \(N = N\para{\delta}\), therefore we have \(x_N \in X \setminus \brce{a}\) with \(\abs{x_N - a} < \delta\), showing that \(a\) is indeed an accumulation point.
+    Now, let \(\delta > 0\) be arbitrary, then take \(N = N\pqty{\delta}\), therefore we have \(x_N \in X \setminus \Bqty{a}\) with \(\abs{x_N - a} < \delta\), showing that \(a\) is indeed an accumulation point.
 
     Conversely, given \(a\) is an accumulation point of \(X\), this means
     \[
-        \forall \delta > 0, \exists z = z\para{\delta} \in X \setminus \brce{a}: \abs{z - a} < \delta.
+        \forall \delta > 0, \exists z = z\pqty{\delta} \in X \setminus \Bqty{a}: \abs{z - a} < \delta.
     \]
 
-    Now, let \(x_n = z\para{\frac{1}{n}}\) for \(n \in \NN\), then \(x_n\) is indeed a sequence of \(X \setminus \brce{a}\). Therefore,
+    Now, let \(x_n = z\pqty{\frac{1}{n}}\) for \(n \in \NN\), then \(x_n\) is indeed a sequence of \(X \setminus \Bqty{a}\). Therefore,
     \[
-        0 < \abs{x_n - a} = \abs{z\para{\frac{1}{n}} - a} \leq \frac{1}{n}
+        0 < \abs{x_n - a} = \abs{z\pqty{\frac{1}{n}} - a} \leq \frac{1}{n}
     \]
     and by the sandwich theorem, \(\abs{x_n - a} \to 0\), so \(x_n \to a\), as desired.
 \end{proof}
 
 Now we return to the definition of a limit. From the point we just saw, we want \(a\) to be an accumulation point of \(X\), since otherwise the behaviour of \(f\) as \(z\) `approaches' \(a\) itself does not make sense -- we need a path for \(z\) to approach the point, via its domain! 
 
-We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). The idea is, no matter how small the threshold \(\epsilon > 0\), we may let the function be arbitrarily close to \(y\), as long as \(z\) is sufficiently close to \(a\). Formally, we want to define this as follows.
+We make sense of \(f\pqty{z}\) as \(z \to a\) by looking at points near \(a\). The idea is, no matter how small the threshold \(\epsilon > 0\), we may let the function be arbitrarily close to \(y\), as long as \(z\) is sufficiently close to \(a\). Formally, we want to define this as follows.
 
 \begin{definition}[Limit of a Function]
     \label{def:fn-limit}%
@@ -92,32 +92,32 @@ We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). T
 
     We say \(f\) \emph{tends to} \(y \in \CC\) as \(z\) tends to \(a\), if
     \[
-        \forall \epsilon > 0, \exists \delta = \delta \para{\epsilon} > 0, \forall 0 < \abs{z - a} < \delta, z \in X: \abs{f\para{z} - y} < \epsilon,
+        \forall \epsilon > 0, \exists \delta = \delta \pqty{\epsilon} > 0, \forall 0 < \abs{z - a} < \delta, z \in X: \abs{f\pqty{z} - y} < \epsilon,
     \]
-    and we denote this as \(f\para{z} \to y\) as \(z \to a\), or \(\lim_{z \to a} f\para{z} \to y\).
+    and we denote this as \(f\pqty{z} \to y\) as \(z \to a\), or \(\lim_{z \to a} f\pqty{z} \to y\).
 
     Similarly, we say \(f\) diverges to \(\infty\) as \(z \to a\), if
     \[
-        \forall L > 0, \exists \delta = \delta\para{L} > 0, \forall 0 < \abs{z - a} < \delta, z \in X: \abs{f\para{z}} > L.
+        \forall L > 0, \exists \delta = \delta\pqty{L} > 0, \forall 0 < \abs{z - a} < \delta, z \in X: \abs{f\pqty{z}} > L.
     \]
 \end{definition}
 
 \begin{remark}
     \begin{itemize}
-        \item We shall not worry about the limit at an isolated point, since there is not a good behaviour of `approaching' \(a\) in any sense. (Indeed, most of the following results on limits only concerns accumulation points.) Therefore, some choose to not define the limit at an isolated point, while others might choose to define \(\lim_{z \to a} f\para{z} = f\para{a}\). The latter might be chosen since it would make the limit condition for \autoref{def:fn-continuity} (Continuity) work for isolated points as well.
+        \item We shall not worry about the limit at an isolated point, since there is not a good behaviour of `approaching' \(a\) in any sense. (Indeed, most of the following results on limits only concerns accumulation points.) Therefore, some choose to not define the limit at an isolated point, while others might choose to define \(\lim_{z \to a} f\pqty{z} = f\pqty{a}\). The latter might be chosen since it would make the limit condition for \autoref{def:fn-continuity} (Continuity) work for isolated points as well.
         
         In particular, our definition does not work well for isolated points, since for sufficiently small \(\delta\), there is no \(z \in X\) such that \(0 < \abs{z - a} < \delta\), and our condition is trivially true for \emph{any} \(y\) which is not what we want.
 
         \item Note that \(f\) may diverge to infinity at \(a \in \CC\), even with \(a \in X\). Consider the example
         \[
-            f\para{x} = \begin{cases}
+            f\pqty{x} = \begin{cases}
                 \frac{1}{x^2}, & x \neq 0, \\
                 0, & x = 0,
             \end{cases}  
         \]
-        and at \(x = 0\), \(f\para{0} = 0\) but
+        and at \(x = 0\), \(f\pqty{0} = 0\) but
         \[
-            \lim_{x \to 0} f\para{x} \to \infty.
+            \lim_{x \to 0} f\pqty{x} \to \infty.
         \]
     \end{itemize}
 \end{remark}
@@ -130,12 +130,12 @@ We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). T
     \]
     for all \(x \in \oointv{0}{\frac{\pi}{2}}\). Hence,
     \[
-        \abs{\frac{\sin x}{x} - 1} < 1 - \cos x = 2 \sin^2 \para{\frac{x}{2}} < \frac{x^2}{2}.
+        \abs{\frac{\sin x}{x} - 1} < 1 - \cos x = 2 \sin^2 \pqty{\frac{x}{2}} < \frac{x^2}{2}.
     \]
 
-    Hence, for all \(\epsilon > 0\), we choose \(\delta\para{\epsilon} = \sqrt{2\epsilon}\), and hence
+    Hence, for all \(\epsilon > 0\), we choose \(\delta\pqty{\epsilon} = \sqrt{2\epsilon}\), and hence
     \[
-        \abs{x - 0} < \delta \implies \abs{\frac{\sin x}{x} - 1} < \frac{\para{\sqrt{2 \epsilon}}^2}{2} = \epsilon
+        \abs{x - 0} < \delta \implies \abs{\frac{\sin x}{x} - 1} < \frac{\pqty{\sqrt{2 \epsilon}}^2}{2} = \epsilon
     \]
     for \(x > 0\), and since this function is even, the same behaviour holds for \(x < 0\), which finishes our proof.
 \end{example}
@@ -144,50 +144,50 @@ We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). T
     \label{lem:fn-sequential-limits}%
     Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\), and let \(a \in \CC\) be an accumulation point of \(X\). Then
     \[
-        \lim_{z \to a} f\para{z} = y
+        \lim_{z \to a} f\pqty{z} = y
     \]
     if and only if
     \[
-        \lim_{n \to \infty} f\para{z_n} = y
+        \lim_{n \to \infty} f\pqty{z_n} = y
     \]
-    for any \(\para{z_n}\) on \(X \setminus \brce{a}\), with \(z_n \to a\).
+    for any \(\pqty{z_n}\) on \(X \setminus \Bqty{a}\), with \(z_n \to a\).
 
-    Similarly, \(f\para{z}\) diverges to infinity, if and only if \(\para{f\para{z_n}}\) diverges to infinity for every \(\para{z_n}\) on \(X \setminus \brce{a}\), with \(z_n \to a\).
+    Similarly, \(f\pqty{z}\) diverges to infinity, if and only if \(\pqty{f\pqty{z_n}}\) diverges to infinity for every \(\pqty{z_n}\) on \(X \setminus \Bqty{a}\), with \(z_n \to a\).
 \end{lemma}
 
 \begin{proof}
     We prove for convergence, and the case for divergence is similar.
     
-    Suppose that \(\lim_{z \to a} f\para{z} = y\). Let \(\epsilon > 0\) be arbitrary, and let \(\delta > 0\) be such that
+    Suppose that \(\lim_{z \to a} f\pqty{z} = y\). Let \(\epsilon > 0\) be arbitrary, and let \(\delta > 0\) be such that
     \[
-        \forall z \in X, 0 < \abs{z - a} < \delta: \abs{f\para{z} - y} < \epsilon.
+        \forall z \in X, 0 < \abs{z - a} < \delta: \abs{f\pqty{z} - y} < \epsilon.
     \]
 
-    Now, take any \(\para{z_n} \to a\) on \(X \setminus \brce{a}\). Since \(\delta > 0\), there is some \(N > 0\) such that
+    Now, take any \(\pqty{z_n} \to a\) on \(X \setminus \Bqty{a}\). Since \(\delta > 0\), there is some \(N > 0\) such that
     \[
         \forall n \geq N: 0 < \abs{z_n - a} < \delta.
     \]
 
     Hence,
     \[
-        \forall n \geq N: \abs{f\para{z_n} - y} < \epsilon
+        \forall n \geq N: \abs{f\pqty{z_n} - y} < \epsilon
     \]
     showing that the limit of the sequence converges as desired.
 
-    Conversely, we prove using the contrapositive, so suppose \(\lim_{z \to a} f\para{z} \neq y\). Then for some \(\epsilon > 0\), we have for all \(\delta > 0\), we have
+    Conversely, we prove using the contrapositive, so suppose \(\lim_{z \to a} f\pqty{z} \neq y\). Then for some \(\epsilon > 0\), we have for all \(\delta > 0\), we have
     \[
-        \exists z \in X, 0 < \abs{z - a} < \delta: \abs{f\para{z} - y} \geq \epsilon.
+        \exists z \in X, 0 < \abs{z - a} < \delta: \abs{f\pqty{z} - y} \geq \epsilon.
     \]
 
     Taking \(\delta = 1, \frac{1}{2}, \frac{1}{3}, \ldots\), we construct a sequence of such \(z_n \in X\), and we have for all \(n \in \NN\),
     \[
-        z_n \in X \quad \text{and} \quad 0 < \abs{z_n - a} < \frac{1}{n}
+        z_n \in X \qand 0 < \abs{z_n - a} < \frac{1}{n}
     \]
-    which shows \(\para{z_n} \to a\) on \(X \setminus a\), and indeed,
+    which shows \(\pqty{z_n} \to a\) on \(X \setminus a\), and indeed,
     \[
-        \abs{f\para{z_n} - y} \geq \epsilon,
+        \abs{f\pqty{z_n} - y} \geq \epsilon,
     \]
-    which shows that \(f\para{z_n} \notto y\). This finishes the proof.
+    which shows that \(f\pqty{z_n} \notto y\). This finishes the proof.
 \end{proof}
 
 \begin{lemma}[Limit of Function is Unique]
@@ -200,24 +200,24 @@ We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). T
 \end{proof}
 
 \begin{proof}[using \(\epsilon-\delta\)]
-    Suppose that \(f\para{z} \to y\) and \(f\para{z} \to x\) as \(z \to a\). We have that
+    Suppose that \(f\pqty{z} \to y\) and \(f\pqty{z} \to x\) as \(z \to a\). We have that
     \[
-        \abs{x - y} \leq \abs{x - f\para{z}} + \abs{f\para{z} - y}
+        \abs{x - y} \leq \abs{x - f\pqty{z}} + \abs{f\pqty{z} - y}
     \]
     and using similar techniques in \autoref{lem:seq-limit-unique} (Sequences have Unique Limit), we have \(x = y\).
 \end{proof}
 
 \begin{lemma}[Function Limits Preserve Arithmetic]
     \label{lem:fn-limits-preserve-arithmetic}%
-    Let \(\functiondomain{f, g}{X \subseteq \CC}{\CC}\), and \(a \in \CC\) be an accumulation point of \(X\). Suppose \(\lim_{z \to a} f\para{z} = a\) and \(\lim_{z \to a} g\para{z} = b\), then
+    Let \(\functiondomain{f, g}{X \subseteq \CC}{\CC}\), and \(a \in \CC\) be an accumulation point of \(X\). Suppose \(\lim_{z \to a} f\pqty{z} = a\) and \(\lim_{z \to a} g\pqty{z} = b\), then
     \begin{align*}
-        \lim_{x \to a} \para{f\para{z} + g\para{z}} &= a + b, \\
-        \lim_{x \to a} \para{f\para{z} \cdot g\para{z}} & = ab.
+        \lim_{x \to a} \pqty{f\pqty{z} + g\pqty{z}} &= a + b, \\
+        \lim_{x \to a} \pqty{f\pqty{z} \cdot g\pqty{z}} & = ab.
     \end{align*}
 
     Furthermore, if \(b \neq 0\), we have
     \[
-        \lim_{z \to a} \frac{f\para{z}}{g\para{z}} = \frac{a}{b}.
+        \lim_{z \to a} \frac{f\pqty{z}}{g\pqty{z}} = \frac{a}{b}.
     \]
 \end{lemma}
 
@@ -233,7 +233,7 @@ We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). T
 
     We say \(f\) is \emph{continuous at some point \(a \in X\)}, if
     \[
-        \forall \epsilon > 0, \exists \delta = \delta\para{\epsilon}, \forall \abs{z - a} < \delta, z \in X: \abs{f\para{z} - f\para{a}} < \epsilon.
+        \forall \epsilon > 0, \exists \delta = \delta\pqty{\epsilon}, \forall \abs{z - a} < \delta, z \in X: \abs{f\pqty{z} - f\pqty{a}} < \epsilon.
     \]
 
     
@@ -242,22 +242,22 @@ We make sense of \(f\para{z}\) as \(z \to a\) by looking at points near \(a\). T
 \end{definition}
 
 \begin{remark}
-    If \(a \in X\) is an isolated point, \(f\) is then trivially continuous at \(a\), because for sufficiently small \(\delta\), \(\abs{z - a} < \delta\) implies \(z = a\), so \(f\para{z} = f\para{a}\).
+    If \(a \in X\) is an isolated point, \(f\) is then trivially continuous at \(a\), because for sufficiently small \(\delta\), \(\abs{z - a} < \delta\) implies \(z = a\), so \(f\pqty{z} = f\pqty{a}\).
 
     On the other hand, if \(a \in X\) is an accumulation point, this is equivalent to saying
     \[
-        \lim_{z \to a} f\para{z} = f\para{a}.
+        \lim_{z \to a} f\pqty{z} = f\pqty{a}.
     \] 
 \end{remark}
 
 \begin{example}[Examples on Continuity]
     \label{ex:fn-continuity}
     \begin{itemize}
-        \item \(f\para{z} = z\) is the identity function. This is continuous everywhere on the domain, say \(\CC\). For all \(\epsilon > 0\), we choose \(\delta = \epsilon\), so for all \(\abs{z - a} < \delta\), we have \(\abs{f\para{z} - f\para{a}} = \abs{z - a} < \delta = \epsilon\).
+        \item \(f\pqty{z} = z\) is the identity function. This is continuous everywhere on the domain, say \(\CC\). For all \(\epsilon > 0\), we choose \(\delta = \epsilon\), so for all \(\abs{z - a} < \delta\), we have \(\abs{f\pqty{z} - f\pqty{a}} = \abs{z - a} < \delta = \epsilon\).
 
         \item If \(\functiondomain{f}{\RR}{\RR}\) satisfies \[
-            f\para{x} = \begin{cases}
-                \sin \para{\frac{1}{x}}, & x \neq 0, \\
+            f\pqty{x} = \begin{cases}
+                \sin \pqty{\frac{1}{x}}, & x \neq 0, \\
                 0, & x = 0,
             \end{cases}
         \]
@@ -269,7 +269,7 @@ To show the second example, it would be helpful to have another definition of co
 
 \begin{definition}[Sequential Continuous]
     \label{def:fn-sequential-continuous}%
-    Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\). We say \(f\) is \emph{sequential continuous} at \(a \in X\), if \(f\para{z_n} \to f\para{a}\) (as a sequence) for any \(\para{z_n}\) on \(X\) such that \(z_n \to a\).
+    Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\). We say \(f\) is \emph{sequential continuous} at \(a \in X\), if \(f\pqty{z_n} \to f\pqty{a}\) (as a sequence) for any \(\pqty{z_n}\) on \(X\) such that \(z_n \to a\).
 \end{definition}
 
 \begin{proposition}[Sequential Continuity is Continuity]
@@ -279,29 +279,29 @@ To show the second example, it would be helpful to have another definition of co
 We now prove the proposition.
 
 \begin{proof}[of \autoref{prop:fn-seq-cont-iff-cont} (Sequential Continuity), by Definition]
-    We first show continuity implies sequential continuity. By continuity, for \(\epsilon > 0\), we have \(\delta = \delta\para{\epsilon} > 0\) such that
+    We first show continuity implies sequential continuity. By continuity, for \(\epsilon > 0\), we have \(\delta = \delta\pqty{\epsilon} > 0\) such that
     \[
-        \abs{z - a} < \delta \implies \abs{f\para{z} - f\para{a}} < \epsilon.
+        \abs{z - a} < \delta \implies \abs{f\pqty{z} - f\pqty{a}} < \epsilon.
     \]
 
-    Take \(\para{z_n}\) on \(X\) with \(z_n \to a\). By the definition of a sequence limit, there is some \(N = N\para{\epsilon} > 0\) such that
+    Take \(\pqty{z_n}\) on \(X\) with \(z_n \to a\). By the definition of a sequence limit, there is some \(N = N\pqty{\epsilon} > 0\) such that
     \[
-        n \geq N \implies \abs{f\para{z_n} - f\para{a}} < \epsilon,
+        n \geq N \implies \abs{f\pqty{z_n} - f\pqty{a}} < \epsilon,
     \]
     so we are done.
 
     We show the converse by contrapositive. Suppose \(f\) instead is not continuous at \(a\). Then by definition, for some \(\epsilon > 0\), we have
     \[
-        \forall \delta > 0, \exists z = z\para{\delta} \in X, \abs{z - a} < \delta: \abs{f\para{z} - f\para{a}} \geq \epsilon.
+        \forall \delta > 0, \exists z = z\pqty{\delta} \in X, \abs{z - a} < \delta: \abs{f\pqty{z} - f\pqty{a}} \geq \epsilon.
     \]
 
-    Take \(\delta = 1, \frac{1}{2}, \frac{1}{3}, \ldots, \frac{1}{n}, \ldots\) to find \(\para{z_n}\), by taking
+    Take \(\delta = 1, \frac{1}{2}, \frac{1}{3}, \ldots, \frac{1}{n}, \ldots\) to find \(\pqty{z_n}\), by taking
     \[
-        z_n = z \para{\frac{1}{n}},
+        z_n = z \pqty{\frac{1}{n}},
     \]
     and we have
     \[
-        \abs{f\para{z_n} - f\para{a}} \geq \epsilon.
+        \abs{f\pqty{z_n} - f\pqty{a}} \geq \epsilon.
     \]
 
     \(f\) is not sequentially continuous, as desired.
@@ -312,28 +312,28 @@ We now prove the proposition.
 
     For accumulation points, this can be deduced from \autoref{lem:fn-sequential-limits} (Sequential Limits) and the definition of continuity using a limit. 
     
-    Concretely, if \(f\) is sequential continuous, then taking any sequence \(\para{z_n}\) on \(X \setminus \brce{a}\) with \(z_n \to a\) will give \(f\para{z_n} \to f\para{a}\), showing that \(f\para{z} \to f\para{a}\), which gives continuity at an accumulation point.
+    Concretely, if \(f\) is sequential continuous, then taking any sequence \(\pqty{z_n}\) on \(X \setminus \Bqty{a}\) with \(z_n \to a\) will give \(f\pqty{z_n} \to f\pqty{a}\), showing that \(f\pqty{z} \to f\pqty{a}\), which gives continuity at an accumulation point.
 
-    Now assume \(f\) is continuous. For any sequence \(\para{z_n}\) on \(X\) with \(z_n \to a\), removing terms where \(z_n = a\) would not affect \(z_n \to a\). After removing these terms, we get a sequence \(\para{z'_n}\), and by considering the sequential limit (using continuity), we have \(f\para{z'_n} \to f\para{a}\). But now, adding those terms where \(z_n = a\) back to the sequence does not affect \(f\para{z'_n} \to f\para{a}\). This indeed shows sequential continuity.
+    Now assume \(f\) is continuous. For any sequence \(\pqty{z_n}\) on \(X\) with \(z_n \to a\), removing terms where \(z_n = a\) would not affect \(z_n \to a\). After removing these terms, we get a sequence \(\pqty{z'_n}\), and by considering the sequential limit (using continuity), we have \(f\pqty{z'_n} \to f\pqty{a}\). But now, adding those terms where \(z_n = a\) back to the sequence does not affect \(f\pqty{z'_n} \to f\pqty{a}\). This indeed shows sequential continuity.
 \end{proof}
 
-Using \autoref{prop:fn-seq-cont-iff-cont} (Sequential Continuity), we may show indeed that the second example of \autoref{ex:fn-continuity} is not continuous at \(0\). Let \(\para{x_n}\) on \(\RR\) with \(x_n \to 0\), given by
+Using \autoref{prop:fn-seq-cont-iff-cont} (Sequential Continuity), we may show indeed that the second example of \autoref{ex:fn-continuity} is not continuous at \(0\). Let \(\pqty{x_n}\) on \(\RR\) with \(x_n \to 0\), given by
 \[
-    x_n = \frac{1}{\para{2n + \frac{1}{2}} \pi}
+    x_n = \frac{1}{\pqty{2n + \frac{1}{2}} \pi}
 \]
 and hence
 \[
-    f\para{x_n} = \sin\para{\para{2n + \frac{1}{2}} \pi} = 1
+    f\pqty{x_n} = \sin\pqty{\pqty{2n + \frac{1}{2}} \pi} = 1
 \]
-and in particular, \(f\para{x_n} \to 1 \neq 0\).
+and in particular, \(f\pqty{x_n} \to 1 \neq 0\).
 
 \begin{examples}[Continuity, Continued]
     \label{ex:continuity-continued}%
     \begin{itemize}
         \item Let
         \[
-            \function{f}{\RR}{\brce{0, 1}}
-            {x}{\indicator_{\QQ} \para{x} = \begin{cases}
+            \function{f}{\RR}{\Bqty{0, 1}}
+            {x}{\indicator_{\QQ} \pqty{x} = \begin{cases}
                 1, & x \in \QQ, \\
                 0, & x \in \RR \setminus \QQ.
             \end{cases}}
@@ -342,21 +342,21 @@ and in particular, \(f\para{x_n} \to 1 \neq 0\).
         This is discontinuous at every point \(a \in \RR\).
 
         \begin{itemize}
-            \item If \(a \in \QQ\), take some irrational sequence \(\para{x_n}\) on \(\RR \setminus \QQ\) with \(x_n \to a\). Then
+            \item If \(a \in \QQ\), take some irrational sequence \(\pqty{x_n}\) on \(\RR \setminus \QQ\) with \(x_n \to a\). Then
             \[
-                f\para{x_n} = 0 \to 0 \neq 1 = f\para{a}.
+                f\pqty{x_n} = 0 \to 0 \neq 1 = f\pqty{a}.
             \]
             \item If \(a \in \RR \setminus \QQ\), taking a rational sequence with the same technique tells us that it cannot be continuous there either.
         \end{itemize}
 
-        \item The function \(f\para{x} = \sin x\) for \(x \in \RR\) is continuous. Fix \(a \in \RR\), we have
+        \item The function \(f\pqty{x} = \sin x\) for \(x \in \RR\) is continuous. Fix \(a \in \RR\), we have
         \begin{align*}
-            \abs{f\para{x} - f\para{a}} &= \abs{\sin x - \sin a} \\
-            &\leq 2 \abs{\cos \para{\frac{x + a}{2}} \sin \para{\frac{x - a}{2}}} \\
-            &\leq 2 \abs{\sin \para{\frac{x - a}{2}}} \\
+            \abs{f\pqty{x} - f\pqty{a}} &= \abs{\sin x - \sin a} \\
+            &\leq 2 \abs{\cos \pqty{\frac{x + a}{2}} \sin \pqty{\frac{x - a}{2}}} \\
+            &\leq 2 \abs{\sin \pqty{\frac{x - a}{2}}} \\
             &\leq \abs{x - a},
         \end{align*}
-        for \(\frac{x - a}{2} \in \ccintv{-\frac{\pi}{2}}{\frac{\pi}{2}}\). Therefore, for any \(\epsilon > 0\), we choose \(\delta\para{\epsilon} = \min\brce{\epsilon, \frac{\pi}{2}}\), and this shows continuity. Alternatively, we may also show this using sequential limits.
+        for \(\frac{x - a}{2} \in \ccintv{-\frac{\pi}{2}}{\frac{\pi}{2}}\). Therefore, for any \(\epsilon > 0\), we choose \(\delta\pqty{\epsilon} = \min\Bqty{\epsilon, \frac{\pi}{2}}\), and this shows continuity. Alternatively, we may also show this using sequential limits.
     \end{itemize}
 \end{examples}
 
@@ -364,7 +364,7 @@ Now we show standard properties of continuity.
 
 \begin{lemma}[Continuity is Preserved in Arithmetic]
     \label{lem:fn-continuity-arithmetic}%
-    Let \(\functiondomain{f, g}{X \subseteq \CC}{\CC}\) be continuous at \(a \in X\). Then the sum \(f\para{x} + g\para{x}\), the product \(f\para{x}g\para{x}\), and the reciprocal \(\frac{1}{f\para{x}}\) (if \(f\para{a} \neq 0\)) are continuous at \(a\).
+    Let \(\functiondomain{f, g}{X \subseteq \CC}{\CC}\) be continuous at \(a \in X\). Then the sum \(f\pqty{x} + g\pqty{x}\), the product \(f\pqty{x}g\pqty{x}\), and the reciprocal \(\frac{1}{f\pqty{x}}\) (if \(f\pqty{a} \neq 0\)) are continuous at \(a\).
 \end{lemma}
 
 \begin{proof}
@@ -373,7 +373,7 @@ Now we show standard properties of continuity.
 
 \begin{lemma}[Composition of Continuous Functions is Continuous]
     \label{lem:fn-composition-continuous}%
-    Let \(U, V \subseteq \CC\), and \(\functiondomain{f}{U}{V}\), \(\functiondomain{g}{V}{\CC}\). If \(f\) is continuous at \(a \in U\), and \(g\) is continuous at \(f\para{a} \in V\), then \(\functiondomain{g \circ f}{U}{\CC}\) is continuous at \(a\).
+    Let \(U, V \subseteq \CC\), and \(\functiondomain{f}{U}{V}\), \(\functiondomain{g}{V}{\CC}\). If \(f\) is continuous at \(a \in U\), and \(g\) is continuous at \(f\pqty{a} \in V\), then \(\functiondomain{g \circ f}{U}{\CC}\) is continuous at \(a\).
 \end{lemma}
 
 \begin{figure}[ht!]
@@ -386,21 +386,21 @@ Now we show standard properties of continuity.
 \autoref{fig:fn-composition-continuous} visualises the condition required in \autoref{lem:fn-composition-continuous}.
 
 \begin{proof}
-    Since \(g\) is continuous at \(f\para{a}\), for \(\epsilon > 0\), we have some \(\sigma = \sigma\para{\epsilon} > 0\), such that
+    Since \(g\) is continuous at \(f\pqty{a}\), for \(\epsilon > 0\), we have some \(\sigma = \sigma\pqty{\epsilon} > 0\), such that
     \[
-        y \in V, \abs{y - f\para{a}} < \sigma \implies \abs{g\para{y} - g\para{f\para{a}}} < \epsilon.
+        y \in V, \abs{y - f\pqty{a}} < \sigma \implies \abs{g\pqty{y} - g\pqty{f\pqty{a}}} < \epsilon.
     \]
 
-    On the other hand, since \(f\) is continuous at \(a\), there is some \(\delta = \delta\para{\sigma}\) for \(\sigma > 0\), that
+    On the other hand, since \(f\) is continuous at \(a\), there is some \(\delta = \delta\pqty{\sigma}\) for \(\sigma > 0\), that
     \[
-        z \in U, \abs{z - a} < \delta \implies \abs{f\para{z} - f\para{a}} < \sigma.
+        z \in U, \abs{z - a} < \delta \implies \abs{f\pqty{z} - f\pqty{a}} < \sigma.
     \]
 
     Therefore,
     \begin{align*}
         \forall \epsilon > 0, \exists \delta = \delta{\epsilon}: & z \in U, \abs{z - a} < \delta \\
-        & \implies f\para{z} \in V, \abs{f\para{z} - f\para{a}} < \sigma \\
-        & \implies \abs{g\para{f\para{z}} - g\para{f\para{a}}} < \epsilon
+        & \implies f\pqty{z} \in V, \abs{f\pqty{z} - f\pqty{a}} < \sigma \\
+        & \implies \abs{g\pqty{f\pqty{z}} - g\pqty{f\pqty{a}}} < \epsilon
     \end{align*}
     as desired.
 \end{proof}
@@ -411,7 +411,7 @@ We first discuss some topology on \(\CC\).
 
 \begin{definition}[Closed Set on \(\CC\)]
     \label{def:closed-set-c}%
-    A set \(X \subseteq \CC\) is \emph{closed} if it contains all its limit/accumulation points. Equivalently, all sequences \(\para{x_n}\) in \(X\) which converge in \(\CC\) have \(\lim_{n \in \infty} x_n \in X\).
+    A set \(X \subseteq \CC\) is \emph{closed} if it contains all its limit/accumulation points. Equivalently, all sequences \(\pqty{x_n}\) in \(X\) which converge in \(\CC\) have \(\lim_{n \in \infty} x_n \in X\).
 \end{definition}
 
 \begin{examples}[Closed Set on \(\RR\)]
@@ -447,7 +447,7 @@ The main result of this section is technically \autoref{thm:continuity-compactne
 
 \begin{theorem}[Continuity Prserves Compactness]
     \label{thm:continuity-compactness}%
-    Let \(X \subseteq \CC\) be compact. If \(\functiondomain{f}{X}{\CC}\) is continuous, then \(f\para{X} \subseteq \CC\) is compact.
+    Let \(X \subseteq \CC\) be compact. If \(\functiondomain{f}{X}{\CC}\) is continuous, then \(f\pqty{X} \subseteq \CC\) is compact.
 \end{theorem}
 
 A corollary of \autoref{thm:continuity-compactness} on \(\RR\) is \autoref{thm:extreme-value} (Extreme Value Theorem).
@@ -456,85 +456,85 @@ A corollary of \autoref{thm:continuity-compactness} on \(\RR\) is \autoref{thm:e
     \label{thm:extreme-value}%
     Let \(X \subseteq \RR\) be compact. If \(\functiondomain{f}{X}{\RR}\) is continuous, then there is some \(a, b \in X\), such that
     \[
-        f\para{a} = \sup f\para{X} = \sup_{z \in X} f\para{z}
+        f\pqty{a} = \sup f\pqty{X} = \sup_{z \in X} f\pqty{z}
     \]
     and
     \[
-        f\para{b} = \inf f\para{X} = \inf_{z \in X} f\para{z}.
+        f\pqty{b} = \inf f\pqty{X} = \inf_{z \in X} f\pqty{z}.
     \]
 \end{theorem}
 
 \begin{remark}
-    The least upper bound axiom only tells us that the supremum and infimum exist for \(f\para{X}\). The point of \autoref{thm:extreme-value} (Extreme Value Theorem) is stating that these are in fact \emph{maximum} and \emph{minimum}.
+    The least upper bound axiom only tells us that the supremum and infimum exist for \(f\pqty{X}\). The point of \autoref{thm:extreme-value} (Extreme Value Theorem) is stating that these are in fact \emph{maximum} and \emph{minimum}.
 \end{remark}
 
 \begin{proof}[of \autoref{thm:extreme-value} (Extreme Value Theorem)]
     We focus on the first equality regarding the supremum, since the second proof is analogous.
 
-    First, by \autoref{thm:continuity-compactness} (Continuity Preserves Compactness), since \(X\) is compact, \(f\para{X}\) is compact, hence bounded, and therefore let
+    First, by \autoref{thm:continuity-compactness} (Continuity Preserves Compactness), since \(X\) is compact, \(f\pqty{X}\) is compact, hence bounded, and therefore let
     \[
-        M = \sup f\para{X} \in \RR.
+        M = \sup f\pqty{X} \in \RR.
     \]
 
-    By definition, \(\para{M - \frac{1}{n}}\) is not an upper bound of \(f\para{X}\) for any \(n \in \NN\). Hence, we can find a sequence \(\para{y_n}\) on \(f\para{X}\), such that
+    By definition, \(\pqty{M - \frac{1}{n}}\) is not an upper bound of \(f\pqty{X}\) for any \(n \in \NN\). Hence, we can find a sequence \(\pqty{y_n}\) on \(f\pqty{X}\), such that
     \[
         M - \frac{1}{n} < y_n \leq M.
     \]
 
-    Note that there is \(x_n \in X\) such that \(y_n = f\para{x_n}\). So we have a sequence \(\para{f\para{x_n}}\) on \(f\para{X}\), with
+    Note that there is \(x_n \in X\) such that \(y_n = f\pqty{x_n}\). So we have a sequence \(\pqty{f\pqty{x_n}}\) on \(f\pqty{X}\), with
     \[
-        M - \frac{1}{n} < f\para{x_n} \leq M.
+        M - \frac{1}{n} < f\pqty{x_n} \leq M.
     \]
 
     Now, taking limits, we have
     \[
-        M \leq \lim_{n \to \infty} f\para{x_n} \leq M,
+        M \leq \lim_{n \to \infty} f\pqty{x_n} \leq M,
     \]
-    and hence using the fact that \(f\) is continuous, using \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass Theorem) to give a subsequence of the bounded sequence \(\para{x_n}\), say \(\para{x_{n_k}} \to x\),
+    and hence using the fact that \(f\) is continuous, using \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass Theorem) to give a subsequence of the bounded sequence \(\pqty{x_n}\), say \(\pqty{x_{n_k}} \to x\),
     \[
-        M = \lim_{n \to \infty} y_n = \lim_{k \to \infty} y_{n_k} = \lim_{k \to \infty} f\para{x_{n_k}} = f\para{\lim_{k \to \infty} x_{n_k}} = f\para{x}.
+        M = \lim_{n \to \infty} y_n = \lim_{k \to \infty} y_{n_k} = \lim_{k \to \infty} f\pqty{x_{n_k}} = f\pqty{\lim_{k \to \infty} x_{n_k}} = f\pqty{x}.
     \]
 
-    Since \(f\para{X}\) is compact, it is closed, so \(x \in X\), and hence
+    Since \(f\pqty{X}\) is compact, it is closed, so \(x \in X\), and hence
     \[
-        M = f\para{x} \in f\para{X},
+        M = f\pqty{x} \in f\pqty{X},
     \]
     which finishes our proof.
 \end{proof}
 
 Now we prove \autoref{thm:continuity-compactness} (Continuity Preserves Compactness).
 
-\begin{proof}[of \autoref{thm:continuity-compactness}, that \(f\para{X}\) is Bounded]
-    Suppose on the contrary that \(f\para{X}\) is not bounded. Then for each \(n \in \NN\), we can find \(x_n \in X\), such that \(\abs{f\para{x_n}} > n\). Now, note \(\para{x_n}\) is a sequence in \(X\), and hence it is bounded since \(X\) is bounded.
+\begin{proof}[of \autoref{thm:continuity-compactness}, that \(f\pqty{X}\) is Bounded]
+    Suppose on the contrary that \(f\pqty{X}\) is not bounded. Then for each \(n \in \NN\), we can find \(x_n \in X\), such that \(\abs{f\pqty{x_n}} > n\). Now, note \(\pqty{x_n}\) is a sequence in \(X\), and hence it is bounded since \(X\) is bounded.
     
-    Applying \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass Theorem), we have a convergent subsequence \(\para{x_{n_k}}_{k \in \NN}\) and \(x \in \CC\) such that \(x_{n_k} \to x\). But since \(X\) is closed, in fact we have \(x \in X\).
+    Applying \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass Theorem), we have a convergent subsequence \(\pqty{x_{n_k}}_{k \in \NN}\) and \(x \in \CC\) such that \(x_{n_k} \to x\). But since \(X\) is closed, in fact we have \(x \in X\).
     
     On the other hand, we have
     \[
-        \abs{f\para{x_{n_k}}} > n_k \geq k
+        \abs{f\pqty{x_{n_k}}} > n_k \geq k
     \]
-    so the sequence \(f\para{x_{n_k}}\) cannot converge as \(k \to \infty\), since it is not bounded. This means \(f\) cannot be continuous, giving a contradiction.
+    so the sequence \(f\pqty{x_{n_k}}\) cannot converge as \(k \to \infty\), since it is not bounded. This means \(f\) cannot be continuous, giving a contradiction.
 \end{proof}
 
-\begin{proof}[of \autoref{thm:continuity-compactness}, that \(f\para{X}\) is Closed]
-    Take a sequence \(\para{y_n}\) in \(f\para{X}\) and suppose it converges to some \(y \in \CC\). We want to show that \(y \in f\para{X}\).
+\begin{proof}[of \autoref{thm:continuity-compactness}, that \(f\pqty{X}\) is Closed]
+    Take a sequence \(\pqty{y_n}\) in \(f\pqty{X}\) and suppose it converges to some \(y \in \CC\). We want to show that \(y \in f\pqty{X}\).
 
-    Since \(y_n \in f\para{X}\), we have some \(x_n \in X\), such that \(f\para{x_n} = y_n\). The sequence \(\para{x_n}\) is on \(X\), and hence is bounded.
+    Since \(y_n \in f\pqty{X}\), we have some \(x_n \in X\), such that \(f\pqty{x_n} = y_n\). The sequence \(\pqty{x_n}\) is on \(X\), and hence is bounded.
     
-    By \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass Theorem), we have a convergent subsequence \(\para{x_{n_k}}_{k \in \NN}\) that converges to some \(x\), and we have \(x \in X\) since \(X\) is closed.
+    By \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass Theorem), we have a convergent subsequence \(\pqty{x_{n_k}}_{k \in \NN}\) that converges to some \(x\), and we have \(x \in X\) since \(X\) is closed.
 
     Therefore, by continuity, we have
     \[
-        y = \lim_{n \to \infty} y_n = \lim_{k \to \infty} y_{n_k} = \lim_{k \to \infty} f\para{x_{n_k}} = f\para{\lim_{k \to \infty} x_{n_k}} = f\para{x},
+        y = \lim_{n \to \infty} y_n = \lim_{k \to \infty} y_{n_k} = \lim_{k \to \infty} f\pqty{x_{n_k}} = f\pqty{\lim_{k \to \infty} x_{n_k}} = f\pqty{x},
     \]
-    so \(y = f\para{x} \in f\para{X}\).
+    so \(y = f\pqty{x} \in f\pqty{X}\).
 \end{proof}
 
 \subsection{Intermediate Value Theorem}
 
 \begin{theorem}[Intermediate Value Theorem]
     \label{thm:intermediate-value}%
-    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be continuous. Then for any \(y\) between \(f\para{a}\) and \(f\para{b}\), there is some \(c \in \ccintv{a}{b}\), such that \(f\para{c} = y\).
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be continuous. Then for any \(y\) between \(f\pqty{a}\) and \(f\pqty{b}\), there is some \(c \in \ccintv{a}{b}\), such that \(f\pqty{c} = y\).
 \end{theorem}
 
 \begin{figure}[ht!]
@@ -545,7 +545,7 @@ Now we prove \autoref{thm:continuity-compactness} (Continuity Preserves Compactn
         \begin{axis}[
             axis lines = middle,
             xlabel = {\(x\)},
-            ylabel = {\(f\para{x}\)},
+            ylabel = {\(f\pqty{x}\)},
             xmin = 0, xmax = 8,
             ymin = 0, ymax = 14,
             samples = 100,
@@ -568,9 +568,9 @@ Now we prove \autoref{thm:continuity-compactness} (Continuity Preserves Compactn
             \addplot[only marks, mark=*, mark size=1pt]
                 coordinates {(\xa, \ya) (\xb, \yb) (\xc, \yc)};
 
-            \node[above left] at (axis cs:\xa, \ya) {\(\para{a, f\para{a}}\)};
-            \node[below right] at (axis cs:\xb, \yb) {\(\para{b, f\para{b}}\)};
-            \node[below left] at (axis cs:\xc, \yc) {\(\para{c, y}\)};
+            \node[above left] at (axis cs:\xa, \ya) {\(\pqty{a, f\pqty{a}}\)};
+            \node[below right] at (axis cs:\xb, \yb) {\(\pqty{b, f\pqty{b}}\)};
+            \node[below left] at (axis cs:\xc, \yc) {\(\pqty{c, y}\)};
 
             \addplot[dotted] coordinates {(0, \yc) (\xc, \yc) (\xc, 0)};
         \end{axis}
@@ -582,15 +582,15 @@ Now we prove \autoref{thm:continuity-compactness} (Continuity Preserves Compactn
 
 \begin{corollary}[Continuous Functions maps Closed Intervals to Closed Intervals]
     \label{cor:continuous-closed-intv}%
-    If \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) is continuous, then its image \(\img f = f\para{\ccintv{a}{b}}\) is a closed interval.
+    If \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) is continuous, then its image \(\img f = f\pqty{\ccintv{a}{b}}\) is a closed interval.
 \end{corollary}
 
 \begin{proof}
-    From \autoref{thm:extreme-value} (Extreme Value Theorem) we know that \(\min_{x \in \ccintv{a}{b}} f\para{x}\) and \(\max_{x \in \ccintv{a}{b}} f\para{x}\) exist. Let \(f\para{c} = \min_{x \in \ccintv{a}{b}} f\para{x}\) and \(f\para{d} = \max_{x \in \ccintv{a}{b}} f\para{x}\) for some \(c, d \in \ccintv{a}{b}\).
+    From \autoref{thm:extreme-value} (Extreme Value Theorem) we know that \(\min_{x \in \ccintv{a}{b}} f\pqty{x}\) and \(\max_{x \in \ccintv{a}{b}} f\pqty{x}\) exist. Let \(f\pqty{c} = \min_{x \in \ccintv{a}{b}} f\pqty{x}\) and \(f\pqty{d} = \max_{x \in \ccintv{a}{b}} f\pqty{x}\) for some \(c, d \in \ccintv{a}{b}\).
 
     Applying \autoref{thm:intermediate-value} (Intermediate Value Theorem) shows that we indeed get all values between the minimum and the maximum, showing the image is indeed the closed interval
     \[
-        \ccintv{\min_{x \in \ccintv{a}{b}} f\para{x}}{\max_{x \in \ccintv{a}{b}} f\para{x}}.
+        \ccintv{\min_{x \in \ccintv{a}{b}} f\pqty{x}}{\max_{x \in \ccintv{a}{b}} f\pqty{x}}.
     \]
 \end{proof}
 
@@ -599,11 +599,11 @@ Now we prove \autoref{thm:continuity-compactness} (Continuity Preserves Compactn
 \end{remark}
 
 \begin{proof}[of \autoref{thm:intermediate-value} (Intermediate Value Theorem)]
-    If \(f \para{a} = f\para{b}\), then this is trivially true. Furthermore, if \(y = f\para{a}\) or \(y = f\para{b}\) then this is trivially true.
+    If \(f \pqty{a} = f\pqty{b}\), then this is trivially true. Furthermore, if \(y = f\pqty{a}\) or \(y = f\pqty{b}\) then this is trivially true.
 
-    Now, we let \(f\para{a} < y < f\para{b}\). Set
+    Now, we let \(f\pqty{a} < y < f\pqty{b}\). Set
     \[
-        S = \set{x \in \ccintv{a}{b}}{f\para{x} \leq y}.
+        S = \set{x \in \ccintv{a}{b}}{f\pqty{x} \leq y}.
     \]
 
     Then \(a \in S\), so \(S\) is non-empty, and \(S\) is bounded above, so let
@@ -611,37 +611,37 @@ Now we prove \autoref{thm:continuity-compactness} (Continuity Preserves Compactn
         c = \sup S \in \ccintv{a}{b}.
     \]
 
-    We claim that \(f\para{c} = y\).
+    We claim that \(f\pqty{c} = y\).
 
-    We first show that \(f\para{c} \leq y\). Suppose not, then \(f\para{c} > y\), so in particular, \(c > a\). Let \(\epsilon = f\para{c} - y > 0\). By the continuity of \(f\), we have some \(\delta > 0\), such that
+    We first show that \(f\pqty{c} \leq y\). Suppose not, then \(f\pqty{c} > y\), so in particular, \(c > a\). Let \(\epsilon = f\pqty{c} - y > 0\). By the continuity of \(f\), we have some \(\delta > 0\), such that
     \[
-        \abs{x - c} < \delta, x \in \ccintv{a}{b} \implies \abs{f\para{x} - f\para{c}} < \epsilon.
+        \abs{x - c} < \delta, x \in \ccintv{a}{b} \implies \abs{f\pqty{x} - f\pqty{c}} < \epsilon.
     \]
 
     Therefore, we have
     \[
-         \abs{x - c} < \delta, x \in \ccintv{a}{b} \implies \abs{f\para{x} - f\para{c}} < \epsilon \implies f\para{x} > f\para{c} - \epsilon = y \implies x \notin S.
+         \abs{x - c} < \delta, x \in \ccintv{a}{b} \implies \abs{f\pqty{x} - f\pqty{c}} < \epsilon \implies f\pqty{x} > f\pqty{c} - \epsilon = y \implies x \notin S.
     \]
 
     Let \(I = \oointv{c - \delta}{c} \cap \ccintv{a}{b}\). \(I\) is non-empty since \(c > a\).
 
     Consider \(I \cap S\). This intersection is non-empty since \(c > a\) and \(a \in S\), by the definition of a supremum. However, from above, \(x \in I \implies x \notin S\), so \(I \cap S\) is empty. This gives a contradiction.
 
-    Next, we show \(f\para{c} \geq y\). Suppose not, then \(f\para{c} < y\), so in particular, \(c < b\). Let \(\epsilon = y - f\para{c} > 0\). By continuity of \(f\), we have \(\delta > 0\) such that
+    Next, we show \(f\pqty{c} \geq y\). Suppose not, then \(f\pqty{c} < y\), so in particular, \(c < b\). Let \(\epsilon = y - f\pqty{c} > 0\). By continuity of \(f\), we have \(\delta > 0\) such that
     \[
-        \abs{x - c} < \delta, x \in \ccintv{a}{b} \implies \abs{f\para{x} - f\para{c}} < \epsilon.
+        \abs{x - c} < \delta, x \in \ccintv{a}{b} \implies \abs{f\pqty{x} - f\pqty{c}} < \epsilon.
     \]
 
     Therefore, we have
     \[
-        \abs{x - c} < \delta, x \in \ccintv{a}{b} \implies \abs{f\para{x} - f\para{c}} < \epsilon \implies f\para{x} < f\para{c} + \epsilon = y \implies x \in S.
+        \abs{x - c} < \delta, x \in \ccintv{a}{b} \implies \abs{f\pqty{x} - f\pqty{c}} < \epsilon \implies f\pqty{x} < f\pqty{c} + \epsilon = y \implies x \in S.
     \]
     
     Let \(I = \oointv{c}{c + \delta} \cap \ccintv{a}{b}\). This intersection is non-empty since \(c < b\).
     
     Consider \(I \cap S\). This intersection is empty by the definition of a supremum. However, from above, \(x \in I \implies x \in S\), so \(I \cap S\) is non-empty. This gives a contradiction.
 
-    Therefore, \(f\para{c} = y\), finishing the proof.
+    Therefore, \(f\pqty{c} = y\), finishing the proof.
 \end{proof}
 
 \begin{example}[Existence of \(N\)-th Roots]
@@ -652,26 +652,26 @@ Now we prove \autoref{thm:continuity-compactness} (Continuity Preserves Compactn
     \]
     for some \(N \in \NN\). This is a continuous function, and we have
     \[
-        0 = f\para{0} < t < \para{1 + t}^N = f\para{1 + t}.
+        0 = f\pqty{0} < t < \pqty{1 + t}^N = f\pqty{1 + t}.
     \]
 
-    By \autoref{thm:intermediate-value}, there is some \(c \in \ccintv{0}{1 + t}\) such that \(f\para{c} = t\), and for this value of \(c\), we have \(c^N = t\). Hence, \(c\) is \emph{an} \(N\)-th positive root of \(t\).
+    By \autoref{thm:intermediate-value}, there is some \(c \in \ccintv{0}{1 + t}\) such that \(f\pqty{c} = t\), and for this value of \(c\), we have \(c^N = t\). Hence, \(c\) is \emph{an} \(N\)-th positive root of \(t\).
 \end{example}
 
 \begin{definition}[Monotone Function]
     \label{def:monotone-function}%
     A function \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) is \emph{monotone}, if it is either
     \begin{itemize}
-        \item \emph{increasing}, if for all \(a \leq x_1 \leq x_2 \leq b\), we have \(f\para{x_1} \leq f\para{x_2}\); or
-        \item \emph{decreasing}, if for all \(a \leq x_1 \leq x_2 \leq b\), we have \(f\para{x_1} \geq f\para{x_2}\).
+        \item \emph{increasing}, if for all \(a \leq x_1 \leq x_2 \leq b\), we have \(f\pqty{x_1} \leq f\pqty{x_2}\); or
+        \item \emph{decreasing}, if for all \(a \leq x_1 \leq x_2 \leq b\), we have \(f\pqty{x_1} \geq f\pqty{x_2}\).
     \end{itemize}
 
-    We say the function is \emph{strictly increasing/decreasing} for the condition modified to \(f\para{x_1} < f\para{x_2}\) or \(f\para{x_1} > f\para{x_2}\).
+    We say the function is \emph{strictly increasing/decreasing} for the condition modified to \(f\pqty{x_1} < f\pqty{x_2}\) or \(f\pqty{x_1} > f\pqty{x_2}\).
 \end{definition}
 
 \begin{theorem}[Inverse Function Theorem for Monotone Functions]
     \label{thm:inverse-fn-thm-monotone}
-    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be continuous and strictly monotone. We set \(c = \min\brce{f\para{a}, f\para{b}}\) and \(d = \max\brce{f\para{a}, f\para{b}}\). Then the restriction of the co-domain
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be continuous and strictly monotone. We set \(c = \min\Bqty{f\pqty{a}, f\pqty{b}}\) and \(d = \max\Bqty{f\pqty{a}, f\pqty{b}}\). Then the restriction of the co-domain
     \[
         \functiondomain{f}{\ccintv{a}{b}}{\ccintv{c}{d}}
     \]
@@ -681,9 +681,9 @@ Now we prove \autoref{thm:continuity-compactness} (Continuity Preserves Compactn
 \begin{proof}
     Strict monotonicity tells us that the maximum and minimum must be obtained at endpoints, therefore the restriction of the co-domain is well-defined. We start by showing that \(f\), when its co-domain is restricted, is bijective. \autoref{cor:continuous-closed-intv} shows that \(f\) is surjective, and strict monotonicity guarantees injectivity.
 
-    Without loss of generality, let \(f\) be strictly increasing. Let \(\functiondomain{f\inverse}{\ccintv{c}{d}}{\ccintv{a}{b}}\). Suppose, on the contrary, that \(f\inverse\) is not strictly increasing. Then there is some \(c \leq y_1 < y_2 \leq d\) with \(f\inverse\para{y_1} \geq f\inverse\para{y_2}\). This means \(a \leq f\inverse\para{y_2} \leq f\inverse\para{y_1} \leq b\). Applying \(f\), and using that \(f\) is strictly increasing, we see
+    Without loss of generality, let \(f\) be strictly increasing. Let \(\functiondomain{f\inverse}{\ccintv{c}{d}}{\ccintv{a}{b}}\). Suppose, on the contrary, that \(f\inverse\) is not strictly increasing. Then there is some \(c \leq y_1 < y_2 \leq d\) with \(f\inverse\pqty{y_1} \geq f\inverse\pqty{y_2}\). This means \(a \leq f\inverse\pqty{y_2} \leq f\inverse\pqty{y_1} \leq b\). Applying \(f\), and using that \(f\) is strictly increasing, we see
     \[
-        f \circ f\inverse\para{y_2} \leq f \circ f\inverse\para{y_1}
+        f \circ f\inverse\pqty{y_2} \leq f \circ f\inverse\pqty{y_1}
     \]
     so
     \[
@@ -691,29 +691,29 @@ Now we prove \autoref{thm:continuity-compactness} (Continuity Preserves Compactn
     \]
     giving a contradiction with \(y_1 < y_2\). This shows that \(f\inverse\) is indeed strictly increasing.
 
-    We need to check continuity of the \(f\inverse\). Fix \(y_0 \in \ccintv{c}{d}\) and that \(x_0 = f\inverse\para{y_0}\). We consider the three cases on where \(x_0\) and \(y_0\) is (in particular, when they are some endpoint of the interval).
+    We need to check continuity of the \(f\inverse\). Fix \(y_0 \in \ccintv{c}{d}\) and that \(x_0 = f\inverse\pqty{y_0}\). We consider the three cases on where \(x_0\) and \(y_0\) is (in particular, when they are some endpoint of the interval).
 
     \begin{itemize}
         \item \(x_0 \in \oointv{a}{b}\). Let \(\epsilon > 0\) be arbitrary. Let \(\eta \in \ocintv{0}{\epsilon}\) be sufficiently small that \(\ccintv{x_0 - \eta}{x_0 + \eta} \in \ccintv{a}{b}\). Since \(f\) is strictly increasing, we have
         \[
-            f\para{x_0 - \eta} < f\para{x_0} = y_0 < f\para{x_0 + \eta}.
+            f\pqty{x_0 - \eta} < f\pqty{x_0} = y_0 < f\pqty{x_0 + \eta}.
         \]
 
-        We take \(\delta = \min\brce{f\para{x_0 + \eta} - y_0, y_0 - f\para{x_0 - \eta}} > 0\). We have
+        We take \(\delta = \min\Bqty{f\pqty{x_0 + \eta} - y_0, y_0 - f\pqty{x_0 - \eta}} > 0\). We have
         \begin{align*}
-            \abs{y - y_0} < \delta, y \in \ccintv{c}{d} &\implies f\para{x_0 - \eta} \leq y_0 - \delta < y < y_0 + \delta \leq f\para{x_0 + \eta} \\
-            &\implies f\para{x_0 - \eta} < y < f\para{x_0 + \eta} \\
-            &\implies x_0 - \eta < f\inverse\para{y} = x_0 < x+0 + \eta \\
-            &\implies \abs{f\inverse\para{y} - x_0} < \eta \\
-            &\implies \abs{f\inverse\para{y} - f\inverse\para{y_0}} < \epsilon
+            \abs{y - y_0} < \delta, y \in \ccintv{c}{d} &\implies f\pqty{x_0 - \eta} \leq y_0 - \delta < y < y_0 + \delta \leq f\pqty{x_0 + \eta} \\
+            &\implies f\pqty{x_0 - \eta} < y < f\pqty{x_0 + \eta} \\
+            &\implies x_0 - \eta < f\inverse\pqty{y} = x_0 < x+0 + \eta \\
+            &\implies \abs{f\inverse\pqty{y} - x_0} < \eta \\
+            &\implies \abs{f\inverse\pqty{y} - f\inverse\pqty{y_0}} < \epsilon
         \end{align*}
         as desired.
 
-        \item \(x_0 = a\), and we have \(y_0 = f\para{a}\). Fix \(\epsilon > 0\), and we choose \(\eta = \min\brce{\epsilon, b - a}\), and set \(\delta = f\para{a + \eta} - f\para{a} > 0\). We have
+        \item \(x_0 = a\), and we have \(y_0 = f\pqty{a}\). Fix \(\epsilon > 0\), and we choose \(\eta = \min\Bqty{\epsilon, b - a}\), and set \(\delta = f\pqty{a + \eta} - f\pqty{a} > 0\). We have
         \begin{align*}
-            \abs{y - y_0} < \delta, y \in \ccintv{c}{d} &\implies f\para{a} \leq y \leq f\para{a + \eta} \\
-            &\implies a \leq f\inverse\para{y} \leq a + \eta \\
-            &\implies \abs{f\inverse\para{y} - f\inverse\para{y_0}} < \eta \leq \epsilon.
+            \abs{y - y_0} < \delta, y \in \ccintv{c}{d} &\implies f\pqty{a} \leq y \leq f\pqty{a + \eta} \\
+            &\implies a \leq f\inverse\pqty{y} \leq a + \eta \\
+            &\implies \abs{f\inverse\pqty{y} - f\inverse\pqty{y_0}} < \eta \leq \epsilon.
         \end{align*}
 
         \item The case where \(x_0 = b\) is similar.
