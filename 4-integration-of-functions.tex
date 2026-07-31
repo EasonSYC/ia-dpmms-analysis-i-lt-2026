@@ -491,7 +491,7 @@ This is a very strong result. It not only guarantees integrability, but also tel
 
 Now we prove \autoref{prop:piecewise-continuous-integrable} (Piecewise Continuous Functions are Integrable).
 
-\begin{proof}[of \autoref{prop:piecewise-continuous-integrable} (Piecewise Continuous Functions are Integrable)]
+\begin{proof}[\proofname\ of \autoref{prop:piecewise-continuous-integrable} (Piecewise Continuous Functions are Integrable)]
     By \autoref{lem:individual-points-retains-integrable}, we have that the restrictions \(\rightbar{f}_{\ccintv{x_{j - 1}}{x_j}}\) is integrable, and
     \[
         \int_{x_{j - 1}}^{x_j} f\pqty{x} \dd{x} = \int_{x_{j - 1}}^{x_j} \overline{f_j} \pqty{x} \dd{x}.
@@ -649,7 +649,7 @@ Now we prove \autoref{prop:piecewise-continuous-integrable} (Piecewise Continuou
     \textit{[The countably infinite case is non-examinable.]}
 \end{proposition}
 
-\begin{proof}[of Finite Case]
+\begin{proof}[\proofname\ of Finite Case]
     Without loss of generality, let the set of discontinuities be \(D = \Bqty{d_1 < \cdots < d_k}\). We consider the restrictions
     \[
         \rightbar{f}_{\ccintv{a}{d_1}}, \rightbar{f}_{\ccintv{d_1}{d_2}}, \ldots, \rightbar{f}_{\ccintv{d_{k - 1}}{d_k}}, \rightbar{f}_{\ccintv{d_k}{b}}.
@@ -1267,7 +1267,7 @@ There is a more general version of this theorem, just like how Cauchy's Mean Val
 
 We prove the two forms of the Lagrange remainder, but with slightly stronger conditions.
 
-\begin{proof}[of \autoref{thm:taylor-thm-langrange-remainder} (Lagrange Form of the Remainder), assuming continuity of \(f^{\pqty{n}}\)]
+\begin{proof}[\proofname\ of \autoref{thm:taylor-thm-langrange-remainder} (Lagrange Form of the Remainder), assuming continuity of \(f^{\pqty{n}}\)]
     Let \(g\pqty{t} = \pqty{1 - t}^{n - 1}\). Then using \autoref{thm:taylor-thm-integral-remainder} (Integral Form of the Remainder) and \autoref{thm:cauchy-mvt-integrals} (Cauchy Mean Value Theorem for Integrals), there is some \(\theta \in \oointv{0}{1}\), such that
     \begin{align*}
         R_{n, f, a} \pqty{h} &= \frac{h^n}{\pqty{h - 1}!} f^{\pqty{n}} \pqty{a + \theta h} \int_{0}^{1} \pqty{1 - t}^n \dd{t} \\
@@ -1275,7 +1275,7 @@ We prove the two forms of the Lagrange remainder, but with slightly stronger con
     \end{align*}
 \end{proof}
 
-\begin{proof}[of \autoref{thm:taylor-thm-cauchy-remainder} (Cauchy Form of the Remainder), assuming continuity of \(f^{\pqty{n}}\)]
+\begin{proof}[\proofname\ of \autoref{thm:taylor-thm-cauchy-remainder} (Cauchy Form of the Remainder), assuming continuity of \(f^{\pqty{n}}\)]
     Let \(g\pqty{t} = 1\) be constant. Then using \autoref{thm:taylor-thm-integral-remainder} (Integral Form of the Remainder) and \autoref{thm:mvt-integrals} (Mean Value Theorem for Integrals), there is some \(\theta \in \oointv{0}{1}\), such that
     \begin{align*}
         R_{n, f, a} \pqty{h} &= \frac{h^n}{\pqty{h - 1}!} \pqty{1 - \theta}^{h} f^{\pqty{n}} \pqty{a + \theta h} \int_{0}^{1} \dd{t} \\
@@ -1283,7 +1283,7 @@ We prove the two forms of the Lagrange remainder, but with slightly stronger con
     \end{align*}
 \end{proof}
 
-\begin{proof}[of \autoref{thm:taylor-thm-schlomilch-remainder} (Schl\"{o}milch Form of the Remainder), asusming continuitiy of \(f^{\pqty{n}}\)]
+\begin{proof}[\proofname\ of \autoref{thm:taylor-thm-schlomilch-remainder} (Schl\"{o}milch Form of the Remainder), asusming continuitiy of \(f^{\pqty{n}}\)]
     Let \(g\pqty{t} = \pqty{1 - t}^{p - 1}\). Then using \autoref{thm:taylor-thm-integral-remainder} (Integral Form of the Remainder), and \autoref{thm:cauchy-mvt-integrals} (Cauchy Mean Value Theorem for Integrals), there is some \(\theta \in \oointv{0}{1}\), such that
     \begin{align*}
         R_{n, f, a} \pqty{h} &= \frac{h^n}{\pqty{n - 1}!} \cdot \int_{0}^{1} \pqty{1 - t}^{n - 1} f^{\pqty{n}} \pqty{a + th} \dd{t} \\
@@ -1693,7 +1693,7 @@ Similar to when we did series, there is a notion of `absolute convergence' for i
     \]
 \end{proposition}
 
-\begin{proof}[using \autoref{prop:int-test-comparison} (Comparison Test)]
+\begin{proof}[\proofname\ using \autoref{prop:int-test-comparison} (Comparison Test)]
     We note that we have
     \[
         0 \leq f\pqty{x} + \abs{f\pqty{x}} \leq 2 \abs{f\pqty{x}},
@@ -1701,7 +1701,7 @@ Similar to when we did series, there is a notion of `absolute convergence' for i
     so the result follow from \autoref{prop:int-test-comparison} (Comparison Test for Improper Integrals).
 \end{proof}
 
-\begin{proof}[using \autoref{prop:int-cauchy} (Cauchy is equivalent to Convergence)]
+\begin{proof}[\proofname\ using \autoref{prop:int-cauchy} (Cauchy is equivalent to Convergence)]
     Let
     \[
         F\pqty{x} = \int_{a}^{x} f\pqty{t} \dd{t}, \quad G\pqty{x} = \int_{a}^{x} \abs{f\pqty{t}} \dd{t}.
@@ -1740,7 +1740,7 @@ The final test is the Dirichlet test, which investigates the integral of the pro
 
 Similar to the proofs of \autoref{prop:ser-test-dirichlet} (Dirichlet Test for Infinite Series) using \autoref{lem:ser-summation-by-parts} (Summation by Parts), we use \autoref{prop:integration-by-parts} (Integration by Parts).
 
-\begin{proof}[using \autoref{prop:int-absolute-convergence} (Absolute Convergence)]
+\begin{proof}[\proofname\ using \autoref{prop:int-absolute-convergence} (Absolute Convergence)]
     We let
     \[
         F\pqty{x} = \int_{a}^{x} f\pqty{t} \dd{t}, \quad H\pqty{x} = \int_{a}^{x} f\pqty{t} g\pqty{t} \dd{t}.
@@ -1768,7 +1768,7 @@ Similar to the proofs of \autoref{prop:ser-test-dirichlet} (Dirichlet Test for I
     Hence, as \(x \to \infty\), \(F\pqty{x}\) is bounded while \(g\pqty{x} \to 0\), so \(F\pqty{x} g\pqty{x} \to 0\), and the final improper integral converges. So \(H\) converges, as desired.
 \end{proof}
 
-\begin{proof}[using \autoref{prop:int-cauchy} (Cauchy)]
+\begin{proof}[\proofname\ using \autoref{prop:int-cauchy} (Cauchy)]
     We define the indefinite integrals similarly as above, and using integration by parts (identically), we have
     \begin{align*}
         H\pqty{x} &= \int_{m}^{n} F'\pqty{t} g\pqty{t} \dd{t} \\

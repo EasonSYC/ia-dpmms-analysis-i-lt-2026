@@ -123,7 +123,7 @@ There are two definitions of divergence to infinity, one allows the behaviour to
     In the first part for \emph{limits preserve weak order}, note that \emph{limits does not preserve strong order}, i.e. we \emph{cannot} replace all \(\leq\)s with \(<\)s. Even if \(x_n < y\) for all \(n \in \NN\), we can only conclude \(x_n \to x \leq y\) if it converges.
 \end{remark}
 
-\begin{proof}[of \autoref{prop:seq-sandwich-theorem}]
+\begin{proof}[\proofname\ of \autoref{prop:seq-sandwich-theorem}]
     \begin{itemize}
         \item Suppose for contradiction that \(y < x\), and let \(\epsilon = x - y > 0\). Now, there must be some \(N \in \NN\), such that for all \(n \geq N\),
         \[
@@ -146,7 +146,7 @@ There are two definitions of divergence to infinity, one allows the behaviour to
 
 Having proved this, this allows us to show that the sequences have a unique limit in another way.
 
-\begin{proof}[to \autoref{lem:seq-limit-unique}, using \autoref{prop:seq-sandwich-theorem} (Sandwich Theorem)]
+\begin{proof}[\proofname\ to \autoref{lem:seq-limit-unique}, using \autoref{prop:seq-sandwich-theorem} (Sandwich Theorem)]
     Using the triangular inequality, we have
     \[
         0 \leq \abs{a - b} \leq \abs{a - x_n} + \abs{b - x_n}.
@@ -250,7 +250,7 @@ Having proved this, this allows us to show that the sequences have a unique limi
     Let \(x_n \to x\) and \(y_n \to y\). Then \(x_n + y_n \to x + y\) and \(x_n y_n \to xy\). Furthermore, if \(x \neq 0\), then \(\frac{1}{x_n} \to \frac{1}{x}\).
 \end{lemma}
 
-\begin{proof}[for the Sum]
+\begin{proof}[\proofname\ for the Sum]
     We note that if \(x_n \to x\) and \(y_n \to y\), let the \(N \in \NN\) for \(\epsilon > 0\) be \(N_1\pqty{\epsilon}\) and \(N_2\pqty{\epsilon}\). Therefore, for all \(n \geq \max\Bqty{N_1, N_2}\),
     \[
         \abs{\pqty{x_n + y_n} - \pqty{x + y}} = \abs{x_n - x} + \abs{y_n - y} < \epsilon
@@ -258,7 +258,7 @@ Having proved this, this allows us to show that the sequences have a unique limi
     and this finishes the proof for the sum.
 \end{proof}
 
-\begin{proof}[for the Product]
+\begin{proof}[\proofname\ for the Product]
     Notice that
     \begin{align*}
         \abs{x_n y_n - xy} &= \abs{x_n y_n - x y_n + x y_n - xy} \\
@@ -279,7 +279,7 @@ Having proved this, this allows us to show that the sequences have a unique limi
     Hence, by \autoref{lem:seq-convergence-bounded}, we may replace \(\abs{y_n}\) with some bound on it, and so we are done.
 \end{proof}
 
-\begin{proof}[for the Reciprocal]
+\begin{proof}[\proofname\ for the Reciprocal]
     Take \(\epsilon = \frac{1}{2} \abs{x}\), then let \(N \in \NN\) such that for all \(n \geq N\), we have
     \[
         \abs{x_n - x} < \epsilon = \frac{1}{2} \abs{x},
@@ -408,7 +408,7 @@ To prove this result, we first give the following lemmas which are useful.
 
 Now, we prove \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass). We find an algorithm that works for \emph{any} sequence that extracts a convergent subsequence.
 
-\begin{proof}[of \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass), using Nested Interval Theorem]
+\begin{proof}[\proofname\ of \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass), using Nested Interval Theorem]
     We are given \(\pqty{x_n}\) and its bound, say \(M > 0\), such that \(\abs{x_n} \leq M\) for all \(n \in \NN\). We want to construct a sequence of nested intervals, from which we can sample our subsequence, since that would ensure our subsequence would converge, to the unique intersection point of the nested intervals.
 
     Let \(a_1 = -M, b_1 = +M\), so \(I_1 = \ccintv{-M}{M} \supseteq \set{x_n}{n \in \NN}\).
@@ -434,7 +434,7 @@ Now, we prove \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass). We find 
     and the result then follows (maybe by taking a limit \(k \to \infty\)). However, this does depend on certain topological properties on the sets \(I_n\), and note that an infinite intersection is not about taking some limit, so the proof using \autoref{prop:seq-sandwich-theorem} (Sandwich Theorem) is included.
 \end{remark}
 
-\begin{proof}[of \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass), using \autoref{thm:monotone-convergence} (Monotone Convergence Theorem)]
+\begin{proof}[\proofname\ of \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass), using \autoref{thm:monotone-convergence} (Monotone Convergence Theorem)]
     We first consider the set of indices
     \[
         P = \set{n \in \NN}{\forall m \geq n: x_m \geq x_n}.
@@ -606,7 +606,7 @@ Is the converse necessarily true? Note the above example on \(\sqrt{2}\) gives a
     This allows for a proof of convergence of sequences in \(\RR\) or \(\CC\), without having to guess what the limit is.
 \end{remark}
 
-\begin{proof}[of \autoref{thm:completeness-of-r-and-c} (Cauchy Sequences are Convergent on \(\RR\) or \(\CC\))]
+\begin{proof}[\proofname\ of \autoref{thm:completeness-of-r-and-c} (Cauchy Sequences are Convergent on \(\RR\) or \(\CC\))]
     It is sufficient to show that this is true for real sequences, by \autoref{lem:seq-convergence-in-c} and \autoref{lem:seq-cauchy-complex-real}. (The proof itself, however, does not rely on the sequence being real.)
 
     We have seen that \(\pqty{x_n}\) is Cauchy implies \(\pqty{x_n}\) is bounded, from \autoref{lem:seq-cauchy-sequences-are-bounded}.
@@ -783,7 +783,7 @@ As usual, only the tail behaviour of the series matters.
     Clearly, \(\pqty{s_k}\) must not be Cauchy. So it cannot be convergent.
 \end{example}
 
-\begin{proof}[of \autoref{prop:ser-test-nth-term}]
+\begin{proof}[\proofname\ of \autoref{prop:ser-test-nth-term}]
     Note that \(\sum_{n = 1}^{\infty} a_n\) converges if and only if the partial sums
     \[
         s_k = \sum_{n = 1}^{k} \to s
@@ -858,7 +858,7 @@ The next two tests are about `asymptotic comparison' to a very important series 
     If \(a = 1\), then the test is inconclusive.
 \end{remark}
 
-\begin{proof}[to \autoref{prop:ser-test-root}]
+\begin{proof}[\proofname\ to \autoref{prop:ser-test-root}]
     If \(a > 1\), then by the definition of the limit, we have some \(N \in \NN\), such that
     \[
         \forall n \geq N: a_n^{\frac{1}{n}} > 1.
@@ -944,7 +944,7 @@ The next two tests are about `asymptotic comparison' to a very important series 
     \]
 \end{remark}
 
-\begin{proof}[of \autoref{prop:ser-test-ratio} (Ratio Test)]
+\begin{proof}[\proofname\ of \autoref{prop:ser-test-ratio} (Ratio Test)]
     If \(a < 1\), then let \(r \in \RR\) be such that \(a < r < 1\). By the definition of a limit, there is some \(N \in \NN\), we have for all \(b \geq N\),
     \[
         \frac{a_{n + 1}}{a_n} < r.
@@ -1095,7 +1095,7 @@ Another useful result is the following, but the proof is non-examinable.
     converges.
 \end{proposition}
 
-\begin{proof}[using \autoref{prop:ser-test-integral} (Integral Test) (Non-Examinable)]
+\begin{proof}[\proofname\ using \autoref{prop:ser-test-integral} (Integral Test) (Non-Examinable)]
     Let \(a_n = f\pqty{n}\), and since \(a_n\) is positive and decreasing, we may choose \(f\) to be positive, decreasing and continuous. Note that
     \[
         \int_{1}^{2^x} f\pqty{t} \dd{t} = \log 2 \int_{0}^{x} 2^u f\pqty{2^u} \dd{u},
@@ -1131,7 +1131,7 @@ Another useful result is the following, but the proof is non-examinable.
     which means the sequence of the integrals and the series enforces bounds on  each other, giving equivalent convergence properties, and hence finishing our proof.
 \end{proof}
 
-\begin{proof}[considering Partial Sums (Non-Examinable)]
+\begin{proof}[\proofname\ considering Partial Sums (Non-Examinable)]
     Let the partial sums be
         \[
             A_m = \sum_{n = 1}^{m} a_n \qand B_k = \sum_{t = 0}^{k} 2^t \cdot a_{2^t}.
@@ -1192,7 +1192,7 @@ Next, we look at sequences with infinitely many terms that are negative.
     converges (to \(\log 2\)), while the harmonic series \(\sum_{n = 1}^{\infty} \frac{1}{n}\) diverges.
 \end{example}
 
-\begin{proof}[of \autoref{prop:ser-test-alternating} (Alternating Series Test)]
+\begin{proof}[\proofname\ of \autoref{prop:ser-test-alternating} (Alternating Series Test)]
     We look at the sequence of partial sums
     \[
         s_k = \sum_{n = 1}^{k} \pqty{-1}^{n + 1} a_n.
@@ -1278,7 +1278,7 @@ But why do we even bother studying absolute convergence -- what is its relation 
     which shows that \(\pqty{r_k}\) is Cauchy implies that \(\pqty{s_k}\) is Cauchy. This finishes the proof.
 \end{proof}
 
-\begin{proof}[for the Real Case]
+\begin{proof}[\proofname\ for the Real Case]
     We have
     \[
         0 \leq a_n + \abs{a_n} \leq 2 \abs{a_n}
@@ -1392,7 +1392,7 @@ We introduce a useful lemma which is similar to integration by parts, and is ind
     as desired.
 \end{proof}
 
-\begin{proof}[using \autoref{thm:ser-absolute-convergence-implies-convergence} (Absolute Convergence)]
+\begin{proof}[\proofname\ using \autoref{thm:ser-absolute-convergence-implies-convergence} (Absolute Convergence)]
     We apply the \autoref{lem:ser-summation-by-parts} for \(m = 1\), which gives
     \[
         \sum_{j = 1}^{n} a_j b_j = S_n b_n + \sum_{j = 1}^{n - 1} S_j \pqty{b_j - b_{j + 1}}.
@@ -1418,7 +1418,7 @@ We introduce a useful lemma which is similar to integration by parts, and is ind
     converges. Hence, \(\sum_{j = 1}^{\infty} a_j b_j\) converges.
 \end{proof}
 
-\begin{proof}[using \autoref{thm:completeness-of-r-and-c} (Cauchy Sequences Converge)]
+\begin{proof}[\proofname\ using \autoref{thm:completeness-of-r-and-c} (Cauchy Sequences Converge)]
     Similarly, since \(S_n\) is bounded, let \(\abs{S_n} \leq M\) for all \(n \in \NN\). Then, using \autoref{lem:ser-summation-by-parts} (Summation by Parts),
     \begin{align*}
         \abs{\sum_{j = m}^{n} a_j b_j} &\leq M b_n + M b_m + \sum_{j = m}^{n - 1} M \pqty{b_j - b_{j + 1}} \\
@@ -1499,7 +1499,7 @@ Another result we have is that there is `no slowest divergent series'.
     But \(a_n b_n = \frac{1}{n}\) and \(\sum a_n b_n\) is the harmonic series, which diverges.
 \end{remark}
 
-\begin{proof}[using Bounds]
+\begin{proof}[\proofname\ using Bounds]
     Since \(\sum a_n\) converges, \(a_n\) is bounded, say \(a_n \leq M\) for all \(n\). Then,
     \[
             0 \leq \abs{a_n b_n} \leq M \abs{b_n}
@@ -1512,7 +1512,7 @@ Another result we have is that there is `no slowest divergent series'.
     Note we only used the condition that \(a_n\) is bounded here, so the conditions can be weakened.
 \end{remark}
 
-\begin{proof}[using Cauchy--Schwarz]
+\begin{proof}[\proofname\ using Cauchy--Schwarz]
     Without loss of generality, we take \(a_n, b_n \geq 0\) (by taking the moduli of the terms).
 
     Since \(\sum a_n\) and \(\sum b_n\) converge absolutely, we have \(\sum a_n^2\) and \(\sum b_n^2\) converge absolutely. Hence,

@@ -195,11 +195,11 @@ We make sense of \(f\pqty{z}\) as \(z \to a\) by looking at points near \(a\). T
     If \(\functiondomain{f}{X \subseteq \CC}{\CC}\) has a limit at \(a \in \CC\), then this limit is unique.
 \end{lemma}
 
-\begin{proof}[using Sequences]
+\begin{proof}[\proofname\ using Sequences]
     This is a corollary of \autoref{lem:fn-sequential-limits} due to the uniqueness of the limit of a sequence.
 \end{proof}
 
-\begin{proof}[using \(\epsilon-\delta\)]
+\begin{proof}[\proofname\ using \(\epsilon-\delta\)]
     Suppose that \(f\pqty{z} \to y\) and \(f\pqty{z} \to x\) as \(z \to a\). We have that
     \[
         \abs{x - y} \leq \abs{x - f\pqty{z}} + \abs{f\pqty{z} - y}
@@ -278,7 +278,7 @@ To show the second example, it would be helpful to have another definition of co
 \end{proposition}
 We now prove the proposition.
 
-\begin{proof}[of \autoref{prop:fn-seq-cont-iff-cont} (Sequential Continuity), by Definition]
+\begin{proof}[\proofname\ of \autoref{prop:fn-seq-cont-iff-cont} (Sequential Continuity), by Definition]
     We first show continuity implies sequential continuity. By continuity, for \(\epsilon > 0\), we have \(\delta = \delta\pqty{\epsilon} > 0\) such that
     \[
         \abs{z - a} < \delta \implies \abs{f\pqty{z} - f\pqty{a}} < \epsilon.
@@ -307,7 +307,7 @@ We now prove the proposition.
     \(f\) is not sequentially continuous, as desired.
 \end{proof}
 
-\begin{proof}[of \autoref{prop:fn-seq-cont-iff-cont} (Sequential Continuity), using Sequential Limits]
+\begin{proof}[\proofname\ of \autoref{prop:fn-seq-cont-iff-cont} (Sequential Continuity), using Sequential Limits]
     The result is trivial on isolated points since the only sequence converging to an isolated point in the set is eventually the constant sequence at the point itself, and a function is trivially continuous at isolated points.
 
     For accumulation points, this can be deduced from \autoref{lem:fn-sequential-limits} (Sequential Limits) and the definition of continuity using a limit. 
@@ -468,7 +468,7 @@ A corollary of \autoref{thm:continuity-compactness} on \(\RR\) is \autoref{thm:e
     The least upper bound axiom only tells us that the supremum and infimum exist for \(f\pqty{X}\). The point of \autoref{thm:extreme-value} (Extreme Value Theorem) is stating that these are in fact \emph{maximum} and \emph{minimum}.
 \end{remark}
 
-\begin{proof}[of \autoref{thm:extreme-value} (Extreme Value Theorem)]
+\begin{proof}[\proofname\ of \autoref{thm:extreme-value} (Extreme Value Theorem)]
     We focus on the first equality regarding the supremum, since the second proof is analogous.
 
     First, by \autoref{thm:continuity-compactness} (Continuity Preserves Compactness), since \(X\) is compact, \(f\pqty{X}\) is compact, hence bounded, and therefore let
@@ -504,7 +504,7 @@ A corollary of \autoref{thm:continuity-compactness} on \(\RR\) is \autoref{thm:e
 
 Now we prove \autoref{thm:continuity-compactness} (Continuity Preserves Compactness).
 
-\begin{proof}[of \autoref{thm:continuity-compactness}, that \(f\pqty{X}\) is Bounded]
+\begin{proof}[\proofname\ of \autoref{thm:continuity-compactness}, that \(f\pqty{X}\) is Bounded]
     Suppose on the contrary that \(f\pqty{X}\) is not bounded. Then for each \(n \in \NN\), we can find \(x_n \in X\), such that \(\abs{f\pqty{x_n}} > n\). Now, note \(\pqty{x_n}\) is a sequence in \(X\), and hence it is bounded since \(X\) is bounded.
     
     Applying \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass Theorem), we have a convergent subsequence \(\pqty{x_{n_k}}_{k \in \NN}\) and \(x \in \CC\) such that \(x_{n_k} \to x\). But since \(X\) is closed, in fact we have \(x \in X\).
@@ -516,7 +516,7 @@ Now we prove \autoref{thm:continuity-compactness} (Continuity Preserves Compactn
     so the sequence \(f\pqty{x_{n_k}}\) cannot converge as \(k \to \infty\), since it is not bounded. This means \(f\) cannot be continuous, giving a contradiction.
 \end{proof}
 
-\begin{proof}[of \autoref{thm:continuity-compactness}, that \(f\pqty{X}\) is Closed]
+\begin{proof}[\proofname\ of \autoref{thm:continuity-compactness}, that \(f\pqty{X}\) is Closed]
     Take a sequence \(\pqty{y_n}\) in \(f\pqty{X}\) and suppose it converges to some \(y \in \CC\). We want to show that \(y \in f\pqty{X}\).
 
     Since \(y_n \in f\pqty{X}\), we have some \(x_n \in X\), such that \(f\pqty{x_n} = y_n\). The sequence \(\pqty{x_n}\) is on \(X\), and hence is bounded.
@@ -598,7 +598,7 @@ Now we prove \autoref{thm:continuity-compactness} (Continuity Preserves Compactn
     \autoref{thm:intermediate-value} (Intermediate Value Theorem) guarantees \emph{existence} but not \emph{uniqueness}. In particular, there may be several points whose image is \(y\) above.
 \end{remark}
 
-\begin{proof}[of \autoref{thm:intermediate-value} (Intermediate Value Theorem)]
+\begin{proof}[\proofname\ of \autoref{thm:intermediate-value} (Intermediate Value Theorem)]
     If \(f \pqty{a} = f\pqty{b}\), then this is trivially true. Furthermore, if \(y = f\pqty{a}\) or \(y = f\pqty{b}\) then this is trivially true.
 
     Now, we let \(f\pqty{a} < y < f\pqty{b}\). Set

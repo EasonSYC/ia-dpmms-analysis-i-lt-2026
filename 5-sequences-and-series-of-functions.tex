@@ -320,7 +320,7 @@ Clearly, we need to be careful: term-by-term operations might not hold on the \e
     is continuous inside \(D_r\pqty{a}\) for every \(r < R\). In particular, it is continuous on the whole of the open unit ball.
 \end{proposition}
 
-\begin{proof}[(Non-Examinable)]
+\begin{proof}[\proofname\ (Non-Examinable)]
     We introduce the notation
     \[
         S_N\pqty{x} = \sum_{n \leq N} c_n \pqty{x - a}^n, \quad T_N\pqty{x} = \sum_{n > N} c_n \pqty{x - a}^n
@@ -368,7 +368,7 @@ Clearly, we need to be careful: term-by-term operations might not hold on the \e
     for any \(a - R < x < a + R\).
 \end{proposition}
 
-\begin{proof}[(Non-Examinable)]
+\begin{proof}[\proofname\ (Non-Examinable)]
     Continuity implies integrability, so it remains to show the formula for integration. We use the same idea, by splitting up the power series into a polynomial and a tail. We have
     \begin{align*}
         \abs{\int_{a}^{x} f\pqty{t} \dd{t} - \sum_{n \leq N} \frac{c_n \pqty{x - a}^{n + 1}}{n + 1}} &= \abs{\int_{a}^{x} f\pqty{t} \dd{t} - \int_{a}^{x} S_N\pqty{t} \dd{t}} \\
@@ -399,7 +399,7 @@ Clearly, we need to be careful: term-by-term operations might not hold on the \e
     \]
 \end{proposition}
 
-\begin{proof}[(Non-Examinable, Using Integrability, Real Power Series)]
+\begin{proof}[\proofname\ (Non-Examinable, Using Integrability, Real Power Series)]
     We let \(g\) be the series we claim to be the derivative. If \(g\) has radius of convergence at least \(R\), then \(g\) is continuous on \(\ccintv{a - r}{a + r}\) for all \(r < R\) by \autoref{prop:continuity-of-power-series} (Continuity of Power Series), and using \autoref{prop:integrability-of-power-series-term-by-term} (Integrability of Power Series), we have
     \[
         \int_{a}^{x} g\pqty{t} \dd{t} = \sum_{n = 1}^{\infty} n c_n \frac{\pqty{x - a}^{n}}{n} = f\pqty{x} - c_0.
@@ -431,7 +431,7 @@ Clearly, we need to be careful: term-by-term operations might not hold on the \e
     converges also in \(\abs{x - a} < r\), for all \(r < R\).
 \end{proof}
 
-\begin{proof}[(Non-Examinable, Direct, Complex Power Series)]
+\begin{proof}[\proofname\ (Non-Examinable, Direct, Complex Power Series)]
     Consider \(x_0 \in B_R\pqty{a}\). Let \(\abs{x_0 - a} < r < R\) and \(\abs{x - a} < r\).
 
     Recall the identity
