@@ -29,16 +29,16 @@ Take \(\functiondomain{f}{X}{\CC}\) for some \(X \subseteq \CC\). We want to def
 
 The reason why we can hope to make sense of \(\lim_{x \to 0} \frac{\sin x}{x}\) is that there are points that are in the domain that are very close \(0\), and we could jump from points ever closer to \(0\) to get a value for that `limit'.
 
-In other words, \(0\) is an \emph{accumulation point} for \(\RR \setminus \Bqty{0}\): for any threshold \(\delta > 0\), we can always find \(x \in \RR \setminus \Bqty{0}\), such that \(\abs{x - 0} < \delta\).
+In other words, \(0\) is an \term{accumulation point} for \(\RR \setminus \Bqty{0}\): for any threshold \(\delta > 0\), we can always find \(x \in \RR \setminus \Bqty{0}\), such that \(\abs{x - 0} < \delta\).
 
 \begin{definition}[Accumulation and Isolated Point]
     \label{def:fn-accumulation-isolated-point}%
-    Let \(X \subseteq \CC\) and \(a \in \CC\). We say \(a\) is an \emph{accumulation point} for \(X\), if that
+    Let \(X \subseteq \CC\) and \(a \in \CC\). We say \(a\) is an \term{accumulation point} for \(X\), if that
     \[
         \forall \delta > 0, \exists z \in X \setminus \Bqty{a}: \abs{z - a} < \delta.
     \]
 
-    If \(a \in X\) and it is not an accumulation point, then we say \(a\) is \emph{isolated}.
+    If \(a \in X\) and it is not an accumulation point, then we say \(a\) is \term{isolated}.
 \end{definition}
 
 \begin{example}[Accumulation and Isolated Point]
@@ -90,7 +90,7 @@ We make sense of \(f\pqty{z}\) as \(z \to a\) by looking at points near \(a\). T
     Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\). We take some \(a \in \CC\) which is an accumulation point of \(X\).
 
 
-    We say \(f\) \emph{tends to} \(y \in \CC\) as \(z\) tends to \(a\), if
+    We say \(f\) \term{tends to} \(y \in \CC\) as \(z\) tends to \(a\), if
     \[
         \forall \epsilon > 0, \exists \delta = \delta \pqty{\epsilon} > 0, \forall 0 < \abs{z - a} < \delta, z \in X: \abs{f\pqty{z} - y} < \epsilon,
     \]
@@ -231,14 +231,14 @@ We make sense of \(f\pqty{z}\) as \(z \to a\) by looking at points near \(a\). T
     \label{def:fn-continuity}%
     Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\).
 
-    We say \(f\) is \emph{continuous at some point \(a \in X\)}, if
+    We say \(f\) is \term{continuous at some point \(a \in X\)}, if
     \[
         \forall \epsilon > 0, \exists \delta = \delta\pqty{\epsilon}, \forall \abs{z - a} < \delta, z \in X: \abs{f\pqty{z} - f\pqty{a}} < \epsilon.
     \]
 
     
     
-    We say \(f\) is \emph{continuous} if it is continuous at every point in \(X\).    
+    We say \(f\) is \term{continuous} if it is continuous at every point in \(X\).    
 \end{definition}
 
 \begin{remark}
@@ -267,9 +267,9 @@ We make sense of \(f\pqty{z}\) as \(z \to a\) by looking at points near \(a\). T
 
 To show the second example, it would be helpful to have another definition of continuity.
 
-\begin{definition}[Sequential Continuous]
+\begin{definition}[Sequential Continuity]
     \label{def:fn-sequential-continuous}%
-    Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\). We say \(f\) is \emph{sequential continuous} at \(a \in X\), if \(f\pqty{z_n} \to f\pqty{a}\) (as a sequence) for any \(\pqty{z_n}\) on \(X\) such that \(z_n \to a\).
+    Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\). We say \(f\) is \term{sequentially continuous} at \(a \in X\), if \(f\pqty{z_n} \to f\pqty{a}\) (as a sequence) for any \(\pqty{z_n}\) on \(X\) such that \(z_n \to a\).
 \end{definition}
 
 \begin{proposition}[Sequential Continuity is Continuity]
@@ -411,7 +411,7 @@ We first discuss some topology on \(\CC\).
 
 \begin{definition}[Closed Set on \(\CC\)]
     \label{def:closed-set-c}%
-    A set \(X \subseteq \CC\) is \emph{closed} if it contains all its limit/accumulation points. Equivalently, all sequences \(\pqty{x_n}\) in \(X\) which converge in \(\CC\) have \(\lim_{n \in \infty} x_n \in X\).
+    A set \(X \subseteq \CC\) is \term{closed} if it contains all its limit/accumulation points. Equivalently, all sequences \(\pqty{x_n}\) in \(X\) which converge in \(\CC\) have \(\lim_{n \in \infty} x_n \in X\).
 \end{definition}
 
 \begin{examples}[Closed Set on \(\RR\)]
@@ -421,7 +421,7 @@ We first discuss some topology on \(\CC\).
 
 \begin{definition}[Bounded Set on \(\CC\)]
     \label{def:bounded-set-c}%
-    Say \(X \subseteq \CC\) is \emph{bounded}, if there is some \(M > 0\) such that
+    Say \(X \subseteq \CC\) is \term{bounded}, if there is some \(M > 0\) such that
     \[
         X \subseteq \set{z \in \CC}{\abs{z} \leq M}.
     \]
@@ -436,7 +436,7 @@ We first discuss some topology on \(\CC\).
 
 \begin{definition}[Compact Set]
     \label{def:compact-set}%
-    A set \(X \subseteq \CC\) is \emph{compact} if it is closed and bounded.
+    A set \(X \subseteq \CC\) is \term{compact} if it is closed and bounded.
 \end{definition}
 
 \begin{remark}
@@ -660,13 +660,13 @@ Now we prove \autoref{thm:continuity-compactness} (Continuity Preserves Compactn
 
 \begin{definition}[Monotone Function]
     \label{def:monotone-function}%
-    A function \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) is \emph{monotone}, if it is either
+    A function \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) is \term{monotone}, if it is either
     \begin{itemize}
-        \item \emph{increasing}, if for all \(a \leq x_1 \leq x_2 \leq b\), we have \(f\pqty{x_1} \leq f\pqty{x_2}\); or
-        \item \emph{decreasing}, if for all \(a \leq x_1 \leq x_2 \leq b\), we have \(f\pqty{x_1} \geq f\pqty{x_2}\).
+        \item \term{increasing}, if for all \(a \leq x_1 \leq x_2 \leq b\), we have \(f\pqty{x_1} \leq f\pqty{x_2}\); or
+        \item \term{decreasing}, if for all \(a \leq x_1 \leq x_2 \leq b\), we have \(f\pqty{x_1} \geq f\pqty{x_2}\).
     \end{itemize}
 
-    We say the function is \emph{strictly increasing/decreasing} for the condition modified to \(f\pqty{x_1} < f\pqty{x_2}\) or \(f\pqty{x_1} > f\pqty{x_2}\).
+    We say the function is \term{strictly increasing/decreasing} for the condition modified to \(f\pqty{x_1} < f\pqty{x_2}\) or \(f\pqty{x_1} > f\pqty{x_2}\).
 \end{definition}
 
 \begin{theorem}[Inverse Function Theorem for Monotone Functions]

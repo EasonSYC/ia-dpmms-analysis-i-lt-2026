@@ -58,11 +58,11 @@ Informally, the derivative of a function is the instantaneous rate of change of 
 
 \begin{definition}[Derivative]
     \label{def:derivative}%
-    Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\) and \(a \in X\) be an accumulation point. We say \(f\) is \emph{differentiable} at \(a\), if we have
+    Let \(\functiondomain{f}{X \subseteq \CC}{\CC}\) and \(a \in X\) be an accumulation point. We say \(f\) is \term{differentiable} at \(a\), if we have
     \[
         \lim_{x \to a} \frac{f\pqty{x} - f\pqty{a}}{x - a} = \lim_{h \to 0} \frac{f\pqty{a + h} - f\pqty{a}}{h}
     \]
-    exists. The value of this limit is the \emph{derivative} of \(f\) evaluated at \(a\), denoted as \(f'\pqty{a}\) or \(\dv{f}{x} \pqty{a}\).
+    exists. The value of this limit is the \term{derivative} of \(f\) evaluated at \(a\), denoted as \(f'\pqty{a}\) or \(\dv{f}{x} \pqty{a}\).
 \end{definition}
 
 \begin{remark}
@@ -882,13 +882,13 @@ A really cool application of \autoref{thm:extreme-value} (Extreme Value Theorem)
 \subsection{Higher Derivatives and Taylor's Theorem}
 \begin{definition}[Higher Order Derivatives]
     \label{def:higher-order-derivatives}%
-    Suppose \(\functiondomain{f}{X \subseteq \CC}{\CC}\) is differentiable on \(X\). We say the function \(f\) is \emph{twice differentiable} on \(X\), if
+    Suppose \(\functiondomain{f}{X \subseteq \CC}{\CC}\) is differentiable on \(X\). We say the function \(f\) is \term{twice differentiable} on \(X\), if
     \[
         \function{f'}{X}{\CC}{x}{f'\pqty{x}}
     \]
-    is differentiable. We define \(f\) is \emph{\(k\)-times differentiable} similarly, and denote this as \(f \in \diffClass{k} \pqty{X}\).
+    is differentiable. We define \(f\) is \term{\(k\)-times differentiable} similarly, and denote this as \(f \in \diffClass{k} \pqty{X}\).
 
-    We say \(f\) is \emph{\(k\)-times continuously differentiable}, and denote this as \(f \in \contClass{k} \pqty{X}\), if \(f\) is \(k\)-times differentiable and the \(k\)-th derivative
+    We say \(f\) is \term{\(k\)-times continuously differentiable}, and denote this as \(f \in \contClass{k} \pqty{X}\), if \(f\) is \(k\)-times differentiable and the \(k\)-th derivative
     \[
         \function{f^{\pqty{k}}}{X}{\CC}{x}{f^{\pqty{k}}\pqty{x}}
     \]
@@ -903,7 +903,7 @@ and that note these are strict inclusions.
 
 \begin{definition}[Smooth]
     \label{def:smooth}%
-    We say \(\functiondomain{f}{X}{\CC}\) is \emph{smooth} if \(f \in \diffClass{k}\pqty{X}\) for all \(k \in \NN\), and we denote this as
+    We say \(\functiondomain{f}{X}{\CC}\) is \term{smooth} if \(f \in \diffClass{k}\pqty{X}\) for all \(k \in \NN\), and we denote this as
     \[
         f \in \smoothClass \pqty{X}.
     \]
@@ -927,7 +927,7 @@ We want to quantify how correct this approximation is -- i.e., we want to quanti
 
 \begin{definition}[Taylor Polynomial, Taylor Series]
     \label{def:taylor-polynomial-series}%
-    If \(\functiondomain{f}{X}{\CC}\) is \(n\)-times differentiable at \(x_0 \in X\), then for \(x_0 + h \in X\), the \emph{Taylor Polynomial} of degree \(n\) at \(x_0\) is defined as
+    If \(\functiondomain{f}{X}{\CC}\) is \(n\)-times differentiable at \(x_0 \in X\), then for \(x_0 + h \in X\), the \term{Taylor Polynomial} of degree \(n\) at \(x_0\) is defined as
     \[
         T_{n, f, x_0} \pqty{h} = \sum_{k = 0}^{n} \frac{f^{\pqty{k}} \pqty{x_0}}{k!} \cdot h^{k}.
     \]
@@ -936,7 +936,7 @@ We want to quantify how correct this approximation is -- i.e., we want to quanti
     \[
         \sum_{k = 0}^{\infty} \frac{f^{\pqty{k}} \pqty{x_0}}{k!} \cdot h^{k}
     \]
-    is the \emph{Taylor Series} of \(f\) at \(x_0\).
+    is the \term{Taylor Series} of \(f\) at \(x_0\).
 \end{definition}
 
 We will see different versions of Taylor's Theorems, all of which aims to quantify what the remainder is, but giving it in different forms.
@@ -946,14 +946,14 @@ We will see different versions of Taylor's Theorems, all of which aims to quanti
     \[
         R_{n, f, a} \pqty{h} = f\pqty{a + h} - T_{n - 1, f, a} \pqty{h} = f\pqty{a + h} - \sum_{k = 0}^{n - 1} \frac{f^{\pqty{k}} \pqty{a}}{k!} \cdot h^k
     \]
-    be the \emph{Taylor remainder}.
+    be the \term{Taylor remainder}.
 \end{definition}
 
 \subsubsection{Mean Value Forms of the Remainder}
 
 \begin{theorem}[Taylor's Theorem with Lagrange Remainder]
     \label{thm:taylor-thm-langrange-remainder}%
-    Let \(\functiondomain{f}{\ccintv{a}{a + h}}{\RR}\) be \(n\) times differentiable on \(\oointv{a}{a + h}\) and \(\pqty{n - 1}\) times continuously differentiable on \(\ccintv{a}{a + h}\). Then the \emph{Lagrange Form of the Remainder} gives the Taylor remainder in the form
+    Let \(\functiondomain{f}{\ccintv{a}{a + h}}{\RR}\) be \(n\) times differentiable on \(\oointv{a}{a + h}\) and \(\pqty{n - 1}\) times continuously differentiable on \(\ccintv{a}{a + h}\). Then the \term{Lagrange Form of the Remainder} gives the Taylor remainder in the form
     \[
         R_{n, f, a} \pqty{h} = \frac{h^n}{n!} \cdot f^{\pqty{n}} \pqty{a + \theta h},
     \]
@@ -1051,7 +1051,7 @@ Although the second proof looks very horrible, this in fact gives another versio
 
 \begin{theorem}[Taylor's Theorem with Cauchy Remainder]
     \label{thm:taylor-thm-cauchy-remainder}%
-    Let \(\functiondomain{f}{\ccintv{a}{a + h}}{\RR}\) be \(n\) times differentiable on \(\oointv{a}{a + h}\) and \(\pqty{n - 1}\) times continuously differentiable on \(\ccintv{a}{a + h}\). Then the \emph{Cauchy Form of the Remainder} gives the Taylor remainder in the form
+    Let \(\functiondomain{f}{\ccintv{a}{a + h}}{\RR}\) be \(n\) times differentiable on \(\oointv{a}{a + h}\) and \(\pqty{n - 1}\) times continuously differentiable on \(\ccintv{a}{a + h}\). Then the \term{Cauchy Form of the Remainder} gives the Taylor remainder in the form
     \[
         R_{n, f, a} \pqty{h} = \frac{h^{n}}{\pqty{n - 1}!} \cdot \pqty{1 - \theta}^{n - 1} f^{\pqty{n}} \pqty{a + \theta h},
     \]
@@ -1131,7 +1131,7 @@ This looks like an even worse estimate, since \(\pqty{n - 1}!\) on the denominat
 
 \begin{definition}[Analytic Function]
     \label{def:analytic}%
-    We say that \(f \in \smoothClass \pqty{\oointv{c}{d}}\) is \emph{analytic}, denoted as \(f \in \analyticClass \pqty{\oointv{c}{d}}\), if for every \(a \in \oointv{c}{d}\), there exists an \(r > 0\), such that for all \(\abs{h} < r\),
+    We say that \(f \in \smoothClass \pqty{\oointv{c}{d}}\) is \term{analytic}, denoted as \(f \in \analyticClass \pqty{\oointv{c}{d}}\), if for every \(a \in \oointv{c}{d}\), there exists an \(r > 0\), such that for all \(\abs{h} < r\),
     \[
         f\pqty{a + h} = \sum_{k = 0}^{\infty} \frac{f^{\pqty{k}} \pqty{a}}{k!} \cdot h^k = \lim_{n \to \infty} T_{n, f, a} \pqty{h}.
     \]
@@ -1161,7 +1161,7 @@ Finally, just for completeness, we introduce the name for the general form when 
 
 \begin{theorem}[Taylor's Theorem with Schl\"{o}milch Remainder]
     \label{thm:taylor-thm-schlomilch-remainder}%
-    Let \(\functiondomain{f}{\ccintv{a}{a + h}}{\RR}\) be \(n\) times differentiable on \(\oointv{a}{a + h}\) and \(\pqty{n - 1}\) times continuously differentiable on \(\ccintv{a}{a + h}\). Then the \emph{Schl\"{o}milch Form of the Remainder} gives the Taylor remainder in the form, for any fixed \(p > 0\),
+    Let \(\functiondomain{f}{\ccintv{a}{a + h}}{\RR}\) be \(n\) times differentiable on \(\oointv{a}{a + h}\) and \(\pqty{n - 1}\) times continuously differentiable on \(\ccintv{a}{a + h}\). Then the \term{Schl\"{o}milch Form of the Remainder} gives the Taylor remainder in the form, for any fixed \(p > 0\),
     \[
         R_{n, f, a} \pqty{h} = \frac{h^{n}}{p \pqty{n - 1}!} \cdot \pqty{1 - \theta}^{n - p} f^{\pqty{n}} \pqty{a + \theta h},
     \]
@@ -1180,7 +1180,7 @@ A good question to ask is, must the Taylor polynomial be correct up to its degre
 
 \begin{theorem}[Taylor's Theorem with Peano Remainder]
     \label{thm:taylor-thm-peano-remainder}%
-    Let \(\functiondomain{f}{\oointv{c}{d}}{\RR}\) be \(\pqty{n - 1}\) times differentiable. Then for any \(a \in \oointv{c}{d}\), the \emph{Peano Form of the Remainder} gives the Taylor remainder in the form
+    Let \(\functiondomain{f}{\oointv{c}{d}}{\RR}\) be \(\pqty{n - 1}\) times differentiable. Then for any \(a \in \oointv{c}{d}\), the \term{Peano Form of the Remainder} gives the Taylor remainder in the form
     \[
         R_{n, f, a} \pqty{h} = \littleO\pqty{h^{n - 1}}.
     \]

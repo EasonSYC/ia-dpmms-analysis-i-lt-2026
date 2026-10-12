@@ -2,12 +2,12 @@
 
 \begin{definition}[Sequence of Functions]
     \label{def:seq-of-fn}%
-    We say \(\pqty{f_n}_{n \in \NN} = \pqty{f_1, f_2, \ldots}\) is a \emph{sequence of \(\CC\)-valued functions on \(X \subseteq \CC\)}, if we have \(\functiondomain{f_n}{X}{\CC}\) for each \(n \in \NN\).
+    We say \(\pqty{f_n}_{n \in \NN} = \pqty{f_1, f_2, \ldots}\) is a \term{sequence of \(\CC\)-valued functions on \(X \subseteq \CC\)}, if we have \(\functiondomain{f_n}{X}{\CC}\) for each \(n \in \NN\).
 \end{definition}
 
 \begin{definition}[Pointwise Convergence]
     \label{def:pointwise-convergence}%
-    If, for any \(x \in Y \subseteq X \subseteq \CC\), the numerical sequence \(\pqty{f_n \pqty{x}}_{n}\) converges, then we say the sequence \emph{pointwise converges} on \(Y\) to the function
+    If, for any \(x \in Y \subseteq X \subseteq \CC\), the numerical sequence \(\pqty{f_n \pqty{x}}_{n}\) converges, then we say the sequence \term{pointwise converges} on \(Y\) to the function
     \[
         \function{f}{Y}{\CC}{x}{\lim_{n \to \infty} f_n \pqty{x},}
     \]
@@ -20,7 +20,7 @@
     \[
         \sum_{n = 1}^{\infty} f_n = f_1 + f_2 + \cdots
     \]
-    as a \emph{series} of \(\CC\)-valued functions on \(X\).
+    as a \term{series} of \(\CC\)-valued functions on \(X\).
 
     If the infinite sum converges for all \(x \in Y \subseteq X\), then we define the function
     \[
@@ -54,7 +54,7 @@ We will focus on an easier case where our functions \(f_n\) are always given in 
 \[
     f_n \pqty{x} = c_n \pqty{x - a}^n
 \]
-where \(a\) is the \emph{centre}, and \(c_n\) as the \emph{coefficients}.
+where \(a\) is the \term{centre}, and \(c_n\) as the \term{coefficients}.
 
 \subsection{Basics of Power Series}
 
@@ -66,7 +66,7 @@ where \(a\) is the \emph{centre}, and \(c_n\) as the \emph{coefficients}.
     \[
         \sum_{n = 0}^{\infty} c_n \pqty{x - a}^n
     \]
-    a \emph{power series} \emph{centred at \(a\)}, and with \emph{coefficients} \(\pqty{c_n}_n\).
+    a \term{power series} \term{centred at \(a\)}, and with \term{coefficients} \(\pqty{c_n}_n\).
 \end{definition}
 
 \begin{example}[Taylor Series is Power Series]
@@ -131,7 +131,7 @@ We first study the convergence of power series, i.e., the set
 
 \begin{proposition}[Existence of Radius of Convergence]
     \label{prop:existence-radius-convergence}%
-    Let \(\sum_{n = 0}^{\infty} c_n \pqty{x - a}^{n}\) be a power series. Then there is some \(R \in \ccintv{0}{\plusinfty}\), which is known as the \emph{radius of convergence} of the power series, such that
+    Let \(\sum_{n = 0}^{\infty} c_n \pqty{x - a}^{n}\) be a power series. Then there is some \(R \in \ccintv{0}{\plusinfty}\), which is known as the \term{radius of convergence} of the power series, such that
     \begin{itemize}
         \item the series converges absolutely for \(\abs{x - a} < R\); and
         \item the series diverges for \(\abs{x - a} > R\).
@@ -297,11 +297,11 @@ Clearly, we need to be careful: term-by-term operations might not hold on the \e
 
 \begin{definition}[Open Ball and Closed Disk]
     \label{def:open-ball-closed-disk}%
-    Let \(a \in \CC\) be the \emph{centre} and \(R > 0\) be the \emph{radius}. Then the \emph{open ball} with centre \(a \in \CC\) and radius \(R > 0\) is defined as
+    Let \(a \in \CC\) be the \term{centre} and \(R > 0\) be the \term{radius}. Then the \term{open ball} with centre \(a \in \CC\) and radius \(R > 0\) is defined as
     \[
         B_R \pqty{a} = \set{x \in \CC}{\abs{x - a} < R}
     \]
-    and the \emph{closed disk} as
+    and the \term{closed disk} as
     \[
         D_R \pqty{a} = \set{x \in \CC}{\abs{x - a} \leq R}.
     \]
@@ -499,7 +499,7 @@ Clearly, we need to be careful: term-by-term operations might not hold on the \e
 
 \begin{definition}[Exponential Function]
     \label{def:exponential-function}%
-    We define the \emph{exponential function}, denoted as \(\exp\), as
+    We define the \term{exponential function}, denoted as \(\exp\), as
     \[
         \function{\exp}{\CC}{\CC}{z}{\sum_{n = 0}^{\infty} \frac{z^n}{n!}.}
     \]
@@ -608,7 +608,7 @@ Since \(\exp\) is a bijection, it must have some inverse function.
 
 \begin{definition}[Logarithm Function]
     \label{def:log}%
-    The \emph{logarithm function}, denoted as \(\log\), is defined as the inverse of the exponential function.
+    The \term{logarithm function}, denoted as \(\log\), is defined as the inverse of the exponential function.
 
     \[
         \functiondomain{\log}{\oointv{0}{\plusinfty}}{\RR}.
@@ -679,7 +679,7 @@ Now, we are ready to define more general powers.
 
 \begin{definition}[Powers]
     \label{def:general-powers}%
-    We define for \(x > 0\), the \emph{base}, and \(\alpha \in \RR\), the \emph{exponent}, that
+    We define for \(x > 0\), the \term{base}, and \(\alpha \in \RR\), the \term{exponent}, that
     \[
         \Gamma_{\alpha} \pqty{x} = \exp \pqty{\alpha \log x}.
     \]
@@ -751,8 +751,8 @@ We now study some limit properties on monomials, exponentials and logarithms.
     \label{prop:lim-prop-monomial-exponential-logarithm}%
     We have the following properties.
     \begin{enumerate}
-        \item \emph{Exponentials dominate Monomials.} For all \(r \in \RR\), we have \(x^r \exp\pqty{-x} \to 0\) as \(x \to \plusinfty\).
-        \item \emph{Monomials dominate Logarithms.} For all \(r > 0\), we have \(x^{-r} \log x \to 0\) as \(x \to \plusinfty\), and \(x^r \log x \to 0\) as \(x \to 0^+\).
+        \item \term{Exponentials dominate Monomials.} For all \(r \in \RR\), we have \(x^r \exp\pqty{-x} \to 0\) as \(x \to \plusinfty\).
+        \item \term{Monomials dominate Logarithms.} For all \(r > 0\), we have \(x^{-r} \log x \to 0\) as \(x \to \plusinfty\), and \(x^r \log x \to 0\) as \(x \to 0^+\).
     \end{enumerate}
 \end{proposition}
 
@@ -828,11 +828,11 @@ We now study some limit properties on monomials, exponentials and logarithms.
 
 \begin{definition}[Trigonometric Functions]
     \label{def:trigonometric-functions}%
-    We define the \emph{cosine function} as
+    We define the \term{cosine function} as
     \[
         \function{\cos}{\CC}{\CC}{z}{\frac{1}{2} \bqty{\exp \pqty{iz} + \exp \pqty{- iz}} = \sum_{k = 0}^{\infty} \frac{\pqty{-1}^k z^{2k}}{\pqty{2k}!},}
     \]
-    and the \emph{sine function} as
+    and the \term{sine function} as
     \[
         \function{\sin}{\CC}{\CC}{z}{\frac{1}{2i} \bqty{\exp \pqty{iz} - \exp \pqty{- iz}} = \sum_{k = 0}^{\infty} \frac{\pqty{-1}^k z^{2k + 1}}{\pqty{2k + 1}!}}
     \]
@@ -903,7 +903,7 @@ We now study some limit properties on monomials, exponentials and logarithms.
     \label{cor:properties-complex-exponentials}%
     \begin{enumerate}
         \item The function \(\exp \pqty{ix}\) for \(x \in \RR\) is periodic, with period \(2 \pi\);
-        \item \emph{Euler's Identity}. \(\exp \pqty{i \pi} = -1\);
+        \item \term{Euler's Identity}. \(\exp \pqty{i \pi} = -1\);
         \item \(\exp \pqty{i \flatfrac{\pi}{2}} = i\).
     \end{enumerate}
 \end{corollary}
@@ -959,11 +959,11 @@ This allows us now to define the usual trigonometric functions \(\tan, \arccos\)
 \subsection{Hyperbolic Trigonometric Functions}
 
 \begin{definition}[Hyperbolic Trigonometric Functions]
-    We define the \emph{hyperbolic cosine} as
+    We define the \term{hyperbolic cosine} as
     \[
         \function{\cosh}{\CC}{\CC}{z}{\frac{1}{2} \bqty{\exp \pqty{z} + \exp \pqty{-z}} = \cos \pqty{iz},}
     \]
-    and the \emph{hyperbolic sine} as 
+    and the \term{hyperbolic sine} as 
     \[
         \function{\sinh}{\CC}{\CC}{z}{\frac{1}{2} \bqty{\exp \pqty{z} - \exp \pqty{-z}} = - i \sin \pqty{iz}.}
     \]

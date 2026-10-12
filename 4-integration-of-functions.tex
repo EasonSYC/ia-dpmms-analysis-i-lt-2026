@@ -14,15 +14,15 @@ We may attempt to approximate the function using rectangles -- specifically usin
 
 \begin{definition}[Upper and Lower Riemann Sums]
     \label{def:upper-lower-riemann-sum}%
-    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be bounded. Let a \emph{partition/dissection} \(\partition = \Bqty{x_0, x_1, \ldots, x_n}\) with \(a = x_0 < x_1 < \cdots x_n = b\) be given. Then we let
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be bounded. Let a \term{partition/dissection} \(\partition = \Bqty{x_0, x_1, \ldots, x_n}\) with \(a = x_0 < x_1 < \cdots x_n = b\) be given. Then we let
     \[
         \upperSum \pqty{f, \partition} = \sum_{j = 1}^{n} \pqty{\sup_{x \in \ccintv{x_{j - 1}}{x_{j}}} f\pqty{x}} \cdot \pqty{x_j - x_{j - 1}}
     \]
-    as the \emph{Upper Riemann Sum}, and similarly,
+    as the \term{Upper Riemann Sum}, and similarly,
     \[
         \lowerSum \pqty{f, \partition} = \sum_{j = 1}^{n} \pqty{\inf_{x \in \ccintv{x_{j - 1}}{x_{j}}} f\pqty{x}} \cdot \pqty{x_j - x_{j - 1}}
     \]
-    as the \emph{Lower Riemann Sum}, of the function \(f\) associated to the partition \(\partition\).
+    as the \term{Lower Riemann Sum}, of the function \(f\) associated to the partition \(\partition\).
 \end{definition}
 
 \begin{example}[Riemann Sums]
@@ -67,18 +67,18 @@ are both bounded, non-empty sets.
     \[
         \upperI \pqty{f} = \upperInt_{a}^{b} f \pqty{x} \dd{x} = \inf_{\partition\text{ is a partition of }\ccintv{a}{b}} \upperSum \pqty{f, \partition}
     \]
-    be the \emph{upper integral} of \(f\), and similarly,
+    be the \term{upper integral} of \(f\), and similarly,
     \[
         \lowerI \pqty{f} = \lowerInt_{a}^{b} f \pqty{x} \dd{x} = \sup_{\partition\text{ is a partition of }\ccintv{a}{b}} \lowerSum \pqty{f, \partition}
     \]
-    be the \emph{lower integral} of \(f\).
+    be the \term{lower integral} of \(f\).
 \end{definition}
 
 Note we actually didn't take a `limit' as the width tends to zero -- that is slightly tougher to formalise (it is possible to do so, as the limit of a mesh), but this works just as well (since narrowing the widths seems to decrease the error, which makes it smaller for overestimates, and larger for underestimates) -- but note because of this, lots of properties of the integral is \textbf{not} a direct consequence of the properties of the limit, which is a common misconception.
 
 \begin{definition}[Riemann Integral]
     \label{def:riemann-integral}%
-    We say \(f\) is \emph{Riemann Integrable} if \(\upperI \pqty{f} = \lowerI \pqty{f}\), and we denote the \emph{Riemann Integral} as
+    We say \(f\) is \term{Riemann Integrable} if \(\upperI \pqty{f} = \lowerI \pqty{f}\), and we denote the \term{Riemann Integral} as
     \[
         I\pqty{f} = \int_{a}^{b} f\pqty{x} \dd{x} = \upperI\pqty{f} = \lowerI\pqty{f}.
     \]
@@ -102,7 +102,7 @@ The coarsest possible partition for \(\ccintv{a}{b}\) is the partition \(\Bqty{a
 
 \begin{lemma}[Refinements provide Better Estimates]
     \label{lem:refinement-better-estimate}%
-    Let \(\partition, \partition'\) be two partitions of \(\ccintv{a}{b}\), with \(\partition' \supseteq \partition\) (i.e., \(\partition'\) is a \emph{refinement} of \(\partition\)). Then we have
+    Let \(\partition, \partition'\) be two partitions of \(\ccintv{a}{b}\), with \(\partition' \supseteq \partition\) (i.e., \(\partition'\) is a \term{refinement} of \(\partition\)). Then we have
     \[
         \lowerSum\pqty{f, \partition} \leq \lowerSum\pqty{f, \partition'} \leq \upperSum\pqty{f, \partition'} \leq \upperSum\pqty{f, \partition}.
     \]
@@ -371,7 +371,7 @@ We want to find some more sufficient conditions on integrability.
     \[
         \osc f = \sup f - \inf f
     \]
-    to be the \emph{oscillation}.
+    to be the \term{oscillation}.
 
     Therefore, there is some \(j\) in any partition \(\partition\), such that
     \[
@@ -397,7 +397,7 @@ We want to find some more sufficient conditions on integrability.
 
 \begin{definition}[Piecewise Continuous]
     \label{def:piecewise-continuous}%
-    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\). We say \(f\) is \emph{piecewise continuous} if there is some partition \(\partition\) of \(\ccintv{a}{b}\), such that the restriction on every open interval
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\). We say \(f\) is \term{piecewise continuous} if there is some partition \(\partition\) of \(\ccintv{a}{b}\), such that the restriction on every open interval
     \[
         \rightbar{f}_{\oointv{x_{j - 1}}{x_j}}
     \]
@@ -960,7 +960,7 @@ We finally prove several fundamental properties of integrals. However, before th
 
 \subsection{Fundamental Theorem of Calculus}
 
-We will think about the `integral of \(f\)' in this section as a function \(F\), known as the \emph{indefinite integral}, or the \emph{antiderivative} (the name will make sense later), which is the value of the integral of \(f\) over a varying upper bound
+We will think about the `integral of \(f\)' in this section as a function \(F\), known as the \term{indefinite integral}, or the \term{antiderivative} (the name will make sense later), which is the value of the integral of \(f\) over a varying upper bound
 \[
     \function{F}{\ccintv{a}{b}}{\RR}{x}{\int_{a}^{x} f\pqty{t} \dd{t}.}
 \]
@@ -1182,7 +1182,7 @@ A very important application of this is providing another remainder for Taylor's
 
 \begin{theorem}[Taylor's Theorem with Integral Remainder]
     \label{thm:taylor-thm-integral-remainder}%
-    Let \(\functiondomain{f}{\ccintv{a}{a + h}}{\RR}\) be \(n\) times continuously differentiable on \(\oointv{a}{a + h}\). Then the \emph{Integral Form of the Remainder} gives the Taylor remainder in the form
+    Let \(\functiondomain{f}{\ccintv{a}{a + h}}{\RR}\) be \(n\) times continuously differentiable on \(\oointv{a}{a + h}\). Then the \term{Integral Form of the Remainder} gives the Taylor remainder in the form
     \begin{align*}
         R_{n, f, a} \pqty{h} &= \frac{h^{n}}{\pqty{n - 1}!} \cdot \int_{0}^{1} \pqty{1 - t}^{n - 1} f^{\pqty{n}} \pqty{a + th} \dd{t} \\
         &= \frac{1}{\pqty{n - 1}!} \cdot \int_{0}^{h} \pqty{h - u}^{n - 1} f^{\pqty{n}} \pqty{a + u} \dd{u}.
@@ -1303,7 +1303,7 @@ We prove the two forms of the Lagrange remainder, but with slightly stronger con
         \function{F}{\cointv{a}{\plusinfty}}{\RR}{R}{\int_{a}^{R} f\pqty{x} \dd{x}}.
     \]
 
-    Then we say the \emph{improper integral}
+    Then we say the \term{improper integral}
     \[
         \int_{a}^{\plusinfty} f\pqty{x} \dd{x}
     \]
@@ -1347,7 +1347,7 @@ We prove the two forms of the Lagrange remainder, but with slightly stronger con
             \int_{2}^{\plusinfty} \frac{1}{x \pqty{\log x}^2} \dd{x} = \lim_{R \to \plusinfty} \int_{2}^{R} \frac{\dd{x}}{x \pqty{\log x}^2} = \frac{1}{\log 2}.
         \]
 
-        \item The \emph{Gaussian Integral} is given by
+        \item The \term{Gaussian Integral} is given by
         \[
             \int_{\minusinfty}^{\plusinfty} e^{- x^2} \dd{x}.
         \]
@@ -1800,7 +1800,7 @@ We now investigate another type of improper integrals.
         \function{F}{\ocintv{0}{b - a}}{\RR}{\delta}{\int_{a + \delta}^{b} f\pqty{x} \dd{x}}.
     \]
 
-    We say the \emph{improper integral} \(\int_{a}^{b} f\pqty{x} \dd{x}\) exists/converges, if the limit
+    We say the \term{improper integral} \(\int_{a}^{b} f\pqty{x} \dd{x}\) exists/converges, if the limit
     \[
         \lim_{\delta \to 0^+} F\pqty{\delta}
     \]

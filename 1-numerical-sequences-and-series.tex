@@ -3,7 +3,7 @@
 
 \begin{definition}[Sequence]
     \label{def:sequence}%
-    A \emph{sequence} \(\pqty{x_n}_{n \in \NN}\) on.a set \(X\) is an enumerated list where each element is in \(X\).
+    A \term{sequence} \(\pqty{x_n}_{n \in \NN}\) on a set \(X\) is an enumerated list where each element is in \(X\).
 \end{definition}
 
 In this chapter, \(X \subseteq \RR\) or \(X \subseteq \CC\). An important example is \(X = \RR\), the real sequences. (We will see that the fact that we have an order on \(\RR\) is significant.)
@@ -24,7 +24,7 @@ On diverging to infinity,
 
 \begin{definition}[Convergence of a Sequence]
     \label{def:seq-convergence}%
-    A sequence \(\pqty{x_n}\) \emph{converges} to some \(x\), finite, if
+    A sequence \(\pqty{x_n}\) \term{converges} to some \(x\), finite, if
     \[
         \forall \epsilon > 0, \exists N = N \pqty{\epsilon} \in \NN, \forall n \geq N: \abs{x_n - x} < \epsilon.
     \]
@@ -36,7 +36,7 @@ There are two definitions of divergence to infinity, one allows the behaviour to
 
 \begin{definition}[Divergence to Infinity for a Sequence]
     \label{def:seq-divergence-to-infinity}%
-    A sequence \(\pqty{x_n}\) \emph{diverges to infinity} if its modulus satisfies
+    A sequence \(\pqty{x_n}\) \term{diverges to infinity} if its modulus satisfies
     \[
         \forall L > 0, \exists N = N \pqty{L} \in \NN, \forall n \geq N: \abs{x_n} > L.
     \]
@@ -114,8 +114,8 @@ There are two definitions of divergence to infinity, one allows the behaviour to
     \label{prop:seq-sandwich-theorem}%
     Let \(\pqty{x_n}, \pqty{y_n}\) and \(\pqty{z_n}\) be real sequences. Then,
     \begin{itemize}
-        \item \emph{Limits preserve weak order.} If \(x_n \leq y\) for all \(n \in \NN\), and \(x_n \to x\), then \(x \leq y\);
-        \item \emph{Sandwich theorem.} If \(x_n \to x\) and \(z_n \to x\), and \(x_n \leq y_n \leq z_n\) for all \(n \in \NN\), then \(y_n \to x\).
+        \item \term{Limits preserve weak order.} If \(x_n \leq y\) for all \(n \in \NN\), and \(x_n \to x\), then \(x \leq y\);
+        \item \term{Sandwich theorem.} If \(x_n \to x\) and \(z_n \to x\), and \(x_n \leq y_n \leq z_n\) for all \(n \in \NN\), then \(y_n \to x\).
     \end{itemize}
 \end{proposition}
 
@@ -208,7 +208,7 @@ Having proved this, this allows us to show that the sequences have a unique limi
 
 \begin{definition}[Bounded Sequence]
     \label{def:seq-bounded}%
-    We say \(\pqty{x_n}\) is \emph{bounded}, if there is some \(M > 0\), such that for all \(n \in \NN\), that
+    We say \(\pqty{x_n}\) is \term{bounded}, if there is some \(M > 0\), such that for all \(n \in \NN\), that
     \[
         \abs{x_n} \leq M.
     \]
@@ -302,13 +302,13 @@ Note that most of the \(n \in \NN\) above can be replaced with \(n\) sufficientl
 
 \begin{definition}[Monotone Sequence]
     \label{def:seq-monotone}%
-    We say a real sequence \(\pqty{x_n}\) is \emph{monotone}, if either
+    We say a real sequence \(\pqty{x_n}\) is \term{monotone}, if either
     \begin{itemize}
-        \item it is \emph{increasing}: \(x_n \leq x_{n + 1}\) for all \(n \in \NN\); or
-        \item it is \emph{decreasing}: \(x_n \geq x_{n + 1}\) for all \(n \in \NN\).
+        \item it is \term{increasing}: \(x_n \leq x_{n + 1}\) for all \(n \in \NN\); or
+        \item it is \term{decreasing}: \(x_n \geq x_{n + 1}\) for all \(n \in \NN\).
     \end{itemize}
 
-    \emph{Strictly monotone} is when we replace the \(\leq, \geq\) symbols with \(<, >\).
+    \term{Strictly monotone} is when we replace the \(\leq, \geq\) symbols with \(<, >\).
 \end{definition}
 
 Similarly, if we attempt to conclude some limiting behaviour of a sequence that is \emph{eventually} monotone, then we can apply any theorem on a monotone sequence, since we only care about large \(n\) behaviours. An example of such a theorem is \autoref{thm:monotone-convergence}.
@@ -334,7 +334,7 @@ The constant subsequences converge. But is it necessary that some subsequence co
 
 \begin{definition}[Subsequence]
     \label{def:seq-subsequence}%
-    Given a sequence \(\pqty{x_n}\), a \emph{subsequence} of \(x_n\) is a sequence \(\pqty{x_{n_k}}_{k \in \NN}\), where \(\pqty{n_k}_{k \in \NN}\) is a strictly increasing natural number sequence.
+    Given a sequence \(\pqty{x_n}\), a \term{subsequence} of \(x_n\) is a sequence \(\pqty{x_{n_k}}_{k \in \NN}\), where \(\pqty{n_k}_{k \in \NN}\) is a strictly increasing natural number sequence.
 \end{definition}
 
 Now we are ready to give the main result of this section.
@@ -490,7 +490,7 @@ An interesting application of Bolzano--Weierstrass Theorem is the following prop
 
 \begin{definition}[Cauchy Sequence]
     \label{def:seq-cauchy}%
-    A sequence \(\pqty{x_n}\) is \emph{Cauchy} if
+    A sequence \(\pqty{x_n}\) is \term{Cauchy} if
     \[
         \forall \epsilon > 0, \exists N = N \pqty{\epsilon} \in \NN, \forall m, n \geq N: \abs{x_m - x_n} < \epsilon.
     \]
@@ -644,7 +644,7 @@ Is the converse necessarily true? Note the above example on \(\sqrt{2}\) gives a
 \end{proof}
 
 \begin{remark}
-    Metric spaces in which Cauchy sequence implies convergence is called \emph{complete}. \(\QQ\) is \emph{not} a complete metric space. In fact, \(\RR\) is the \emph{only} complete, ordered field (up to isomorphism).
+    Metric spaces in which Cauchy sequence implies convergence is called \term{complete}. \(\QQ\) is \emph{not} a complete metric space. In fact, \(\RR\) is the \emph{only} complete, ordered field (up to isomorphism).
 \end{remark}
 
 \subsection{Series and Convergence Tests}
@@ -654,13 +654,13 @@ Is the converse necessarily true? Note the above example on \(\sqrt{2}\) gives a
     \[
         \sum_{n = 1}^{\infty} a_n
     \]
-    is a \emph{series}, and we say it \emph{converges} if the sequence of partial sums \(\pqty{S_k}_{k \in \NN}\), given by
+    is a \term{series}, and we say it \term{converges} if the sequence of partial sums \(\pqty{S_k}_{k \in \NN}\), given by
     \[
         S_k = \sum_{n = 1}^{k} a_n
     \]
     converges to some (finite) \(S \in \RR\) or \(\CC\) as \(k \to \infty\).
 
-    In this case, \(S\) is called the \emph{sum of the series}, and we denote
+    In this case, \(S\) is called the \term{sum of the series}, and we denote
     \[
         S = \sum_{n = 1}^{\infty} a_n
     \]
@@ -1248,7 +1248,7 @@ We now study the idea of `signs' in the series.
 
 \begin{definition}[Absolute Convergence]
     \label{def:ser-absolute-convergence}%
-    We say the series \(\sum a_n\) is \emph{absolutely convergent} if \(\sum \abs{a_n}\) converges.
+    We say the series \(\sum a_n\) is \term{absolutely convergent} if \(\sum \abs{a_n}\) converges.
 \end{definition}
 
 \begin{remark}
@@ -1290,7 +1290,7 @@ This means that absolute convergent series is strictly a subset of convergent se
 
 \begin{definition}[Conditional Convergence]
     \label{def:ser-conditional-convergence}%
-    A series that is convergent but is not absolutely convergent is \emph{conditional convergent}.
+    A series that is convergent but is not absolutely convergent is \term{conditional convergent}.
 \end{definition}
 
 Conditionally convergent sequences have a very different style to absolutely convergent sequences, in the sense that they `behave weirdly'. In particular, we cannot do the following to a conditionally convergent series (but we can to an absolutely convergent one).
