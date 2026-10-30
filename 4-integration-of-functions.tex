@@ -42,8 +42,9 @@ We may attempt to approximate the function using rectangles -- specifically usin
 
 We assumed that \(f\) is bounded, and say \(\sup_{x \in \ccintv{a}{b}} \abs{f} = k\), then
 \begin{align*}
-    \upperSum\pqty{f, \partition} &= \sum_{j = 1}^{n} \pqty{\sup_{\ccintv{a}{b}} f} \pqty{x_j - x_{j - 1}} \\
-    &\leq k \sum_{j = 1}^{n} \pqty{x_j - x_{j - 1}} \\
+    \upperSum\pqty{f, \partition} &= \sum_{j = 1}^{n} \pqty{\sup_{\ccintv{x_{j - 1}}{x_j}} f} \pqty{x_j - x_{j - 1}} \\
+    &\leq \sum_{j = 1}^{n} \pqty{\sup_{\ccintv{a}{b}} f} \pqty{x_j - x_{j - 1}} \\
+    &= k \sum_{j = 1}^{n} \pqty{x_j - x_{j - 1}} \\
     &= k \pqty{b - a},
 \end{align*}
 and similarly,
@@ -156,11 +157,11 @@ The coarsest possible partition for \(\ccintv{a}{b}\) is the partition \(\Bqty{a
 \begin{proof}
     We take the common refinement \(\partition \cup \partition'\). Therefore, by \autoref{lem:refinement-better-estimate},
     \[
-        \lowerSum\pqty{f, \partition} \leq \upperSum\pqty{f, \partition \cup \partition'} \leq \upperSum\pqty{f, \partition \cup \partition'} \leq \upperSum\pqty{f, \partition'}.
+        \lowerSum\pqty{f, \partition} \leq \lowerSum\pqty{f, \partition \cup \partition'} \leq \upperSum\pqty{f, \partition \cup \partition'} \leq \upperSum\pqty{f, \partition'}.
     \]
 \end{proof}
 
-\begin{corollary}[Upper Integrals are always at least Lower Integraks]
+\begin{corollary}[Upper Integrals are always at least Lower Integrals]
     \label{cor:upper-greater-lower-int}%
     We have for any bounded \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\), that
     \[
@@ -323,7 +324,7 @@ We want to find some more sufficient conditions on integrability.
     \]
     for \(I_j = \ccintv{x_{j - 1}}{x_j}\), and \(\abs{I_j} = x_j - x_{j - 1}\).
 
-    But since \(f\) is monotone, the supremum and the infimums are obtained at the endpoints of the intervals. Without loss of generality, suppose \(f\) is increasing, and
+    But since \(f\) is monotone, the supremum and the infimum are obtained at the endpoints of the intervals. Without loss of generality, suppose \(f\) is increasing, and
     \[
         \sup_{x \in I_j} f\pqty{x} = f\pqty{x_j}, \qand \inf_{x \in I_j} f\pqty{x} = f\pqty{x_{j - 1}}.
     \]
@@ -683,7 +684,7 @@ Now we prove \autoref{prop:piecewise-continuous-integrable} (Piecewise Continuou
 \end{proof}
 
 \begin{remark}
-    If \(f\) is not Riemann integrable, then \(D\) must be uncountable. However, there are functions with \(D\) uncountable, yet \(f\) is Riemann integrable. One example of this is the indicator of the Cantor Set. (Since the Cantor Set has zero Lebesgue Measure.)
+    If \(f\) is not Riemann integrable, then \(D\) must be uncountable. However, there are functions with \(D\) uncountable, yet \(f\) is Riemann integrable. One example of this is the indicator of the Cantor set (since the Cantor set has zero Lebesgue measure).
 \end{remark}
 
 \subsubsection{Properties of Riemann Sums and Integrals}

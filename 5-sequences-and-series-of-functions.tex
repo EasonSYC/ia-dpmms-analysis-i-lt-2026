@@ -159,7 +159,7 @@ If \(R = 0\), this means the series only converges at \(x = a\), and if \(R = \p
 
     Now, if \(R\) is finite, by definition of the supremum, we know that the power series diverges for any point strictly further away from \(a\) than \(R\).
     
-    For any \(\abs{y - a} < R\), then by the definition of the supremum, there is some \(r \in A\) with \(\abs{y - a} < r \leq R\). Then, some point \(x \in A\) gives convergence at radius \(r\). So since \(\abs{y - a} < r = \abs{x - a}\), by \autoref{lem:convergence-one-point-implies-convergence-smaller-radius}, the power series converges absolutely at \(y\).
+    For any \(\abs{y - a} < R\), then by the definition of the supremum, there is some \(r \in A\) with \(\abs{y - a} < r \leq R\). Then, there is some \(x \in \CC\) with \(\abs{x - a} = r\) at which the series converges. Since \(\abs{y - a} < r = \abs{x - a}\), by \autoref{lem:convergence-one-point-implies-convergence-smaller-radius}, the power series converges absolutely at \(y\).
 \end{proof}
 
 To compute the radius of convergence of power series, we may use the usual tests for numerical series, namely \autoref{prop:ser-test-root} (Root Test) and \autoref{prop:ser-test-ratio}.
@@ -178,7 +178,7 @@ To compute the radius of convergence of power series, we may use the usual tests
 
 \begin{proposition}[Ratio Test for Power Series]
     \label{prop:power-series-test-ratio}%
-    Let \(\pqty{c_n}_n\) be a sequence in \(\CC\), such that
+    Let \(\pqty{c_n}_n\) be a sequence in \(\CC\), with \(c_n \neq 0\) for all sufficiently large \(n\), such that
     \[
         L = \lim_{n \to \infty} \abs{\frac{c_{n + 1}}{c_n}}
     \]
@@ -282,7 +282,7 @@ and can we conclude that
         \[
             \sum_{n = 0}^{\infty} \frac{1}{n!} \dv{x} \pqty{x^n} = \sum_{n = 1}^{\infty} \frac{x^{n - 1}}{\pqty{n - 1}!} = \sum_{n = 0}^{\infty} \frac{x^n}{n!}
         \]
-        convergences on \(\CC\).
+        converges on \(\CC\).
 
         \item The power series \(\sum_{n = 1}^{\infty} \frac{x^n}{n^2}\) converges on the unit closed disk. Differentiating term-by-term, we have
         \[
@@ -420,7 +420,7 @@ Clearly, we need to be careful: term-by-term operations might not hold on the \e
         \abs{n c_n \pqty{x - a}^{n - 1}} &= \abs{c_n} s^n \frac{n}{s} \pqty{\frac{\abs{x - a}}{s}}^{n - 1} \\
         &\leq \abs{c_n} s^n \frac{n}{s} \pqty{\frac{r}{s}}^{n - 1}
     \end{align*}
-    for all \(\abs{x - a} < r\). Since \(s < R\), \(\abs{c_n} s^n \to \infty\), and in particular, \(\abs{c_n} s^n\) is bounded. Hence,
+    for all \(\abs{x - a} < r\). Since \(s < R\), \(\abs{c_n} s^n \to 0\), and in particular, \(\abs{c_n} s^n\) is bounded. Hence,
     \[
         \sum_{n = 0}^{\infty} M \frac{n}{s} \pqty{\frac{r}{s}}^{n - 1}
     \]
@@ -452,7 +452,7 @@ Clearly, we need to be careful: term-by-term operations might not hold on the \e
     \]
     and hence
     \[
-        \abs{\frac{\pqty{x - a}^n - \pqty{x_0 - a}^n}{x - x_0} - n \pqty{x - a}^{n - 1}} \leq \abs{x - x_0} \binom{n}{2} r^{n - 2}.
+        \abs{\frac{\pqty{x - a}^n - \pqty{x_0 - a}^n}{x - x_0} - n \pqty{x_0 - a}^{n - 1}} \leq \abs{x - x_0} \binom{n}{2} r^{n - 2}.
     \]
 
     We may check that
@@ -482,7 +482,7 @@ Clearly, we need to be careful: term-by-term operations might not hold on the \e
         \]
         and
         \[
-            \int_{0}^{x} \sum_{n = 0}^{\infty} \frac{t^n}{n!} \dd{t} = \sum_{n = 0}^{x} \int_{0}^{x} \frac{t^n}{n!} \dd{t} = \sum_{n = 0}^{\infty} \frac{x^{n + 1}}{\pqty{n + 1}!} = \sum_{n = 0}^{\infty} \frac{x^n}{n!} - 1.
+            \int_{0}^{x} \sum_{n = 0}^{\infty} \frac{t^n}{n!} \dd{t} = \sum_{n = 0}^{\infty} \int_{0}^{x} \frac{t^n}{n!} \dd{t} = \sum_{n = 0}^{\infty} \frac{x^{n + 1}}{\pqty{n + 1}!} = \sum_{n = 0}^{\infty} \frac{x^n}{n!} - 1.
         \]
         \item Consider \(\sum_{n = 1}^{\infty} \frac{x^n}{n^2}\) has radius of convergence \(1\). For all \(\abs{x} < 1\), we have
         \[
@@ -572,7 +572,7 @@ Clearly, we need to be careful: term-by-term operations might not hold on the \e
         \item \(\exp\) is smooth, with \(\exp'\pqty{x} = \exp\pqty{x}\);
         \item \(\exp\pqty{x + y} = \exp\pqty{x} \cdot \exp\pqty{y}\);
         \item \(\exp\pqty{x} > 0\) for all \(x \in \RR\);
-        \item \(\exp \pqty{x} \to \plusinfty\) as \(x \to \plusinfty\), and \(\exp \pqty{x} \to \minusinfty\) as \(x \to \minusinfty\);
+        \item \(\exp \pqty{x} \to \plusinfty\) as \(x \to \plusinfty\), and \(\exp \pqty{x} \to 0\) as \(x \to \minusinfty\);
         \item \(\exp\) is strictly increasing;
         \item \(\functiondomain{\exp}{\RR}{\oointv{0}{\plusinfty}}\) is a bijection.
     \end{itemize}
@@ -622,7 +622,7 @@ Since \(\exp\) is a bijection, it must have some inverse function.
         \item \(\log\) is bijective with \(\log \exp x = x\) for all \(x \in \RR\), and \(\exp \log x = x\) for all \(x \in \oointv{0}{\plusinfty}\);
         \item \(\log\pqty{yz} = \log y + \log z\);
         \item \(\log\) is smooth and strictly increasing, with \(\log' \pqty{x} = \frac{1}{x}\);
-        \item \(\log\pqty{1} = 0\), and \(\log y = \int_1^x \frac{1}{t} \dd{t}\);
+        \item \(\log\pqty{1} = 0\), and \(\log y = \int_1^y \frac{1}{t} \dd{t}\);
         \item \(\log y \to \plusinfty\) as \(y \to \plusinfty\), and \(\log y \to \minusinfty\) as \(y \to 0^+\).
     \end{itemize}
 \end{lemma}
@@ -666,7 +666,7 @@ Since \(\exp\) is a bijection, it must have some inverse function.
 
     We have
     \begin{align*}
-        \abs{\log 2 - \sum_{n = 0}^{N} \int_{0}^{1} \pqty{-1}^n t^n \dd{t}} &= \abs{\int_{0}^{§} \frac{\dd{t}}{1 + t} - \int_{0}^{1} \frac{1 - \pqty{-t}^{N + 1}}{1 + t} \dd{t}} \\
+        \abs{\log 2 - \sum_{n = 0}^{N} \int_{0}^{1} \pqty{-1}^n t^n \dd{t}} &= \abs{\int_{0}^{1} \frac{\dd{t}}{1 + t} - \int_{0}^{1} \frac{1 - \pqty{-t}^{N + 1}}{1 + t} \dd{t}} \\
         &\leq \int_{0}^{1} \abs{\frac{1}{1 + t} - \frac{1 - \pqty{-t}^{N + 1}}{1 + t}} \dd{t} \\
         &\leq \int_{0}^{1} t^{N + 1} \dd{t} \\
         &= \frac{1}{N + 2} \\

@@ -112,10 +112,10 @@ Differentiability is a stronger property than continuity -- indeed we cannot dif
 \begin{proof}
     Note that
     \begin{align*}
-        \bqty{\lim_{h \to 0} f\pqty{x + h}} - f\pqty{x} &= \lim_{h \to 0} \bqty{f\pqty{x + h} - f\pqty{x}} \\
-        &= \lim_{h \to 0} \frac{f\pqty{x + h} - f\pqty{x}}{h} \cdot h \\
-        &= \lim_{h \to 0} \frac{f\pqty{x + h} - f\pqty{x}}{h} \cdot \lim_{h \to 0} h \\
-        &= f'\pqty{x} \cdot 0 \\
+        \bqty{\lim_{h \to 0} f\pqty{a + h}} - f\pqty{a} &= \lim_{h \to 0} \bqty{f\pqty{a + h} - f\pqty{a}} \\
+        &= \lim_{h \to 0} \frac{f\pqty{a + h} - f\pqty{a}}{h} \cdot h \\
+        &= \lim_{h \to 0} \frac{f\pqty{a + h} - f\pqty{a}}{h} \cdot \lim_{h \to 0} h \\
+        &= f'\pqty{a} \cdot 0 \\
         &= 0
     \end{align*}
     gives continuity as desired.
@@ -156,7 +156,7 @@ We may derive properties of derivative from the properties of limits as well.
 \end{proof}
 
 \begin{examples}[Applications of Differentiation Rules]
-    \label{ex:aplication-of-differentiation-rules}%
+    \label{ex:application-of-differentiation-rules}%
     \begin{itemize}
         \item Let \(f\pqty{z} = z^2\), then it is differentiable with \(f'\pqty{z} = 2z\). By induction, for \(f\pqty{z} = z^n\) with \(n \in \NN\), we have \(f'\pqty{z} = n z^{n - 1}\).
         \item Let \(f\pqty{z} = \frac{1}{z}\). It is differentiable on \(\CC \setminus\Bqty{0}\) with \(f'\pqty{z} = -\frac{1}{z^2}\). By induction, for \(f\pqty{z} = \frac{1}{z^n}\), we have \(f'\pqty{z} = - \frac{n}{z^{n + 1}}\).
@@ -321,7 +321,7 @@ We can also write that \(f\pqty{a + h} = f\pqty{a} + Ah + \littleO\pqty{h}\) usi
     \begin{align*}
         f\pqty{x} &= \lim_{h \to 0} f\pqty{a + h} \\
         &= \lim_{h \to 0} \pqty{f\pqty{a} + Ah + \epsilon\pqty{h} \cdot \abs{h}} \\
-        &= f\pqty{a} + A \cdot \lim_{h \to 0} h + \lim_{h \to 0} \cdot \pqty{\epsilon\pqty{h} \cdot \abs{h}} \\
+        &= f\pqty{a} + A \cdot \lim_{h \to 0} h + \lim_{h \to 0} \pqty{\epsilon\pqty{h} \cdot \abs{h}} \\
         &= f\pqty{a}.
     \end{align*}
 \end{proof}
@@ -477,7 +477,7 @@ We introduce \autoref{thm:rolle} (which is a special case of \autoref{thm:mean-v
 \begin{remark}
     A corollary of \autoref{thm:mean-value-thm} (Mean Value Theorem) is as follows: given \(h\) such that \(a + h \in \ccintv{a}{b}\), we have some \(\theta = \theta\pqty{h} \in \oointv{0}{1}\), such that
     \[
-        f\pqty{a + h} + f\pqty{a} + h f'\pqty{a + h \theta \pqty{h}}.
+        f\pqty{a + h} = f\pqty{a} + h f'\pqty{a + h \theta \pqty{h}}.
     \]
 
     Notice the similarity of \autoref{lem:linear-approximation-differentiability} -- but here we have no error term, but the derivative is taken at some other point.
@@ -609,7 +609,7 @@ We now look back at \autoref{thm:rolle} (Rolle's Theorem).
             \function{f}{\ccintv{0}{R}}{\RR}{x}{x^N.}
         \]
 
-        Then \(f\) is continuous on \(\ccintv{0}{R}\) and differentiable on \(\oointv{0}{R}\), with \(f'\pqty{x} = N x^{N - 1} > 0\) for \(x \in \oointv{0}{R}\), by \autoref{ex:aplication-of-differentiation-rules}.
+        \(f\) is continuous on \(\ccintv{0}{R}\) and differentiable on \(\oointv{0}{R}\), with \(f'\pqty{x} = N x^{N - 1} > 0\) for \(x \in \oointv{0}{R}\), by \autoref{ex:application-of-differentiation-rules}.
 
         Then, by \autoref{thm:inverse-fn-thm-differentiable}, \(\functiondomain{f}{\ccintv{0}{R}}{\ccintv{0}{R^N}}\) is a bijection, and \(f\inverse\pqty{y} = y^{\frac{1}{N}}\) is differentiable, with
         \[

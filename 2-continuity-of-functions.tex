@@ -27,7 +27,7 @@ Take \(\functiondomain{f}{X}{\CC}\) for some \(X \subseteq \CC\). We want to def
     \]
 \end{example}
 
-The reason why we can hope to make sense of \(\lim_{x \to 0} \frac{\sin x}{x}\) is that there are points that are in the domain that are very close \(0\), and we could jump from points ever closer to \(0\) to get a value for that `limit'.
+The reason why we can hope to make sense of \(\lim_{x \to 0} \frac{\sin x}{x}\) is that there are points in the domain that are very close to \(0\), and we could use points ever closer to \(0\) to determine the value of that `limit'.
 
 In other words, \(0\) is an \term{accumulation point} for \(\RR \setminus \Bqty{0}\): for any threshold \(\delta > 0\), we can always find \(x \in \RR \setminus \Bqty{0}\), such that \(\abs{x - 0} < \delta\).
 
@@ -94,7 +94,7 @@ We make sense of \(f\pqty{z}\) as \(z \to a\) by looking at points near \(a\). T
     \[
         \forall \epsilon > 0, \exists \delta = \delta \pqty{\epsilon} > 0, \forall 0 < \abs{z - a} < \delta, z \in X: \abs{f\pqty{z} - y} < \epsilon,
     \]
-    and we denote this as \(f\pqty{z} \to y\) as \(z \to a\), or \(\lim_{z \to a} f\pqty{z} \to y\).
+    and we denote this as \(f\pqty{z} \to y\) as \(z \to a\), or \(\lim_{z \to a} f\pqty{z} = y\).
 
     Similarly, we say \(f\) diverges to \(\infty\) as \(z \to a\), if
     \[
@@ -183,7 +183,7 @@ We make sense of \(f\pqty{z}\) as \(z \to a\) by looking at points near \(a\). T
     \[
         z_n \in X \qand 0 < \abs{z_n - a} < \frac{1}{n}
     \]
-    which shows \(\pqty{z_n} \to a\) on \(X \setminus a\), and indeed,
+    which shows \(\pqty{z_n} \to a\) on \(X \setminus \Bqty{a}\), and indeed,
     \[
         \abs{f\pqty{z_n} - y} \geq \epsilon,
     \]
@@ -211,8 +211,8 @@ We make sense of \(f\pqty{z}\) as \(z \to a\) by looking at points near \(a\). T
     \label{lem:fn-limits-preserve-arithmetic}%
     Let \(\functiondomain{f, g}{X \subseteq \CC}{\CC}\), and \(a \in \CC\) be an accumulation point of \(X\). Suppose \(\lim_{z \to a} f\pqty{z} = a\) and \(\lim_{z \to a} g\pqty{z} = b\), then
     \begin{align*}
-        \lim_{x \to a} \pqty{f\pqty{z} + g\pqty{z}} &= a + b, \\
-        \lim_{x \to a} \pqty{f\pqty{z} \cdot g\pqty{z}} & = ab.
+        \lim_{z \to a} \pqty{f\pqty{z} + g\pqty{z}} &= a + b, \\
+        \lim_{z \to a} \pqty{f\pqty{z} \cdot g\pqty{z}} & = ab.
     \end{align*}
 
     Furthermore, if \(b \neq 0\), we have
@@ -445,7 +445,7 @@ We first discuss some topology on \(\CC\).
 
 The main result of this section is technically \autoref{thm:continuity-compactness}, since it applies to more general spaces, rather than \autoref{thm:extreme-value}, which only applies to \(\RR\).
 
-\begin{theorem}[Continuity Prserves Compactness]
+\begin{theorem}[Continuity Preserves Compactness]
     \label{thm:continuity-compactness}%
     Let \(X \subseteq \CC\) be compact. If \(\functiondomain{f}{X}{\CC}\) is continuous, then \(f\pqty{X} \subseteq \CC\) is compact.
 \end{theorem}
@@ -691,7 +691,7 @@ Now we prove \autoref{thm:continuity-compactness} (Continuity Preserves Compactn
     \]
     giving a contradiction with \(y_1 < y_2\). This shows that \(f\inverse\) is indeed strictly increasing.
 
-    We need to check continuity of the \(f\inverse\). Fix \(y_0 \in \ccintv{c}{d}\) and that \(x_0 = f\inverse\pqty{y_0}\). We consider the three cases on where \(x_0\) and \(y_0\) is (in particular, when they are some endpoint of the interval).
+    We need to check continuity of \(f\inverse\). Fix \(y_0 \in \ccintv{c}{d}\) and let \(x_0 = f\inverse\pqty{y_0}\). We consider the three cases for \(x_0\) and \(y_0\), in particular when they are endpoints of the interval.
 
     \begin{itemize}
         \item \(x_0 \in \oointv{a}{b}\). Let \(\epsilon > 0\) be arbitrary. Let \(\eta \in \ocintv{0}{\epsilon}\) be sufficiently small that \(\ccintv{x_0 - \eta}{x_0 + \eta} \in \ccintv{a}{b}\). Since \(f\) is strictly increasing, we have

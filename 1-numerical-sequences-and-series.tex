@@ -73,7 +73,7 @@ There are two definitions of divergence to infinity, one allows the behaviour to
 
         \item Let \(x_n = in\), then \(x_n \to \infty\), since for any given \(L > 0\), let \(N = 1 + \ceil{L}\), then for all \(n \geq N\),
         \[
-            \abs{x_n} = \frac{x_n}{i} = n > L.
+            \abs{x_n} = \abs{in} = n > L.
         \]
 
         \item Let \(x_n = \pqty{-1}^n\), then \(x_n\) doesn't diverge to \(\infty\) (\(\abs{x_n} \leq 1\)) but also does not converge.
@@ -251,9 +251,10 @@ Having proved this, this allows us to show that the sequences have a unique limi
 \end{lemma}
 
 \begin{proof}[\proofname\ for the Sum]
-    We note that if \(x_n \to x\) and \(y_n \to y\), let the \(N \in \NN\) for \(\epsilon > 0\) be \(N_1\pqty{\epsilon}\) and \(N_2\pqty{\epsilon}\). Therefore, for all \(n \geq \max\Bqty{N_1, N_2}\),
+    We note that if \(x_n \to x\) and \(y_n \to y\), let the \(N \in \NN\) for \(\epsilon > 0\) be \(N_1\pqty{\frac{\epsilon}{2}}\) and \(N_2\pqty{\frac{\epsilon}{2}}\). Therefore, for all \(n \geq \max\Bqty{N_1, N_2}\),
     \[
-        \abs{\pqty{x_n + y_n} - \pqty{x + y}} = \abs{x_n - x} + \abs{y_n - y} < \epsilon
+        \abs{\pqty{x_n + y_n} - \pqty{x + y}}
+        \leq \abs{x_n - x} + \abs{y_n - y} < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon.
     \]
     and this finishes the proof for the sum.
 \end{proof}
@@ -286,12 +287,12 @@ Having proved this, this allows us to show that the sequences have a unique limi
     \]
     then we certainly have \(\abs{x_n} > \frac{1}{2} \abs{x}\).
 
-    Let \(\delta > 0\) be arbitrary. (This will be the \(\epsilon\) for our proof.) Take \(\epsilon = \frac{1}{2} \abs{x}^2 \delta\), then let \(M \in \NN\) such that for all \(n \geq M\), we have
+    Let \(\delta > 0\) be arbitrary. Take \(M \in \NN\) such that for all \(n \geq M\), we have
     \[
-        \abs{x_n - x} < \frac{1}{2} \abs{x}^2.
+        \abs{x_n - x} < \frac{1}{2} \abs{x}^2 \delta.
     \]
 
-    Hence, for \(n \geq \max\Bqty{N_1, N_2}\)
+    Hence, for \(n \geq \max\Bqty{N, M}\)
     \begin{align*}
         \abs{\frac{1}{x_n} - \frac{1}{x}} = \abs{\frac{x - x_n}{x x_n}} < \frac{2}{\abs{x}^2} \abs{x - x_n} < \delta
     \end{align*}
@@ -344,7 +345,7 @@ Now we are ready to give the main result of this section.
     If \(\pqty{x_n}\) is a real, bounded sequence, then it has at least one convergent subsequence.
 \end{theorem}
 
-The example above with \(\pqty{-1}^n\) shows that there could be more subsequence, and the limits could be different.
+The example above with \(\pqty{-1}^n\) shows that there could be more subsequences, and the limits could be different.
 
 To prove this result, we first give the following lemmas which are useful.
 
@@ -622,18 +623,18 @@ Is the converse necessarily true? Note the above example on \(\sqrt{2}\) gives a
 
     More precisely, let \(\epsilon > 0\) be arbitrary. Since \(\pqty{x_n}\) is Cauchy, we have some \(N_1 = N_1 \pqty{\epsilon}\), such that for all \(m, n \geq N_1\),
     \[
-        \abs{x_n} - \abs{x_m} < \epsilon.
+        \abs{x_n - x_m} < \epsilon.
     \]
 
     In particular, take \(m = n_k \geq N_1\), we have
     \[
-        \abs{x_n} - \abs{x_{n_k}} < \epsilon
+        \abs{x_n - x_{n_k}} < \epsilon
     \]
     for all \(n, n_k \geq N_1\).
 
     On the other hand, since \(x_{n_k} \to x\), there is some \(N_2 = N_2 \pqty{\epsilon}\), such that for all \(k \geq N_2\), we have
     \[
-        \abs{x_{n_k} - x} \leq \epsilon.
+        \abs{x_{n_k} - x} < \epsilon.
     \]
 
     We fix \(k \geq N_2\) such that \(n_k \geq N_1\), then
@@ -690,7 +691,7 @@ Is the converse necessarily true? Note the above example on \(\sqrt{2}\) gives a
         converges if and only if \(\abs{r} < 1\). The partial sums satisfy
         \[
             S_k = \begin{cases}
-                \frac{1 - r^k}{1 - r}, & r \neq 1, \\
+                \frac{r\pqty{1 - r^k}}{1 - r}, & r \neq 1, \\
                 k, & r = 1.
             \end{cases}
         \]
@@ -1057,7 +1058,7 @@ We now use some future result to give another very useful test.
 \begin{examples}[Integral Test]
     \label{ex:integral-test}%
     \begin{itemize}
-        \item \(\sum \frac{1}{n^p}\) converges if and only if \(p > 1\). First, \(f\pqty{t} = t^p\) is decreasing and continuous on \(\cointv{1}{\plusinfty}\). We have
+        \item For \(p > 0\), \(\sum n^{-p}\) converges if and only if \(p > 1\). First, \(f\pqty{t} = t^{-p}\) is decreasing and continuous on \(\cointv{1}{\plusinfty}\). We have
         \begin{align*}
             \lim_{n \to \infty} \int_{1}^{n} \frac{1}{t^p} \dd{t} &= \lim_{n \to \infty} \begin{cases}
                 \bqty{\log t}_{1}^{n}, & p = 1, \\
@@ -1200,7 +1201,7 @@ Next, we look at sequences with infinitely many terms that are negative.
     
     Then we have
     \[
-        s_{2k} = \pqty{a_1 - a_2} + \pqty{a_3 - a_4} + \cdots + \pqty{a_{2k - 1} + a_{2k}},
+        s_{2k} = \pqty{a_1 - a_2} + \pqty{a_3 - a_4} + \cdots + \pqty{a_{2k - 1} - a_{2k}},
     \]
     and since everything in the brackets are non-negative, we have
     \[
