@@ -159,7 +159,7 @@ We may derive properties of derivative from the properties of limits as well.
     \label{ex:application-of-differentiation-rules}%
     \begin{itemize}
         \item Let \(f\pqty{z} = z^2\), then it is differentiable with \(f'\pqty{z} = 2z\). By induction, for \(f\pqty{z} = z^n\) with \(n \in \NN\), we have \(f'\pqty{z} = n z^{n - 1}\).
-        \item Let \(f\pqty{z} = \frac{1}{z}\). It is differentiable on \(\CC \setminus\Bqty{0}\) with \(f'\pqty{z} = -\frac{1}{z^2}\). By induction, for \(f\pqty{z} = \frac{1}{z^n}\), we have \(f'\pqty{z} = - \frac{n}{z^{n + 1}}\).
+        \item Let \(f\pqty{z} = \frac{1}{z}\). It is differentiable on \(\CC \setminus\set{0}\) with \(f'\pqty{z} = -\frac{1}{z^2}\). By induction, for \(f\pqty{z} = \frac{1}{z^n}\), we have \(f'\pqty{z} = - \frac{n}{z^{n + 1}}\).
         \item More generally, rational functions \(\frac{p\pqty{x}}{q\pqty{x}}\) for polynomials \(p, q\) are differentiable, wherever it is defined.
     \end{itemize}
 \end{examples}
@@ -311,7 +311,7 @@ We can also write that \(f\pqty{a + h} = f\pqty{a} + Ah + \littleO\pqty{h}\) usi
     \[
         f'\pqty{0} = \lim_{h \to 0} \frac{f\pqty{h} - f\pqty{0}}{h} = \lim_{h \to 0} \sin \pqty{\frac{1}{h}}
     \]
-    does not exist. Hence, \(f\) is not differentiable at \(0\). \(f\) is differentiable on \(\RR \setminus \Bqty{0}\).
+    does not exist. Hence, \(f\) is not differentiable at \(0\). \(f\) is differentiable on \(\RR \setminus \set{0}\).
 \end{example}
 
 \autoref{lem:linear-approximation-differentiability} gives another way to prove \autoref{prop:differentiability-implies-continuity} (Differentiability implies Continuity).
@@ -674,7 +674,7 @@ The proof strategy is similar -- we aim to reduce this to \autoref{thm:rolle} (R
         \[
             \lim_{x \to a} \frac{f'\pqty{x}}{g'\pqty{x}} = l
         \]
-        exists, where \(l \in \RR \cup \Bqty{\pminfty}\) could be infinite;
+        exists, where \(l \in \RR \cup \set{\pminfty}\) could be infinite;
         \item \(\lim_{x \to a} f\pqty{x} = \lim_{x \to a} g\pqty{x} = 0\); or \(\lim_{x \to a} g\pqty{x} = \pminfty\).
     \end{itemize}
 
@@ -788,7 +788,7 @@ Similar to \autoref{ex:inverse-fn-differentiation}, we also have a statement abo
         \forall x \in \ccintv{a}{b}, \abs{x - x_0} < \delta: f'\pqty{x} > 0.
     \]
 
-    Now, note \(m = \min\Bqty{\delta, x_0 - a, b - x_0} > 0\), so take any \(0 < \epsilon < m\), then for all \(x \in \ccintv{x_0 - \epsilon}{x_0 + \epsilon}\), we have \(x_0 \in \ccintv{a}{b}\) and \(\abs{x - x_0} < \delta\), so \(f'\pqty{x} > 0\) for this restriction.
+    Now, note \(m = \min\set{\delta, x_0 - a, b - x_0} > 0\), so take any \(0 < \epsilon < m\), then for all \(x \in \ccintv{x_0 - \epsilon}{x_0 + \epsilon}\), we have \(x_0 \in \ccintv{a}{b}\) and \(\abs{x - x_0} < \delta\), so \(f'\pqty{x} > 0\) for this restriction.
 \end{proof}
 
 \subsection{Darboux's Theorem}

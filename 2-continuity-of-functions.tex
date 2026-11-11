@@ -29,13 +29,13 @@ Take \(\functiondomain{f}{X}{\CC}\) for some \(X \subseteq \CC\). We want to def
 
 The reason why we can hope to make sense of \(\lim_{x \to 0} \frac{\sin x}{x}\) is that there are points in the domain that are very close to \(0\), and we could use points ever closer to \(0\) to determine the value of that `limit'.
 
-In other words, \(0\) is an \term{accumulation point} for \(\RR \setminus \Bqty{0}\): for any threshold \(\delta > 0\), we can always find \(x \in \RR \setminus \Bqty{0}\), such that \(\abs{x - 0} < \delta\).
+In other words, \(0\) is an \term{accumulation point} for \(\RR \setminus \set{0}\): for any threshold \(\delta > 0\), we can always find \(x \in \RR \setminus \set{0}\), such that \(\abs{x - 0} < \delta\).
 
 \begin{definition}[Accumulation and Isolated Point]
     \label{def:fn-accumulation-isolated-point}%
     Let \(X \subseteq \CC\) and \(a \in \CC\). We say \(a\) is an \term{accumulation point} for \(X\), if that
     \[
-        \forall \delta > 0, \exists z \in X \setminus \Bqty{a}: \abs{z - a} < \delta.
+        \forall \delta > 0, \exists z \in X \setminus \set{a}: \abs{z - a} < \delta.
     \]
 
     If \(a \in X\) and it is not an accumulation point, then we say \(a\) is \term{isolated}.
@@ -44,7 +44,7 @@ In other words, \(0\) is an \term{accumulation point} for \(\RR \setminus \Bqty{
 \begin{example}[Accumulation and Isolated Point]
     \label{ex:fn-accumulation-isolated-point}%
     \begin{itemize}
-        \item The set \(X = \Bqty{0} \cup \ccintv{1}{2}\) has \(0\) as an isolated point. On the other hand, all points in \(\ccintv{1}{2}\) are accumulation points for \(X\).
+        \item The set \(X = \set{0} \cup \ccintv{1}{2}\) has \(0\) as an isolated point. On the other hand, all points in \(\ccintv{1}{2}\) are accumulation points for \(X\).
         \item The points on the unit circle \(S = \set{z \in \CC}{\abs{z} = 1}\) are accumulation points for \(D = \set{z \in \CC}{\abs{z} < 1}\). Also, all the points in \(D\) are also accumulation points for \(D\). \autoref{fig:accumulation-point-c} demonstrates this example.
         \item If we look at \(\set{z \in \CC}{\abs{z} \leq 1}\), then all the points in this set are accumulation points. 
     \end{itemize}
@@ -58,23 +58,23 @@ In other words, \(0\) is an \term{accumulation point} for \(\RR \setminus \Bqty{
 \end{figure}
 
 \begin{lemma}[Accumulation Points are Limit Points]
-    Let \(X \subseteq \CC\) and \(a \in \CC\). Then \(a\) is an accumulation point for \(X\) if and only if there exists \(\pqty{x_n}\) in \(X \setminus \Bqty{a}\), such that \(\lim_{n \to \infty} x_n = a\).
+    Let \(X \subseteq \CC\) and \(a \in \CC\). Then \(a\) is an accumulation point for \(X\) if and only if there exists \(\pqty{x_n}\) in \(X \setminus \set{a}\), such that \(\lim_{n \to \infty} x_n = a\).
 \end{lemma}
 
 \begin{proof}
-    If there is some \(\pqty{x_n} \subseteq X \setminus \Bqty{a}\) with \(x_n \to a\), then by definition,
+    If there is some \(\pqty{x_n} \subseteq X \setminus \set{a}\) with \(x_n \to a\), then by definition,
     \[
         \forall \epsilon > 0, \exists N = N\pqty{\epsilon} \in \NN, \forall n \geq N: \abs{x_n - a} < \delta.
     \]
 
-    Now, let \(\delta > 0\) be arbitrary, then take \(N = N\pqty{\delta}\), therefore we have \(x_N \in X \setminus \Bqty{a}\) with \(\abs{x_N - a} < \delta\), showing that \(a\) is indeed an accumulation point.
+    Now, let \(\delta > 0\) be arbitrary, then take \(N = N\pqty{\delta}\), therefore we have \(x_N \in X \setminus \set{a}\) with \(\abs{x_N - a} < \delta\), showing that \(a\) is indeed an accumulation point.
 
     Conversely, given \(a\) is an accumulation point of \(X\), this means
     \[
-        \forall \delta > 0, \exists z = z\pqty{\delta} \in X \setminus \Bqty{a}: \abs{z - a} < \delta.
+        \forall \delta > 0, \exists z = z\pqty{\delta} \in X \setminus \set{a}: \abs{z - a} < \delta.
     \]
 
-    Now, let \(x_n = z\pqty{\frac{1}{n}}\) for \(n \in \NN\), then \(x_n\) is indeed a sequence of \(X \setminus \Bqty{a}\). Therefore,
+    Now, let \(x_n = z\pqty{\frac{1}{n}}\) for \(n \in \NN\), then \(x_n\) is indeed a sequence of \(X \setminus \set{a}\). Therefore,
     \[
         0 < \abs{x_n - a} = \abs{z\pqty{\frac{1}{n}} - a} \leq \frac{1}{n}
     \]
@@ -150,9 +150,9 @@ We make sense of \(f\pqty{z}\) as \(z \to a\) by looking at points near \(a\). T
     \[
         \lim_{n \to \infty} f\pqty{z_n} = y
     \]
-    for any \(\pqty{z_n}\) on \(X \setminus \Bqty{a}\), with \(z_n \to a\).
+    for any \(\pqty{z_n}\) on \(X \setminus \set{a}\), with \(z_n \to a\).
 
-    Similarly, \(f\pqty{z}\) diverges to infinity, if and only if \(\pqty{f\pqty{z_n}}\) diverges to infinity for every \(\pqty{z_n}\) on \(X \setminus \Bqty{a}\), with \(z_n \to a\).
+    Similarly, \(f\pqty{z}\) diverges to infinity, if and only if \(\pqty{f\pqty{z_n}}\) diverges to infinity for every \(\pqty{z_n}\) on \(X \setminus \set{a}\), with \(z_n \to a\).
 \end{lemma}
 
 \begin{proof}
@@ -163,7 +163,7 @@ We make sense of \(f\pqty{z}\) as \(z \to a\) by looking at points near \(a\). T
         \forall z \in X, 0 < \abs{z - a} < \delta: \abs{f\pqty{z} - y} < \epsilon.
     \]
 
-    Now, take any \(\pqty{z_n} \to a\) on \(X \setminus \Bqty{a}\). Since \(\delta > 0\), there is some \(N > 0\) such that
+    Now, take any \(\pqty{z_n} \to a\) on \(X \setminus \set{a}\). Since \(\delta > 0\), there is some \(N > 0\) such that
     \[
         \forall n \geq N: 0 < \abs{z_n - a} < \delta.
     \]
@@ -183,7 +183,7 @@ We make sense of \(f\pqty{z}\) as \(z \to a\) by looking at points near \(a\). T
     \[
         z_n \in X \qand 0 < \abs{z_n - a} < \frac{1}{n}
     \]
-    which shows \(\pqty{z_n} \to a\) on \(X \setminus \Bqty{a}\), and indeed,
+    which shows \(\pqty{z_n} \to a\) on \(X \setminus \set{a}\), and indeed,
     \[
         \abs{f\pqty{z_n} - y} \geq \epsilon,
     \]
@@ -312,7 +312,7 @@ We now prove the proposition.
 
     For accumulation points, this can be deduced from \autoref{lem:fn-sequential-limits} (Sequential Limits) and the definition of continuity using a limit. 
     
-    Concretely, if \(f\) is sequential continuous, then taking any sequence \(\pqty{z_n}\) on \(X \setminus \Bqty{a}\) with \(z_n \to a\) will give \(f\pqty{z_n} \to f\pqty{a}\), showing that \(f\pqty{z} \to f\pqty{a}\), which gives continuity at an accumulation point.
+    Concretely, if \(f\) is sequential continuous, then taking any sequence \(\pqty{z_n}\) on \(X \setminus \set{a}\) with \(z_n \to a\) will give \(f\pqty{z_n} \to f\pqty{a}\), showing that \(f\pqty{z} \to f\pqty{a}\), which gives continuity at an accumulation point.
 
     Now assume \(f\) is continuous. For any sequence \(\pqty{z_n}\) on \(X\) with \(z_n \to a\), removing terms where \(z_n = a\) would not affect \(z_n \to a\). After removing these terms, we get a sequence \(\pqty{z'_n}\), and by considering the sequential limit (using continuity), we have \(f\pqty{z'_n} \to f\pqty{a}\). But now, adding those terms where \(z_n = a\) back to the sequence does not affect \(f\pqty{z'_n} \to f\pqty{a}\). This indeed shows sequential continuity.
 \end{proof}
@@ -332,7 +332,7 @@ and in particular, \(f\pqty{x_n} \to 1 \neq 0\).
     \begin{itemize}
         \item Let
         \[
-            \function{f}{\RR}{\Bqty{0, 1}}
+            \function{f}{\RR}{\set{0, 1}}
             {x}{\indicator_{\QQ} \pqty{x} = \begin{cases}
                 1, & x \in \QQ, \\
                 0, & x \in \RR \setminus \QQ.
@@ -356,7 +356,7 @@ and in particular, \(f\pqty{x_n} \to 1 \neq 0\).
             &\leq 2 \abs{\sin \pqty{\frac{x - a}{2}}} \\
             &\leq \abs{x - a},
         \end{align*}
-        for \(\frac{x - a}{2} \in \ccintv{-\frac{\pi}{2}}{\frac{\pi}{2}}\). Therefore, for any \(\epsilon > 0\), we choose \(\delta\pqty{\epsilon} = \min\Bqty{\epsilon, \frac{\pi}{2}}\), and this shows continuity. Alternatively, we may also show this using sequential limits.
+        for \(\frac{x - a}{2} \in \ccintv{-\frac{\pi}{2}}{\frac{\pi}{2}}\). Therefore, for any \(\epsilon > 0\), we choose \(\delta\pqty{\epsilon} = \min\set{\epsilon, \frac{\pi}{2}}\), and this shows continuity. Alternatively, we may also show this using sequential limits.
     \end{itemize}
 \end{examples}
 
@@ -671,7 +671,7 @@ Now we prove \autoref{thm:continuity-compactness} (Continuity Preserves Compactn
 
 \begin{theorem}[Inverse Function Theorem for Monotone Functions]
     \label{thm:inverse-fn-thm-monotone}
-    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be continuous and strictly monotone. We set \(c = \min\Bqty{f\pqty{a}, f\pqty{b}}\) and \(d = \max\Bqty{f\pqty{a}, f\pqty{b}}\). Then the restriction of the co-domain
+    Let \(\functiondomain{f}{\ccintv{a}{b}}{\RR}\) be continuous and strictly monotone. We set \(c = \min\set{f\pqty{a}, f\pqty{b}}\) and \(d = \max\set{f\pqty{a}, f\pqty{b}}\). Then the restriction of the co-domain
     \[
         \functiondomain{f}{\ccintv{a}{b}}{\ccintv{c}{d}}
     \]
@@ -699,7 +699,7 @@ Now we prove \autoref{thm:continuity-compactness} (Continuity Preserves Compactn
             f\pqty{x_0 - \eta} < f\pqty{x_0} = y_0 < f\pqty{x_0 + \eta}.
         \]
 
-        We take \(\delta = \min\Bqty{f\pqty{x_0 + \eta} - y_0, y_0 - f\pqty{x_0 - \eta}} > 0\). We have
+        We take \(\delta = \min\set{f\pqty{x_0 + \eta} - y_0, y_0 - f\pqty{x_0 - \eta}} > 0\). We have
         \begin{align*}
             \abs{y - y_0} < \delta, y \in \ccintv{c}{d} &\implies f\pqty{x_0 - \eta} \leq y_0 - \delta < y < y_0 + \delta \leq f\pqty{x_0 + \eta} \\
             &\implies f\pqty{x_0 - \eta} < y < f\pqty{x_0 + \eta} \\
@@ -709,7 +709,7 @@ Now we prove \autoref{thm:continuity-compactness} (Continuity Preserves Compactn
         \end{align*}
         as desired.
 
-        \item \(x_0 = a\), and we have \(y_0 = f\pqty{a}\). Fix \(\epsilon > 0\), and we choose \(\eta = \min\Bqty{\epsilon, b - a}\), and set \(\delta = f\pqty{a + \eta} - f\pqty{a} > 0\). We have
+        \item \(x_0 = a\), and we have \(y_0 = f\pqty{a}\). Fix \(\epsilon > 0\), and we choose \(\eta = \min\set{\epsilon, b - a}\), and set \(\delta = f\pqty{a + \eta} - f\pqty{a} > 0\). We have
         \begin{align*}
             \abs{y - y_0} < \delta, y \in \ccintv{c}{d} &\implies f\pqty{a} \leq y \leq f\pqty{a + \eta} \\
             &\implies a \leq f\inverse\pqty{y} \leq a + \eta \\

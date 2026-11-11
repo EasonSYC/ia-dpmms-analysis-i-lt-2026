@@ -66,7 +66,7 @@ There are two definitions of divergence to infinity, one allows the behaviour to
             \abs{x_n - 0} = \frac{1}{n} < \epsilon.
         \]
 
-        \item Let \(x_n = \frac{1}{2^n}\), then \(x_n \to 0\), because similarly, for any given \(\epsilon > 0\), if we choose \(N = \max\Bqty{1 + \log_2 \pqty{\frac{1}{\epsilon}}, 1}\), then for all \(n \geq N\),
+        \item Let \(x_n = \frac{1}{2^n}\), then \(x_n \to 0\), because similarly, for any given \(\epsilon > 0\), if we choose \(N = \max\set{1 + \log_2 \pqty{\frac{1}{\epsilon}}, 1}\), then for all \(n \geq N\),
         \[
             \abs{x_n - 0} = \frac{1}{2^n} < \epsilon.
         \]
@@ -95,7 +95,7 @@ There are two definitions of divergence to infinity, one allows the behaviour to
         \forall n \geq N_2\pqty{\epsilon}: \abs{x_n - b} < \epsilon.
     \]
 
-    In particular, we look at \(N\pqty{\epsilon} = \max\Bqty{N_1, N_2}\). It must still be the case that for all \(n \geq N\),
+    In particular, we look at \(N\pqty{\epsilon} = \max\set{N_1, N_2}\). It must still be the case that for all \(n \geq N\),
     \[
         \abs{x_n - a}, \abs{x_n - b} < \epsilon.
     \]
@@ -196,7 +196,7 @@ Having proved this, this allows us to show that the sequences have a unique limi
         \forall n \geq N_2, \abs{\Im\pqty{x_n} - \Im\pqty{x}} < \epsilon.
     \]
 
-    Hence, for all \(n \geq \max\Bqty{N_1, N_2}\),
+    Hence, for all \(n \geq \max\set{N_1, N_2}\),
     \begin{align*}
         \abs{x_n - x} &= \abs{\pqty{\Re \pqty{x_n} - \Re \pqty{x}} + i \pqty{\Im \pqty{x_n} - \Im \pqty{x}}} \\
         &\leq \abs{\Re\pqty{x_n} - \Re\pqty{x}} + \abs{i\pqty{\Im\pqty{x_n} - \Im\pqty{x}}} && \text{triangular inequality} \\
@@ -241,7 +241,7 @@ Having proved this, this allows us to show that the sequences have a unique limi
 
     This gives an overall bound of
     \[
-        \abs{x_n} \leq \max\Bqty{\max_{1 \leq n \leq N} \abs{x_n}, \abs{x} + 1}.
+        \abs{x_n} \leq \max\set{\max_{1 \leq n \leq N} \abs{x_n}, \abs{x} + 1}.
     \]
 \end{proof}
 
@@ -251,7 +251,7 @@ Having proved this, this allows us to show that the sequences have a unique limi
 \end{lemma}
 
 \begin{proof}[\proofname\ for the Sum]
-    We note that if \(x_n \to x\) and \(y_n \to y\), let the \(N \in \NN\) for \(\epsilon > 0\) be \(N_1\pqty{\frac{\epsilon}{2}}\) and \(N_2\pqty{\frac{\epsilon}{2}}\). Therefore, for all \(n \geq \max\Bqty{N_1, N_2}\),
+    We note that if \(x_n \to x\) and \(y_n \to y\), let the \(N \in \NN\) for \(\epsilon > 0\) be \(N_1\pqty{\frac{\epsilon}{2}}\) and \(N_2\pqty{\frac{\epsilon}{2}}\). Therefore, for all \(n \geq \max\set{N_1, N_2}\),
     \[
         \abs{\pqty{x_n + y_n} - \pqty{x + y}}
         \leq \abs{x_n - x} + \abs{y_n - y} < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon.
@@ -272,7 +272,7 @@ Having proved this, this allows us to show that the sequences have a unique limi
         \item \(\abs{y_n - y} < \epsilon\) for all \(n \geq N_2\).
     \end{itemize}
 
-    Hence, for any \(n \geq \max\Bqty{N_1, N_2}\), we have
+    Hence, for any \(n \geq \max\set{N_1, N_2}\), we have
     \[
         \abs{x_n y_n - xy} < \epsilon \pqty{\abs{x} + \abs{y_n}}.
     \]
@@ -292,7 +292,7 @@ Having proved this, this allows us to show that the sequences have a unique limi
         \abs{x_n - x} < \frac{1}{2} \abs{x}^2 \delta.
     \]
 
-    Hence, for \(n \geq \max\Bqty{N, M}\)
+    Hence, for \(n \geq \max\set{N, M}\)
     \begin{align*}
         \abs{\frac{1}{x_n} - \frac{1}{x}} = \abs{\frac{x - x_n}{x x_n}} < \frac{2}{\abs{x}^2} \abs{x - x_n} < \delta
     \end{align*}
@@ -418,7 +418,7 @@ Now, we prove \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass). We find 
 
     We continue this inductively, and we will get a sequence \(\pqty{I_n}_{n \in \NN}\). By construction, this is clearly a sequence of nested intervals, and they have infinitely many elements of the sequence each. The length of the interval halves each time, so the limit of the width of the intervals is zero.
 
-    Therefore, by \autoref{thm:nested-interval-thm} (Nested Interval Theorem), we see that there is a unique \(x \in \RR\) such that \(\bigcap_{n \in \NN} I_n = \Bqty{x}\).
+    Therefore, by \autoref{thm:nested-interval-thm} (Nested Interval Theorem), we see that there is a unique \(x \in \RR\) such that \(\bigcap_{n \in \NN} I_n = \set{x}\).
 
     We choose \(\pqty{x_{n_k}}\) as follows. Pick \(n_1 \in \NN\) such that \(x_{n_1} \in I_1\). Then, \(I_2\) has an infinite intersection with \(\set{x_n}{n > n_1}\).
 
@@ -441,7 +441,7 @@ Now, we prove \autoref{thm:bolzano-weierstrass} (Bolzano--Weierstrass). We find 
         P = \set{n \in \NN}{\forall m \geq n: x_m \geq x_n}.
     \]
 
-    If such set is infinite, say \(P = \Bqty{n_1, n_2, \ldots} \subseteq \NN\) for \(n_1 < n_2 < n_3 < \cdots\), then the subsequence \(\pqty{x_{n_t}}_{t \in \NN}\) is an increasing sequence.
+    If such set is infinite, say \(P = \set{n_1, n_2, \ldots} \subseteq \NN\) for \(n_1 < n_2 < n_3 < \cdots\), then the subsequence \(\pqty{x_{n_t}}_{t \in \NN}\) is an increasing sequence.
 
     Now we assume such set is finite, and let \(N = \max P\). For all \(n > N\), we have \(n \notin P\), and hence
     \[
@@ -1238,7 +1238,7 @@ Next, we look at sequences with infinitely many terms that are negative.
         \forall n \geq N_1: \abs{s_{2k} - s} < \epsilon \qand \forall n \geq N_2: \abs{s_{2k + 1} - s} < \epsilon.
     \]
 
-    Therefore, let \(N\pqty{\epsilon} = \max\Bqty{2 N_1\pqty{\epsilon}, 2 N_2 \pqty{\epsilon} + 1}\), then for all \(n \geq N\), we have \(n \geq 2 N_1\) and \(n \geq 2 N_2 + 1\), so
+    Therefore, let \(N\pqty{\epsilon} = \max\set{2 N_1\pqty{\epsilon}, 2 N_2\pqty{\epsilon} + 1}\), then for all \(n \geq N\), we have \(n \geq 2 N_1\) and \(n \geq 2 N_2 + 1\), so
     \[
         \abs{s_n - s} < \epsilon
     \]
